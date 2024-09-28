@@ -1,0 +1,254 @@
+@import "../../../scss/variables.scss";
+
+.buttonRoot {
+  --p-vertical: 8px;
+  --p-horizontal: var(--p-vertical);
+  --bg-color: var(--color-blue-jasmine-1400);
+  --color: var(--color-blue-jasmine-1200);
+  --shadow: var(--shadow-button-solid);
+  --border-color: transparent;
+  --shadow-button-destructive-focus: 0px 0px 0px 3px var(--color-white) inset;
+  --pseudo-border: 1px solid var(--border-color);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+  padding: var(--p-vertical) var(--p-horizontal);
+
+  box-shadow: var(--shadow);
+  border-radius: 8px;
+  background-color: var(--bg-color);
+
+  color: var(--color);
+  white-space: nowrap;
+
+  //   @include text-sm(500);
+  //   @include transition-fast(box-shadow, background-color);
+
+  //   @include pseudo-border();
+}
+
+// variants
+.buttonRoot.primary {
+  --color: var(--color-white);
+}
+
+.buttonRoot.secondary {
+  --bg-color: var(--color-blue-jasmine-300);
+  --shadow: none;
+}
+
+.buttonRoot.tertiary {
+  --bg-color: var(--color-white);
+  --color: var(--color-blue-jasmine-1200);
+  --shadow: none;
+}
+
+.buttonRoot.bordered {
+  --bg-color: var(--color-white);
+  --color: var(--color-blue-jasmine-1200);
+  --shadow: var(--shadow-button-outline);
+  --border-color: var(--color-blue-jasmine-500);
+}
+
+.buttonRoot.bordered.isShadowless {
+  --shadow: none;
+}
+
+.buttonRoot.transparent {
+  --bg-color: transparent;
+  --shadow: none;
+}
+
+.buttonRoot.destructive {
+  --bg-color: var(--color-error-800);
+  --color: var(--color-white);
+  --shadow: var(--shadow-button-destructive);
+}
+
+// sizes
+.buttonRoot.large {
+  --p-vertical: 10px;
+
+  //   @include text-md(500);
+
+  &.isRectangular {
+    --p-horizontal: 18px;
+  }
+}
+
+.buttonRoot.medium {
+  --p-vertical: 10px;
+  &.isRectangular {
+    --p-horizontal: 14px;
+  }
+}
+
+.buttonRoot.small {
+  &.isRectangular {
+    --p-horizontal: 10px;
+  }
+}
+
+.buttonRoot.xSmall {
+  --p-vertical: 6px;
+
+  &.isRectangular {
+    --p-horizontal: 8px;
+  }
+}
+
+.buttonRoot.tiny {
+  --p-vertical: 4px;
+  border-radius: 6px;
+
+  &.isRectangular {
+    --p-horizontal: 8px;
+  }
+}
+
+// states
+.buttonRoot.isLoading {
+  svg {
+    animation: spin 1s linear infinite;
+  }
+}
+
+.buttonRoot.primary.isLoading {
+  svg {
+    color: var(--color-blue-jasmine-1400);
+  }
+}
+
+.buttonRoot.destructive.isLoading {
+  svg {
+    color: var(--color-error-900);
+  }
+}
+
+.buttonRoot.primary.isHovered,
+.buttonRoot.primary:hover {
+  --bg-color: var(--color-blue-jasmine-1300);
+}
+
+.buttonRoot.secondary.isHovered,
+.buttonRoot.secondary:hover {
+  --bg-color: var(--color-blue-jasmine-400);
+}
+
+.buttonRoot.tertiary.isHovered,
+.buttonRoot.tertiary:hover {
+  --bg-color: var(--color-blue-jasmine-300);
+}
+
+.buttonRoot.bordered.isHovered,
+.buttonRoot.bordered:hover {
+  --bg-color: var(--color-blue-jasmine-300);
+}
+
+.buttonRoot.transparent.isHovered,
+.buttonRoot.transparent:hover {
+  --bg-color: var(--color-blue-jasmine-300);
+}
+
+.buttonRoot.destructive.isHovered,
+.buttonRoot.destructive:hover {
+  --bg-color: var(--color-error-900);
+}
+
+.buttonRoot.primary.isFocused,
+.buttonRoot.primary:focus {
+  --shadow: var(--shadow-focus-tertiary);
+  --bg-color: var(--color-blue-jasmine-1400);
+}
+
+.buttonRoot.secondary.isFocused,
+.buttonRoot.secondary:focus,
+.buttonRoot.tertiary.isFocused,
+.buttonRoot.tertiary:focus,
+.buttonRoot.bordered.isFocused,
+.buttonRoot.bordered:focus,
+.buttonRoot.transparent.isFocused,
+.buttonRoot.transparent:focus {
+  --shadow: var(--shadow-focus-default);
+  --bg-color: var(--color-white);
+}
+
+.buttonRoot.destructive.isFocused,
+.buttonRoot.destructive:focus {
+  --shadow: var(--shadow-focus-destructive);
+  --bg-color: var(--color-error-800);
+}
+
+.buttonRoot.tertiary.isFocused,
+.buttonRoot.tertiary:focus {
+  --border-color: transparent;
+}
+
+.buttonRoot.bordered.isFocused,
+.buttonRoot.bordered:focus {
+  --border-color: transparent;
+}
+
+.buttonRoot.primary.isPressed,
+.buttonRoot.primary:active {
+  --bg-color: var(--color-blue-jasmine-1400);
+  --shadow: var(--shadow-focus-secondary);
+  --border-color: var(--color-white);
+
+  &::after {
+    border-width: 1px;
+  }
+}
+
+.buttonRoot.secondary.isPressed,
+.buttonRoot.secondary:active,
+.buttonRoot.tertiary.isPressed,
+.buttonRoot.tertiary:active,
+.buttonRoot.bordered.isPressed,
+.buttonRoot.bordered:active,
+.buttonRoot.transparent.isPressed,
+.buttonRoot.transparent:active {
+  --bg-color: var(--color-white);
+  --shadow: none;
+  --pseudo-border: 2px solid var(--color-blue-jasmine-400);
+}
+
+.buttonRoot.destructive.isPressed,
+.buttonRoot.destructive:active {
+  --bg-color: var(--color-error-800);
+  --shadow: var(--shadow-button-destructive-focus);
+  --pseudo-border: 2px solid var(--color-error-800);
+}
+
+.buttonRoot.isDisabled,
+.buttonRoot.isDisabled:hover,
+.buttonRoot.isDisabled:focus,
+.buttonRoot.isDisabled:active {
+  --color: var(--color-blue-jasmine-900);
+  --bg-color: var(--color-blue-jasmine-400);
+  --border-color: var(--color-blue-jasmine-400);
+  --shadow: none;
+}
+
+.buttonRoot.transparent.isDisabled {
+  --bg-color: transparent;
+  --pseudo-border: none;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

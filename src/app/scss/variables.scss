@@ -1,0 +1,238 @@
+/* colors from design system */
+/* please, aim to use them */
+$white: #fff;
+
+$grey-25: #fbfbfb;
+$grey-50: #f9f9f9;
+$grey-100: #f5f5f5;
+$grey-200: #eee;
+$grey-300: #e7e7e7;
+$grey-350: #e2e2e2;
+$grey-400: #dfdfdf;
+$grey-500: #b7b7b7;
+$grey-600: #878787;
+$grey-700: #575757;
+$grey-800: #303030;
+$grey-900: #171717;
+
+$brand-200: #f1fde2;
+$brand-200: #e3fbc6;
+$brand-300: #b4dd82;
+$brand-400: #c8f88d;
+$brand-500: #aef04c;
+$brand-600: #a0d85b;
+$brand-700: #6fb11d;
+$brand-800: #54752d;
+$brand-900: #263513;
+
+$app-note: #2e80ff;
+$app-task: #ffba39;
+$app-wiki: #64cde4;
+$app-goal: #6d60cf;
+$app-feedback: #48abd6;
+$app-contact: #f17072;
+$app-whiteboard: #fecb62;
+$app-dashboard: #f79653;
+$app-process: #1fa88c;
+$app-time-tracking: #4fbe61;
+$app-diagram: #ffbd7c;
+$app-survey: #d979b9;
+
+$note-yellow: #fdf5d7;
+$note-yellow-dark: #ebe1bc;
+$note-blue: #cfdff7;
+$note-blue-dark: #b9c8df;
+$note-orange: #ffe5c8;
+$note-orange-dark: #e7cdb0;
+
+$action-default: #e4e4e4;
+$action-active: #ffe5c8;
+$action-tab-quant: #ecfdf3;
+$action-tab-qual: #fffaeb;
+$action-error: #f87369;
+$action-error-light: #fee3e1;
+
+$error-100: #fee4e2;
+$error-200: #fef4f4;
+$error-300: #fdedec;
+$error-400: #fbdfdd;
+$error-500: #f9c9c6;
+$error-600: #f4a49e;
+$error-700: #f07c73;
+$error-800: #e83f32;
+$error-900: #d4362a;
+$error-1000: #8e241c;
+$error-1100: #651a14;
+$error-1200: #49130f;
+$error-1300: #360e0b;
+$error-1400: #1d0706;
+
+$success-100: #d1fadf;
+$success-600: #039855;
+
+$rose-600: #e31b54;
+
+$orange-100: #ffead5;
+$orange-600: #fb6514;
+
+$blue-jasmine-200: #f9f9f9;
+$blue-jasmine-200: #f7f7f8;
+$blue-jasmine-300: #f3f4f5;
+$blue-jasmine-400: #eaebee;
+$blue-jasmine-500: #e1e3e7;
+$blue-jasmine-600: #d2d3da;
+$blue-jasmine-700: #bfc1ca;
+$blue-jasmine-800: #a9adb8;
+$blue-jasmine-900: #9296a5;
+$blue-jasmine-1000: #7a7f8f;
+$blue-jasmine-1100: #636673;
+$blue-jasmine-1200: #4b4d57;
+$blue-jasmine-1300: #33353c;
+$blue-jasmine-1400: #1d1e22;
+
+$text-selection: #b3d7fe;
+
+/* shadows */
+$shadow-xs: 0 1px 2px 0 rgba(16, 24, 40, 0.05);
+$shadow-sm: 0 1px 3px 0 rgba(16, 24, 40, 0.1), 0 1px 2px rgba(16, 24, 40, 0.06);
+$shadow-md: 0px 2px 4px -2px rgba(16, 24, 40, 0.06),
+  0px 4px 8px -2px rgba(16, 24, 40, 0.1);
+$shadow-md-bordered: $shadow-md, inset 0 0 0 1px rgba(16, 24, 40, 0.06);
+$shadow-lg: 0px 4px 6px -2px rgba(16, 24, 40, 0.05),
+  0px 12px 16px -4px rgba(16, 24, 40, 0.1);
+$shadow-xl: 0px 8px 8px -4px rgba(16, 24, 40, 0.04),
+  0px 20px 24px -4px rgba(16, 24, 40, 0.1);
+$shadow-2xl: 0 24px 48px -12px rgba(16, 24, 40, 0.25);
+$shadow-3xl: 0 32px 64px -12px rgba(16, 24, 40, 0.2);
+
+$shadow-modal: 0px 8px 28px -6px rgba(28, 40, 65, 0.12),
+  0px 18px 88px -4px rgba(28, 40, 65, 0.14);
+
+$shadow-button-solid: 0px 0px 0px 2px #474951 inset,
+  0px 0px 0px 1px $blue-jasmine-1300 inset;
+$shadow-button-destructive: 0px 0px 0px 2px #f47e75 inset,
+  0px 0px 0px 1px #ab150a inset;
+
+$shadow-focus-default: 0px 0px 0px 2.5px $brand-300;
+$shadow-focus-secondary: 0px 0px 0px 2px $grey-800;
+
+$border-100: 1px solid $grey-100;
+$border-200: 1px solid $grey-200;
+$border-300: 1px solid $grey-300;
+$border-400: 1px solid $grey-400;
+$border-800: 1px solid $grey-800;
+$border-jasmine-400: 1px solid $blue-jasmine-400;
+$border-jasmine-500: 1px solid $blue-jasmine-500;
+
+/* Old variables, will be removed during refactoring */
+/* old colors, don't use them in new components */
+$primary-900: #101828;
+$primary-700: #344054;
+$primary-500: #667085;
+$primary-300: #d0d5dd;
+$primary-200: #e4e7ec;
+$primary-100: #f2f4f7;
+
+$black: #000;
+$semi-transparent-light-grey: rgba(182, 182, 182, 0.1);
+$semi-transparent-grey-2: rgba(221, 221, 230, 0.4);
+
+/* form */
+$form-input-height: 44px;
+
+// empirically found values
+$layout-min-width: 1110px;
+$mobile-width-lg: 830px;
+$mobile-width-sm: 490px;
+
+$main-font-size: 16px;
+
+// https://www.figma.com/file/Y2ayqKs22ApcNV99sL3lQc/Frame-Library-1.0?node-id=2-3881&t=b2suXvx55MdBXkhP-0
+
+@mixin text($fs, $lh, $fw: 400) {
+  font-size: $fs;
+  line-height: $lh;
+
+  // 400 - is a default value for font-weight
+  // add it manually to change html element default fw value
+  @if $fw != 400 {
+    font-weight: $fw;
+  }
+}
+
+// Basic text
+
+@mixin text-tn($fw: 400) {
+  @include text(0.75rem, 0.875rem, $fw); /* 12px */
+}
+
+@mixin text-xs($fw: 400) {
+  @include text(0.8125rem, 1.125rem, $fw); /* 13px */
+}
+
+@mixin text-sm($fw: 400) {
+  @include text(0.875rem, 1.25rem, $fw); /* 14px */
+}
+
+@mixin text-xmd($fw: 400) {
+  @include text(0.9375rem, 1.25rem, $fw); /* 15px */
+}
+
+@mixin text-md($fw: 400) {
+  @include text(1rem, 1.5rem, $fw); /* 16px */
+}
+
+@mixin text-lg($fw: 400) {
+  @include text(1.125rem, 1.75rem, $fw); /* 18px */
+}
+
+@mixin text-xl($fw: 400) {
+  @include text(1.25rem, 1.875rem, $fw); /* 20px */
+}
+
+// Display text
+
+@mixin text-display-xs($fw: 400) {
+  @include text(1.5rem, 2rem, $fw); /* 24px */
+
+  letter-spacing: -0.01em;
+}
+
+@mixin text-display-sm($fw: 400) {
+  @include text(1.875rem, 2.375rem, $fw); /* 30px */
+
+  letter-spacing: -0.01em;
+}
+
+@mixin text-display-md($fw: 400) {
+  @include text(2.25rem, 2.75rem, $fw); /* 36px */
+
+  letter-spacing: -0.01em;
+}
+
+@mixin text-display-lg($fw: 400) {
+  @include text(3rem, 3.75rem, $fw); /* 48px */
+
+  letter-spacing: -0.02em;
+}
+
+@mixin text-display-xl($fw: 400) {
+  @include text(3.75rem, 4.5rem, $fw); /* 60px */
+
+  letter-spacing: -0.02em;
+}
+
+@mixin text-display-2xl($fw: 400) {
+  @include text(4.5rem, 5.625rem, $fw); /* 72px */
+
+  letter-spacing: -0.02em;
+}
+
+// Other
+
+@mixin clamp($lines: 1) {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lines;
+}

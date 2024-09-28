@@ -1,8 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "@radix-ui/colors/gray.css";
+@import "@radix-ui/colors/blue.css";
+@import "@radix-ui/colors/green.css";
+@import "@radix-ui/colors/red.css";
+@import "@radix-ui/colors/gray-dark.css";
+@import "@radix-ui/colors/blue-dark.css";
+@import "@radix-ui/colors/green-dark.css";
+@import "@radix-ui/colors/red-dark.css";
+@import "@radix-ui/themes/styles";
 
-:root {
+/* :root {
   --background: #ffffff;
   --foreground: #171717;
 }
@@ -24,4 +33,172 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+} */
+
+/* .radix-themes {
+  background: linear-gradient(
+    135deg,
+    rgba(36, 32, 33, 0.8) 0%,
+    rgba(64, 64, 64, 0.7) 50%,
+    rgba(36, 32, 33, 0.8) 100%
+  );
+  background-size: cover;
+} */
+
+.radix-themes {
+  background-size: 100% 100%;
+  background-position: 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px,
+    0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
+  background-image: radial-gradient(
+      18% 28% at 24% 50%,
+      #774f23ff 1%,
+      #073aff00 100%
+    ),
+    radial-gradient(18% 28% at 18% 71%, #ffffff59 6%, #073aff00 100%),
+    radial-gradient(42% 53% at 15% 94%, #000000ff 7%, #073aff00 100%),
+    radial-gradient(42% 53% at 34% 72%, #302f2eff 7%, #073aff00 100%),
+    radial-gradient(18% 28% at 35% 87%, #0f0e0eff 20%, #073aff00 100%),
+    radial-gradient(
+      31% 43% at 7% 98%,
+      #020202ff 0%,
+      #020202ff 6%,
+      #073aff00 100%
+    ),
+    radial-gradient(21% 37% at 72% 23%, #b985389c 23%, #073aff00 100%),
+    radial-gradient(35% 56% at 91% 74%, #202008f5 9%, #073aff00 100%),
+    radial-gradient(74% 86% at 67% 38%, #89662ef5 37%, #073aff00 100%),
+    linear-gradient(124deg, #000000ff 1%, #000000ff 97%);
+}
+
+:root {
+  --color-white: #fff;
+
+  --color-grey-25: #fbfbfb;
+  --color-grey-50: #f9f9f9;
+  --color-grey-100: #f5f5f5;
+  --color-grey-200: #eee;
+  --color-grey-300: #e7e7e7;
+  --color-grey-350: #e2e2e2;
+  --color-grey-400: #dfdfdf;
+  --color-grey-500: #b7b7b7;
+  --color-grey-600: #878787;
+  --color-grey-700: #575757;
+  --color-grey-800: #303030;
+  --color-grey-900: #171717;
+
+  --color-brand-200: #f1fde2;
+  --color-brand-200: #e3fbc6;
+  --color-brand-300: #b4dd82;
+  --color-brand-400: #c8f88d;
+  --color-brand-500: #96e832;
+  --color-brand-600: #a0d85b;
+  --color-brand-700: #6fb11d;
+  --color-brand-800: #54752d;
+  --color-brand-900: #263513;
+
+  --color-app-note: #2e80ff;
+  --color-app-task: #ffba39;
+  --color-app-wiki: #64cde4;
+  --color-app-goal: #6d60cf;
+  --color-app-feedback: #48abd6;
+  --color-app-contact: #f17072;
+  --color-app-whiteboard: #fecb62;
+  --color-app-dashboard: #f79653;
+  --color-app-process: #1fa88c;
+  --color-app-time-tracking: #4fbe61;
+  --color-app-diagram: #ffbd7c;
+  --color-app-survey: #d979b9;
+
+  --color-note-yellow: #fdf5d7;
+  --color-note-yellow-dark: #ebe1bc;
+  --color-note-blue: #cfdff7;
+  --color-note-blue-dark: #b9c8df;
+  --color-note-orange: #ffe5c8;
+  --color-note-orange-dark: #e7cdb0;
+
+  --color-action-default: #e4e4e4;
+  --color-action-active: #ffe5c8;
+  --color-action-tab-quant: #ecfdf3;
+  --color-action-tab-qual: #fffaeb;
+  --color-action-error: #f87369;
+  --color-action-error-light: #fee3e1;
+
+  --color-error-100: #fee4e2;
+  --color-error-200: #fef4f4;
+  --color-error-300: #fdedec;
+  --color-error-400: #fbdfdd;
+  --color-error-500: #f9c9c6;
+  --color-error-600: #f4a49e;
+  --color-error-700: #f07c73;
+  --color-error-800: #e83f32;
+  --color-error-900: #d4362a;
+  --color-error-1000: #8e241c;
+  --color-error-1100: #651a14;
+  --color-error-1200: #49130f;
+  --color-error-1300: #360e0b;
+  --color-error-1400: #1d0706;
+
+  --color-success-100: #d1fadf;
+  --color-success-600: #039855;
+
+  --color-rose-600: #e31b54;
+
+  --color-orange-100: #ffead5;
+  --color-orange-600: #fb6514;
+
+  --color-blue-jasmine-200: #f9f9f9;
+  --color-blue-jasmine-200: #f7f7f8;
+  --color-blue-jasmine-300: #f3f4f5;
+  --color-blue-jasmine-400: #eaebee;
+  --color-blue-jasmine-500: #e1e3e7;
+  --color-blue-jasmine-600: #d2d3da;
+  --color-blue-jasmine-700: #bfc1ca;
+  --color-blue-jasmine-800: #a9adb8;
+  --color-blue-jasmine-900: #9296a5;
+  --color-blue-jasmine-1000: #7a7f8f;
+  --color-blue-jasmine-1100: #636673;
+  --color-blue-jasmine-1200: #4b4d57;
+  --color-blue-jasmine-1300: #33353c;
+  --color-blue-jasmine-1400: #1d1e22;
+
+  --color-text-selection: #b3d7fe;
+
+  --shadow-xs: 0 1px 2px 0 rgba(16, 24, 40, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(16, 24, 40, 0.1),
+    0 1px 2px rgba(16, 24, 40, 0.06);
+  --shadow-md: 0px 2px 4px -2px rgba(16, 24, 40, 0.06),
+    0px 4px 8px -2px rgba(16, 24, 40, 0.1);
+  --shadow-lg: 0px 4px 6px -2px rgba(16, 24, 40, 0.05),
+    0px 12px 16px -4px rgba(16, 24, 40, 0.1);
+  --shadow-xl: 0 20px 24px -4px rgba(16, 24, 40, 0.1),
+    0 8px 8px -4px rgba(16, 24, 40, 0.04);
+  --shadow-2xl: 0 24px 48px -12px rgba(16, 24, 40, 0.25);
+  --shadow-3xl: 0 32px 64px -12px rgba(16, 24, 40, 0.2);
+
+  --shadow-modal: 0px 8px 28px -6px rgba(28, 40, 65, 0.12),
+    0px 18px 88px -4px rgba(28, 40, 65, 0.14);
+  --shadow-image-control: 0 0 1px 0.75px rgba(16, 24, 40, 0.11),
+    0 3px 9px 1px rgba(16, 24, 40, 0.14);
+
+  --shadow-button-outline: 0px 1.75px 3px -2px rgba(0, 0, 0, 0.12),
+    0px 1px 5px -2px rgba(0, 0, 0, 0.06);
+  --shadow-button-solid: 0px 0px 0px 2px #474951 inset,
+    0px 0px 0px 1px var(--color-blue-jasmine-1300) inset;
+  --shadow-button-destructive: 0px 0px 0px 1px #ab150a inset,
+    0px 0px 0px 2px #f47e75 inset;
+
+  --shadow-focus-default: 0px 0px 0px 4px rgba(142, 211, 56, 0.15),
+    0px 0px 0px 1px #8ed338;
+  --shadow-focus-secondary: 0px 0px 0px 2px var(--color-grey-800);
+  --shadow-focus-tertiary: 0px 0px 0px 5px rgba(142, 211, 56, 0.15),
+    0px 0px 0px 1px var(--color-white), 0px 0px 0px 2px #8ed338;
+  --shadow-focus-destructive: 0px 0px 0px 2px rgba(232, 63, 50, 0.3) inset,
+    0px 0px 0px 3px var(--color-white) inset;
+
+  --border-100: 1px solid var(--color-grey-100);
+  --border-200: 1px solid var(--color-grey-200);
+  --border-300: 1px solid var(--color-grey-300);
+  --border-400: 1px solid var(--color-grey-400);
+  --border-800: 1px solid var(--color-grey-800);
+  --border-jasmine-400: 1px solid var(--color-blue-jasmine-400);
 }

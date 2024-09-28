@@ -1,0 +1,41 @@
+@import "../../../scss/variables.scss";
+
+.tooltipRoot {
+  display: inline-flex;
+}
+
+.content {
+  padding: 8px 12px;
+  color: $white;
+
+  @include text-sm();
+
+  border-radius: 8px;
+  background-color: $grey-900;
+  box-shadow: $shadow-lg;
+
+  transform-origin: var(--radix-tooltip-content-transform-origin);
+  animation: scaleIn 0.2s ease-out;
+}
+
+.tooltipArrow {
+  fill: $grey-900;
+}
+
+.tooltipContentContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

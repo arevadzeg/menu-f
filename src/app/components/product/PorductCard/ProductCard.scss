@@ -1,0 +1,21 @@
+.product-card {
+  @apply w-96 h-96 relative  p-4 shadow-inner; // Full width and height
+
+  // Box-shadow inset for depth effect
+  box-shadow: inset 0px 0px 45px 35px rgb(0 0 0);
+
+  .sale-indicator {
+    @apply absolute text-lg top-5 left-5  bg-orange-300  text-yellow-700 font-bold px-4 py-1 rounded-xl; // Sale tag styles
+  }
+  .product-content {
+    @apply h-full flex flex-col justify-end p-4;
+  }
+
+  .product-title {
+    @apply text-yellow-100 text-lg;
+  }
+
+  .product-price {
+    @apply text-yellow-50 text-xl font-bold;
+  }
+}
