@@ -1,29 +1,31 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React from "react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { HamburgerMenuIcon, CheckIcon } from "@radix-ui/react-icons";
 import "./Dropdown.scss";
 
-interface DropdownMenuItem {
-  label: string;
-  icon?: () => JSX.Element;
-  disabled?: boolean;
-  onChange?: () => void;
-  value: string | number;
+// Define the default interface for dropdown menu items
+export interface DefaultDropdownMenuItem {
+  value: string; // Value of the dropdown item
+  label: string; // Label of the dropdown item
+  icon?: () => JSX.Element; // Optional icon (can be JSX.Element for better type)
 }
 
-interface DropdownMenuProps {
-  options: DropdownMenuItem[];
-  selectedValue: string | number | null;
-  setSelectedValue: Dispatch<SetStateAction<string | number | null>>;
-  Trigger?: () => JSX.Element;
+// DropdownMenuProps interface with a generic type and a default type
+interface DropdownMenuProps<
+  OptionType extends DefaultDropdownMenuItem = DefaultDropdownMenuItem
+> {
+  options: OptionType[]; // Options array
+  selectedValue: string | number | null; // Currently selected value
+  onChange: (option: OptionType | null) => void;
+  Trigger?: () => JSX.Element; // Optional trigger component
 }
 
-const DropdownMenuComponent: React.FC<DropdownMenuProps> = ({
+const DropdownMenuComponent = <OptionType extends DefaultDropdownMenuItem>({
   options,
   selectedValue,
-  setSelectedValue,
+  onChange,
   Trigger,
-}) => {
+}: DropdownMenuProps<OptionType>) => {
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
@@ -47,17 +49,23 @@ const DropdownMenuComponent: React.FC<DropdownMenuProps> = ({
               checked={item.value === selectedValue}
               onCheckedChange={(e) => {
                 if (e) {
-                  setSelectedValue(item.value);
+                  onChange(item);
                 } else {
-                  setSelectedValue(null);
+                  onChange(null);
                 }
               }}
             >
               <DropdownMenu.ItemIndicator className="DropdownMenuItemIndicator">
                 <CheckIcon />
               </DropdownMenu.ItemIndicator>
-              {item.label}
-              {item.icon && <div className="RightSlot">{<item.icon />}</div>}
+              {item.label}{" "}
+              {/* This will now work as TypeScript knows item has a label */}
+              {item.icon && (
+                <div className="RightSlot">
+                  <item.icon />
+                </div>
+              )}{" "}
+              {/* Assuming icon is a JSX.Element */}
             </DropdownMenu.CheckboxItem>
           ))}
 
