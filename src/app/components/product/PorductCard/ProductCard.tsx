@@ -1,30 +1,28 @@
 import React from "react";
 import "./ProductCard.scss";
+import { Skeleton } from "@radix-ui/themes";
+import { Product } from "<root>/app/api/useGetProducts";
 
-type ProductCardProps = {
-  title: string;
-  price: string;
-  isOnSale?: boolean;
-  image: string;
-};
+interface ProductCardProps {
+  isLoading?: boolean;
+  product?: Product;
+}
 
-const ProductCard: React.FC<ProductCardProps> = ({
-  title,
-  price,
-  isOnSale,
-  image,
-}) => {
+const ProductCard: React.FC<ProductCardProps> = ({ product, isLoading }) => {
+  if (isLoading || !product)
+    return <Skeleton className="product-card h-48 rounded-3xl" />;
+
   return (
     <div
-      className="product-card h-48 bg-cover rounded-3xl cursor-pointer"
+      className="product-card h-48 bg-cover bg-center rounded-3xl cursor-pointer"
       style={{
-        backgroundImage: `url(${image})`,
+        backgroundImage: `url(${product.image})`,
       }}
     >
-      {isOnSale && <div className="sale-indicator">Sale</div>}
+      {product.isOnSale && <div className="sale-indicator">Sale</div>}
       <div className="product-content">
-        <h2 className="product-title">{title}</h2>
-        <p className="product-price">{price}</p>
+        <h2 className="product-title">{product.title}</h2>
+        <p className="product-price">{product.price}</p>
       </div>
     </div>
   );
