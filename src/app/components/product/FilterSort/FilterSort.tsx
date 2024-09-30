@@ -1,13 +1,15 @@
 "use client"; // Add this line
 
-import { useState } from "react";
-import { usePathname, useRouter } from "next/navigation"; // For managing routing and query params
+import { ChangeEvent, useState, useCallback } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation"; // For managing routing and query params
 import DropdownMenuComponent from "../../ui/Dropdown/Dropdown";
 import {
   ArrowDownIcon,
   ArrowUpIcon,
   CaretSortIcon,
 } from "@radix-ui/react-icons";
+import TextField from "../../ui/TextField/TextField";
+import { debounce } from "lodash"; // Import debounce from lodash
 
 const options = [
   {
@@ -22,12 +24,12 @@ const options = [
   },
   {
     label: "Price Up",
-    value: "asc&Price",
+    value: "asc&price",
     icon: () => <ArrowUpIcon />,
   },
   {
     label: "Price Down",
-    value: "desc&Price",
+    value: "desc&price",
     icon: () => <ArrowDownIcon />,
   },
 ];
@@ -36,31 +38,51 @@ type OptionInterface = (typeof options)[number];
 
 const FilterSort = () => {
   const [sortOption, setSortOption] = useState<string | null>(null);
-  // const [order, setOrder] = useState<string>("name"); // Default sorting by name
+  const searchparams = useSearchParams();
+  const [searchValue, setSearchValue] = useState(
+    searchparams.get("search") || ""
+  );
   const router = useRouter();
   const pathname = usePathname();
+
+  // Debounced function to handle search change
+  const debouncedSearchChange = useCallback(
+    debounce((value: string) => {
+      const params = new URLSearchParams(window.location.search);
+      params.set("search", value);
+      // Keep existing sort parameters
+      router.push(pathname + "?" + params.toString());
+    }, 500), // 500ms debounce
+    [router, pathname]
+  );
+
+  const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value; // Access the input value
+    setSearchValue(value);
+    console.log("value", value);
+    debouncedSearchChange(value); // Call the debounced function
+  };
 
   // Handle option change and update the URL query string
   const handleSortChange = (option: OptionInterface | null) => {
     console.log("option", option);
     if (option) {
       setSortOption(option.value);
-      // setOrder(option.order);
 
       // Update the query parameters in the URL
       const params = new URLSearchParams(window.location.search);
-      const [sort, order] = option.value.split("&");
+      const [order, sort] = option.value.split("&");
       params.set("sort", sort);
       params.set("order", order);
 
       // Navigate to the updated URL with new query params
-      // router.push(`${window.location.pathname}?${params.toString()}`);
       router.push(pathname + "?" + params.toString());
     }
   };
 
   return (
-    <div className="justify-end flex gap-2 px-8 ">
+    <div className="justify-end flex gap-2 px-8">
+      <TextField value={searchValue} onChange={handleSearchChange} />
       <DropdownMenuComponent<OptionInterface>
         options={options}
         selectedValue={sortOption}
