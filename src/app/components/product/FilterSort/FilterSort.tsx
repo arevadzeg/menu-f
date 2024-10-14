@@ -1,7 +1,7 @@
-"use client"; // Add this line
+"use client";
 
 import { ChangeEvent, useState, useCallback } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation"; // For managing routing and query params
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import DropdownMenuComponent from "../../ui/Dropdown/Dropdown";
 import {
   ArrowDownIcon,
@@ -9,7 +9,10 @@ import {
   CaretSortIcon,
 } from "@radix-ui/react-icons";
 import TextField from "../../ui/TextField/TextField";
-import { debounce } from "lodash"; // Import debounce from lodash
+import { debounce } from "lodash";
+import { Button } from "../../ui/Button/Button";
+import Modal from "../../ui/Modal/Modal";
+import CreateProductForm from "../CreateProductForm/CreateProductForm";
 
 const options = [
   {
@@ -44,6 +47,9 @@ const FilterSort = () => {
   );
   const router = useRouter();
   const pathname = usePathname();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const isAdmin = true;
 
   // Debounced function to handle search change
   const debouncedSearchChange = useCallback(
@@ -57,36 +63,42 @@ const FilterSort = () => {
   );
 
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value; // Access the input value
+    const value = event.target.value;
     setSearchValue(value);
-    console.log("value", value);
-    debouncedSearchChange(value); // Call the debounced function
+    debouncedSearchChange(value);
   };
 
-  // Handle option change and update the URL query string
   const handleSortChange = (option: OptionInterface | null) => {
-    console.log("option", option);
     if (option) {
       setSortOption(option.value);
 
-      // Update the query parameters in the URL
       const params = new URLSearchParams(window.location.search);
       const [order, sort] = option.value.split("&");
       params.set("sort", sort);
       params.set("order", order);
 
-      // Navigate to the updated URL with new query params
       router.push(pathname + "?" + params.toString());
     }
   };
 
   return (
     <div className="justify-end flex gap-2 px-8">
+      {isAdmin && (
+        <Button onClick={() => setIsModalOpen(true)}>Create product</Button>
+      )}
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => {
+          setIsModalOpen(false);
+        }}
+      >
+        <CreateProductForm />
+      </Modal>
       <TextField value={searchValue} onChange={handleSearchChange} />
       <DropdownMenuComponent<OptionInterface>
         options={options}
         selectedValue={sortOption}
-        onChange={handleSortChange} // Call handleSortChange when selecting an option
+        onChange={handleSortChange}
         Trigger={() => (
           <CaretSortIcon className="rounded-md bg-white w-8 h-8" />
         )}

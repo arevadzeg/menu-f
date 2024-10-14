@@ -13,7 +13,6 @@ const ProductViewLayout = () => {
 
   const products =
     data?.pages.flatMap((page) => page.products) ?? skeletonArray;
-  console.log("page.products", products);
 
   return (
     <InfiniteScroll

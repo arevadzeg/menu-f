@@ -8,12 +8,14 @@ const API_ENDPOINTS = {
     GET_ALL_BY_USER: "/store/:userId", // Get all stores for a specific user
   },
   PRODUCT: {
-    CREATE: "/product/:storeId", // Create a new product for a specific store
-    GET_ALL_BY_STORE: "/product/:storeId", // Get all products for a specific store
-    UPDATE: "/product/:productId", // Update a specific product by ID
-    DELETE: "/product/:productId", // Delete a specific product by ID
+    CREATE: "/product",
+    GET_ALL_BY_STORE: "/product",
+    UPDATE: "/product/:productId", 
+    DELETE: "/product/:productId",
   },
-  // Add more modules or categories of endpoints as needed
+  STORAGE:{
+    UPLOAD:"storage/upload"
+  }
 };
 
 export default API_ENDPOINTS;

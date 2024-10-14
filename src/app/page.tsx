@@ -4,6 +4,7 @@ import { Header } from "./components/layout/Header/Header";
 import FilterSort from "./components/product/FilterSort/FilterSort";
 import ProductViewLayout from "./components/layout/ProductViewLayout/ProductViewLayout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Alert from "./components/ui/Alert/Alert";
 
 export default function Home() {
   const queryClient = new QueryClient();
@@ -15,6 +16,7 @@ export default function Home() {
           <Header />
           <FilterSort />
           <ProductViewLayout />
+          <Alert />
         </Theme>
       </QueryClientProvider>
     </div>

@@ -30,17 +30,14 @@ const fetchProducts = async (
   queryString: string
 ): Promise<responseType> => {
   const response = await apiClient.get(
-    `${API_ENDPOINTS.PRODUCT.GET_ALL_BY_STORE.replace(
-      ":storeId",
-      storeId
-    )}?page=${pageParam}&${queryString}`
+    `${API_ENDPOINTS.PRODUCT.GET_ALL_BY_STORE}/${storeId}?page=${pageParam}&${queryString}`
   );
   return response.data;
 };
 
 // Custom hook for infinite scrolling
 const useGetInfiniteProducts = () => {
-  const storeId = "935e13d5-e03d-42f8-a9d4-850aa472a245";
+  const storeId = "3a1a255b-c22e-4ddf-90e5-94c8e21e8790";
   const searchParams = useSearchParams();
 
   const search = searchParams.get("search") || "";

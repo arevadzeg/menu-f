@@ -90,6 +90,10 @@ interface IconPropsWithPLacement extends IconProps {
 export interface ButtonCommonProps
   extends React.HTMLAttributes<HTMLButtonElement> {
   /**
+   * Button type id
+   */
+  type?: "button" | "reset" | "submit";
+  /**
    * Button test id
    */
   testId?: string;
@@ -158,6 +162,7 @@ export type ButtonProps = ButtonCommonProps | BorderedButtonProps;
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
+      type = "button",
       testId,
       className,
       tooltipProps,
@@ -227,7 +232,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <Tooltip {...tooltipProps}>
         <button
           data-testid={testId}
-          type="button"
+          type={type}
           ref={ref}
           className={classNames(
             className,

@@ -1,0 +1,49 @@
+.file-upload {
+  .drop-zone {
+    @apply border-2 border-dashed rounded-lg border-gray-300 p-5 text-center cursor-pointer mb-5;
+    
+    p {
+      @apply mb-1 text-gray-500;
+    }
+
+    .upload-icon{
+      @apply m-auto h-10 w-10 mb-4
+    }
+  }
+
+  .file-list {
+    @apply space-y-3 mt-4;
+
+    .file-item {
+      @apply flex items-center justify-between p-3 border rounded-lg  bg-gray-200 relative;
+
+      .file-info {
+        @apply flex items-center;
+
+        .file-image-icon {
+          @apply w-10 h-10 object-cover mr-2;
+        }
+
+        .file-icon {
+          @apply text-2xl mr-2;
+        }
+
+        .file-name {
+          @apply max-w-xs truncate;
+        }
+      }
+
+      .file-size {
+        @apply text-xs text-gray-500;
+      }
+
+      .remove-file-btn {
+        @apply absolute right-2 text-red-500 text-xl hover:text-red-700;
+      }
+
+      .file-progress {
+        @apply w-full ml-3;
+      }
+    }
+  }
+}
