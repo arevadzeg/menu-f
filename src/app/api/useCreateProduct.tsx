@@ -14,6 +14,7 @@ interface CreateProductPayload {
   price: number;
   isOnSale?: boolean;
   image: string;
+  description?: string;
 }
 
 interface UpdateProductPayload extends CreateProductPayload {
@@ -27,6 +28,9 @@ interface Product {
   price: number;
   isOnSale: boolean;
   image: string;
+  section: string | null;
+  sortOrder: number;
+  description: string;
   createdAt: string;
   updatedAt: string;
 }

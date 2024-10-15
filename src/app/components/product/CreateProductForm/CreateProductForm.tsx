@@ -12,6 +12,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import Backdrop from "../../ui/Backdrop/Backdrop";
 import { Product } from "<root>/app/api/useGetProducts";
+import RichTextEditor from "../../ui/RichTextEditor/RichTextEditor";
 
 interface CreateProductFormProps {
   isUpdateMode?: boolean;
@@ -32,6 +33,9 @@ const CreateProductForm = ({
   const uploadFile = useUploadFile();
   const createProduct = useCreateProduct();
   const updateProduct = useUpdateProduct();
+  const [richTextEditorValue, setRichTextEditorValue] = useState(
+    productData?.description ?? ""
+  );
 
   const mutation = isUpdateMode ? updateProduct : createProduct;
   const queryClient = useQueryClient();
@@ -68,6 +72,7 @@ const CreateProductForm = ({
         price: Number(data.price),
         title: data.title,
         productId: productData?.id ?? "",
+        description: richTextEditorValue,
       });
 
       const storeId = "3a1a255b-c22e-4ddf-90e5-94c8e21e8790";
@@ -89,25 +94,38 @@ const CreateProductForm = ({
 
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col gap-4 p-4"
+        className="flex flex-col gap-4 p-4 pr-2"
       >
-        <TextField
-          placeholder="Title"
-          {...register("title", { required: true })}
-          onChange={(e) => handleFieldChange(e, "title")}
-        />
+        <div
+          className="overflow-auto flex flex-col gap-4 pr-2"
+          style={{
+            maxHeight: "calc(85vh - 150px )",
+          }}
+        >
+          <TextField
+            placeholder="Title"
+            {...register("title", { required: true })}
+            onChange={(e) => handleFieldChange(e, "title")}
+          />
 
-        <TextField
-          placeholder="Price"
-          {...register("price", { required: true })}
-          onChange={handlePriceChange}
-        />
+          <TextField
+            placeholder="Price"
+            {...register("price", { required: true })}
+            onChange={handlePriceChange}
+          />
 
-        <FileUpload
-          selectedFile={selectedFile}
-          setSelectedFile={setSelectedFile}
-          uploadedImage={productData?.image}
-        />
+          <FileUpload
+            selectedFile={selectedFile}
+            setSelectedFile={setSelectedFile}
+            uploadedImage={productData?.image}
+          />
+          <RichTextEditor
+            value={richTextEditorValue}
+            onChange={(e: string) => {
+              setRichTextEditorValue(e);
+            }}
+          />
+        </div>
 
         <Button type="submit">
           {isUploading ? "Creating..." : "Create Product"}
