@@ -3,25 +3,43 @@ import "./CreateProductForm.scss";
 import { Button } from "../../ui/Button/Button";
 import TextField from "../../ui/TextField/TextField";
 import FileUpload from "../../ui/Upload/Upload";
-import useCreateProduct from "<root>/app/api/useCreateProduct";
+import useCreateProduct, {
+  useUpdateProduct,
+} from "<root>/app/api/useCreateProduct";
 import { ChangeEvent, useState } from "react";
 import useUploadFile from "<root>/app/api/useUploadImage";
 import { useQueryClient } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import Backdrop from "../../ui/Backdrop/Backdrop";
+import { Product } from "<root>/app/api/useGetProducts";
 
-const CreateProductForm = () => {
-  const { register, handleSubmit, setValue } = useForm();
+interface CreateProductFormProps {
+  isUpdateMode?: boolean;
+  productData?: Product;
+}
+const CreateProductForm = ({
+  isUpdateMode,
+  productData,
+}: CreateProductFormProps) => {
+  const { register, handleSubmit, setValue } = useForm({
+    defaultValues: {
+      title: productData?.title,
+      price: productData?.price,
+    },
+  });
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const uploadFile = useUploadFile();
   const createProduct = useCreateProduct();
+  const updateProduct = useUpdateProduct();
+
+  const mutation = isUpdateMode ? updateProduct : createProduct;
   const queryClient = useQueryClient();
   const searchParams = useSearchParams();
 
   const handleFieldChange = (
     event: ChangeEvent<HTMLInputElement>,
-    name: string
+    name: "title" | "price"
   ) => {
     const value = event.target.value;
     setValue(name, value);
@@ -45,10 +63,11 @@ const CreateProductForm = () => {
         imageUrl = uploadResponse.downloadURL;
       }
 
-      await createProduct.mutateAsync({
+      await mutation.mutateAsync({
         image: imageUrl,
         price: Number(data.price),
         title: data.title,
+        productId: productData?.id ?? "",
       });
 
       const storeId = "3a1a255b-c22e-4ddf-90e5-94c8e21e8790";
@@ -87,6 +106,7 @@ const CreateProductForm = () => {
         <FileUpload
           selectedFile={selectedFile}
           setSelectedFile={setSelectedFile}
+          uploadedImage={productData?.image}
         />
 
         <Button type="submit">

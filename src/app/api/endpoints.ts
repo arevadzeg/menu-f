@@ -10,8 +10,8 @@ const API_ENDPOINTS = {
   PRODUCT: {
     CREATE: "/product",
     GET_ALL_BY_STORE: "/product",
-    UPDATE: "/product/:productId", 
-    DELETE: "/product/:productId",
+    UPDATE: "/product", 
+    DELETE: "/product",
   },
   STORAGE:{
     UPLOAD:"storage/upload"
