@@ -1,9 +1,11 @@
 .file-upload {
   .drop-zone {
-    @apply border-2 border-dashed rounded-lg border-gray-300 p-5 text-center cursor-pointer mb-5;
+    border-color: var(--border-color);
+    @apply border-2 border-dashed rounded-lg  p-5 text-center cursor-pointer mb-5;
     
     p {
-      @apply mb-1 text-gray-500;
+      color: var(--text-color);
+      @apply mb-1 ;
     }
 
     .upload-icon{
@@ -15,7 +17,8 @@
     @apply space-y-3 mt-4;
 
     .file-item {
-      @apply flex items-center justify-between p-3 border rounded-lg  bg-gray-200 relative;
+      background-color: var(--secondary-light-color);
+      @apply flex items-center justify-between p-3 border rounded-lg  relative;
 
       .file-info {
         @apply flex items-center;
@@ -34,12 +37,10 @@
       }
 
       .file-size {
+        color: var(--text-color);
         @apply text-xs text-gray-500;
       }
 
-      .remove-file-btn {
-        @apply absolute right-2 text-red-500 text-xl hover:text-red-700;
-      }
 
       .file-progress {
         @apply w-full ml-3;

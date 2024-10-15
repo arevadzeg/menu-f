@@ -1,3 +1,26 @@
-.yle {
-  color: var(--blue-10);
+
+#Header {
+  @apply flex items-center justify-between p-4 ;
+  
+  .title {
+    @apply text-lg font-bold  mr-6;
+    color: var(--text-color)
+  }
+  
+  .menu-container {
+    @apply flex items-center space-x-4;
+    
+    .dropdown {
+      @apply flex items-center;
+    }
+
+    .dark-mode {
+      @apply flex items-center;
+
+      .label {
+        @apply p-4;
+        padding-right: 15px; /* Specific padding */
+      }
+    }
+  }
 }

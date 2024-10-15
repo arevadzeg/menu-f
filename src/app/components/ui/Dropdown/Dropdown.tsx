@@ -3,21 +3,19 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { HamburgerMenuIcon, CheckIcon } from "@radix-ui/react-icons";
 import "./Dropdown.scss";
 
-// Define the default interface for dropdown menu items
 export interface DefaultDropdownMenuItem {
-  value: string; // Value of the dropdown item
-  label: string; // Label of the dropdown item
-  icon?: () => JSX.Element; // Optional icon (can be JSX.Element for better type)
+  value: string;
+  label: string;
+  icon?: () => JSX.Element;
 }
 
-// DropdownMenuProps interface with a generic type and a default type
 interface DropdownMenuProps<
   OptionType extends DefaultDropdownMenuItem = DefaultDropdownMenuItem
 > {
-  options: OptionType[]; // Options array
-  selectedValue: string | number | null; // Currently selected value
+  options: OptionType[];
+  selectedValue: string | number | null;
   onChange: (option: OptionType | null) => void;
-  Trigger?: () => JSX.Element; // Optional trigger component
+  Trigger?: () => JSX.Element;
 }
 
 const DropdownMenuComponent = <OptionType extends DefaultDropdownMenuItem>({
@@ -47,8 +45,8 @@ const DropdownMenuComponent = <OptionType extends DefaultDropdownMenuItem>({
               key={index}
               className="DropdownMenuCheckboxItem"
               checked={item.value === selectedValue}
-              onCheckedChange={(e) => {
-                if (e) {
+              onCheckedChange={(event) => {
+                if (event) {
                   onChange(item);
                 } else {
                   onChange(null);
@@ -59,13 +57,11 @@ const DropdownMenuComponent = <OptionType extends DefaultDropdownMenuItem>({
                 <CheckIcon />
               </DropdownMenu.ItemIndicator>
               {item.label}{" "}
-              {/* This will now work as TypeScript knows item has a label */}
               {item.icon && (
                 <div className="RightSlot">
                   <item.icon />
                 </div>
               )}{" "}
-              {/* Assuming icon is a JSX.Element */}
             </DropdownMenu.CheckboxItem>
           ))}
 

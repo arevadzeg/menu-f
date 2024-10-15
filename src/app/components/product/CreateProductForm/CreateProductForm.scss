@@ -1,0 +1,14 @@
+
+.create-product-form {
+    @apply flex flex-col gap-4 p-4 pr-2;
+  
+    .form-body {
+      @apply overflow-auto flex flex-col gap-4 p-1 pr-2 ;
+      max-height: calc(85vh - 150px);
+    }
+  
+    .button {
+      @apply mt-4;
+    }
+  }
+  

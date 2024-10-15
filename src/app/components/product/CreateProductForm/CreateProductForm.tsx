@@ -9,25 +9,28 @@ import useCreateProduct, {
 import { ChangeEvent, useState } from "react";
 import useUploadFile from "<root>/app/api/useUploadImage";
 import { useQueryClient } from "@tanstack/react-query";
-import { useSearchParams } from "next/navigation";
 import Backdrop from "../../ui/Backdrop/Backdrop";
 import { Product } from "<root>/app/api/useGetProducts";
 import RichTextEditor from "../../ui/RichTextEditor/RichTextEditor";
+import RadixButton from "../../ui/RadixButton/RadixButton";
 
 interface CreateProductFormProps {
   isUpdateMode?: boolean;
   productData?: Product;
+  closeModal?: () => void;
 }
 const CreateProductForm = ({
   isUpdateMode,
   productData,
+  closeModal,
 }: CreateProductFormProps) => {
-  const { register, handleSubmit, setValue } = useForm({
+  const { register, handleSubmit, setValue, reset } = useForm({
     defaultValues: {
       title: productData?.title,
       price: productData?.price,
     },
   });
+
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const uploadFile = useUploadFile();
@@ -39,7 +42,6 @@ const CreateProductForm = ({
 
   const mutation = isUpdateMode ? updateProduct : createProduct;
   const queryClient = useQueryClient();
-  const searchParams = useSearchParams();
 
   const handleFieldChange = (
     event: ChangeEvent<HTMLInputElement>,
@@ -75,16 +77,18 @@ const CreateProductForm = ({
         description: richTextEditorValue,
       });
 
-      const storeId = "3a1a255b-c22e-4ddf-90e5-94c8e21e8790";
-      const search = searchParams.get("search") || "";
-      const sort = searchParams.get("sort") || "";
-      const order = searchParams.get("order") || "";
-
       queryClient.invalidateQueries({ queryKey: ["products"] });
+
+      if (isUpdateMode) {
+        closeModal && closeModal();
+      } else {
+        setSelectedFile(null);
+        reset();
+      }
     } catch (error) {
       console.error("Error creating product:", error);
     } finally {
-      setIsUploading(false); // Hide spinner after upload completes
+      setIsUploading(false);
     }
   };
 
@@ -92,28 +96,18 @@ const CreateProductForm = ({
     <span>
       {isUploading && <Backdrop open />}
 
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col gap-4 p-4 pr-2"
-      >
-        <div
-          className="overflow-auto flex flex-col gap-4 pr-2"
-          style={{
-            maxHeight: "calc(85vh - 150px )",
-          }}
-        >
+      <form onSubmit={handleSubmit(onSubmit)} className="create-product-form">
+        <div className="form-body">
           <TextField
             placeholder="Title"
             {...register("title", { required: true })}
             onChange={(e) => handleFieldChange(e, "title")}
           />
-
           <TextField
             placeholder="Price"
             {...register("price", { required: true })}
             onChange={handlePriceChange}
           />
-
           <FileUpload
             selectedFile={selectedFile}
             setSelectedFile={setSelectedFile}
@@ -121,15 +115,19 @@ const CreateProductForm = ({
           />
           <RichTextEditor
             value={richTextEditorValue}
-            onChange={(e: string) => {
-              setRichTextEditorValue(e);
-            }}
+            onChange={(e: string) => setRichTextEditorValue(e)}
           />
         </div>
 
-        <Button type="submit">
-          {isUploading ? "Creating..." : "Create Product"}
-        </Button>
+        <RadixButton type="submit" className="button">
+          {isUploading
+            ? isUpdateMode
+              ? "Updating..."
+              : "Creating..."
+            : isUpdateMode
+            ? "Update Product"
+            : "Create Product"}
+        </RadixButton>
       </form>
     </span>
   );

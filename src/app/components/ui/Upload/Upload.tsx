@@ -10,7 +10,7 @@ interface FileUploadProps {
   onUpload?: (file: File) => void;
   selectedFile: File | null;
   setSelectedFile: Dispatch<SetStateAction<File | null>>;
-  uploadedImage?: string; // This is the URL of the previously uploaded file
+  uploadedImage?: string;
 }
 
 const getImageNameFromUrl = (url: string): string => {
@@ -26,13 +26,12 @@ export const FileUpload: React.FC<FileUploadProps> = ({
   onUpload,
   selectedFile,
   setSelectedFile,
-  uploadedImage, // URL of the pre-uploaded image
+  uploadedImage,
 }) => {
   const {
     handleClick,
     handleDrop,
     handleFile,
-    handleRemoveFile,
     fileInputRef,
     handleDragOver,
     isImageFile,
@@ -43,7 +42,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({
     onUpload,
   });
 
-  const hasUploadedImage = uploadedImage && !selectedFile; // Check if there's an uploaded image but no selected file
+  const hasUploadedImage = uploadedImage && !selectedFile;
 
   return (
     <div className="file-upload">
@@ -75,7 +74,6 @@ export const FileUpload: React.FC<FileUploadProps> = ({
         <div className="file-list">
           <div className="file-item">
             <div className="file-info">
-              {/* Display the pre-uploaded image if there's no selected file */}
               {selectedFile ? (
                 isImageFile(selectedFile) && (
                   <img
@@ -111,9 +109,6 @@ export const FileUpload: React.FC<FileUploadProps> = ({
                 </span>
               </div>
             </div>
-            {/* <div className="remove-file-btn" onClick={handleRemoveFile}>
-              &times;
-            </div> */}
           </div>
         </div>
       )}

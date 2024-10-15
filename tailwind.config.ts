@@ -9,8 +9,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        // TODO NOT SURE 
+        primary: 'var(--primary-color)',
+        secondary: 'var(--secondary-color)',
+        accent: 'var(--accent-color)',
+        background: 'var(--background-color)',
+        text: 'var(--text-color)',
+        border: 'var(--border-color)',
       },
     },
   },

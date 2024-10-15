@@ -13,6 +13,7 @@ import { debounce } from "lodash";
 import { Button } from "../../ui/Button/Button";
 import Modal from "../../ui/Modal/Modal";
 import CreateProductForm from "../CreateProductForm/CreateProductForm";
+import RadixButton from "../../ui/RadixButton/RadixButton";
 
 const options = [
   {
@@ -84,7 +85,9 @@ const FilterSort = () => {
   return (
     <div className="justify-end flex gap-2 px-8">
       {isAdmin && (
-        <Button onClick={() => setIsModalOpen(true)}>Create product</Button>
+        <RadixButton onClick={() => setIsModalOpen(true)}>
+          Create product
+        </RadixButton>
       )}
       <Modal
         isOpen={isModalOpen}

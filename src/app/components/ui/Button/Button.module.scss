@@ -3,9 +3,9 @@
 .buttonRoot {
   --p-vertical: 8px;
   --p-horizontal: var(--p-vertical);
-  --bg-color: var(--color-blue-jasmine-1400);
-  --color: var(--color-blue-jasmine-1200);
-  --shadow: var(--shadow-button-solid);
+  --bg-color: var(--secondary-color);
+  --color: var(--text-color);
+  --shadow: var(--border-color);
   --border-color: transparent;
   --shadow-button-destructive-focus: 0px 0px 0px 3px var(--color-white) inset;
   --pseudo-border: 1px solid var(--border-color);
@@ -130,7 +130,7 @@
 
 .buttonRoot.primary.isHovered,
 .buttonRoot.primary:hover {
-  --bg-color: var(--color-blue-jasmine-1300);
+  --bg-color: var(--secondary-dark-color);
 }
 
 .buttonRoot.secondary.isHovered,

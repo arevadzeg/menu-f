@@ -26,12 +26,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, isLoading }) => {
     setIsEditModalOpen(true);
   };
 
-  if (isLoading || !product)
-    return <Skeleton className="product-card h-48 rounded-3xl" />;
+  const closeModal = () => {
+    setIsEditModalOpen(false);
+  };
+
+  if (isLoading || !product) return <Skeleton className="product-card " />;
 
   return (
     <div
-      className="product-card h-48 bg-cover bg-center rounded-3xl cursor-pointer"
+      className="product-card"
       style={{
         backgroundImage: `url(${product.image})`,
       }}
@@ -46,15 +49,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, isLoading }) => {
           <Pencil1Icon />
         </div>
       )}
-      <Modal
-        isOpen={isEditModalOpen}
-        onClose={() => {
-          setIsEditModalOpen(false);
-        }}
-      >
-        <CreateProductForm isUpdateMode productData={product} />
+      <Modal isOpen={isEditModalOpen} onClose={closeModal}>
+        <CreateProductForm
+          isUpdateMode
+          productData={product}
+          closeModal={closeModal}
+        />
       </Modal>
-      {product.isOnSale && <div className="sale-indicator">Sale</div>}
+      {!product.isOnSale && <div className="sale-indicator">Sale</div>}
       <div className="product-content">
         <h2 className="product-title">{product.title}</h2>
         <p className="product-price">{product.price}</p>

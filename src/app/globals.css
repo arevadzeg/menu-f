@@ -45,32 +45,7 @@ body {
   background-size: cover;
 } */
 
-.radix-themes {
-  background-size: 100% 100%;
-  background-position: 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px,
-    0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
-  background-image: radial-gradient(
-      18% 28% at 24% 50%,
-      #774f23ff 1%,
-      #073aff00 100%
-    ),
-    radial-gradient(18% 28% at 18% 71%, #ffffff59 6%, #073aff00 100%),
-    radial-gradient(42% 53% at 15% 94%, #000000ff 7%, #073aff00 100%),
-    radial-gradient(42% 53% at 34% 72%, #302f2eff 7%, #073aff00 100%),
-    radial-gradient(18% 28% at 35% 87%, #0f0e0eff 20%, #073aff00 100%),
-    radial-gradient(
-      31% 43% at 7% 98%,
-      #020202ff 0%,
-      #020202ff 6%,
-      #073aff00 100%
-    ),
-    radial-gradient(21% 37% at 72% 23%, #b985389c 23%, #073aff00 100%),
-    radial-gradient(35% 56% at 91% 74%, #202008f5 9%, #073aff00 100%),
-    radial-gradient(74% 86% at 67% 38%, #89662ef5 37%, #073aff00 100%),
-    linear-gradient(124deg, #000000ff 1%, #000000ff 97%);
-}
-
-:root {
+/* :root {
   --color-white: #fff;
 
   --color-grey-25: #fbfbfb;
@@ -201,8 +176,110 @@ body {
   --border-400: 1px solid var(--color-grey-400);
   --border-800: 1px solid var(--color-grey-800);
   --border-jasmine-400: 1px solid var(--color-blue-jasmine-400);
+} */
+
+
+
+:root {
+  --primary-color: #007BFF;
+  --secondary-color: #6C757D;
+  --accent-color: #FF4500;
+  --background-color: #F8F9FA;
+  --text-color: #212529;
+  --border-color: #CED4DA;
+  --primary-dark-color: #0056b3;  
+  --secondary-dark-color: #343a40; 
+  --accent-dark-color: #cc3700;    
+  --primary-light-color: #66B2FF; 
+  --secondary-light-color: #A6B3B8; 
+  --accent-light-color: #FF7F50; 
 }
 
+/* Color Scheme 1: Warm Sunset */
+.theme-warm-sunset {
+  --primary-color: #FF5733;
+  --secondary-color: #FFC300;
+  --accent-color: #C70039;
+  --background-color: #FFF8E1;
+  --text-color: #333333;
+  --border-color: #FFCDD2;
+  --primary-dark-color: #c94c2f; 
+  --secondary-dark-color: #bfa900; 
+  --accent-dark-color: #a60029;  
+  --primary-light-color: #FF8F5B;
+  --secondary-light-color: #FFE180;
+  --accent-light-color: #FFB3C6;
+}
+
+/* Color Scheme 2: Ocean Breeze */
+.theme-ocean-breeze {
+  --primary-color: #007BFF;
+  --secondary-color: #00CFC1;
+  --accent-color: #FFD700;
+  --background-color: #F0F8FF;
+  --text-color: #1A1A1A;
+  --border-color: #E0E0E0;
+  --primary-dark-color: #0056b3;
+  --secondary-dark-color: #00b1a0;
+  --accent-dark-color: #ccac00;   
+  --primary-light-color: #66B3FF;
+  --secondary-light-color: #66E4DA;
+  --accent-light-color: #FFE600;
+}
+
+/* Color Scheme 3: Forest Calm */
+.theme-forest-calm {
+  --primary-color: #228B22;
+  --secondary-color: #98FB98;
+  --accent-color: #8B4513;
+  --background-color: #F5FFFA;
+  --text-color: #2F4F4F;
+  --border-color: #A9A9A9;
+  --primary-dark-color: #1a6a1a;
+  --secondary-dark-color: #77c877;
+  --accent-dark-color: #6f3e0d;
+  --primary-light-color: #66B266;
+  --secondary-light-color: #B3F7B3;
+  --accent-light-color: #BFAF8D;
+}
+
+/* Color Scheme 4: Royal Night */
+.theme-royal-night {
+  --primary-color: #4B0082;
+  --secondary-color: #9370DB;
+  --accent-color: #FF4500;
+  --background-color: #F3E5F5;
+  --text-color: #F8F9FA;
+  --border-color: #E6E6FA;
+  --primary-dark-color: #3b0066; 
+  --secondary-dark-color: #7a5dc4; 
+  --accent-dark-color: #cc3700;    
+  --primary-light-color: #7A1E9C;
+  --secondary-light-color: #BFA2E0;
+  --accent-light-color: #FF7F50;
+}
+
+/* Color Scheme 5: Minimalist Gray */
+.theme-minimalist-gray {
+  --primary-color: #666666;
+  --secondary-color: #CCCCCC;
+  --accent-color: #FF6347;
+  --background-color: #F0F0F0;
+  --text-color: #2D2D2D;
+  --border-color: #D9D9D9;
+  --primary-dark-color: #4d4d4d; 
+  --secondary-dark-color: #a6a6a6; 
+  --accent-dark-color: #cc4d3f;    
+  --primary-light-color: #999999;
+  --secondary-light-color: #E6E6E6;
+  --accent-light-color: #FF8C6C;
+}
+
+.radix-themes {
+  background-size: 100% 100%;
+  background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+  background-image: linear-gradient( 135deg, var(--secondary-light-color) 10%, var(--secondary-dark-color) 100%);
+}
 
 /* width */
 ::-webkit-scrollbar {

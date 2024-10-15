@@ -1,5 +1,4 @@
-"use client"; // Add this line
-
+"use client";
 import { useState } from "react";
 import DropdownMenuComponent from "../../ui/Dropdown/Dropdown";
 import "./header.scss";
@@ -17,33 +16,23 @@ export const Header = () => {
   ];
 
   return (
-    <nav
-      className="flex items-center justify-between p-4  text-whiteA-12"
-      id="Header"
-    >
-      <div className="flex items-center">
-        <div className="text-lg font-bold text-cyan-300 mr-6">CHRONOSWISS</div>
-        <div className="yle">LOGO</div>
-      </div>
+    <nav id="Header">
+      <div className="title">CHRONOSWISS</div>
 
-      <div className="flex items-center space-x-4">
+      {/* <div className="menu-container">
         <DropdownMenuComponent
           options={options}
           selectedValue={selectedLanguage}
           setSelectedValue={setSelectedLanguage}
           Trigger={() => <div>{selectedLanguage}</div>}
         />
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <label
-            className="Label p-4"
-            htmlFor="airplane-mode"
-            style={{ paddingRight: 15 }}
-          >
+        <div className="dark-mode">
+          <label className="label" htmlFor="airplane-mode">
             Dark Mode
           </label>
           <Switch checked={darkMode} onCheckedChange={setDarkMode} />
         </div>
-      </div>
+      </div> */}
     </nav>
   );
 };
