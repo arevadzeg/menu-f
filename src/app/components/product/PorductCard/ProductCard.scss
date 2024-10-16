@@ -1,7 +1,22 @@
 .product-card {
-  @apply w-96 h-96 relative p-4 shadow-inner bg-cover bg-center rounded-3xl cursor-pointer; // Full width and height
+  @apply  relative  rounded-xl cursor-pointer flex flex-col gap-0 ;
+  border: 1px solid var(--secondary-text-color);
 
-  box-shadow: inset 0px 0px 45px 35px var(--border-color);
+  .image-wrapper{
+    height: 70%;
+    width: 100%;
+    @apply  rounded-xl overflow-hidden;
+  }
+  img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    @apply  rounded-xl;
+    transition:  all 300ms ease;
+    &:hover{
+      transform:scale(1.1)
+    }
+  }
 
   .sale-indicator {
     @apply absolute text-lg top-5 left-5 font-bold px-4 py-1 rounded-xl;
@@ -9,17 +24,33 @@
     color:var(--text-color)
   }
   .product-content {
-    @apply h-full flex flex-col justify-end p-4;
+    @apply  p-4 text-center;
   }
 
   .product-title {
-    @apply  text-lg;
-    color: var(--secondary-color)
+    @apply  text-lg font-bold;
+    color: var(--primary-text-color);
+
   }
 
-  .product-price {
-    @apply text-xl font-bold;
-    color: var(--secondary-color)
+  .product-description{
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--secondary-text-color);
+    font-size: 12px;
+  }
+
+  .price{
+    background-color: var(--primary-color);
+    position: absolute;
+    top: 99%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    @apply absolute  py-2 text-white rounded-lg
   }
 
 

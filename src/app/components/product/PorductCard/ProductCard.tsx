@@ -33,12 +33,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, isLoading }) => {
   if (isLoading || !product) return <Skeleton className="product-card " />;
 
   return (
-    <div
-      className="product-card"
-      style={{
-        backgroundImage: `url(${product.image})`,
-      }}
-    >
+    <div className="product-card">
+      <div className="image-wrapper ">
+        <img src={product.image} />
+      </div>
       {isAdmin && (
         <div className="delete-product" onClick={handleDeleteProduce}>
           {deleteProduct.isPending ? <Spinner size={"2"} /> : <TrashIcon />}
@@ -56,10 +54,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, isLoading }) => {
           closeModal={closeModal}
         />
       </Modal>
-      {!product.isOnSale && <div className="sale-indicator">Sale</div>}
+      {product.isOnSale && <div className="sale-indicator">Sale</div>}
       <div className="product-content">
         <h2 className="product-title">{product.title}</h2>
-        <p className="product-price">{product.price}</p>
+        <span
+          className="product-description"
+          dangerouslySetInnerHTML={{ __html: product.description }}
+        ></span>
+
+        <span className="price">{product.price}</span>
       </div>
     </div>
   );

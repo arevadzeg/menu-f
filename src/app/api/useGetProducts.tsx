@@ -3,6 +3,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import apiClient from "./apiClient";
 import API_ENDPOINTS from "./endpoints";
 import { useSearchParams } from "next/navigation";
+import useGetStore from "./useGetStore";
 
 // Product interface definition
 export interface Product {
@@ -40,7 +41,8 @@ const fetchProducts = async (
 
 // Custom hook for infinite scrolling
 const useGetInfiniteProducts = () => {
-  const storeId = "3a1a255b-c22e-4ddf-90e5-94c8e21e8790";
+  const { data: store } = useGetStore();
+  const storeId = store?.id ?? "";
   const searchParams = useSearchParams();
 
   const search = searchParams.get("search") || "";
@@ -63,6 +65,7 @@ const useGetInfiniteProducts = () => {
       const totalPages = Math.ceil(lastPage.totalCount / lastPage.limit);
       return lastPage.page < totalPages ? lastPage.page + 1 : undefined;
     },
+    enabled: !!storeId,
   });
 };
 

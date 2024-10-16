@@ -3,8 +3,20 @@
   @apply flex items-center justify-between p-4 ;
   
   .title {
-    @apply text-lg font-bold  mr-6;
-    color: var(--text-color)
+    @apply flex gap-4 font-bold items-center;
+
+    .welcome{
+      @apply flex flex-col;
+
+      .text{
+        color: var( --secondary-text-color)
+      }
+
+      .name{
+        color: var(--primary-color)
+
+      }
+    }
   }
   
   .menu-container {
@@ -14,13 +26,10 @@
       @apply flex items-center;
     }
 
-    .dark-mode {
-      @apply flex items-center;
-
-      .label {
-        @apply p-4;
-        padding-right: 15px; /* Specific padding */
-      }
+    .selected-lang{
+      color: var(--primary-text-color);
+      @apply font-bold
     }
+
   }
 }

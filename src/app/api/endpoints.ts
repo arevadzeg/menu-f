@@ -6,6 +6,7 @@ const API_ENDPOINTS = {
   STORE: {
     CREATE: "/store", // Create a new store
     GET_ALL_BY_USER: "/store/:userId", // Get all stores for a specific user
+    GET_STORE_BY_NAME:"store/name"
   },
   PRODUCT: {
     CREATE: "/product",

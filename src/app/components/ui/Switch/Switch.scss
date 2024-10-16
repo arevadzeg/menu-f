@@ -3,16 +3,13 @@
 .SwitchRoot {
   width: 42px;
   height: 25px;
-  background-color: var(--black-a9);
+  background-color: var(--background-color);
   border-radius: 9999px;
   position: relative;
-  box-shadow: 0 2px 10px var(--black-a7);
+  border: 1px solid var(--secondary-text-color);
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  &:focus {
-    box-shadow: 0 0 0 2px black;
-  }
   &[data-state="checked"] {
-    background-color: black;
+    background-color: var(--background-color);
   }
 }
 
@@ -20,9 +17,8 @@
   display: block;
   width: 21px;
   height: 21px;
-  background-color: white;
+  background-color: var(--primary-color);
   border-radius: 9999px;
-  box-shadow: 0 2px 2px var(--black-a7);
   transition: transform 100ms;
   transform: translateX(2px);
   will-change: transform;

@@ -4,6 +4,7 @@ import React from "react";
 import useGetInfiniteProducts from "<root>/app/api/useGetProducts";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ProductCard from "../../product/PorductCard/ProductCard";
+import "./ProductViewLayout.scss";
 
 const skeletonArray = [...Array(5)].map(() => undefined);
 
@@ -21,7 +22,7 @@ const ProductViewLayout = () => {
       hasMore={Boolean(hasNextPage)}
       loader={<></>}
     >
-      <div className="p-8 flex gap-16 flex-wrap justify-center">
+      <div className="product-layout">
         {products.map((product, index) => (
           <ProductCard key={product?.id ?? index} product={product} />
         ))}

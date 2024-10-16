@@ -1,8 +1,8 @@
 #button{
-        background-color: var(--secondary-color);
+        background-color: var(--primary-color);
         cursor: pointer;
         &:hover{
-            background-color: var(--secondary-light-color);
+            background-color: var(--primary-color-light);
 
         }
 }

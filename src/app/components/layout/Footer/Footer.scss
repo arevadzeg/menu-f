@@ -1,0 +1,36 @@
+#Footer {
+    background-color: var(--background-color);
+    color: var(--primary-text-color);
+    @apply p-12 mt-8 flex flex-col gap-4;
+
+    .contant-info{
+        @apply flex-wrap flex justify-between gap-4;
+
+    }
+
+    .left-side{
+        display: flex;
+        @apply flex gap-4
+    }
+
+    .right-side{
+        display: flex;
+        @apply flex gap-4
+    }
+    .item{
+        @apply flex items-center gap-1 font-bold;
+
+    }
+
+
+    .line{
+        background-color: var(--secondary-text-color);
+        height: 1px;
+        @apply w-full ;
+    }
+
+    .general{
+        @apply flex gap-10;
+
+    }
+}
