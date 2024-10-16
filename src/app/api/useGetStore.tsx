@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import apiClient from "./apiClient";
 import API_ENDPOINTS from "./endpoints";
+import { useParams } from "next/navigation";
 
 interface responseType {
   id: string; // UUID of the store
@@ -17,7 +18,8 @@ interface responseType {
 }
 
 const useGetStore = () => {
-  const name = "Grafika";
+  const params = useParams();
+  const name = params.appName;
 
   return useQuery<responseType, Error>({
     queryKey: ["store"],

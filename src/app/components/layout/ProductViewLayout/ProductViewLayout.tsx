@@ -21,6 +21,9 @@ const ProductViewLayout = () => {
       next={() => fetchNextPage()}
       hasMore={Boolean(hasNextPage)}
       loader={<></>}
+      style={{
+        overflow: "unset",
+      }}
     >
       <div className="product-layout">
         {products.map((product, index) => (

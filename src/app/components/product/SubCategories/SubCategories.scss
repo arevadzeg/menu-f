@@ -1,0 +1,14 @@
+.sub-categories{
+
+
+    .sub-categorie{
+        color: var(--primary-text-color);
+        text-decoration: underline;
+        @apply  cursor-pointer p-1 flex justify-between items-center  transition-colors
+    }
+
+    .sub-categorie-selected{
+        color: var(--primary-color);
+
+    }
+}
