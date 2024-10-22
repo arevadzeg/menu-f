@@ -14,6 +14,7 @@ interface TextFieldProps {
   radius?: "none" | "small" | "medium" | "large" | "full";
   color?: string;
   icon?: JSX.Element;
+  className?: string;
 }
 
 const TextField = forwardRef<HTMLInputElement, TextFieldProps>(

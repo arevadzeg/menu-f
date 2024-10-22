@@ -34,3 +34,27 @@
     }
 
 }
+
+
+.is-admin-user{
+
+    .categories-wrapper{
+        padding: 10px;
+        position: relative;
+        .add-category-btn{
+            display: none;
+        }
+
+        &:hover{
+            .add-category-btn{
+                top: -14px;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                display: block;
+                position: absolute;
+            }
+            box-shadow: -1px 0px 7px 13px black;
+        }
+    }
+
+}

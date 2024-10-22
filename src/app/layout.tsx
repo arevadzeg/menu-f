@@ -14,13 +14,17 @@ export default function RootLayout({
 }>) {
   const queryClient = new QueryClient();
 
+  const isAdmin = true;
+
   return (
     <html lang="en">
       <body>
         <QueryClientProvider client={queryClient}>
           <Theme>
             <Header />
-            <div className="px-8">{children}</div>
+            <div className={`px-8 ${isAdmin ? "is-admin-user" : ""}`}>
+              {children}
+            </div>
             <Alert />
             <Footer />
           </Theme>

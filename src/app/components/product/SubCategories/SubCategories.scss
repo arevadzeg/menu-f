@@ -12,3 +12,35 @@
 
     }
 }
+
+
+.is-admin-user{
+    .sub-categories {
+        padding: 10px;
+        position: relative;
+        .add-sub-category-btn {
+            opacity: 0;
+            visibility: none;
+        }
+
+        &:hover {
+            .add-sub-category-btn {
+                  opacity: 1;
+            visibility: visible;
+            }
+            box-shadow: -1px 0px 7px 13px black;
+        }
+    }
+
+    
+}
+
+// TODO NEED TO BE WRAPPED
+    .delete-product{
+        @apply  flex items-center justify-center h-8 w-8 bg-red-500 text-white rounded-lg hover:bg-red-700 transition-colors cursor-pointer
+      }
+    
+      .edit-product{
+        @apply  flex items-center justify-center h-8 w-8 bg-orange-500 text-white rounded-lg hover:bg-orange-700 transition-colors cursor-pointer
+    
+      }
