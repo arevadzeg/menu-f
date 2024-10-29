@@ -5,6 +5,7 @@ import DropdownMenuComponent from "../../ui/Dropdown/Dropdown";
 import { Switch } from "../../ui/Switch/Switch";
 import "./header.scss";
 import useGetStore from "<root>/app/api/useGetStore";
+import { useParams, useRouter } from "next/navigation";
 
 const themes = {
   dark: "dark-mode",
@@ -18,8 +19,8 @@ const languageOptions = [
 
 export const Header = () => {
   const { data: store } = useGetStore();
-
-  console.log("getStore", store);
+  const router = useRouter();
+  const { appName } = useParams();
   const [selectedLanguage, setSelectedLanguage] = useState<string | number>(
     "GEO"
   );
@@ -34,11 +35,15 @@ export const Header = () => {
     document.body.className = theme; // Simpler, ensures only one theme class is applied
   };
 
+  const handleNavigateToMainPage = () => {
+    router.push(`/${appName}`);
+  };
+
   if (!store) return null;
 
   return (
     <nav id="Header">
-      <div className="title">
+      <div className="title" onClick={handleNavigateToMainPage}>
         <img
           src={store.image}
           alt="Logo"

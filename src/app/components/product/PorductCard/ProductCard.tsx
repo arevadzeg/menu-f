@@ -6,6 +6,8 @@ import { Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
 import { useDeleteProduct } from "<root>/app/api/useCreateProduct";
 import Modal from "../../ui/Modal/Modal";
 import CreateProductForm from "../CreateProductForm/CreateProductForm";
+import { useAtom } from "jotai";
+import { authAtom } from "<root>/app/atom/authAtom";
 
 interface ProductCardProps {
   isLoading?: boolean;
@@ -13,7 +15,9 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, isLoading }) => {
-  const isAdmin = true;
+  const [user] = useAtom(authAtom);
+
+  const isAdmin = !!user;
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   const deleteProduct = useDeleteProduct();
@@ -30,7 +34,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, isLoading }) => {
     setIsEditModalOpen(false);
   };
 
-  if (isLoading || !product) return <Skeleton className="product-card " />;
+  if (isLoading || !product) return <Skeleton className="product-card h-72" />;
 
   return (
     <div className="product-card">

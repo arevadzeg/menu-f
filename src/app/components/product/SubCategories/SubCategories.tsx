@@ -16,9 +16,13 @@ import {
   useCreateSubCategory,
   useUpdateSubCategory,
 } from "<root>/app/api/useCreateCategory";
+import { useAtom } from "jotai";
+import { authAtom } from "<root>/app/atom/authAtom";
 
 const SubCategories = () => {
-  const isAdmin = true;
+  const [user] = useAtom(authAtom);
+
+  const isAdmin = !!user;
   const router = useRouter();
   const { categoryId, appName, subCategoryId } = useParams();
   const [selectedSubCategoryId, setSelectedSubCategoryId] = useState<

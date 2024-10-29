@@ -3,7 +3,7 @@
   @apply flex items-center justify-between p-4 px-8 ;
   
   .title {
-    @apply flex gap-4 font-bold items-center;
+    @apply flex gap-4 font-bold items-center cursor-pointer;
 
     .welcome{
       @apply flex flex-col;

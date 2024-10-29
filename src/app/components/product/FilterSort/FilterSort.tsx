@@ -14,6 +14,8 @@ import { Button } from "../../ui/Button/Button";
 import Modal from "../../ui/Modal/Modal";
 import CreateProductForm from "../CreateProductForm/CreateProductForm";
 import RadixButton from "../../ui/RadixButton/RadixButton";
+import { useAtom } from "jotai";
+import { authAtom } from "<root>/app/atom/authAtom";
 
 const options = [
   {
@@ -49,8 +51,9 @@ const FilterSort = () => {
   const router = useRouter();
   const pathname = usePathname();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [user] = useAtom(authAtom);
 
-  const isAdmin = true;
+  const isAdmin = !!user;
 
   // Debounced function to handle search change
   const debouncedSearchChange = useCallback(

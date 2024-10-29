@@ -6,6 +6,8 @@ import Footer from "./components/layout/Footer/Footer";
 import Alert from "./components/ui/Alert/Alert";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Theme } from "@radix-ui/themes";
+import { useAtom } from "jotai";
+import { authAtom } from "./atom/authAtom";
 
 export default function RootLayout({
   children,
@@ -13,20 +15,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const queryClient = new QueryClient();
-
-  const isAdmin = true;
+  const [user] = useAtom(authAtom);
+  const isAdmin = !!user;
+  const isLandingPage = window.location.pathname === "/";
 
   return (
     <html lang="en">
       <body>
         <QueryClientProvider client={queryClient}>
           <Theme>
-            <Header />
+            {!isLandingPage && <Header />}
             <div className={`px-8 ${isAdmin ? "is-admin-user" : ""}`}>
               {children}
             </div>
             <Alert />
-            <Footer />
+            {!isLandingPage && <Footer />}
           </Theme>
         </QueryClientProvider>
       </body>

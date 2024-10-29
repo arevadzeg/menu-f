@@ -8,6 +8,7 @@ import apiClient from "./apiClient";
 import API_ENDPOINTS from "./endpoints";
 import { AxiosResponse } from "axios";
 import removeFalseyValues from "../utils/removeFalseyValues";
+import { useParams } from "next/navigation";
 
 interface CreateProductPayload {
   title: string;
@@ -39,11 +40,13 @@ interface Product {
 const useCreateProduct = () => {
   const storeId = "3a1a255b-c22e-4ddf-90e5-94c8e21e8790";
 
+  const { subCategoryId, categoryId } = useParams();
+
   return useMutation<Product, Error, CreateProductPayload>({
     mutationFn: async (newProduct: CreateProductPayload) => {
       const response = await apiClient.post<Product, AxiosResponse<Product>>(
         `${API_ENDPOINTS.PRODUCT.CREATE}/${storeId}`,
-        removeFalseyValues(newProduct)
+        removeFalseyValues({ ...newProduct, subCategoryId, categoryId })
       );
       return response.data;
     },

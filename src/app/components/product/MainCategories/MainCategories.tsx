@@ -16,10 +16,10 @@ import {
   useCreateCategory,
   useUpdateCategory,
 } from "<root>/app/api/useCreateCategory";
+import { useAtom } from "jotai";
+import { authAtom } from "<root>/app/atom/authAtom";
 
 const MainCategories = () => {
-  const isAdmin = true;
-
   const router = useRouter();
   const { appName, categoryId } = useParams();
   const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(
@@ -37,7 +37,8 @@ const MainCategories = () => {
   const { data: categories } = useGetCategories();
   const createCategory = useCreateCategory();
   const updateCategory = useUpdateCategory();
-
+  const [user] = useAtom(authAtom);
+  const isAdmin = !!user;
   const handleNavigateToCategory = (categoryId: string) => {
     setSelectedCategoryId(categoryId);
     router.push(`/${appName}/${categoryId}`);
@@ -147,12 +148,14 @@ const MainCategories = () => {
       </Modal>
 
       <div className="categories-wrapper mt-8">
-        <RadixButton
-          className="add-category-btn mb-4"
-          onClick={handleOpenModal}
-        >
-          Edit Category
-        </RadixButton>
+        {isAdmin && (
+          <RadixButton
+            className="add-category-btn mb-4"
+            onClick={handleOpenModal}
+          >
+            Edit Category
+          </RadixButton>
+        )}
         {categories.map((category) => {
           const isSelected = category.id === selectedCategoryId;
           return (

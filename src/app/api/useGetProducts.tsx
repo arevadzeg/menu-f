@@ -2,8 +2,9 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import apiClient from "./apiClient";
 import API_ENDPOINTS from "./endpoints";
-import { useSearchParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import useGetStore from "./useGetStore";
+import removeFalseyValues from "../utils/removeFalseyValues";
 
 // Product interface definition
 export interface Product {
@@ -48,16 +49,28 @@ const useGetInfiniteProducts = () => {
   const search = searchParams.get("search") || "";
   const sort = searchParams.get("sort") || "";
   const order = searchParams.get("order") || "";
-  const searchParamsObject = {
+  const { subCategoryId, categoryId } = useParams();
+
+  const searchParamsObject = removeFalseyValues({
     search,
     sort,
     order,
-  };
+    subCategoryId,
+    categoryId,
+  });
 
   const queryString = new URLSearchParams(searchParamsObject).toString();
 
   return useInfiniteQuery<responseType, Error>({
-    queryKey: ["products", search, sort, order, storeId],
+    queryKey: [
+      "products",
+      search,
+      sort,
+      order,
+      storeId,
+      subCategoryId,
+      categoryId,
+    ],
     queryFn: ({ pageParam = 1 }) =>
       fetchProducts(storeId, pageParam as number, queryString),
     initialPageParam: 1,
