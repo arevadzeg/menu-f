@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "./ProductCard.scss";
 import { Skeleton, Spinner } from "@radix-ui/themes";
-import { Product } from "<root>/app/api/useGetProducts";
+import { Product } from "<root>/app/api/hooks/product/useGetProducts";
 import { Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
-import { useDeleteProduct } from "<root>/app/api/useCreateProduct";
+import { useDeleteProduct } from "<root>/app/api/hooks/product/useProductMutations";
 import Modal from "../../ui/Modal/Modal";
 import CreateProductForm from "../CreateProductForm/CreateProductForm";
 import { useAtom } from "jotai";

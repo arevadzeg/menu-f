@@ -4,13 +4,13 @@ import Modal from "./components/ui/Modal/Modal";
 import RadixButton from "./components/ui/RadixButton/RadixButton";
 import TextField from "./components/ui/TextField/TextField";
 import { Button, Spinner } from "@radix-ui/themes";
-import { useLogin } from "./api/useLogin";
+import { useLogin } from "./api/hooks/auth/useLogin";
 import { useAtom } from "jotai";
 import { authAtom } from "./atom/authAtom";
-import { useGetUserStores } from "./api/useGetStore";
+import { useGetUserStores } from "./api/hooks/store/useGetStore";
 import { useRouter } from "next/navigation";
 import { PlusIcon } from "@radix-ui/react-icons";
-import { useCreateStore } from "./api/useCreateStore";
+import { useCreateStore } from "./api/hooks/store/useStoreMutations";
 import { useQueryClient } from "@tanstack/react-query";
 
 export default function Home() {

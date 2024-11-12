@@ -1,20 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import apiClient from "./apiClient";
-import API_ENDPOINTS from "./endpoints";
-
-interface Store {
-  id: string;
-  userId: string;
-  name: string;
-  image: string | null;
-  address: string | null;
-  email: string | null;
-  phone: string | null;
-  facebook: string | null;
-  instagram: string | null;
-  createdAt: string;
-  updatedAt: string;
-}
+import apiClient from "../../apiClient";
+import API_ENDPOINTS from "../../endpoints";
+import { Store } from "./interfaceStore";
 
 interface CreateCategoryPayload {
   name: string;

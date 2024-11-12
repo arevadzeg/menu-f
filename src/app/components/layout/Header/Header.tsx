@@ -4,7 +4,7 @@ import { useState } from "react";
 import DropdownMenuComponent from "../../ui/Dropdown/Dropdown";
 import { Switch } from "../../ui/Switch/Switch";
 import "./header.scss";
-import useGetStore from "<root>/app/api/useGetStore";
+import { useGetStore } from "<root>/app/api/hooks/store/useGetStore";
 import { useParams, useRouter } from "next/navigation";
 import { PersonIcon } from "@radix-ui/react-icons";
 import PopoverDemo from "../../ui/Popover/Popover";

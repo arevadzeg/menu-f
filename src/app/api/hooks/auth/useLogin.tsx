@@ -1,24 +1,13 @@
 "use client";
 import { useMutation } from "@tanstack/react-query";
-import apiClient from "./apiClient";
-import API_ENDPOINTS from "./endpoints";
+import apiClient from "../../apiClient";
+import API_ENDPOINTS from "../../endpoints";
 import { AxiosResponse } from "axios";
+import { User } from "./interfaceUser";
 
 interface LoginPayload {
   email: string;
   password: string;
-}
-
-interface User {
-  id: string;
-  name: string;
-  lastname: string;
-  email: string;
-  password: string;
-  isActive: boolean;
-  balance: number;
-  createdAt: string;
-  updatedAt: string;
 }
 
 export interface AuthResponse {

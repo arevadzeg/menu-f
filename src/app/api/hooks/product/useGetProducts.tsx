@@ -1,46 +1,30 @@
 "use client"; // Add this line
 import { useInfiniteQuery } from "@tanstack/react-query";
-import apiClient from "./apiClient";
-import API_ENDPOINTS from "./endpoints";
+import apiClient from "../../apiClient";
+import API_ENDPOINTS from "../../endpoints";
 import { useParams, useSearchParams } from "next/navigation";
-import useGetStore from "./useGetStore";
-import removeFalseyValues from "../utils/removeFalseyValues";
+import { useGetStore } from "../store/useGetStore";
+import removeFalseyValues from "../../../utils/removeFalseyValues";
+import { Product } from "./InterfaceProduct";
 
-// Product interface definition
-export interface Product {
-  id: string;
-  storeId: string;
-  title: string;
-  price: number;
-  isOnSale: boolean;
-  image: string;
-  section: string | null;
-  sortOrder: number;
-  description: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
-interface responseType {
+interface GetProductsResponse {
   limit: number;
   page: number;
   products: Product[];
   totalCount: number;
 }
 
-// Fetch products function
 const fetchProducts = async (
   storeId: string,
-  pageParam: number = 1, // Now using pageParam for infinite scrolling
+  pageParam: number = 1,
   queryString: string
-): Promise<responseType> => {
+): Promise<GetProductsResponse> => {
   const response = await apiClient.get(
     `${API_ENDPOINTS.PRODUCT.GET_ALL_BY_STORE}/${storeId}?page=${pageParam}&${queryString}`
   );
   return response.data;
 };
 
-// Custom hook for infinite scrolling
 const useGetInfiniteProducts = () => {
   const { data: store } = useGetStore();
   const storeId = store?.id ?? "";
@@ -61,7 +45,7 @@ const useGetInfiniteProducts = () => {
 
   const queryString = new URLSearchParams(searchParamsObject).toString();
 
-  return useInfiniteQuery<responseType, Error>({
+  return useInfiniteQuery<GetProductsResponse, Error>({
     queryKey: [
       "products",
       search,

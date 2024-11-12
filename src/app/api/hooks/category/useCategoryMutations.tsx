@@ -1,32 +1,12 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import apiClient from "./apiClient";
-import API_ENDPOINTS from "./endpoints";
-import useGetStore from "./useGetStore";
+import apiClient from "../../apiClient";
+import API_ENDPOINTS from "../../endpoints";
+import { useGetStore } from "../store/useGetStore";
+import { Category, SubCategory } from "./interfaceCategory";
 
+// CREATE CATEGORY
 interface CreateCategoryPayload {
   categoryName: string;
-}
-interface CreateSubCategoryPayload {
-  subCategoryName: string;
-  categoryId: string;
-}
-
-interface UpdateCategoryPayload {
-  categoryId: string;
-  categoryName: string;
-}
-
-interface UpdateSubCategoryPayload {
-  subCategoryId: string;
-  subCategoryName: string;
-}
-
-interface Category {
-  id: string;
-  storeId: string;
-  name: string;
-  createdAt: string;
-  updatedAt: string;
 }
 
 export const useCreateCategory = () => {
@@ -49,13 +29,19 @@ export const useCreateCategory = () => {
   });
 };
 
+// CREATE SUB-CATEGORY
+interface CreateSubCategoryPayload {
+  subCategoryName: string;
+  categoryId: string;
+}
+
 export const useCreateSubCategory = () => {
   const queryClient = useQueryClient();
 
-  return useMutation<Category, Error, CreateSubCategoryPayload>({
+  return useMutation<SubCategory, Error, CreateSubCategoryPayload>({
     mutationFn: async (newCategory: CreateSubCategoryPayload) => {
       console.log("newCategory", newCategory);
-      const response = await apiClient.post<Category>(
+      const response = await apiClient.post<SubCategory>(
         `${API_ENDPOINTS.STORE.CREATE_SUB_CATEGORY}/${newCategory.categoryId}`,
         { subCategoryName: newCategory.subCategoryName }
       );
@@ -67,6 +53,11 @@ export const useCreateSubCategory = () => {
   });
 };
 
+// UPDATE CATEGORY
+interface UpdateCategoryPayload {
+  categoryId: string;
+  categoryName: string;
+}
 export const useUpdateCategory = () => {
   const queryClient = useQueryClient();
 
@@ -84,12 +75,17 @@ export const useUpdateCategory = () => {
   });
 };
 
+// UPDATE SUB-CATEGORY
+interface UpdateSubCategoryPayload {
+  subCategoryId: string;
+  subCategoryName: string;
+}
 export const useUpdateSubCategory = () => {
   const queryClient = useQueryClient();
 
-  return useMutation<Category, Error, UpdateSubCategoryPayload>({
+  return useMutation<SubCategory, Error, UpdateSubCategoryPayload>({
     mutationFn: async (updatedSubCategory: UpdateSubCategoryPayload) => {
-      const response = await apiClient.put<Category>(
+      const response = await apiClient.put<SubCategory>(
         `${API_ENDPOINTS.STORE.UPDATE_SUB_CATEGORY}/${updatedSubCategory.subCategoryId}`,
         { subCategoryName: updatedSubCategory.subCategoryName }
       );

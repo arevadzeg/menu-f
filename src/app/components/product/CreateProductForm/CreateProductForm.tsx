@@ -3,16 +3,17 @@ import "./CreateProductForm.scss";
 import { Button } from "../../ui/Button/Button";
 import TextField from "../../ui/TextField/TextField";
 import FileUpload from "../../ui/Upload/Upload";
-import useCreateProduct, {
+import {
   useUpdateProduct,
-} from "<root>/app/api/useCreateProduct";
+  useCreateProduct,
+} from "<root>/app/api/hooks/product/useProductMutations";
 import { ChangeEvent, useState } from "react";
-import useUploadFile from "<root>/app/api/useUploadImage";
+import useUploadFile from "<root>/app/api/hooks/upload/useUploadImage";
 import { useQueryClient } from "@tanstack/react-query";
 import Backdrop from "../../ui/Backdrop/Backdrop";
-import { Product } from "<root>/app/api/useGetProducts";
 import RichTextEditor from "../../ui/RichTextEditor/RichTextEditor";
 import RadixButton from "../../ui/RadixButton/RadixButton";
+import { Product } from "<root>/app/api/hooks/product/InterfaceProduct";
 
 interface CreateProductFormProps {
   isUpdateMode?: boolean;

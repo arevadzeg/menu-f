@@ -8,14 +8,14 @@ import {
   TrashIcon,
 } from "@radix-ui/react-icons";
 import RadixButton from "../../ui/RadixButton/RadixButton";
-import useGetCategories from "<root>/app/api/useGetCategories";
+import useGetCategories from "<root>/app/api/hooks/category/useGetCategories";
 import TextField from "../../ui/TextField/TextField";
 import Modal from "../../ui/Modal/Modal";
 import { Spinner } from "@radix-ui/themes";
 import {
   useCreateCategory,
   useUpdateCategory,
-} from "<root>/app/api/useCreateCategory";
+} from "<root>/app/api/hooks/category/useCategoryMutations";
 import { useAtom } from "jotai";
 import { authAtom } from "<root>/app/atom/authAtom";
 

@@ -1,7 +1,7 @@
 "use client"; // Add this line
 
 import React from "react";
-import useGetInfiniteProducts from "<root>/app/api/useGetProducts";
+import useGetInfiniteProducts from "<root>/app/api/hooks/product/useGetProducts";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ProductCard from "../../product/PorductCard/ProductCard";
 import "./ProductViewLayout.scss";
