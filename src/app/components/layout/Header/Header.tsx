@@ -6,6 +6,10 @@ import { Switch } from "../../ui/Switch/Switch";
 import "./header.scss";
 import useGetStore from "<root>/app/api/useGetStore";
 import { useParams, useRouter } from "next/navigation";
+import { PersonIcon } from "@radix-ui/react-icons";
+import PopoverDemo from "../../ui/Popover/Popover";
+import { useAtom } from "jotai";
+import { authAtom } from "<root>/app/atom/authAtom";
 
 const themes = {
   dark: "dark-mode",
@@ -25,6 +29,17 @@ export const Header = () => {
     "GEO"
   );
   const [darkMode, setDarkMode] = useState(false);
+  const [popoverOpen, setPopoverOpen] = useState(false);
+  const [user, setUser] = useAtom(authAtom);
+  const isAdmin = !!user;
+
+  const handleClosePopover = () => setPopoverOpen(false);
+  const handleOpenPopover = () => setPopoverOpen(true);
+
+  const handleLogOut = () => {
+    setUser(null);
+    handleClosePopover();
+  };
 
   const handleModeChange = (checked: boolean) => {
     setDarkMode(checked);
@@ -56,6 +71,15 @@ export const Header = () => {
       </div>
 
       <div className="menu-container">
+        {isAdmin && (
+          <PopoverDemo
+            open={popoverOpen}
+            onClose={handleClosePopover}
+            content={<div onClick={handleLogOut}>Log out</div>}
+          >
+            <PersonIcon height={24} width={24} onClick={handleOpenPopover} />
+          </PopoverDemo>
+        )}
         <DropdownMenuComponent
           options={languageOptions}
           selectedValue={selectedLanguage}

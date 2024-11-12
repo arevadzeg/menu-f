@@ -8,6 +8,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Theme } from "@radix-ui/themes";
 import { useAtom } from "jotai";
 import { authAtom } from "./atom/authAtom";
+import { usePathname } from "next/navigation";
 
 export default function RootLayout({
   children,
@@ -17,7 +18,10 @@ export default function RootLayout({
   const queryClient = new QueryClient();
   const [user] = useAtom(authAtom);
   const isAdmin = !!user;
-  const isLandingPage = window.location.pathname === "/";
+  const location = usePathname();
+  const isLandingPage = location === "/";
+
+  console.log("isLandingPage", location);
 
   return (
     <html lang="en">
