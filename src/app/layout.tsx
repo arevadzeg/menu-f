@@ -21,8 +21,6 @@ export default function RootLayout({
   const location = usePathname();
   const isLandingPage = location === "/";
 
-  console.log("isLandingPage", location);
-
   return (
     <html lang="en">
       <body>

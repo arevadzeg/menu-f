@@ -40,7 +40,6 @@ export const useCreateSubCategory = () => {
 
   return useMutation<SubCategory, Error, CreateSubCategoryPayload>({
     mutationFn: async (newCategory: CreateSubCategoryPayload) => {
-      console.log("newCategory", newCategory);
       const response = await apiClient.post<SubCategory>(
         `${API_ENDPOINTS.STORE.CREATE_SUB_CATEGORY}/${newCategory.categoryId}`,
         { subCategoryName: newCategory.subCategoryName }
