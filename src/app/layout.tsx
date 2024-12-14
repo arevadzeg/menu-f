@@ -9,13 +9,27 @@ import { Theme } from "@radix-ui/themes";
 import { useAtom } from "jotai";
 import { authAtom } from "./atom/authAtom";
 import { usePathname } from "next/navigation";
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: Infinity,
+      refetchOnMount: false,
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+    }
+  }
+
+});
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const queryClient = new QueryClient();
+
   const [user] = useAtom(authAtom);
   const isAdmin = !!user;
   const location = usePathname();
@@ -25,6 +39,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <QueryClientProvider client={queryClient}>
+          <ReactQueryDevtools />
           <Theme>
             {!isLandingPage && <Header />}
             <div className={`px-8 ${isAdmin ? "is-admin-user" : ""}`}>

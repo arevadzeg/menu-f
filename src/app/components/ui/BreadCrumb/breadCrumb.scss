@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.breadcrumb-nav {
+    @apply flex items-center text-sm;
+  }
+  
+  .breadcrumb-list {
+    @apply flex space-x-1;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .breadcrumb-item {
+    @apply flex items-center;
+  }
+  
+  .breadcrumb-link {
+    @apply text-gray-500 hover:text-black hover:bg-gray-200 transition-colors px-2 rounded-md;
+  
+    &.active {
+      @apply text-black pointer-events-none;
+    }
+  }
+  
+  .breadcrumb-separator {
+    @apply  text-gray-400;
+  }

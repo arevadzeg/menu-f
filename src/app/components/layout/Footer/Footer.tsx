@@ -1,13 +1,13 @@
 import { useGetStore } from "<root>/app/api/hooks/store/useGetStore";
 import {
   EnvelopeClosedIcon,
-  InstagramLogoIcon,
   MobileIcon,
   SewingPinFilledIcon,
-  StitchesLogoIcon,
 } from "@radix-ui/react-icons";
 
 import "./Footer.scss";
+import FacebookIcon from "../../ui/SVGAssets/FacebookIcon";
+import InstagramIcon from "../../ui/SVGAssets/InstagramIcon";
 
 const Footer = () => {
   const { data: store } = useGetStore();
@@ -34,18 +34,17 @@ const Footer = () => {
         </div>
         <div className="right-side">
           {store?.instagram && (
-            <InstagramLogoIcon
-              height={32}
-              width={32}
-              className="cursor-pointer"
-            />
+            <a href={store.instagram} target="__blank">
+
+              <InstagramIcon />
+            </a>
           )}
           {store?.facebook && (
-            <StitchesLogoIcon
-              height={32}
-              width={32}
-              className="cursor-pointer"
-            />
+            <a href={store.facebook} target="__blank">
+              <FacebookIcon />
+            </a>
+
+
           )}
         </div>
       </div>

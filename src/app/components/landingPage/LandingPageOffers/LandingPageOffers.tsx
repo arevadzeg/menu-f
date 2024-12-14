@@ -62,7 +62,7 @@ const LandingPageOffers = () => {
             translateY: translateYTop,
             transition: "all 300ms ease",
           }}
-          src="https://www.apple.com/v/macbook-pro/am/images/overview/themes/performance/performance_screen_blender__d52d3whfhtw2_large.png"
+          src="https://ofoodo.com/src/prod/img/section_banners/desktop_banners/qrsystem.png"
         />
         <motion.img
           style={{
@@ -73,7 +73,7 @@ const LandingPageOffers = () => {
             translateY: translateYBottom,
             transition: "all 300ms ease",
           }}
-          src="https://www.apple.com/v/macbook-pro/am/images/overview/themes/performance/performance_screen_gaming__e5jif5ctnxm6_large.png"
+          src="https://ofoodo.com/src/prod/img/section_banners/desktop_banners/order.png"
         />
         <motion.img
           style={{
@@ -84,7 +84,7 @@ const LandingPageOffers = () => {
             translateY: translateYBottom,
             transition: "all 400ms ease",
           }}
-          src="https://www.apple.com/v/macbook-pro/am/images/overview/themes/performance/performance_screen_touchdesigner__cu3p8w9e5t0m_large.png"
+          src="https://ofoodo.com/src/prod/img/section_banners/desktop_banners/about.png"
         />
         <motion.img
           style={{

@@ -3,7 +3,7 @@ import { useParams, useRouter } from "next/navigation";
 import "./SubCategories.scss";
 import { useState } from "react";
 import {
-  DotsHorizontalIcon,
+  GearIcon,
   Pencil1Icon,
   TrashIcon,
 } from "@radix-ui/react-icons";
@@ -42,6 +42,10 @@ const SubCategories = () => {
   const updateSubCategory = useUpdateSubCategory();
 
   const category = categories?.find((cat) => cat.id === categoryId);
+
+
+  const isShowSubCategories = category && (category.subCategories.length > 0 || isAdmin);
+
 
   const handleNavigateToSubCategory = (subCategoryId: string) => {
     setSelectedSubCategoryId(subCategoryId);
@@ -116,7 +120,7 @@ const SubCategories = () => {
                 <div className="flex gap-2">
                   <div
                     className="cursor-pointer delete-product"
-                    onClick={() => {}}
+                    onClick={() => { }}
                   >
                     {false ? <Spinner size="2" /> : <TrashIcon />}
                   </div>
@@ -134,7 +138,7 @@ const SubCategories = () => {
         </div>
       </Modal>
 
-      {category ? (
+      {isShowSubCategories && (
         <>
           <h2 className="text-2xl font-bold mb-4">
             {category.name} Subcategories
@@ -143,19 +147,18 @@ const SubCategories = () => {
             {isAdmin && (
               <RadixButton
                 onClick={() => setIsModalOpen(true)}
-                className="mb-4"
+                className="edit-sub-category"
               >
-                Edit Subcategory
+                <GearIcon />
               </RadixButton>
             )}
             {category.subCategories.map((sub) => (
               <li
                 key={sub.id}
-                className={`sub-categorie ${
-                  selectedSubCategoryId === sub.id
-                    ? "sub-categorie-selected"
-                    : ""
-                }`}
+                className={`sub-categorie ${selectedSubCategoryId === sub.id
+                  ? "sub-categorie-selected"
+                  : ""
+                  }`}
                 onClick={() => handleNavigateToSubCategory(sub.id)}
               >
                 {sub.name}
@@ -163,8 +166,6 @@ const SubCategories = () => {
             ))}
           </ul>
         </>
-      ) : (
-        <p className="text-red-500">Category not found.</p>
       )}
     </div>
   );

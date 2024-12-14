@@ -2,4 +2,12 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 24px;
+    border: 1px dashed transparent;    
+
+    .create-product-card{
+        &:hover{
+            background-color: #bcf870;
+            border: 1px dashed black;
+        }
+    }
 }

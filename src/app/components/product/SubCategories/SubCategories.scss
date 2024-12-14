@@ -3,7 +3,7 @@
 
     .sub-categorie{
         color: var(--primary-text-color);
-        text-decoration: underline;
+        text-decoration: underline;        
         @apply  cursor-pointer p-1 flex justify-between items-center  transition-colors
     }
 
@@ -15,9 +15,21 @@
 
 
 .is-admin-user{
+
+
+    .edit-sub-category{
+        position:absolute;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: block;
+    }
     .sub-categories {
         padding: 10px;
         position: relative;
+        border: 1px dashed transparent;
+        border-radius: 8px;
+
         .add-sub-category-btn {
             opacity: 0;
             visibility: none;
@@ -28,7 +40,8 @@
                   opacity: 1;
             visibility: visible;
             }
-            box-shadow: -1px 0px 7px 13px black;
+            background: #bcf870;
+            border: 1px dashed black;
         }
     }
 

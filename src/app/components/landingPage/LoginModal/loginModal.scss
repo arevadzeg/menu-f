@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.login-modal{
+    @apply w-96;
+}
+.login-modal-container {
+  @apply  flex flex-col gap-6;
+
+  max-width: 100%;
+}
+
+.login-modal-title {
+  @apply text-2xl font-semibold text-gray-900 text-center;
+}
+
+.login-modal-subtitle {
+  @apply text-sm text-gray-600 text-center mb-4;
+}
+
+
+
+.login-modal-button {
+  @apply w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 transition duration-200;
+
+  &:hover {
+    @apply bg-blue-700;
+  }
+}
+
+.login-modal-footer {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  @apply flex justify-between text-sm  gap-2;
+
+   button {
+    @apply text-blue-500 hover:underline focus:outline-none transition duration-200 ease-in-out;
+  }
+}
+
+.login-modal-footer button:focus {
+  @apply ring-2 ring-blue-500;
+}

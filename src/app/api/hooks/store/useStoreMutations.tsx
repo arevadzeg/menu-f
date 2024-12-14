@@ -3,24 +3,30 @@ import apiClient from "../../apiClient";
 import API_ENDPOINTS from "../../endpoints";
 import { Store } from "./interfaceStore";
 
-interface CreateCategoryPayload {
+interface CreateStorePayload {
   name: string;
-  userId: string;
+  address: string,
+  email: string,
+  phone: string,
+  facebook: string,
+  instagram: string,
+  userId: string,
 }
 
 export const useCreateStore = () => {
   const queryClient = useQueryClient();
 
-  return useMutation<Store, Error, CreateCategoryPayload>({
-    mutationFn: async (newCategory: CreateCategoryPayload) => {
+  return useMutation<Store, Error, CreateStorePayload>({
+    mutationFn: async (newStore: CreateStorePayload) => {
+
       const response = await apiClient.post<Store>(
         `${API_ENDPOINTS.STORE.CREATE}`,
-        { name: newCategory.name, userId: newCategory.userId }
+        newStore
       );
       return response.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["category"] });
+      queryClient.invalidateQueries({ queryKey: ["store"] });
     },
   });
 };

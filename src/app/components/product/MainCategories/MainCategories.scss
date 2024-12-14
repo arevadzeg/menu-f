@@ -2,18 +2,22 @@
 
 
     .categories-wrapper{
-        @apply flex gap-2
+        @apply flex gap-2;
+        position: relative;
+        
+ 
     }
 
     .category{
         position: relative;
-        background-color: var(--secondary-text-color);
-        @apply text-white rounded-md py-2 px-6 cursor-pointer flex gap-2 items-center;
+        color: var(--secondary-text-color);
+        @apply py-2 px-6 cursor-pointer flex gap-2 items-center;
+        border-bottom: 2px solid transparent;
 
 
         &:hover{
-            background-color: var(--primary-color);
-
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
             .delete{
                 display: block;
                 position: absolute;
@@ -29,7 +33,8 @@
     }
 
     .selected{
-        background-color: var(--primary-color);
+        color: var(--primary-color);
+        border-bottom: 2px solid var(--primary-color);
 
     }
 
@@ -44,16 +49,20 @@
         .add-category-btn{
             display: none;
         }
+        border: 1px dashed transparent;
+        border-radius: 8px;
+
 
         &:hover{
             .add-category-btn{
-                top: -14px;
+                top: 0;
                 left: 50%;
                 transform: translate(-50%, -50%);
                 display: block;
                 position: absolute;
             }
-            box-shadow: -1px 0px 7px 13px black;
+            background: #bcf870;
+            border: 1px dashed black;
         }
     }
 

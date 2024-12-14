@@ -3,7 +3,7 @@ import { useParams, useRouter } from "next/navigation";
 import "./MainCategories.scss"; // You can keep this for additional custom styles
 import { useState } from "react";
 import {
-  DotsVerticalIcon,
+  GearIcon,
   Pencil1Icon,
   TrashIcon,
 } from "@radix-ui/react-icons";
@@ -127,7 +127,7 @@ const MainCategories = () => {
                   <div className="flex gap-2">
                     <div
                       className="delete-product cursor-pointer"
-                      onClick={() => {}}
+                      onClick={() => { }}
                     >
                       {false ? <Spinner size={"2"} /> : <TrashIcon />}
                     </div>
@@ -150,10 +150,10 @@ const MainCategories = () => {
       <div className="categories-wrapper mt-8">
         {isAdmin && (
           <RadixButton
-            className="add-category-btn mb-4"
+            className="add-category-btn"
             onClick={handleOpenModal}
           >
-            Edit Category
+            <GearIcon />
           </RadixButton>
         )}
         {categories.map((category) => {
@@ -161,9 +161,8 @@ const MainCategories = () => {
           return (
             <div
               key={category.id}
-              className={`category p-4 mb-2 rounded-lg transition-colors ${
-                isSelected ? "selected" : ""
-              } `}
+              className={`category p-4 mb-2  transition-colors ${isSelected ? "selected" : ""
+                } `}
               onClick={() => handleNavigateToCategory(category.id)}
             >
               <span>{category.name}</span>

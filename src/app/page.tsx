@@ -9,7 +9,6 @@ import LandingPageHeader from "./components/landingPage/LandingPageHeader/Landin
 import LandingPageOffers from "./components/landingPage/LandingPageOffers/LandingPageOffers";
 import LandingPageFooter from "./components/landingPage/LandingPageFooter/LandingPageFooter";
 import StoreList from "./components/landingPage/StoreList/StoreList";
-import PointerBox from "./components/landingPage/PointerBox/PointerBox";
 import Test from "./components/landingPage/Test/Test";
 import CreateStoreModal from "./components/landingPage/CreateStoreModal/CreateStoreModal";
 import LoginModal from "./components/landingPage/LoginModal/LoginModal";
@@ -28,7 +27,6 @@ export default function Home() {
 
   return (
     <div>
-      <SlotMachine />
       <LandingPageHeader handleLoginClick={() => setIsLoginModalOpen(true)} />
       {isUserLoggedIn ? (
         <>
@@ -45,7 +43,6 @@ export default function Home() {
         </>
       ) : (
         <>
-          <PointerBox />
           <div style={{ position: "relative", height: "300vh" }}>
             {[
               "https://ofoodo.com/src/prod/img/section_banners/desktop_banners/qrmenu.png",

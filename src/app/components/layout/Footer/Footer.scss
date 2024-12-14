@@ -15,7 +15,7 @@
 
     .right-side{
         display: flex;
-        @apply flex gap-4
+        @apply flex gap-2
     }
     .item{
         @apply flex items-center gap-1 font-bold;
