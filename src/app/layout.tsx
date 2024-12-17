@@ -10,13 +10,13 @@ import { useAtom } from "jotai";
 import { authAtom } from "./atom/authAtom";
 import { usePathname } from "next/navigation";
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import LayoutDnDWrapper from "./LayoutDnDWrapper";
 
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       staleTime: Infinity,
-      refetchOnMount: false,
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
     }
@@ -43,7 +43,9 @@ export default function RootLayout({
           <Theme>
             {!isLandingPage && <Header />}
             <div className={`px-8 ${isAdmin ? "is-admin-user" : ""}`}>
-              {children}
+              <LayoutDnDWrapper>
+                {children}
+              </LayoutDnDWrapper>
             </div>
             <Alert />
             {!isLandingPage && <Footer />}

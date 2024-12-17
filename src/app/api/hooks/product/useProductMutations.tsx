@@ -22,6 +22,8 @@ interface CreateProductPayload {
 
 interface UpdateProductPayload extends CreateProductPayload {
   productId: string;
+  categoryId: string;
+  subCategoryId: string
 }
 
 // CREATE PRODUCT

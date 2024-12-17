@@ -10,6 +10,7 @@ import { authAtom } from "<root>/app/atom/authAtom";
 import { PlusIcon } from "@radix-ui/react-icons";
 import Modal from "../../ui/Modal/Modal";
 import CreateProductForm from "../../product/CreateProductForm/CreateProductForm";
+import DraggableProductCard from "../../product/PorductCard/DragableProductCard";
 
 const skeletonArray = [...Array(5)].map(() => undefined);
 
@@ -43,10 +44,11 @@ const ProductViewLayout = () => {
               Create Product <PlusIcon />
             </div>
           </div>
-
         }
-        {products.map((product, index) => (
-          <ProductCard key={product?.id ?? index} product={product} />
+        {products?.map((product) => (
+          product && <DraggableProductCard product={product} key={product.id} >
+            <ProductCard product={product} />
+          </DraggableProductCard>
         ))}
         {isFetchingNextPage &&
           skeletonArray.map((_, index) => (

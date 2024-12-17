@@ -18,6 +18,7 @@ import {
 } from "<root>/app/api/hooks/category/useCategoryMutations";
 import { useAtom } from "jotai";
 import { authAtom } from "<root>/app/atom/authAtom";
+import MainCategoriesCard from "./MainCategoriesCard";
 
 const MainCategories = () => {
   const router = useRouter();
@@ -158,16 +159,12 @@ const MainCategories = () => {
         )}
         {categories.map((category) => {
           const isSelected = category.id === selectedCategoryId;
-          return (
-            <div
-              key={category.id}
-              className={`category p-4 mb-2  transition-colors ${isSelected ? "selected" : ""
-                } `}
-              onClick={() => handleNavigateToCategory(category.id)}
-            >
-              <span>{category.name}</span>
-            </div>
-          );
+          return <MainCategoriesCard
+            category={category}
+            isSelected={isSelected}
+            handleNavigateToCategory={handleNavigateToCategory}
+            key={category.id}
+          />
         })}
       </div>
     </div>

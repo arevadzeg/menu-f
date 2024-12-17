@@ -10,4 +10,6 @@ export interface Product {
   description: string;
   createdAt: string;
   updatedAt: string;
+  categoryId: string;
+  subCategoryId: string
 }
