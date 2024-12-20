@@ -1,17 +1,18 @@
-import { DndContext, DragOverEvent, DragOverlay, DragStartEvent } from "@dnd-kit/core"
-import ProductCard from "./components/product/PorductCard/ProductCard"
+import { DndContext, DragOverEvent, DragOverlay, DragStartEvent, pointerWithin } from "@dnd-kit/core"
 import { useParams, useRouter } from "next/navigation";
 import { useUpdateProduct } from "./api/hooks/product/useProductMutations";
 import { useAtom } from "jotai";
 import { draggingCardAtom } from "./atom/draggingCardAtom";
 import { useQueryClient } from "@tanstack/react-query";
 import { isString } from 'lodash'
+import ProductCardSmall from "./components/product/PorductCard/ProductCardSmall";
+import { snapCenterToCursor } from '@dnd-kit/modifiers'
 
 const LayoutDnDWrapper = ({ children }: any) => {
 
     const [product, setProduct] = useAtom(draggingCardAtom)
     const router = useRouter();
-    const { categoryId } = useParams();
+    const { categoryId, subCategoryId } = useParams();
     const updateProduct = useUpdateProduct();
     const queryClient = useQueryClient();
 
@@ -32,8 +33,8 @@ const LayoutDnDWrapper = ({ children }: any) => {
                 title: product.title,
                 productId: product.id,
                 description: product.description,
-                categoryId,
-                subCategoryId: "",
+                ...(categoryId && { categoryId }),
+                ...(subCategoryId && { subCategoryId }),
             });
             invalidateProductCategoryQueries(product.categoryId);
             setProduct(null);
@@ -52,11 +53,12 @@ const LayoutDnDWrapper = ({ children }: any) => {
     return <DndContext
         onDragOver={handleDragOver}
         onDragStart={handleDragStart}
-        onDragEnd={handleDragEnd}>
+        onDragEnd={handleDragEnd}
+        collisionDetection={pointerWithin}
+    >
         {children}
-        <DragOverlay>
-            {product && <ProductCard product={product} />}
-
+        <DragOverlay modifiers={[snapCenterToCursor]}>
+            {product && <ProductCardSmall product={product} />}
         </DragOverlay>
     </DndContext >
 

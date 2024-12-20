@@ -5,9 +5,6 @@ import useGetInfiniteProducts from "<root>/app/api/hooks/product/useGetProducts"
 import InfiniteScroll from "react-infinite-scroll-component";
 import ProductCard from "../../product/PorductCard/ProductCard";
 import "./ProductViewLayout.scss";
-import { useAtom } from "jotai";
-import { authAtom } from "<root>/app/atom/authAtom";
-import { PlusIcon } from "@radix-ui/react-icons";
 import Modal from "../../ui/Modal/Modal";
 import CreateProductForm from "../../product/CreateProductForm/CreateProductForm";
 import DraggableProductCard from "../../product/PorductCard/DragableProductCard";
@@ -15,13 +12,10 @@ import DraggableProductCard from "../../product/PorductCard/DragableProductCard"
 const skeletonArray = [...Array(5)].map(() => undefined);
 
 const ProductViewLayout = () => {
-  const [user] = useAtom(authAtom);
-  const isAdmin = !!user;
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isSuccess } =
     useGetInfiniteProducts();
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  const handleOpenCreateModal = () => setIsModalOpen(true)
 
   const products =
     data?.pages.flatMap((page) => page.products) ?? skeletonArray;
@@ -37,18 +31,10 @@ const ProductViewLayout = () => {
       }}
     >
       <div className="product-layout">
-        {
-          isAdmin &&
-          <div className="product-card h-72 create-product-card" onClick={handleOpenCreateModal}>
-            <div className="flex gap-2 justify-center items-center h-full">
-              Create Product <PlusIcon />
-            </div>
-          </div>
-        }
+
         {products?.map((product) => (
-          product && <DraggableProductCard product={product} key={product.id} >
-            <ProductCard product={product} />
-          </DraggableProductCard>
+          product && <DraggableProductCard product={product} key={product.id} />
+
         ))}
         {isFetchingNextPage &&
           skeletonArray.map((_, index) => (

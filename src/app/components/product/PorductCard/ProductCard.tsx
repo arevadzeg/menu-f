@@ -1,20 +1,21 @@
 import React, { useState } from "react";
 import "./ProductCard.scss";
 import { Skeleton, Spinner } from "@radix-ui/themes";
-import { Product } from "<root>/app/api/hooks/product/useGetProducts";
 import { Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
 import { useDeleteProduct } from "<root>/app/api/hooks/product/useProductMutations";
 import Modal from "../../ui/Modal/Modal";
 import CreateProductForm from "../CreateProductForm/CreateProductForm";
 import { useAtom } from "jotai";
 import { authAtom } from "<root>/app/atom/authAtom";
+import { Product } from "<root>/app/api/hooks/product/InterfaceProduct";
 
 interface ProductCardProps {
   isLoading?: boolean;
   product?: Product;
+  isShowMinimizedVersion?: boolean
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product, isLoading }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ product, isLoading, isShowMinimizedVersion = false }) => {
   const [user] = useAtom(authAtom);
 
   const isAdmin = !!user;
@@ -34,10 +35,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, isLoading }) => {
     setIsEditModalOpen(false);
   };
 
+
+
   if (isLoading || !product) return <Skeleton className="product-card h-72" />;
 
   return (
-    <div className="product-card">
+    <div className="product-card" style={{
+      opacity: isShowMinimizedVersion ? 0.6 : 1
+    }}>
       <div className="image-wrapper ">
         <img src={product.image} />
       </div>

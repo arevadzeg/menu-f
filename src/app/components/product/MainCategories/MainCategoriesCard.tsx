@@ -13,7 +13,7 @@ const MainCategoriesCard = ({ category, isSelected, handleNavigateToCategory }: 
     const { setNodeRef } = useDroppable({
         id: category.id,
         data: {
-            index: 2,
+            isSubCategory: false,
         },
     });
 

@@ -18,6 +18,7 @@ import {
 } from "<root>/app/api/hooks/category/useCategoryMutations";
 import { useAtom } from "jotai";
 import { authAtom } from "<root>/app/atom/authAtom";
+import SubCategoriesCard from "./SubCategoriesCard";
 
 const SubCategories = () => {
   const [user] = useAtom(authAtom);
@@ -153,16 +154,7 @@ const SubCategories = () => {
               </RadixButton>
             )}
             {category.subCategories.map((sub) => (
-              <li
-                key={sub.id}
-                className={`sub-categorie ${selectedSubCategoryId === sub.id
-                  ? "sub-categorie-selected"
-                  : ""
-                  }`}
-                onClick={() => handleNavigateToSubCategory(sub.id)}
-              >
-                {sub.name}
-              </li>
+              <SubCategoriesCard key={sub.id} subCategory={sub} categoryId={category.id} handleNavigateToSubCategory={handleNavigateToSubCategory} isSelected={selectedSubCategoryId === sub.id} />
             ))}
           </ul>
         </>
