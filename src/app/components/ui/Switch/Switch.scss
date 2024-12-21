@@ -1,15 +1,33 @@
 @import "@radix-ui/colors/black-alpha.css";
 
 .SwitchRoot {
-  width: 42px;
+  width: 60px;
   height: 25px;
   background-color: var(--background-color);
   border-radius: 9999px;
   position: relative;
   border: 1px solid var(--secondary-text-color);
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  position: relative;
   &[data-state="checked"] {
     background-color: var(--background-color);
+    .switch-text{
+      left: 8px;
+      right: auto;
+    }
+  }
+
+
+  .switch-text{
+    font-size: 9px;
+    width: calc(100% - 30px);
+    position: absolute;
+    right: 0;
+    line-height: 7px;
+    color: var(--secondary-text-color);
+    top: 50%;
+    // left: 50%;
+    transform: translateY(-50%);
   }
 }
 
@@ -23,6 +41,9 @@
   transform: translateX(2px);
   will-change: transform;
   &[data-state="checked"] {
-    transform: translateX(19px);
+    transform: translateX(37px);
   }
+
+
+  
 }

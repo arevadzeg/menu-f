@@ -18,7 +18,7 @@ interface ProductCardProps {
 const ProductCard: React.FC<ProductCardProps> = ({ product, isLoading, isShowMinimizedVersion = false }) => {
   const [user] = useAtom(authAtom);
 
-  const isAdmin = !!user;
+  const isAdmin = !!user?.isTurnUserMode;
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   const deleteProduct = useDeleteProduct();

@@ -53,7 +53,7 @@ const FilterSort = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [user] = useAtom(authAtom);
 
-  const isAdmin = !!user;
+  const isAdmin = !!user?.isTurnUserMode;
 
   // Debounced function to handle search change
   const debouncedSearchChange = useCallback(

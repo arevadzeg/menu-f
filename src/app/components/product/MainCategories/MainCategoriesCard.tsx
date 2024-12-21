@@ -20,7 +20,7 @@ const MainCategoriesCard = ({ category, isSelected, handleNavigateToCategory }: 
     return <div
         ref={setNodeRef}
         key={category.id}
-        className={`category p-4 mb-2  transition-colors ${isSelected ? "selected" : ""
+        className={`category p-4  transition-colors ${isSelected ? "selected" : ""
             } `}
         onClick={() => handleNavigateToCategory(category.id)}
     >

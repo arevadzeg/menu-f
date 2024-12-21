@@ -13,9 +13,9 @@ export default function Home() {
 
   return (
     <div>
+      <Breadcrumb items={items} />
       <FilterSort />
       <MainCategories />
-      <Breadcrumb items={items} />
 
       <div className="flex gap-8 mt-8">
         <SubCategories />

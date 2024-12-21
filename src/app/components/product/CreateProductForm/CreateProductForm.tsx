@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 import "./CreateProductForm.scss";
-import { Button } from "../../ui/Button/Button";
 import TextField from "../../ui/TextField/TextField";
 import FileUpload from "../../ui/Upload/Upload";
 import {
@@ -126,8 +125,8 @@ const CreateProductForm = ({
               ? "Updating..."
               : "Creating..."
             : isUpdateMode
-            ? "Update Product"
-            : "Create Product"}
+              ? "Update Product"
+              : "Create Product"}
         </RadixButton>
       </form>
     </span>

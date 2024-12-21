@@ -4,6 +4,7 @@ import "./SubCategories.scss";
 import { useState } from "react";
 import {
   GearIcon,
+  InfoCircledIcon,
   Pencil1Icon,
   TrashIcon,
 } from "@radix-ui/react-icons";
@@ -23,7 +24,7 @@ import SubCategoriesCard from "./SubCategoriesCard";
 const SubCategories = () => {
   const [user] = useAtom(authAtom);
 
-  const isAdmin = !!user;
+  const isAdmin = !!user?.isTurnUserMode;
   const router = useRouter();
   const { categoryId, appName, subCategoryId } = useParams();
   const [selectedSubCategoryId, setSelectedSubCategoryId] = useState<
@@ -141,7 +142,7 @@ const SubCategories = () => {
 
       {isShowSubCategories && (
         <>
-          <h2 className="text-2xl font-bold mb-4">
+          <h2 className="text-2xl font-bold mb-4 subCategories-title" >
             {category.name} Subcategories
           </h2>
           <ul>
@@ -156,6 +157,23 @@ const SubCategories = () => {
             {category.subCategories.map((sub) => (
               <SubCategoriesCard key={sub.id} subCategory={sub} categoryId={category.id} handleNavigateToSubCategory={handleNavigateToSubCategory} isSelected={selectedSubCategoryId === sub.id} />
             ))}
+            {
+              category.subCategories.length === 0 && (
+                <span className="flex flex-col items-center p-4 bg-gray-100 rounded-md border border-gray-300">
+                  <div className="flex items-center text-gray-600">
+                    <span className="font-semibold">No subcategories added</span>
+                    <InfoCircledIcon className="mr-2 text-blue-500" />
+                  </div>
+                  <div className="mt-2 text-sm text-gray-500">
+                    <i>
+                      Subcategory is optional.
+                      <br />
+                      If not created, users won’t see anything.
+                    </i>
+                  </div>
+                </span>
+              )
+            }
           </ul>
         </>
       )}

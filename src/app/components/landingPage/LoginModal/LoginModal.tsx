@@ -30,7 +30,10 @@ const LoginModal = ({
       { email: userName, password: passWord },
       {
         onSuccess: (e) => {
-          setUser(e);
+          setUser({
+            ...e,
+            isTurnUserMode: true
+          });
           setIsLoginModalOpen(false);
         },
       }
@@ -56,7 +59,7 @@ const LoginModal = ({
           className="login-modal-input"
         />
         <RadixButton onClick={handleLogin} className="login-modal-button">
-          {isLoginMode ? "Login":"Register"}
+          {isLoginMode ? "Login" : "Register"}
         </RadixButton>
         <div className="login-modal-footer">
           <button className="login-modal-link">Forgot Password?</button>
@@ -64,8 +67,8 @@ const LoginModal = ({
           <hr />
           <span>
 
-          <span>{isLoginMode ?  'Not member yet? ' : "Already have an account " }</span>
-          <button className="login-modal-link" onClick={toggaleLoginMode}>{isLoginMode ? "Create an Account" : "Login"}</button>
+            <span>{isLoginMode ? 'Not member yet? ' : "Already have an account "}</span>
+            <button className="login-modal-link" onClick={toggaleLoginMode}>{isLoginMode ? "Create an Account" : "Login"}</button>
           </span>
         </div>
       </div>

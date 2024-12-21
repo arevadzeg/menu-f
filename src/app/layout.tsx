@@ -31,7 +31,7 @@ export default function RootLayout({
 }>) {
 
   const [user] = useAtom(authAtom);
-  const isAdmin = !!user;
+  const isAdmin = !!user?.isTurnUserMode;
   const location = usePathname();
   const isLandingPage = location === "/";
 

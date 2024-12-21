@@ -3,15 +3,19 @@ import { useParams, useRouter } from "next/navigation";
 import "./MainCategories.scss"; // You can keep this for additional custom styles
 import { useState } from "react";
 import {
+  ArrowBottomLeftIcon,
+  ArrowLeftIcon,
   GearIcon,
   Pencil1Icon,
+  ThickArrowLeftIcon,
+  ThickArrowRightIcon,
   TrashIcon,
 } from "@radix-ui/react-icons";
 import RadixButton from "../../ui/RadixButton/RadixButton";
 import useGetCategories from "<root>/app/api/hooks/category/useGetCategories";
 import TextField from "../../ui/TextField/TextField";
 import Modal from "../../ui/Modal/Modal";
-import { Spinner } from "@radix-ui/themes";
+import { Button, Skeleton, Spinner } from "@radix-ui/themes";
 import {
   useCreateCategory,
   useUpdateCategory,
@@ -19,6 +23,9 @@ import {
 import { useAtom } from "jotai";
 import { authAtom } from "<root>/app/atom/authAtom";
 import MainCategoriesCard from "./MainCategoriesCard";
+
+
+const SKELETON_CATEGORIES = [1, 2, 3, 4, 5, 9, 10]
 
 const MainCategories = () => {
   const router = useRouter();
@@ -35,15 +42,18 @@ const MainCategories = () => {
   >(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const { data: categories } = useGetCategories();
+  const { data: categories, isLoading, isSuccess } = useGetCategories();
   const createCategory = useCreateCategory();
   const updateCategory = useUpdateCategory();
   const [user] = useAtom(authAtom);
-  const isAdmin = !!user;
+  const isAdmin = !!user?.isTurnUserMode;
   const handleNavigateToCategory = (categoryId: string) => {
     setSelectedCategoryId(categoryId);
     router.push(`/${appName}/${categoryId}`);
   };
+
+
+  console.log('isLoading', isLoading, isSuccess)
 
   const handleEditCategory = (name: string, id: string) => {
     setIsAddNewCategory("Edit");
@@ -81,10 +91,10 @@ const MainCategories = () => {
     setCategoryToUpdateId(null);
   };
 
-  if (!categories) return null;
+  // if (!categories) return null;
 
   return (
-    <div id="MainCategories" className="p-4 ">
+    <div id="MainCategories" className="py-4">
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
         <div className="p-4">
           <h2 className="text-xl font-bold mb-4">Edit Categories</h2>
@@ -118,7 +128,7 @@ const MainCategories = () => {
             </div>
           ) : (
             <div>
-              {categories.map((category) => (
+              {categories && categories.map((category) => (
                 <div
                   key={category.id}
                   className="flex justify-between items-center p-2 bg-white rounded-lg shadow-sm mb-2 hover:bg-gray-50 transition duration-200"
@@ -148,7 +158,10 @@ const MainCategories = () => {
         </div>
       </Modal>
 
-      <div className="categories-wrapper mt-8">
+      <div className="categories-wrapper">
+        <RadixButton>
+          <ThickArrowLeftIcon />
+        </RadixButton>
         {isAdmin && (
           <RadixButton
             className="add-category-btn"
@@ -157,15 +170,23 @@ const MainCategories = () => {
             <GearIcon />
           </RadixButton>
         )}
-        {categories.map((category) => {
-          const isSelected = category.id === selectedCategoryId;
-          return <MainCategoriesCard
-            category={category}
-            isSelected={isSelected}
-            handleNavigateToCategory={handleNavigateToCategory}
-            key={category.id}
-          />
-        })}
+        <div>
+          {!isSuccess
+            ? SKELETON_CATEGORIES.map((_, idx) => (
+              <Skeleton key={idx} width={`${70 + Math.random() * 20}px`} height="30px" />
+            ))
+            : categories.map((category: any) => (
+              <MainCategoriesCard
+                key={category.id}
+                category={category}
+                isSelected={categoryId === category.id}
+                handleNavigateToCategory={handleNavigateToCategory}
+              />
+            ))}
+        </div>
+        <RadixButton>
+          <ThickArrowRightIcon />
+        </RadixButton>
       </div>
     </div>
   );

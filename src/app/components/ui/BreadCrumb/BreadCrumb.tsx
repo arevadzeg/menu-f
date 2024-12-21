@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import './breadCrumb.scss'
+import { Skeleton, Spinner } from "@radix-ui/themes";
+
 
 interface BreadCrumbArray {
     link: string;
@@ -11,10 +13,27 @@ interface BreadCrumbProps {
     items: BreadCrumbArray[]
 }
 
+const SKELETON_BREADCRUMB = [1, 2]
 
-const Breadcrumb = ({ items }: BreadCrumbProps) => (
-    <nav aria-label="breadcrumb" className="breadcrumb-nav">
+const Breadcrumb = ({ items }: BreadCrumbProps) => {
+
+
+    const isLoading = items.length === 0;
+
+    console.log("items", items)
+
+    return <nav aria-label="breadcrumb" className="breadcrumb-nav">
         <ol className="breadcrumb-list">
+
+            {isLoading && SKELETON_BREADCRUMB.map((index) => {
+                return <li key={index} className="breadcrumb-item">
+                    <Skeleton width={'100px'} height={'20px'} />
+                    {index < items.length - 1 && (
+                        <span aria-hidden="true" className="breadcrumb-separator">/</span>
+                    )}
+                </li>
+            })}
+
             {items.map((item, index) => (
                 <li key={index} className="breadcrumb-item">
                     <Link
@@ -31,7 +50,7 @@ const Breadcrumb = ({ items }: BreadCrumbProps) => (
             ))}
         </ol>
     </nav>
-);
+};
 
 
 export default Breadcrumb;

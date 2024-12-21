@@ -10,6 +10,7 @@ import { PersonIcon } from "@radix-ui/react-icons";
 import PopoverDemo from "../../ui/Popover/Popover";
 import { useAtom } from "jotai";
 import { authAtom } from "<root>/app/atom/authAtom";
+import { HeaderSkeleton } from "./HeaderSkeleton";
 
 const themes = {
   dark: "dark-mode",
@@ -22,12 +23,13 @@ const languageOptions = [
 ];
 
 export const Header = () => {
-  const { data: store } = useGetStore();
+  const { data: store, isLoading } = useGetStore();
   const router = useRouter();
   const { appName } = useParams();
   const [selectedLanguage, setSelectedLanguage] = useState<string | number>(
     "GEO"
   );
+
   const [darkMode, setDarkMode] = useState(false);
   const [popoverOpen, setPopoverOpen] = useState(false);
   const [user, setUser] = useAtom(authAtom);
@@ -46,6 +48,13 @@ export const Header = () => {
     handleThemeChange(checked ? themes.light : themes.dark);
   };
 
+  const handleIsShowUserMode = (checked: boolean) => {
+    user && setUser({
+      ...user,
+      isTurnUserMode: checked
+    })
+  };
+
   const handleThemeChange = (theme: string) => {
     document.body.className = theme; // Simpler, ensures only one theme class is applied
   };
@@ -54,7 +63,8 @@ export const Header = () => {
     router.push(`/${appName}`);
   };
 
-  if (!store) return null;
+
+  if (isLoading) return <HeaderSkeleton />;
 
   return (
     <nav id="Header">
@@ -88,7 +98,9 @@ export const Header = () => {
             <div className="selected-lang">{selectedLanguage}</div>
           )}
         />
-        <Switch checked={darkMode} onCheckedChange={handleModeChange} />
+        <Switch checked={!!user?.isTurnUserMode} onCheckedChange={handleIsShowUserMode} onText="User mode on" offText="User mode off" />
+
+        <Switch checked={darkMode} onCheckedChange={handleModeChange} onText="Light mode" offText="Dark mode" />
       </div>
     </nav>
   );

@@ -19,13 +19,15 @@
   }
   
   .breadcrumb-link {
-    @apply text-gray-500 hover:text-black hover:bg-gray-200 transition-colors px-2 rounded-md;
+    color: var(--primary-text-color);
+    @apply hover:text-black hover:bg-gray-200 transition-colors px-2 rounded-md;
   
     &.active {
-      @apply text-black pointer-events-none;
+      color: var(--primary-color);
+      @apply  pointer-events-none;
     }
   }
   
   .breadcrumb-separator {
-    @apply  text-gray-400;
+    color: var(--primary-text-color);
   }
