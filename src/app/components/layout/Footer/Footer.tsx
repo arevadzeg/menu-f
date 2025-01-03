@@ -12,35 +12,41 @@ import InstagramIcon from "../../ui/SVGAssets/InstagramIcon";
 const Footer = () => {
   const { data: store } = useGetStore();
 
+  const isAddressAdded = store?.address
+  const isPhoneAdded = store?.phone
+  const isEmailAdded = store?.email
+  const isInstagramAdded = store?.instagram
+  const isFacebookAdded = store?.facebook
+
+
   return (
     <footer id="Footer" className="dark-mode">
       <div className="contant-info">
         <div className="left-side">
-          {store?.address && (
+          {isAddressAdded && (
             <div className="item">
               <SewingPinFilledIcon /> {store.address}
             </div>
           )}
-          {store?.phone && (
+          {isPhoneAdded && (
             <div className="item">
               <MobileIcon /> {store.phone}
             </div>
           )}
-          {store?.email && (
+          {isEmailAdded && (
             <div className="item">
               <EnvelopeClosedIcon /> {store.email}
             </div>
           )}
         </div>
         <div className="right-side">
-          {store?.instagram && (
-            <a href={store.instagram} target="__blank">
-
+          {isInstagramAdded && (
+            <a href={store.instagram!} target="__blank">
               <InstagramIcon />
             </a>
           )}
-          {store?.facebook && (
-            <a href={store.facebook} target="__blank">
+          {isFacebookAdded && (
+            <a href={store.facebook!} target="__blank">
               <FacebookIcon />
             </a>
 
@@ -50,6 +56,7 @@ const Footer = () => {
       </div>
 
       <div className="line"></div>
+      {/* //TODO HARD CODED */}
       <div className="general">
         <span>Home</span>
         <span>About Us</span>

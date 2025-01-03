@@ -10,7 +10,6 @@ import {
 } from "@radix-ui/react-icons";
 import TextField from "../../ui/TextField/TextField";
 import { debounce } from "lodash";
-import { Button } from "../../ui/Button/Button";
 import Modal from "../../ui/Modal/Modal";
 import CreateProductForm from "../CreateProductForm/CreateProductForm";
 import RadixButton from "../../ui/RadixButton/RadixButton";
@@ -60,7 +59,6 @@ const FilterSort = () => {
     debounce((value: string) => {
       const params = new URLSearchParams(window.location.search);
       params.set("search", value);
-      // Keep existing sort parameters
       router.push(pathname + "?" + params.toString());
     }, 500), // 500ms debounce
     [router, pathname]

@@ -1,194 +1,76 @@
-"use client"; // Add this line
+"use client";
 import { useParams, useRouter } from "next/navigation";
-import "./MainCategories.scss"; // You can keep this for additional custom styles
+import "./MainCategories.scss";
 import { useState } from "react";
 import {
-  ArrowBottomLeftIcon,
-  ArrowLeftIcon,
   GearIcon,
-  Pencil1Icon,
-  ThickArrowLeftIcon,
-  ThickArrowRightIcon,
-  TrashIcon,
 } from "@radix-ui/react-icons";
 import RadixButton from "../../ui/RadixButton/RadixButton";
 import useGetCategories from "<root>/app/api/hooks/category/useGetCategories";
-import TextField from "../../ui/TextField/TextField";
-import Modal from "../../ui/Modal/Modal";
-import { Button, Skeleton, Spinner } from "@radix-ui/themes";
-import {
-  useCreateCategory,
-  useUpdateCategory,
-} from "<root>/app/api/hooks/category/useCategoryMutations";
 import { useAtom } from "jotai";
 import { authAtom } from "<root>/app/atom/authAtom";
-import MainCategoriesCard from "./MainCategoriesCard";
+import MainCategoriesCard from "./Components/MainCategoriesDroppableCard/MainCategoriesDroppabeCard";
+import ArrowIcon from "../../ui/SVGAssets/ArrowIcon";
+import MainCategoriesSkeleton from "./Components/MainCategoriesSkeleton/MainCategoriesSkeleton";
+import EmptyMainCategories from "./Components/EmptyMainCategories/EmptyMainCategories";
+import CreateEditMainCategoryModal from "./Components/CreateEditMainCategoryModal/CreateEditMainCategoryModal";
 
-
-const SKELETON_CATEGORIES = [1, 2, 3, 4, 5, 9, 10]
 
 const MainCategories = () => {
-  const router = useRouter();
-  const { appName, categoryId } = useParams();
-  const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(
-    !!categoryId ? String(categoryId) : null
-  );
-  const [newCategoryName, setNewCategoryName] = useState("");
-  const [categoryToUpdateId, setCategoryToUpdateId] = useState<string | null>(
-    null
-  );
-  const [isAddNewCategory, setIsAddNewCategory] = useState<
-    "Create" | "Edit" | null
-  >(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const { data: categories, isLoading, isSuccess } = useGetCategories();
-  const createCategory = useCreateCategory();
-  const updateCategory = useUpdateCategory();
+  const { appName, categoryId } = useParams();
   const [user] = useAtom(authAtom);
-  const isAdmin = !!user?.isTurnUserMode;
+  const router = useRouter();
+  const { data: categories, isSuccess } = useGetCategories();
+
+
   const handleNavigateToCategory = (categoryId: string) => {
-    setSelectedCategoryId(categoryId);
     router.push(`/${appName}/${categoryId}`);
   };
-
-
-  console.log('isLoading', isLoading, isSuccess)
-
-  const handleEditCategory = (name: string, id: string) => {
-    setIsAddNewCategory("Edit");
-    setNewCategoryName(name);
-    setCategoryToUpdateId(id);
-  };
-
   const handleCloseModal = () => setIsModalOpen(false);
   const handleOpenModal = () => setIsModalOpen(true);
 
-  const handleCreateCategory = () => {
-    createCategory.mutate(
-      { categoryName: newCategoryName },
-      {
-        onSuccess: () => closeModalAndClearData,
-      }
-    );
-  };
+  const isAdmin = !!user?.isTurnUserMode;
+  const isCategoriesCreated = isSuccess && categories.length === 0 && isAdmin;
 
-  const handleUpdateCategory = (categoryToUpdateId: string) => {
-    updateCategory.mutate(
-      {
-        categoryName: newCategoryName,
-        categoryId: categoryToUpdateId,
-      },
-      {
-        onSuccess: closeModalAndClearData,
-      }
-    );
-  };
 
-  const closeModalAndClearData = () => {
-    setNewCategoryName("");
-    setIsModalOpen(false);
-    setCategoryToUpdateId(null);
-  };
-
-  // if (!categories) return null;
 
   return (
-    <div id="MainCategories" className="py-4">
-      <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
-        <div className="p-4">
-          <h2 className="text-xl font-bold mb-4">Edit Categories</h2>
+    <div id="MainCategories">
+      <CreateEditMainCategoryModal handleCloseModal={handleCloseModal} isModalOpen={isModalOpen} />
 
-          <RadixButton
-            onClick={() => {
-              setIsAddNewCategory((prev) => (!!prev ? null : "Create"));
-            }}
-            className="mb-4"
-          >
-            {isAddNewCategory ? "Back" : "Add New Category"}
-          </RadixButton>
+      {isCategoriesCreated ? <EmptyMainCategories onCreateFilter={handleOpenModal} /> :
 
-          {isAddNewCategory ? (
-            <div>
-              <TextField
-                value={newCategoryName}
-                onChange={(e) => setNewCategoryName(e.target.value)}
-                className="mb-2 "
-              />
-              <RadixButton
-                onClick={() => {
-                  if (isAddNewCategory === "Create") handleCreateCategory();
-                  else
-                    categoryToUpdateId &&
-                      handleUpdateCategory(categoryToUpdateId);
-                }}
-              >
-                Create category
-              </RadixButton>
-            </div>
-          ) : (
-            <div>
-              {categories && categories.map((category) => (
-                <div
-                  key={category.id}
-                  className="flex justify-between items-center p-2 bg-white rounded-lg shadow-sm mb-2 hover:bg-gray-50 transition duration-200"
-                >
-                  <span className="text-gray-800">{category.name}</span>
-
-                  <div className="flex gap-2">
-                    <div
-                      className="delete-product cursor-pointer"
-                      onClick={() => { }}
-                    >
-                      {false ? <Spinner size={"2"} /> : <TrashIcon />}
-                    </div>
-                    <div
-                      className="edit-product cursor-pointer"
-                      onClick={() =>
-                        handleEditCategory(category.name, category.id)
-                      }
-                    >
-                      <Pencil1Icon />
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+        <div className="categories-wrapper">
+          <span className="arrow">
+            <ArrowIcon className="arrow-icon" />
+          </span>
+          {isAdmin && (
+            <RadixButton
+              className="add-category-btn"
+              onClick={handleOpenModal}
+            >
+              <GearIcon />
+            </RadixButton>
           )}
+          <div>
+            {!isSuccess
+              ? <MainCategoriesSkeleton />
+              : categories.map((category: any) => (
+                <MainCategoriesCard
+                  key={category.id}
+                  category={category}
+                  isSelected={categoryId === category.id}
+                  handleNavigateToCategory={handleNavigateToCategory}
+                />
+              ))}
+          </div>
+          <span className="arrow">
+            <ArrowIcon className="arrow-right arrow-icon" />
+          </span>
         </div>
-      </Modal>
-
-      <div className="categories-wrapper">
-        <RadixButton>
-          <ThickArrowLeftIcon />
-        </RadixButton>
-        {isAdmin && (
-          <RadixButton
-            className="add-category-btn"
-            onClick={handleOpenModal}
-          >
-            <GearIcon />
-          </RadixButton>
-        )}
-        <div>
-          {!isSuccess
-            ? SKELETON_CATEGORIES.map((_, idx) => (
-              <Skeleton key={idx} width={`${70 + Math.random() * 20}px`} height="30px" />
-            ))
-            : categories.map((category: any) => (
-              <MainCategoriesCard
-                key={category.id}
-                category={category}
-                isSelected={categoryId === category.id}
-                handleNavigateToCategory={handleNavigateToCategory}
-              />
-            ))}
-        </div>
-        <RadixButton>
-          <ThickArrowRightIcon />
-        </RadixButton>
-      </div>
-    </div>
+      }
+    </div >
   );
 };
 

@@ -1,6 +1,11 @@
 
 #Header {
   @apply flex items-center justify-between p-4 px-8 mb-8;
+
+
+  .logo{
+    @apply rounded-full max-h-10 max-w-10;
+  }
   
   .title {
     @apply flex gap-4 font-bold items-center cursor-pointer;

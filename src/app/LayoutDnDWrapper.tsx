@@ -5,15 +5,17 @@ import { useAtom } from "jotai";
 import { draggingCardAtom } from "./atom/draggingCardAtom";
 import { useQueryClient } from "@tanstack/react-query";
 import { isString } from 'lodash'
-import ProductCardSmall from "./components/product/PorductCard/ProductCardSmall";
+import ProductCardSmall from "./components/product/PorductCard/Components/ProductCardSmall/ProductCardSmall";
 import { snapCenterToCursor } from '@dnd-kit/modifiers'
 
 const LayoutDnDWrapper = ({ children }: any) => {
 
     const [product, setProduct] = useAtom(draggingCardAtom)
     const router = useRouter();
-    const { categoryId, subCategoryId } = useParams();
-    const updateProduct = useUpdateProduct();
+    const { categoryId, subCategoryId } = useParams<{
+        categoryId: string;
+        subCategoryId: string;
+    }>(); const updateProduct = useUpdateProduct();
     const queryClient = useQueryClient();
 
     const handleDragStart = (event: DragStartEvent) => setProduct(event.active.data?.current?.product)

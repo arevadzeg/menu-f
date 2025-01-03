@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./ProductCard.scss";
-import { Skeleton, Spinner } from "@radix-ui/themes";
+import { Spinner } from "@radix-ui/themes";
 import { Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
 import { useDeleteProduct } from "<root>/app/api/hooks/product/useProductMutations";
 import Modal from "../../ui/Modal/Modal";
@@ -8,6 +8,7 @@ import CreateProductForm from "../CreateProductForm/CreateProductForm";
 import { useAtom } from "jotai";
 import { authAtom } from "<root>/app/atom/authAtom";
 import { Product } from "<root>/app/api/hooks/product/InterfaceProduct";
+import ProductCardSkeleton from "./Components/ProductCardSkeleton/ProductCardSkeleton";
 
 interface ProductCardProps {
   isLoading?: boolean;
@@ -17,11 +18,11 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, isLoading, isShowMinimizedVersion = false }) => {
   const [user] = useAtom(authAtom);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const deleteProduct = useDeleteProduct();
 
   const isAdmin = !!user?.isTurnUserMode;
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-
-  const deleteProduct = useDeleteProduct();
+  const isProductsLoading = isLoading || !product;
 
   const handleDeleteProduce = () => {
     product && deleteProduct.mutate(product.id);
@@ -37,12 +38,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, isLoading, isShowMin
 
 
 
-  if (isLoading || !product) return <Skeleton className="product-card h-72" />;
+  if (isProductsLoading) return <ProductCardSkeleton />;
 
   return (
-    <div className="product-card" style={{
-      opacity: isShowMinimizedVersion ? 0.6 : 1
-    }}>
+    <div id="product-card">
       <div className="image-wrapper ">
         <img src={product.image} />
       </div>
@@ -70,7 +69,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, isLoading, isShowMin
           className="product-description"
           dangerouslySetInnerHTML={{ __html: product.description }}
         ></span>
-
         <span className="price">{product.price}</span>
       </div>
     </div>

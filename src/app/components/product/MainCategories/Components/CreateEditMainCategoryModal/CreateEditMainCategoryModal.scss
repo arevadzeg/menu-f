@@ -1,0 +1,37 @@
+#modal-container {
+    @apply p-4;
+    
+    .modal-title {
+      @apply text-xl font-bold mb-4;
+    }
+    
+    .add-new-button {
+      @apply mb-4;
+    }
+    
+    .text-field {
+      @apply mb-2;
+    }
+    
+    .category-item {
+      @apply flex justify-between items-center p-2 bg-white rounded-lg shadow-sm mb-2 hover:bg-gray-50 transition duration-200;
+    }
+    
+    .category-name {
+      @apply text-gray-800;
+    }
+    
+    .actions-container {
+      @apply flex gap-2;
+    }
+    
+    .delete-product {
+      @apply cursor-pointer;
+    }
+    
+    .edit-product {
+      @apply cursor-pointer;
+    }
+    
+  }
+  

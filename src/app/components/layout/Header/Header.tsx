@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import DropdownMenuComponent from "../../ui/Dropdown/Dropdown";
 import { Switch } from "../../ui/Switch/Switch";
 import "./header.scss";
 import { useGetStore } from "<root>/app/api/hooks/store/useGetStore";
@@ -17,23 +16,17 @@ const themes = {
   light: "",
 };
 
-const languageOptions = [
-  { label: "GEORGIAN", value: "GEO", icon: () => <div>GEO</div> },
-  { label: "ENGLISH", value: "ENG", icon: () => <div>ENG</div> },
-];
-
 export const Header = () => {
-  const { data: store, isLoading } = useGetStore();
+  const { data: store, isSuccess } = useGetStore();
   const router = useRouter();
   const { appName } = useParams();
-  const [selectedLanguage, setSelectedLanguage] = useState<string | number>(
-    "GEO"
-  );
 
-  const [darkMode, setDarkMode] = useState(false);
+
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const [popoverOpen, setPopoverOpen] = useState(false);
   const [user, setUser] = useAtom(authAtom);
   const isAdmin = !!user;
+  const isTurnUserMode = !!user?.isTurnUserMode
 
   const handleClosePopover = () => setPopoverOpen(false);
   const handleOpenPopover = () => setPopoverOpen(true);
@@ -44,7 +37,7 @@ export const Header = () => {
   };
 
   const handleModeChange = (checked: boolean) => {
-    setDarkMode(checked);
+    setIsDarkMode(checked);
     handleThemeChange(checked ? themes.light : themes.dark);
   };
 
@@ -56,7 +49,7 @@ export const Header = () => {
   };
 
   const handleThemeChange = (theme: string) => {
-    document.body.className = theme; // Simpler, ensures only one theme class is applied
+    document.body.className = theme;
   };
 
   const handleNavigateToMainPage = () => {
@@ -64,15 +57,15 @@ export const Header = () => {
   };
 
 
-  if (isLoading) return <HeaderSkeleton />;
+  if (!isSuccess) return <HeaderSkeleton />;
 
   return (
     <nav id="Header">
       <div className="title" onClick={handleNavigateToMainPage}>
         <img
-          src={store.image}
+          src={store.image ?? ""}
           alt="Logo"
-          className="rounded-full max-h-10 max-w-10"
+          className="logo"
         />
         <span className="welcome">
           <span className="text">Welcome to</span>
@@ -90,17 +83,9 @@ export const Header = () => {
             <PersonIcon height={24} width={24} onClick={handleOpenPopover} />
           </PopoverDemo>
         )}
-        <DropdownMenuComponent
-          options={languageOptions}
-          selectedValue={selectedLanguage}
-          setSelectedValue={setSelectedLanguage}
-          Trigger={() => (
-            <div className="selected-lang">{selectedLanguage}</div>
-          )}
-        />
-        <Switch checked={!!user?.isTurnUserMode} onCheckedChange={handleIsShowUserMode} onText="User mode on" offText="User mode off" />
+        <Switch checked={isTurnUserMode} onCheckedChange={handleIsShowUserMode} onText="User mode on" offText="User mode off" />
 
-        <Switch checked={darkMode} onCheckedChange={handleModeChange} onText="Light mode" offText="Dark mode" />
+        <Switch checked={isDarkMode} onCheckedChange={handleModeChange} onText="Light mode" offText="Dark mode" />
       </div>
     </nav>
   );

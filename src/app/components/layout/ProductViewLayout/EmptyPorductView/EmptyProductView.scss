@@ -1,0 +1,19 @@
+
+.empty-product-view-container {
+    @apply flex flex-col items-center justify-center h-96;
+
+
+    .empty-product-view-heading {
+        @apply text-xl font-semibold;
+      }
+      
+      .empty-product-view-button {
+        @apply mt-4 flex items-center px-4 py-2;
+      }
+      
+      .empty-product-view-message {
+        @apply mt-4 text-gray-500;
+      }
+      
+}
+  

@@ -20,11 +20,12 @@ interface CreateProductPayload {
   description?: string;
 }
 
-interface UpdateProductPayload extends CreateProductPayload {
-  productId: string;
-  categoryId: string;
-  subCategoryId: string
+interface UpdateProductPayload extends Partial<CreateProductPayload> {
+  productId?: string;
+  categoryId?: string;
+  subCategoryId?: string;
 }
+
 
 // CREATE PRODUCT
 export const useCreateProduct = () => {

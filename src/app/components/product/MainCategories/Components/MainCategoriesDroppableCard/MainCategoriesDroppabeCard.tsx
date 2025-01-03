@@ -2,14 +2,14 @@ import { Category } from "<root>/app/api/hooks/category/interfaceCategory";
 import { useDroppable } from "@dnd-kit/core";
 
 
-interface MainCategoriesCardProps {
+interface MainCategoriesDroppabeCardProps {
     category: Category;
     isSelected: boolean;
     handleNavigateToCategory: (categoryId: string) => void
 }
 
 
-const MainCategoriesCard = ({ category, isSelected, handleNavigateToCategory }: MainCategoriesCardProps) => {
+const MainCategoriesDroppabeCard = ({ category, isSelected, handleNavigateToCategory }: MainCategoriesDroppabeCardProps) => {
     const { setNodeRef } = useDroppable({
         id: category.id,
         data: {
@@ -28,4 +28,4 @@ const MainCategoriesCard = ({ category, isSelected, handleNavigateToCategory }: 
     </div>
 }
 
-export default MainCategoriesCard
+export default MainCategoriesDroppabeCard

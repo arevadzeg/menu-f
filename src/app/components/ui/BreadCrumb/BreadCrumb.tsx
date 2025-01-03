@@ -17,10 +17,7 @@ const SKELETON_BREADCRUMB = [1, 2]
 
 const Breadcrumb = ({ items }: BreadCrumbProps) => {
 
-
     const isLoading = items.length === 0;
-
-    console.log("items", items)
 
     return <nav aria-label="breadcrumb" className="breadcrumb-nav">
         <ol className="breadcrumb-list">

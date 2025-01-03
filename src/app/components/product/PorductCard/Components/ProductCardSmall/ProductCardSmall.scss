@@ -1,0 +1,9 @@
+.product-card-small {
+    @apply bg-gray-100 rounded-lg shadow-md p-4;
+  
+  
+    .product-title {
+      @apply text-lg font-semibold text-gray-800;
+    }
+  }
+  

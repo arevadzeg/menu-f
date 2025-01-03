@@ -1,8 +1,7 @@
-import React, { Dispatch, SetStateAction, useEffect } from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import "./Upload.scss";
-import { FileIcon, UploadIcon } from "@radix-ui/react-icons";
+import { UploadIcon } from "@radix-ui/react-icons";
 import useUpload from "./hooks/useUpload";
-import axios from "axios";
 
 interface FileUploadProps {
   maxFileSize?: number;
@@ -96,7 +95,6 @@ export const FileUpload: React.FC<FileUploadProps> = ({
                     {uploadedImage &&
                       !selectedFile &&
                       getImageNameFromUrl(uploadedImage)}
-                    {/* {selectedFile ? selectedFile.name :} */}
                   </div>
                   <span>
                     .{selectedFile ? selectedFile.name.split(".").pop() : ""}
