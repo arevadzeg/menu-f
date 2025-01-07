@@ -6,7 +6,7 @@
   background-color: var(--background-color);
   border-radius: 9999px;
   position: relative;
-  border: 1px solid var(--secondary-text-color);
+  border: 1px solid var(--secondary-color);
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   position: relative;
   &[data-state="checked"] {
@@ -24,7 +24,7 @@
     position: absolute;
     right: 0;
     line-height: 7px;
-    color: var(--secondary-text-color);
+    color: var(--secondary-color);
     top: 50%;
     // left: 50%;
     transform: translateY(-50%);

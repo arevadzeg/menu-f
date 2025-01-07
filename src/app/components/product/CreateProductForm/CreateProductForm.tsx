@@ -6,13 +6,14 @@ import {
   useUpdateProduct,
   useCreateProduct,
 } from "<root>/app/api/hooks/product/useProductMutations";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import useUploadFile from "<root>/app/api/hooks/upload/useUploadImage";
 import { useQueryClient } from "@tanstack/react-query";
 import Backdrop from "../../ui/Backdrop/Backdrop";
 import RichTextEditor from "../../ui/RichTextEditor/RichTextEditor";
 import RadixButton from "../../ui/RadixButton/RadixButton";
 import { Product } from "<root>/app/api/hooks/product/InterfaceProduct";
+import { useGetScrapeProductFromAnotherSite } from "<root>/app/api/hooks/scrape/useGetScrapeProductFromAnotherSite";
 
 interface CreateProductFormProps {
   isUpdateMode?: boolean;
@@ -43,6 +44,19 @@ const CreateProductForm = ({
   const mutation = isUpdateMode ? updateProduct : createProduct;
   const queryClient = useQueryClient();
 
+  const [url, setUrl] = useState("");
+
+
+  const { refetch, data: scrapedData } = useGetScrapeProductFromAnotherSite({ url })
+
+
+  useEffect(() => {
+    if (scrapedData) {
+      setValue("title", scrapedData.title);
+      setValue("price", scrapedData.price);
+    }
+  }, [scrapedData])
+
   const handleFieldChange = (
     event: ChangeEvent<HTMLInputElement>,
     name: "title" | "price"
@@ -69,8 +83,11 @@ const CreateProductForm = ({
         imageUrl = uploadResponse.downloadURL;
       }
 
+
+      const image = imageUrl ? imageUrl : scrapedData?.image ?? ""
+
       await mutation.mutateAsync({
-        image: imageUrl,
+        image: image,
         price: Number(data.price),
         title: data.title,
         productId: productData?.id ?? "",
@@ -98,6 +115,12 @@ const CreateProductForm = ({
 
       <form onSubmit={handleSubmit(onSubmit)} className="create-product-form">
         <div className="form-body">
+          <div className="flex gap-2">
+            <TextField placeholder="URL"
+              className="flex-grow"
+              value={url}
+              onChange={(e) => setUrl(e.target.value)} /> <RadixButton onClick={() => refetch()} >Steal Product</RadixButton>
+          </div>
           <TextField
             placeholder="Title"
             {...register("title", { required: true })}
@@ -111,7 +134,7 @@ const CreateProductForm = ({
           <FileUpload
             selectedFile={selectedFile}
             setSelectedFile={setSelectedFile}
-            uploadedImage={productData?.image}
+            uploadedImage={productData?.image || scrapedData?.image}
           />
           <RichTextEditor
             value={richTextEditorValue}

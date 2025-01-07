@@ -10,7 +10,7 @@
         &::after {
           @apply absolute bottom-0 h-px w-full z-[-1];
           content: "";
-          background-color: var(--primary-text-color-light);
+          background-color: var(--secondary-color-light);
         }
   
         .arrow-icon {

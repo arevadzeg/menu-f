@@ -10,6 +10,8 @@ import PopoverDemo from "../../ui/Popover/Popover";
 import { useAtom } from "jotai";
 import { authAtom } from "<root>/app/atom/authAtom";
 import { HeaderSkeleton } from "./HeaderSkeleton";
+import chroma from "chroma-js";
+
 
 const themes = {
   dark: "dark-mode",
@@ -55,6 +57,23 @@ export const Header = () => {
   const handleNavigateToMainPage = () => {
     router.push(`/${appName}`);
   };
+
+  const primary = "#002d8d"
+  const background = "#ffffff"
+  const secondary = "#9d9d9d"
+
+  const root = document.querySelector("body");
+
+
+  root?.style.setProperty("--primary-color", primary);
+  root?.style.setProperty("--background-color", background);
+  root?.style.setProperty("--secondary-color", secondary);
+
+  // Generate Shades (Optional)
+  root?.style.setProperty("--primary-color-light", chroma(primary).brighten(1).hex());
+  root?.style.setProperty("--primary-color-dark", chroma(primary).darken(1).hex());
+  root?.style.setProperty("--secondary-color-light", chroma(secondary).brighten(0.5).hex());
+  root?.style.setProperty("--secondary-color-dark", chroma(secondary).darken(0.5).hex());
 
 
   if (!isSuccess) return <HeaderSkeleton />;

@@ -1,6 +1,6 @@
 #product-card {
   @apply relative rounded-xl cursor-pointer flex flex-col gap-0 border;
-  border-color: var(--secondary-text-color);
+  border-color: var(--secondary-color);
 
   .image-wrapper {
     @apply rounded-xl overflow-hidden h-[70%] w-full;
@@ -33,7 +33,7 @@
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-    color: var(--secondary-text-color);
+    color: var(--secondary-color);
   }
 
   .price {

@@ -11,22 +11,13 @@
 @import "@radix-ui/colors/red-dark.css";
 @import "@radix-ui/themes/styles";
 
-:root{
-  --background-color: #fff;
-  ---text-color:#515151;
-  --secondary-text-color:#9d9d9d;
-  --primary-text-color-light:#EBEBEB;
 
-  --primary-color:#c53334;
-  --primary-color-dark:#882525;
-  --primary-color-light:#ee4141;
-}
 
 
 .dark-mode{
   --background-color: #2E2E2E;
   --primary-text-color:#fff;
-  --secondary-text-color:#9d9d9d;
+  --secondary-color:#9d9d9d;
   --primary-color:#c53334;
   --primary-color-dark:#882525;
   --primary-color-light:#ee4141;
