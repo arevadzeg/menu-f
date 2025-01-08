@@ -9,9 +9,9 @@ import LandingPageHeader from "./components/landingPage/LandingPageHeader/Landin
 import LandingPageOffers from "./components/landingPage/LandingPageOffers/LandingPageOffers";
 import LandingPageFooter from "./components/landingPage/LandingPageFooter/LandingPageFooter";
 import StoreList from "./components/landingPage/StoreList/StoreList";
-import Test from "./components/landingPage/Test/Test";
 import CreateStoreModal from "./components/landingPage/CreateStoreModal/CreateStoreModal";
 import LoginModal from "./components/landingPage/LoginModal/LoginModal";
+import LandingPageIntro from "./components/landingPage/LandingPageIntro/LandingPageIntro";
 
 export default function Home() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
@@ -25,7 +25,7 @@ export default function Home() {
   const isUserLoggedIn = !!user;
 
   return (
-    <div>
+    <div id="landing-page">
       <LandingPageHeader handleLoginClick={() => setIsLoginModalOpen(true)} />
       {isUserLoggedIn ? (
         <>
@@ -42,15 +42,7 @@ export default function Home() {
         </>
       ) : (
         <>
-          <div style={{ position: "relative", height: "300vh" }}>
-            {[
-              "https://ofoodo.com/src/prod/img/section_banners/desktop_banners/qrmenu.png",
-              "https://ofoodo.com/src/prod/img/section_banners/desktop_banners/websiteslide.png",
-              "https://ofoodo.com/src/prod/img/section_banners/desktop_banners/manage.png",
-            ].map((item, index) => (
-              <Test item={item} key={index} />
-            ))}
-          </div>
+          <LandingPageIntro />
           <LandingPageOffers />
 
           <LandingPageFooter />

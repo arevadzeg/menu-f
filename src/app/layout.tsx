@@ -42,7 +42,7 @@ export default function RootLayout({
           <ReactQueryDevtools />
           <Theme>
             {!isLandingPage && <Header />}
-            <div className={`px-8 ${isAdmin ? "is-admin-user" : ""}`}>
+            <div className={`${isAdmin ? "is-admin-user" : ""}`}>
               <LayoutDnDWrapper>
                 {children}
               </LayoutDnDWrapper>

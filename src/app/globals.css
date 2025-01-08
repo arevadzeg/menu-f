@@ -13,6 +13,16 @@
 
 
 
+#landing-page{
+  --background-color:#021C2E;
+  --primary-color-1:#FE05F7;
+  --primary-color-2:#F2562F;
+
+
+  background-color:var(--background-color)
+}
+
+
 
 .dark-mode{
   --background-color: #2E2E2E;
