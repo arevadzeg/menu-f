@@ -12,7 +12,6 @@ import StoreList from "./components/landingPage/StoreList/StoreList";
 import Test from "./components/landingPage/Test/Test";
 import CreateStoreModal from "./components/landingPage/CreateStoreModal/CreateStoreModal";
 import LoginModal from "./components/landingPage/LoginModal/LoginModal";
-import SlotMachine from "./SlotMachine";
 
 export default function Home() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);

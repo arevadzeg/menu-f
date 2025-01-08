@@ -1,4 +1,4 @@
-"use client";
+
 
 import { Product } from "<root>/app/api/hooks/product/InterfaceProduct";
 import { useDraggable } from "@dnd-kit/core";

@@ -1,4 +1,4 @@
-"use client"; // Now you can use this since it's separated
+"use client";
 
 import "./globals.css";
 import { Header } from "./components/layout/Header/Header";

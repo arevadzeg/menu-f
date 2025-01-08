@@ -13,14 +13,7 @@
           background-color: var(--secondary-color-light);
         }
   
-        .arrow-icon {
-          @apply h-3.5 w-3.5 fill-transparent;
-          stroke: var(--primary-color-light);
-        }
-  
-        .arrow-right {
-          @apply rotate-180;
-        }
+
       }
     }
   
@@ -47,13 +40,24 @@
     }
   }
   
+  .arrow {
+    @apply border-gray-300 border rounded p-2 cursor-pointer;
+
+    .arrow-icon {
+      @apply h-3.5 w-3.5 fill-transparent;
+      stroke: var(--primary-color-light);
+    }
+
+    .arrow-right {
+      @apply rotate-180;
+    }
+
+   }
   .is-admin-user {
     .categories-wrapper {
       @apply relative border border-dashed border-transparent rounded-lg h-16;
 
-      .arrow {
-       @apply border-gray-300 border rounded p-2 cursor-pointer;
-      }
+ 
   
       .add-category-btn {
         @apply hidden;

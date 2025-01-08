@@ -1,5 +1,3 @@
-"use client";
-
 import { ChangeEvent, useState, useCallback } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import DropdownMenuComponent from "../../ui/Dropdown/Dropdown";

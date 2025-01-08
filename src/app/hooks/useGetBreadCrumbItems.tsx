@@ -1,3 +1,4 @@
+
 import { useParams } from "next/navigation";
 import { useGetStore } from "../api/hooks/store/useGetStore";
 import useGetCategories from "../api/hooks/category/useGetCategories";
@@ -35,7 +36,7 @@ export const useBreadcrumbItems = () => {
     if (currentSubCategories && store) {
         items.push({
             link: `/${store.name}/${categoryId}/${subCategoryId}`,
-            active: false, // Initially not active
+            active: false,
             text: currentSubCategories.name,
         });
     }

@@ -1,4 +1,4 @@
-"use client";
+
 
 import "./header.scss";
 import { Skeleton } from "@radix-ui/themes";

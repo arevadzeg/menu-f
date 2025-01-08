@@ -11,7 +11,7 @@ export const useGetStore = () => {
   const name = params.appName;
 
   return useQuery<Store, Error>({
-    queryKey: ["store"],
+    queryKey: ["store", name],
     queryFn: () => {
       return apiClient
         .get(`${API_ENDPOINTS.STORE.GET_STORE_BY_NAME}/${name}`)

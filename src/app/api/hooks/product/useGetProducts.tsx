@@ -1,4 +1,3 @@
-"use client"; // Add this line
 import { useInfiniteQuery } from "@tanstack/react-query";
 import apiClient from "../../apiClient";
 import API_ENDPOINTS from "../../endpoints";

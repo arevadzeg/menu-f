@@ -1,5 +1,3 @@
-"use client"; // Add this line
-import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { TextField as RadixTextField } from "@radix-ui/themes";
 import React, { useState, forwardRef } from "react";
 import "./TextField.scss";

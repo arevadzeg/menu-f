@@ -1,4 +1,3 @@
-"use client";
 
 import { useState } from "react";
 import { Switch } from "../../ui/Switch/Switch";
@@ -58,6 +57,8 @@ export const Header = () => {
     router.push(`/${appName}`);
   };
 
+
+  // TODO CARD CODED
   const primary = "#002d8d"
   const background = "#ffffff"
   const secondary = "#9d9d9d"

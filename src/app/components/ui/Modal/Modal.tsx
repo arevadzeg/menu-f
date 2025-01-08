@@ -1,4 +1,3 @@
-"use client"; // Add this line
 import React from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Cross2Icon } from "@radix-ui/react-icons";
@@ -9,10 +8,10 @@ interface ModalProps {
   children: JSX.Element;
   isOpen: boolean;
   onClose: () => void;
-  contentClassName?:string
+  contentClassName?: string
 }
 
-const Modal = ({ children, isOpen, onClose ,contentClassName}: ModalProps) => {
+const Modal = ({ children, isOpen, onClose, contentClassName }: ModalProps) => {
   const elementToMountModal = document.querySelector(".radix-themes");
 
   return (

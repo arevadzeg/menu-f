@@ -6,6 +6,7 @@ import TextField from "<root>/app/components/ui/TextField/TextField";
 import { Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
 import { Spinner } from "@radix-ui/themes";
 import { useState } from "react";
+import './CreateEditMainCategoryModal.scss'
 
 
 interface CreateEditMainCategoryModalProps {

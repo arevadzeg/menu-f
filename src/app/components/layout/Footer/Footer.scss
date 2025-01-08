@@ -25,8 +25,7 @@
 
     .line{
         background-color: var(--secondary-color);
-        height: 1px;
-        @apply w-full ;
+        @apply w-full h-[1px];
     }
 
     .general{

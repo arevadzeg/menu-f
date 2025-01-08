@@ -1,4 +1,3 @@
-"use client"; // Add this line
 import { useParams, useRouter } from "next/navigation";
 import "./SubCategories.scss";
 import { useState } from "react";

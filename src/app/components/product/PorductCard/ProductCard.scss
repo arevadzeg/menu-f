@@ -24,7 +24,7 @@
   }
 
   .product-title {
-    @apply text-lg font-bold;
+    @apply text-lg font-bold h-[50px] overflow-hidden text-ellipsis;
     color: var(--primary-text-color);
   }
 

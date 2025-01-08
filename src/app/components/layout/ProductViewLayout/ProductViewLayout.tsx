@@ -1,5 +1,3 @@
-"use client"; // Add this line
-
 import React, { useState } from "react";
 import useGetInfiniteProducts from "<root>/app/api/hooks/product/useGetProducts";
 import InfiniteScroll from "react-infinite-scroll-component";
