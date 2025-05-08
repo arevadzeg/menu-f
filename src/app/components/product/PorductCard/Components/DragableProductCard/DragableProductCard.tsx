@@ -5,7 +5,9 @@ import { useDraggable } from "@dnd-kit/core";
 import React from "react";
 import ProductCard from "../../ProductCard";
 
-const DraggableProductCard = ({ product }: { product: Product }) => {
+const DraggableProductCard = ({ product, setIsEditModalOpen }: {
+    product: Product, setIsEditModalOpen: React.Dispatch<React.SetStateAction<boolean>>
+}) => {
     const { attributes, listeners, setNodeRef } = useDraggable({
         id: product.id,
         data: { product },
@@ -17,7 +19,7 @@ const DraggableProductCard = ({ product }: { product: Product }) => {
             {...listeners}
             {...attributes}
         >
-            <ProductCard product={product} />
+            <ProductCard product={product} setIsEditModalOpen={setIsEditModalOpen} />
 
         </div>
     );

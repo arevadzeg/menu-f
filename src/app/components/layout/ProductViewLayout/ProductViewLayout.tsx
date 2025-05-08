@@ -5,12 +5,20 @@ import ProductCard from "../../product/PorductCard/ProductCard";
 import DraggableProductCard from "../../product/PorductCard/Components/DragableProductCard/DragableProductCard";
 import './ProductViewLayout.scss'
 import EmptyPorductView from "./EmptyPorductView/EmptyPorductView";
+import Modal from "../../ui/Modal/Modal";
+import CreateProductForm from "../../product/CreateProductForm/CreateProductForm";
 
 const skeletonArray = [...Array(5)].map(() => undefined);
 
 const ProductViewLayout = () => {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isSuccess } =
     useGetInfiniteProducts();
+
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
+  const closeModal = () => {
+    setIsEditModalOpen(false);
+  };
 
   const products =
     data?.pages.flatMap((page) => page.products) ?? skeletonArray;
@@ -33,8 +41,22 @@ const ProductViewLayout = () => {
       <div id="product-layout">
 
         {products?.map(
-          (product, index) =>
-            product ? <DraggableProductCard product={product} key={product.id} /> : <ProductCard key={index} isLoading />
+          (product, index) => {
+            console.log('product', product?.id, products)
+            return product?.id ?
+
+              <>
+                <Modal isOpen={isEditModalOpen} onClose={closeModal}>
+                  <CreateProductForm
+                    isUpdateMode
+                    productData={product}
+                    closeModal={closeModal}
+                  />
+                </Modal>
+                <DraggableProductCard product={product} key={product.id} setIsEditModalOpen={setIsEditModalOpen} />
+              </>
+              : <ProductCard key={index} isLoading />
+          }
         )}
         {isFetchingNextPage &&
           skeletonArray.map((_, index) => (

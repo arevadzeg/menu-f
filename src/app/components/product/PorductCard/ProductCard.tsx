@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import "./ProductCard.scss";
 import { Spinner } from "@radix-ui/themes";
 import { Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
 import { useDeleteProduct } from "<root>/app/api/hooks/product/useProductMutations";
-import Modal from "../../ui/Modal/Modal";
-import CreateProductForm from "../CreateProductForm/CreateProductForm";
 import { useAtom } from "jotai";
 import { authAtom } from "<root>/app/atom/authAtom";
 import { Product } from "<root>/app/api/hooks/product/InterfaceProduct";
@@ -13,12 +11,12 @@ import ProductCardSkeleton from "./Components/ProductCardSkeleton/ProductCardSke
 interface ProductCardProps {
   isLoading?: boolean;
   product?: Product;
-  isShowMinimizedVersion?: boolean
+  isShowMinimizedVersion?: boolean;
+  setIsEditModalOpen?: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product, isLoading, isShowMinimizedVersion = false }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ product, isLoading, setIsEditModalOpen }) => {
   const [user] = useAtom(authAtom);
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const deleteProduct = useDeleteProduct();
 
   const isAdmin = !!user?.isTurnUserMode;
@@ -28,12 +26,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, isLoading, isShowMin
     product && deleteProduct.mutate(product.id);
   };
 
-  const handleEditProduct = () => {
-    setIsEditModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsEditModalOpen(false);
+  const handleEditProduct = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    setIsEditModalOpen && setIsEditModalOpen(true);
+    e.preventDefault();
+    e.stopPropagation();
   };
 
 
@@ -51,17 +47,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, isLoading, isShowMin
         </div>
       )}
       {isAdmin && (
-        <div className="edit-product" onClick={handleEditProduct}>
+        <div className="edit-product" onPointerDown={(e) => handleEditProduct(e)}>
           <Pencil1Icon />
         </div>
       )}
-      <Modal isOpen={isEditModalOpen} onClose={closeModal}>
-        <CreateProductForm
-          isUpdateMode
-          productData={product}
-          closeModal={closeModal}
-        />
-      </Modal>
       {product.isOnSale && <div className="sale-indicator">Sale</div>}
       <div className="product-content">
         <h2 className="product-title">{product.title}</h2>

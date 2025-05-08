@@ -43,9 +43,9 @@ export default function RootLayout({
           <Theme>
             {!isLandingPage && <Header />}
             <div className={`${isAdmin ? "is-admin-user" : ""} ${isLandingPage ? "" : 'p-4'}`} >
-              <LayoutDnDWrapper>
+              {isAdmin ? <LayoutDnDWrapper>
                 {children}
-              </LayoutDnDWrapper>
+              </LayoutDnDWrapper> : children}
             </div>
             <Alert />
             {!isLandingPage && <Footer />}

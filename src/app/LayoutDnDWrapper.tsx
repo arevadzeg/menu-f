@@ -18,7 +18,11 @@ const LayoutDnDWrapper = ({ children }: any) => {
     }>(); const updateProduct = useUpdateProduct();
     const queryClient = useQueryClient();
 
-    const handleDragStart = (event: DragStartEvent) => setProduct(event.active.data?.current?.product)
+
+
+    const handleDragStart = (event: DragStartEvent) => {
+        setProduct(event.active.data?.current?.product)
+    }
 
     const handleDragOver = (event: DragOverEvent) => {
         const overCategoryId = event.over?.id;
@@ -29,6 +33,7 @@ const LayoutDnDWrapper = ({ children }: any) => {
         if (!product || !isString(categoryId)) return;
 
         try {
+            if (categoryId === product.categoryId) return
             await updateProduct.mutateAsync({
                 image: product.image,
                 price: product.price,
