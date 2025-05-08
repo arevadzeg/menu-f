@@ -8,11 +8,9 @@ import RadixButton from "../../ui/RadixButton/RadixButton";
 import useGetCategories from "<root>/app/api/hooks/category/useGetCategories";
 import { useAtom } from "jotai";
 import { authAtom } from "<root>/app/atom/authAtom";
-import MainCategoriesCard from "./Components/MainCategoriesDroppableCard/MainCategoriesDroppabeCard";
-import ArrowIcon from "../../ui/SVGAssets/ArrowIcon";
-import MainCategoriesSkeleton from "./Components/MainCategoriesSkeleton/MainCategoriesSkeleton";
 import EmptyMainCategories from "./Components/EmptyMainCategories/EmptyMainCategories";
 import CreateEditMainCategoryModal from "./Components/CreateEditMainCategoryModal/CreateEditMainCategoryModal";
+import Carousel from "../../ui/Carousel/Carousel";
 
 
 const MainCategories = () => {
@@ -33,6 +31,9 @@ const MainCategories = () => {
   const isCategoriesCreated = isSuccess && categories.length === 0 && isAdmin;
 
 
+  const OPTIONS: any = {}
+  const SLIDE_COUNT = 1
+
 
   return (
     <div id="MainCategories">
@@ -41,9 +42,8 @@ const MainCategories = () => {
       {isCategoriesCreated ? <EmptyMainCategories onCreateFilter={handleOpenModal} /> :
 
         <div className="categories-wrapper">
-          <span className="arrow">
-            <ArrowIcon className="arrow-icon" />
-          </span>
+          <Carousel slides={categories ?? []} options={OPTIONS} />
+
           {isAdmin && (
             <RadixButton
               className="add-category-btn"
@@ -52,7 +52,7 @@ const MainCategories = () => {
               <GearIcon />
             </RadixButton>
           )}
-          <div>
+          {/* <div>
             {!isSuccess
               ? <MainCategoriesSkeleton />
               : categories.map((category: any) => (
@@ -63,10 +63,10 @@ const MainCategories = () => {
                   handleNavigateToCategory={handleNavigateToCategory}
                 />
               ))}
-          </div>
-          <span className="arrow">
+          </div> */}
+          {/* <span className="arrow">
             <ArrowIcon className="arrow-right arrow-icon" />
-          </span>
+          </span> */}
         </div>
       }
     </div >

@@ -34,11 +34,13 @@ const CreateEditMainCategoryModal = ({
     const createCategory = useCreateCategory();
     const updateCategory = useUpdateCategory();
 
+    const isCreateUpdateLoading = isAddNewCategory === "Create" ? createCategory.isPending : updateCategory.isPending
+
     const handleCreateCategory = () => {
         createCategory.mutate(
             { categoryName: newCategoryName },
             {
-                onSuccess: () => closeModalAndClearData,
+                onSuccess: closeModalAndClearData,
             }
         );
     };
@@ -57,7 +59,8 @@ const CreateEditMainCategoryModal = ({
 
     const closeModalAndClearData = () => {
         setNewCategoryName("");
-        handleCloseModal()
+        // handleCloseModal()
+        setIsAddNewCategory(null)
         setCategoryToUpdateId(null);
     };
 
@@ -95,12 +98,13 @@ const CreateEditMainCategoryModal = ({
                             if (isAddNewCategory === "Create") handleCreateCategory();
                             else categoryToUpdateId && handleUpdateCategory(categoryToUpdateId);
                         }}
+                        loading={isCreateUpdateLoading}
                     >
                         Create category
                     </RadixButton>
                 </div>
             ) : (
-                <div>
+                <div className="category-item-wrapper">
                     {categories &&
                         categories.map((category) => (
                             <div key={category.id} className="category-item">

@@ -13,6 +13,9 @@
       @apply mb-2;
     }
     
+    .category-item-wrapper{
+      @apply overflow-auto max-h-[50vh]
+    }
     .category-item {
       @apply flex justify-between items-center p-2 bg-white rounded-lg shadow-sm mb-2 hover:bg-gray-50 transition duration-200;
     }

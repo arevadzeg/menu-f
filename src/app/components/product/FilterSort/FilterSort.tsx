@@ -17,12 +17,12 @@ import { authAtom } from "<root>/app/atom/authAtom";
 const options = [
   {
     label: "A to Z",
-    value: "asc&name",
+    value: "asc&title",
     icon: () => <ArrowDownIcon />,
   },
   {
     label: "Z to A",
-    value: "desc&name",
+    value: "desc&title",
     icon: () => <ArrowUpIcon />,
   },
   {
