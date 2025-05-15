@@ -21,7 +21,7 @@ interface CreateProductPayload {
 }
 
 interface UpdateProductPayload extends Partial<CreateProductPayload> {
-  productId?: string;
+  id?: string;
   categoryId?: string;
   subCategoryId?: string;
 }
@@ -68,7 +68,7 @@ export const useUpdateProduct = () => {
   return useMutation<Product, Error, UpdateProductPayload>({
     mutationFn: async (product) => {
       const response = await apiClient.put<Product, AxiosResponse<Product>>(
-        `${API_ENDPOINTS.PRODUCT.UPDATE}/${product.productId}`,
+        `${API_ENDPOINTS.PRODUCT.UPDATE}/${product.id}`,
         removeFalseyValues(product)
       );
       return response.data;
@@ -95,7 +95,7 @@ export const useUpdateProduct = () => {
             pages: oldData.pages.map((page: any) => ({
               ...page,
               products: page.products.filter((p: any) => {
-                return p.id !== updatedProduct.productId
+                return p.id !== updatedProduct.id
               }),
             })),
           };

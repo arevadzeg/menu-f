@@ -90,7 +90,7 @@ const CreateProductForm = ({
         image: image,
         price: Number(data.price),
         title: data.title,
-        productId: productData?.id ?? "",
+        id: productData?.id ?? "",
         description: richTextEditorValue,
       });
 

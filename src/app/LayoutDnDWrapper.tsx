@@ -38,7 +38,7 @@ const LayoutDnDWrapper = ({ children }: any) => {
                 image: product.image,
                 price: product.price,
                 title: product.title,
-                productId: product.id,
+                id: product.id,
                 description: product.description,
                 ...(categoryId && { categoryId }),
                 ...(subCategoryId && { subCategoryId }),

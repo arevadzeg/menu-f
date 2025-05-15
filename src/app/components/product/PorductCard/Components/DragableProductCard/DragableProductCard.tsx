@@ -6,7 +6,7 @@ import React from "react";
 import ProductCard from "../../ProductCard";
 
 const DraggableProductCard = ({ product, setIsEditModalOpen }: {
-    product: Product, setIsEditModalOpen: React.Dispatch<React.SetStateAction<boolean>>
+    product: Product, setIsEditModalOpen: React.Dispatch<React.SetStateAction<Product | null>>
 }) => {
     const { attributes, listeners, setNodeRef } = useDraggable({
         id: product.id,

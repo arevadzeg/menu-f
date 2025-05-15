@@ -7,6 +7,7 @@ import './ProductViewLayout.scss'
 import EmptyPorductView from "./EmptyPorductView/EmptyPorductView";
 import Modal from "../../ui/Modal/Modal";
 import CreateProductForm from "../../product/CreateProductForm/CreateProductForm";
+import { Product } from "<root>/app/api/hooks/product/InterfaceProduct";
 
 const skeletonArray = [...Array(5)].map(() => undefined);
 
@@ -14,10 +15,10 @@ const ProductViewLayout = () => {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isSuccess } =
     useGetInfiniteProducts();
 
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState<null | Product>(null);
 
   const closeModal = () => {
-    setIsEditModalOpen(false);
+    setIsEditModalOpen(null);
   };
 
   const products =
@@ -42,17 +43,16 @@ const ProductViewLayout = () => {
 
         {products?.map(
           (product, index) => {
-            console.log('product', product?.id, products)
             return product?.id ?
 
               <>
-                <Modal isOpen={isEditModalOpen} onClose={closeModal}>
+                {isEditModalOpen?.id === product.id && <Modal isOpen={!!isEditModalOpen} onClose={closeModal}>
                   <CreateProductForm
                     isUpdateMode
                     productData={product}
                     closeModal={closeModal}
                   />
-                </Modal>
+                </Modal>}
                 <DraggableProductCard product={product} key={product.id} setIsEditModalOpen={setIsEditModalOpen} />
               </>
               : <ProductCard key={index} isLoading />

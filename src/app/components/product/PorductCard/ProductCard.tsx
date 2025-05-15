@@ -12,7 +12,7 @@ interface ProductCardProps {
   isLoading?: boolean;
   product?: Product;
   isShowMinimizedVersion?: boolean;
-  setIsEditModalOpen?: React.Dispatch<React.SetStateAction<boolean>>
+  setIsEditModalOpen?: React.Dispatch<React.SetStateAction<Product | null>>
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, isLoading, setIsEditModalOpen }) => {
@@ -27,7 +27,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, isLoading, setIsEdit
   };
 
   const handleEditProduct = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    setIsEditModalOpen && setIsEditModalOpen(true);
+    setIsEditModalOpen && setIsEditModalOpen(product ?? null);
     e.preventDefault();
     e.stopPropagation();
   };
