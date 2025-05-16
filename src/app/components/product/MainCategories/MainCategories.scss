@@ -2,6 +2,8 @@
 
     @apply py-4;
     .categories-wrapper {
+      width: calc(100% - 120px);
+      margin: auto;
       @apply flex gap-4 relative items-center;
   
       > div {
@@ -78,7 +80,7 @@
     max-width: 100%;
     margin: auto;
     --slide-height: 19rem;
-    --slide-spacing: 1rem;
+    --slide-spacing: 5px;
     --slide-size: 100%;
   }
   .embla__viewport {
@@ -94,11 +96,6 @@
     flex: 0 0 var(--slide-size);
     min-width: 0;
     padding-left: var(--slide-spacing);
-  }
-  .embla__slide__number {
-    display: flex;
-        align-items: center;
-        justify-content: center;
   }
 
   .embla__slide {
