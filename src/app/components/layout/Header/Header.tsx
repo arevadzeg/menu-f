@@ -10,6 +10,8 @@ import { useAtom } from "jotai";
 import { authAtom } from "<root>/app/atom/authAtom";
 import { HeaderSkeleton } from "./HeaderSkeleton";
 import chroma from "chroma-js";
+import Link from 'next/link';
+
 
 
 const themes = {
@@ -103,9 +105,14 @@ export const Header = () => {
           <PopoverDemo
             open={popoverOpen}
             onClose={handleClosePopover}
-            content={<div onClick={handleLogOut}>Log out</div>}
+            content={<>
+              <div onClick={handleLogOut} className="cursor-pointer mb-2">Log out</div>
+              <Link href={`${store.name}/settings`}>
+                <div >Settings</div>
+              </Link>
+            </>}
           >
-            <PersonIcon height={24} width={24} onClick={handleOpenPopover} />
+            <PersonIcon height={24} width={24} onClick={handleOpenPopover} className="cursor-pointer" />
           </PopoverDemo>
         )}
         <Switch checked={isTurnUserMode} onCheckedChange={handleIsShowUserMode} onText="User mode on" offText="User mode off" />
