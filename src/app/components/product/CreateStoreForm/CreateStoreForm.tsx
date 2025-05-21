@@ -13,6 +13,7 @@ import { SetStateAction } from "jotai";
 import FileUpload from "../../ui/Upload/Upload";
 import useUploadFile from "<root>/app/api/hooks/upload/useUploadImage";
 import { useGetStore } from "<root>/app/api/hooks/store/useGetStore";
+import ColorPicker from "../../ui/ColorPicker/ColorPicker";
 
 
 
@@ -23,10 +24,11 @@ interface CreateStoreFormProps {
 
 
 const CreateStoreForm = ({ setIsCreateStoreModal, isCreateMode = false }: CreateStoreFormProps) => {
+    const { data: store } = useGetStore();
 
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
+    const [color, setColor] = useState(store?.theme ?? "#088F8F")
     const [user] = useAtom(authAtom);
-    const { data: store } = useGetStore();
     const queryClient = useQueryClient();
     const updateStore = useUpdateStore();
     const createStore = useCreateStore();
@@ -36,15 +38,9 @@ const CreateStoreForm = ({ setIsCreateStoreModal, isCreateMode = false }: Create
     const storeMutation = isCreateMode ? createStore : updateStore
 
 
-
-    // const [isUploading, setIsUploading] = useState(false)
-
-
-
     const onSubmit = async (data: any) => {
         try {
-            // setIsUploading(true);
-            let imageUrl = "";
+            let imageUrl = store?.image ?? "";
 
             if (selectedFile) {
                 const uploadResponse = await uploadFile.mutateAsync({
@@ -55,8 +51,10 @@ const CreateStoreForm = ({ setIsCreateStoreModal, isCreateMode = false }: Create
 
             if (user) {
 
+                console.log('imageUrl', imageUrl)
+
                 await storeMutation.mutateAsync(
-                    { ...data, userId: user.user.id, image: imageUrl },
+                    { ...data, userId: user.user.id, image: imageUrl, theme: color },
                     {
                         onSuccess: () => {
                             setIsCreateStoreModal && setIsCreateStoreModal(false);
@@ -73,7 +71,6 @@ const CreateStoreForm = ({ setIsCreateStoreModal, isCreateMode = false }: Create
         } catch (error) {
             console.error("Error creating product:", error);
         } finally {
-            // setIsUploading(false);
         }
     };
 
@@ -177,6 +174,12 @@ const CreateStoreForm = ({ setIsCreateStoreModal, isCreateMode = false }: Create
 
             </div>
 
+            <div>
+                <p className="mb-1">Primary color</p>
+                <ColorPicker color={color ?? "#088F8F"} onChange={(newColor) => {
+                    setColor(newColor)
+                }} />
+            </div>
         </div>
 
         <FileUpload selectedFile={selectedFile} setSelectedFile={setSelectedFile}

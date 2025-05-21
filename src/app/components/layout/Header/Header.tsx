@@ -61,7 +61,7 @@ export const Header = () => {
 
 
   // TODO CARD CODED
-  const primary = "#002d8d"
+  const primary = store?.theme
   const background = isDarkMode ? "#ffffff" : "#2E2E2E"
   const secondary = "#9d9d9d"
 
@@ -69,6 +69,8 @@ export const Header = () => {
 
 
   useEffect(() => {
+
+    if (!primary) return
 
     root?.style.setProperty("--primary-color", primary);
     root?.style.setProperty("--background-color", background);
@@ -81,7 +83,7 @@ export const Header = () => {
     root?.style.setProperty("--secondary-color-dark", chroma(secondary).darken(0.5).hex());
 
 
-  }, [isDarkMode])
+  }, [isDarkMode, store])
 
 
   if (!isSuccess) return <HeaderSkeleton />;
@@ -107,7 +109,7 @@ export const Header = () => {
             onClose={handleClosePopover}
             content={<>
               <div onClick={handleLogOut} className="cursor-pointer mb-2">Log out</div>
-              <Link href={`${store.name}/settings`}>
+              <Link href={`/${store.name}/settings`}>
                 <div >Settings</div>
               </Link>
             </>}

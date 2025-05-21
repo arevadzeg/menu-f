@@ -20,6 +20,7 @@ const CreateStoreModal = ({
     <Modal
       isOpen={isCreateStoreModal}
       onClose={() => setIsCreateStoreModal(false)}
+      contentClassName="overflow-auto"
     >
       <CreateStoreForm setIsCreateStoreModal={setIsCreateStoreModal} isCreateMode />
 
