@@ -1,4 +1,3 @@
-"use client";
 
 
 import { useForm } from "react-hook-form";
@@ -14,6 +13,9 @@ import FileUpload from "../../ui/Upload/Upload";
 import useUploadFile from "<root>/app/api/hooks/upload/useUploadImage";
 import { useGetStore } from "<root>/app/api/hooks/store/useGetStore";
 import ColorPicker from "../../ui/ColorPicker/ColorPicker";
+import { DEFAULT_THEME_COLOR } from "<root>/app/constants/constants";
+import { emailPattern, facebookPattern, instagramPattern, phonePattern } from "./storeFormValidation";
+import './createStoreForm.scss'
 
 
 
@@ -27,7 +29,7 @@ const CreateStoreForm = ({ setIsCreateStoreModal, isCreateMode = false }: Create
     const { data: store } = useGetStore();
 
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
-    const [color, setColor] = useState(store?.theme ?? "#088F8F")
+    const [color, setColor] = useState(store?.theme ?? DEFAULT_THEME_COLOR)
     const [user] = useAtom(authAtom);
     const queryClient = useQueryClient();
     const updateStore = useUpdateStore();
@@ -38,7 +40,7 @@ const CreateStoreForm = ({ setIsCreateStoreModal, isCreateMode = false }: Create
     const storeMutation = isCreateMode ? createStore : updateStore
 
 
-    const onSubmit = async (data: any) => {
+    const handleFormSubmit = async (data: any) => {
         try {
             let imageUrl = store?.image ?? "";
 
@@ -51,7 +53,6 @@ const CreateStoreForm = ({ setIsCreateStoreModal, isCreateMode = false }: Create
 
             if (user) {
 
-                console.log('imageUrl', imageUrl)
 
                 await storeMutation.mutateAsync(
                     { ...data, userId: user.user.id, image: imageUrl, theme: color },
@@ -91,107 +92,42 @@ const CreateStoreForm = ({ setIsCreateStoreModal, isCreateMode = false }: Create
         },
     });
 
-    return <form onSubmit={handleSubmit(onSubmit)} className="p-6 space-y-4">
-        <p>{isCreateMode ? "Create Store" : "Update Store"}</p>
+    return (
+        <form onSubmit={handleSubmit(handleFormSubmit)} className="p-6 space-y-4" id="create-edit-store-form">
+            <p className="form-title">{isCreateMode ? "Create Store" : "Update Store"}</p>
 
+            <div className="create-store-form">
+                <FormField name="name" label="Store Name" register={register("name", { required: "Store name is required" })} error={errors.name} />
+                <FormField name="address" label="Address" register={register("address")} />
+                <FormField name="email" label="Email" register={register("email", { pattern: emailPattern })} error={errors.email} />
+                <FormField name="phone" label="Phone" register={register("phone", { pattern: phonePattern })} error={errors.phone} />
+                <FormField name="facebook" label="Facebook" register={register("facebook", { pattern: facebookPattern })} error={errors.facebook} />
+                <FormField name="instagram" label="Instagram" register={register("instagram", { pattern: instagramPattern })} error={errors.instagram} />
 
-        <div className="create-store-form">
-
-            {/* Store Name (required) */}
-            <div>
-                <TextField
-                    {...register("name", { required: "Store name is required" })}
-                    placeholder="Store Name"
-                />
-                {errors.name ? <p className="text-red-500">{errors.name.message}</p> : <p className="h-6 "></p>}
+                <div>
+                    <p className="form-label">Primary color</p>
+                    <ColorPicker color={color} onChange={setColor} />
+                </div>
             </div>
 
-            <div style={{
-                minHeight: "56px"
-            }}>
-                <TextField
-                    {...register("address")}
-                    placeholder="Address"
-                />
-            </div>
+            <FileUpload
+                selectedFile={selectedFile}
+                setSelectedFile={setSelectedFile}
+                uploadedImage={!isCreateMode && store?.image ? store.image : undefined}
+            />
 
-            <div>
-                <TextField
-                    {...register("email", {
-                        pattern: {
-                            value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                            message: "Enter a valid email address",
-                        },
-                    })}
-                    placeholder="Email"
-                />
-                {errors.email ? <p className="text-red-500">{errors.email.message}</p> : <p className="h-6 "></p>}
-            </div>
+            <Button type="submit" loading={storeMutation.isPending}>
+                {isCreateMode ? "Create" : "Update"}
+            </Button>
+        </form>
+    );
+};
 
+const FormField = ({ label, register, error }: any) => (
+    <div>
+        <TextField {...register} placeholder={label} />
+        <p className="form-error-label">{error?.message || ""}</p>
+    </div>
+);
 
-            <div>
-                {/* Phone (optional, must be 10 digits) */}
-                <TextField
-                    {...register("phone", {
-                        pattern: {
-                            value: /^\d{9}$/, // Matches exactly 9 digits
-                            message: "Enter a valid 9-digit phone number",
-                        },
-                    })}
-                    placeholder="Phone"
-                />
-                {errors.phone ? <p className="text-red-500">{errors.phone.message}</p> : <p className="h-6 "></p>}
-            </div>
-
-
-            <div>
-
-                {/* Facebook (optional, valid URL) */}
-                <TextField
-                    {...register("facebook", {
-                        pattern: {
-                            value: /^(https?:\/\/)?(www\.)?facebook\.com\/.+$/,
-                            message: "Enter a valid Facebook URL",
-                        },
-                    })}
-                    placeholder="Facebook"
-                />
-                {errors.facebook ? <p className="text-red-500">{errors.facebook.message}</p> : <p className="h-6 "></p>}
-            </div>
-
-            <div>
-
-                <TextField
-                    {...register("instagram", {
-                        pattern: {
-                            value: /^(https?:\/\/)?(www\.)?instagram\.com\/.+$/,
-                            message: "Enter a valid Instagram URL",
-                        },
-                    })}
-                    placeholder="Instagram"
-                />
-                {errors.instagram ? <p className="text-red-500">{errors.instagram.message}</p> : <p className="h-6 "></p>}
-
-            </div>
-
-            <div>
-                <p className="mb-1">Primary color</p>
-                <ColorPicker color={color ?? "#088F8F"} onChange={(newColor) => {
-                    setColor(newColor)
-                }} />
-            </div>
-        </div>
-
-        <FileUpload selectedFile={selectedFile} setSelectedFile={setSelectedFile}
-            uploadedImage={store?.image && !isCreateMode ? store.image : undefined}
-        />
-
-
-        <Button type="submit" loading={storeMutation.isPending}>
-            {isCreateMode ? "Create" : "Update"}
-        </Button>
-    </form>
-}
-
-
-export default CreateStoreForm
+export default CreateStoreForm;

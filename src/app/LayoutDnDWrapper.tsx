@@ -7,10 +7,12 @@ import { useQueryClient } from "@tanstack/react-query";
 import { isString } from 'lodash'
 import ProductCardSmall from "./components/product/PorductCard/Components/ProductCardSmall/ProductCardSmall";
 import { snapCenterToCursor } from '@dnd-kit/modifiers'
+import { useGetStore } from "./api/hooks/store/useGetStore";
 
 const LayoutDnDWrapper = ({ children }: any) => {
 
     const [product, setProduct] = useAtom(draggingCardAtom)
+    const { data: store } = useGetStore()
     const router = useRouter();
     const { categoryId, subCategoryId } = useParams<{
         categoryId: string;
@@ -26,7 +28,7 @@ const LayoutDnDWrapper = ({ children }: any) => {
 
     const handleDragOver = (event: DragOverEvent) => {
         const overCategoryId = event.over?.id;
-        if (overCategoryId) router.push(`/bolo/${overCategoryId}`);
+        if (overCategoryId) router.push(`/${store?.name}/${overCategoryId}`);
     };
 
     const handleDragEnd = async () => {

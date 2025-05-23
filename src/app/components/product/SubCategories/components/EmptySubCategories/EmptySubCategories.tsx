@@ -4,6 +4,8 @@ import { InfoCircledIcon } from "@radix-ui/react-icons"
 
 const EmptySubCategories = () => {
 
+    // TODO HARD CORED COLORS
+
     return <span className="flex flex-col items-center p-4 bg-gray-100 rounded-md border border-gray-300">
         <div className="flex items-center text-gray-600">
             <span className="font-semibold">No subcategories added</span>

@@ -15,7 +15,7 @@ const EmptyProductView = () => {
 
     return (
         <div className="empty-product-view-container">
-            <ExclamationTriangleIcon />
+            <ExclamationTriangleIcon className="exclamation-icon" />
             <h2 className="empty-product-view-heading">
                 {isAdmin ? "No Products Found" : "No Products Available"}
             </h2>

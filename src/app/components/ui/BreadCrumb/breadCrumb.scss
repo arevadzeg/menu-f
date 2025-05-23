@@ -15,7 +15,12 @@
   
   .breadcrumb-link {
     color: var(--primary-text-color);
-    @apply hover:text-black hover:bg-gray-200 transition-colors px-2 rounded-md;
+    @apply  transition-colors px-2 rounded-md;
+
+    &:hover{
+      background-color: var(--secondary-color);
+      color: var(--background-color);
+    }
   
     &.active {
       color: var(--primary-color);

@@ -22,15 +22,19 @@
   background-color:var(--background-color)
 }
 
+body{
+  --secondary-color:#9d9d9d;
+  --primary-text-color:#515151;
+  --edit-color:#e9f3dc;
+  --background-color: #fff;
+
+}
 
 
 .dark-mode{
   --background-color: #2E2E2E;
   --primary-text-color:#fff;
-  --secondary-color:#9d9d9d;
-  --primary-color:#c53334;
-  --primary-color-dark:#882525;
-  --primary-color-light:#ee4141;
+  --edit-color:#5a7636b8;
 }
 
 .radix-themes {

@@ -25,7 +25,7 @@ export const Header = () => {
   const { appName } = useParams();
 
 
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const [popoverOpen, setPopoverOpen] = useState(false);
   const [user, setUser] = useAtom(authAtom);
   const isAdmin = !!user;
@@ -41,7 +41,7 @@ export const Header = () => {
 
   const handleModeChange = (checked: boolean) => {
     setIsDarkMode(checked);
-    handleThemeChange(checked ? themes.light : themes.dark);
+    handleThemeChange(checked ? themes.dark : themes.light);
   };
 
   const handleIsShowUserMode = (checked: boolean) => {
@@ -62,8 +62,6 @@ export const Header = () => {
 
   // TODO CARD CODED
   const primary = store?.theme
-  const background = isDarkMode ? "#ffffff" : "#2E2E2E"
-  const secondary = "#9d9d9d"
 
   const root = document.querySelector("body");
 
@@ -73,14 +71,10 @@ export const Header = () => {
     if (!primary) return
 
     root?.style.setProperty("--primary-color", primary);
-    root?.style.setProperty("--background-color", background);
-    root?.style.setProperty("--secondary-color", secondary);
 
     // Generate Shades (Optional)
     root?.style.setProperty("--primary-color-light", chroma(primary).brighten(1).hex());
     root?.style.setProperty("--primary-color-dark", chroma(primary).darken(1).hex());
-    root?.style.setProperty("--secondary-color-light", chroma(secondary).brighten(0.5).hex());
-    root?.style.setProperty("--secondary-color-dark", chroma(secondary).darken(0.5).hex());
 
 
   }, [isDarkMode, store])
@@ -114,7 +108,7 @@ export const Header = () => {
               </Link>
             </>}
           >
-            <PersonIcon height={24} width={24} onClick={handleOpenPopover} className="cursor-pointer" />
+            <PersonIcon height={24} width={24} onClick={handleOpenPopover} className="cursor-pointer user-icon" />
           </PopoverDemo>
         )}
         <Switch checked={isTurnUserMode} onCheckedChange={handleIsShowUserMode} onText="User mode on" offText="User mode off" />

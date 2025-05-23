@@ -24,7 +24,8 @@
       color: var(--primary-text-color);
   
       &:hover {
-        @apply text-primary border-primary;
+        color: var(--primary-color);
+        border-color: var(--primary-color);
   
         .delete {
           @apply block absolute;
@@ -38,7 +39,8 @@
     }
   
     .selected {
-      @apply text-primary border-primary;
+        border-color: var(--primary-color);
+        color: var(--primary-color);
     }
   }
   
@@ -69,8 +71,9 @@
         .add-category-btn {
           @apply block absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
         }
-  
-        @apply bg-[#bcf870] border-black;
+
+        background-color: var(--edit-color);
+        @apply border-black;
       }
     }
   }

@@ -33,6 +33,7 @@ export default function PointerBox() {
   const ref = useRef(null);
   const { x, y } = useFollowPointer(ref);
 
+  // TODO REFACTOR
   return (
     <motion.div
       className="bg-black rounded-2xl"

@@ -42,7 +42,7 @@ const MainCategories = () => {
       {isCategoriesCreated ? <EmptyMainCategories onCreateFilter={handleOpenModal} /> :
 
         <div className="categories-wrapper">
-          <Carousel slides={categories ?? []} options={OPTIONS} />
+          <Carousel />
 
           {isAdmin && (
             <RadixButton

@@ -21,7 +21,7 @@
     }
     
     .category-name {
-      @apply text-gray-800;
+      color: var(--primary-text-color);
     }
     
     .actions-container {

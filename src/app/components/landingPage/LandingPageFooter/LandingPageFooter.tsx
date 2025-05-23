@@ -1,4 +1,6 @@
 const LandingPageFooter = () => {
+
+  //TODO REFACTOR
   return (
     <footer
       className="text-gray-400 bg-gray-900 py-8"

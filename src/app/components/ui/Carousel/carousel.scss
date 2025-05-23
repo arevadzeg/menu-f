@@ -1,0 +1,65 @@
+.carousel {
+  position: relative;
+  margin: auto;
+
+  .embla__viewport {
+    overflow: hidden;
+  }
+
+  .embla__container {
+    display: flex;
+  }
+
+  .embla__slide {
+    flex: 0 0 auto;
+  }
+
+  &__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 8px;
+
+    svg {
+      color: var(--primary-text-color);
+    }
+
+    &--left {
+      left: -40px;
+    }
+
+    &--right {
+      right: -40px;
+    }
+  }
+
+
+  .carousel-skeleton-card {
+    // display: flex;
+    // flex-direction: column;
+    // gap: 0.5rem;
+    // padding: 1rem;
+    // border: 1px solid #e5e5e5;
+    // border-radius: 0.5rem;
+    // background-color: #f9f9f9;
+    height: 30px;
+    width: 70px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.carousel-skeleton-card-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-top: 0.5rem;
+}
+
+}

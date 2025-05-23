@@ -16,6 +16,8 @@ interface CreateEditSubCategoryModalProps {
 }
 
 
+// TODO HARD CORED COLORS
+
 const CreateEditSubCategoryModal = ({ isModalOpen, handleCloseModal }: CreateEditSubCategoryModalProps) => {
 
 

@@ -3,7 +3,13 @@
     @apply flex flex-col items-center justify-center h-96;
 
 
+    .exclamation-icon{
+      color: var(--primary-text-color);
+    }
+
+
     .empty-product-view-heading {
+      color: var(--primary-text-color);
         @apply text-xl font-semibold;
       }
       
@@ -12,7 +18,8 @@
       }
       
       .empty-product-view-message {
-        @apply mt-4 text-gray-500;
+        color: var(--primary-color);
+        @apply mt-4;
       }
       
 }
