@@ -40,7 +40,7 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     };
 
     return (
-      <div>
+      <div className="text-field">
         {collapsed && isCollapsable ? (
           <button onClick={handleCollapseClick}>Expand Input</button>
         ) : (

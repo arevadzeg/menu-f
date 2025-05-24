@@ -1,4 +1,4 @@
-import { useCreateCategory, useUpdateCategory } from "<root>/app/api/hooks/category/useCategoryMutations";
+import { useCreateCategory, useDeleteCategory, useUpdateCategory } from "<root>/app/api/hooks/category/useCategoryMutations";
 import useGetCategories from "<root>/app/api/hooks/category/useGetCategories";
 import Modal from "<root>/app/components/ui/Modal/Modal";
 import RadixButton from "<root>/app/components/ui/RadixButton/RadixButton";
@@ -7,6 +7,7 @@ import { Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
 import { Spinner } from "@radix-ui/themes";
 import { useState } from "react";
 import './CreateEditMainCategoryModal.scss'
+import Backdrop from "<root>/app/components/ui/Backdrop/Backdrop";
 
 
 interface CreateEditMainCategoryModalProps {
@@ -33,6 +34,7 @@ const CreateEditMainCategoryModal = ({
     const { data: categories } = useGetCategories();
     const createCategory = useCreateCategory();
     const updateCategory = useUpdateCategory();
+    const deleteCategory = useDeleteCategory()
 
     const isCreateUpdateLoading = isAddNewCategory === "Create" ? createCategory.isPending : updateCategory.isPending
 
@@ -57,6 +59,19 @@ const CreateEditMainCategoryModal = ({
         );
     };
 
+
+    const handleDeleteCategory = (id: string) => {
+        deleteCategory.mutate(
+            {
+                categoryId: id,
+            },
+            {
+                onSuccess: closeModalAndClearData,
+            }
+        );
+    };
+
+
     const closeModalAndClearData = () => {
         setNewCategoryName("");
         // handleCloseModal()
@@ -76,6 +91,7 @@ const CreateEditMainCategoryModal = ({
     return <Modal isOpen={isModalOpen} onClose={handleCloseModal} >
         <div id="modal-container">
             <h2 className="modal-title">Edit Categories</h2>
+            {deleteCategory.isPending && <Backdrop open />}
 
             <RadixButton
                 onClick={() => {
@@ -110,8 +126,8 @@ const CreateEditMainCategoryModal = ({
                             <div key={category.id} className="category-item">
                                 <span className="category-name">{category.name}</span>
                                 <div className="actions-container">
-                                    <div className="delete-product" onClick={() => { }}>
-                                        {false ? <Spinner size={"2"} /> : <TrashIcon />}
+                                    <div className="delete-product" onClick={() => handleDeleteCategory(category.id)}>
+                                        <TrashIcon />
                                     </div>
                                     <div
                                         className="edit-product"

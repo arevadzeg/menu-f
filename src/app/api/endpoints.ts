@@ -12,6 +12,8 @@ const API_ENDPOINTS = {
     CREATE_SUB_CATEGORY: "/store/subCategory",
     UPDATE_CATEGORY: "/store/category",
     UPDATE_SUB_CATEGORY: "/store/subCategory",
+    DELETE_CATEGORY: "/store/category",
+    DELETE_SUB_CATEGORY: "/store/subCategory",
   },
   PRODUCT: {
     CREATE: "/product",

@@ -22,7 +22,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, isLoading, setIsEdit
   const isAdmin = !!user?.isTurnUserMode;
   const isProductsLoading = isLoading || !product;
 
-  const handleDeleteProduce = () => {
+  const handleDeleteProduce = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    e.preventDefault();
+    e.stopPropagation();
     product && deleteProduct.mutate(product.id);
   };
 
@@ -42,7 +44,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, isLoading, setIsEdit
         <img src={product.image} />
       </div>
       {isAdmin && (
-        <div className="delete-product" onClick={handleDeleteProduce}>
+        <div className="delete-product" onPointerDown={(e) => handleDeleteProduce(e)}>
           {deleteProduct.isPending ? <Spinner size={"2"} /> : <TrashIcon />}
         </div>
       )}

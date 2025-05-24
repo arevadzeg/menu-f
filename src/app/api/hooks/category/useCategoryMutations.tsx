@@ -95,3 +95,45 @@ export const useUpdateSubCategory = () => {
     },
   });
 };
+
+// DELETE SUB CATEGORY
+// UPDATE CATEGORY
+interface DeleteCategoryPayload {
+  categoryId: string;
+}
+
+export const useDeleteCategory = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation<Category, Error, DeleteCategoryPayload>({
+    mutationFn: async (updatedCategory: DeleteCategoryPayload) => {
+      const response = await apiClient.delete<Category>(
+        `${API_ENDPOINTS.STORE.DELETE_CATEGORY}/${updatedCategory.categoryId}`,
+      );
+      return response.data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["category"] });
+    },
+  });
+};
+
+
+
+export const useDeleteSubCategory = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation<Category, Error, DeleteCategoryPayload>({
+    mutationFn: async (updatedCategory: DeleteCategoryPayload) => {
+      const response = await apiClient.delete<Category>(
+        `${API_ENDPOINTS.STORE.DELETE_SUB_CATEGORY}/${updatedCategory.categoryId}`,
+      );
+      return response.data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["category"] });
+    },
+  });
+};
+
+
