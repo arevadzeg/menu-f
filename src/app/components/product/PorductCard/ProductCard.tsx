@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./ProductCard.scss";
 import { Spinner } from "@radix-ui/themes";
 import { Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
@@ -7,6 +7,7 @@ import { useAtom } from "jotai";
 import { authAtom } from "<root>/app/atom/authAtom";
 import { Product } from "<root>/app/api/hooks/product/InterfaceProduct";
 import ProductCardSkeleton from "./Components/ProductCardSkeleton/ProductCardSkeleton";
+import ProductModal from "./Components/ProductModal/ProductModal";
 
 interface ProductCardProps {
   isLoading?: boolean;
@@ -16,6 +17,7 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, isLoading, setIsEditModalOpen }) => {
+  const [isProductModalOpen, setIsProductModalOpen] = useState(false)
   const [user] = useAtom(authAtom);
   const deleteProduct = useDeleteProduct();
 
@@ -34,12 +36,20 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, isLoading, setIsEdit
     e.stopPropagation();
   };
 
+  const handleOpenMoreDetailsModal = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsProductModalOpen(true)
+  }
+
+  const handleCloseMoreDetailsModal = () => setIsProductModalOpen(false)
+
 
 
   if (isProductsLoading) return <ProductCardSkeleton />;
 
   return (
-    <div id="product-card">
+    <div id="product-card" onPointerDown={handleOpenMoreDetailsModal}>
       <div className="image-wrapper ">
         <img src={product.image} />
       </div>
@@ -62,6 +72,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, isLoading, setIsEdit
         ></span>
         <span className="price">{product.price}</span>
       </div>
+      {isProductModalOpen && product && (
+        <ProductModal handleCloseMoreDetailsModal={handleCloseMoreDetailsModal} isProductModalOpen={isProductModalOpen} product={product} />
+      )}
     </div>
   );
 };
