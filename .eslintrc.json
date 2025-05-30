@@ -1,7 +1,23 @@
 {
   "extends": [
+    "airbnb",
+    "airbnb/hooks",
+    "airbnb-typescript",
     "next/core-web-vitals",
-    "next/typescript",
     "plugin:storybook/recommended"
-  ]
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "tsconfigRootDir": "."
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      "typescript": {
+        "project": "./tsconfig.json"
+      }
+    }
+  }
 }
