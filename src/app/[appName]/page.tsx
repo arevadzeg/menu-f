@@ -4,7 +4,6 @@ import FilterSort from "../components/product/FilterSort/FilterSort";
 import MainCategories from "../components/product/MainCategories/MainCategories";
 import Breadcrumb from "../components/ui/BreadCrumb/BreadCrumb";
 import { useBreadcrumbItems } from "../hooks/useGetBreadCrumbItems";
-import './page.scss'
 
 export default function Home() {
 
@@ -15,7 +14,7 @@ export default function Home() {
       <Breadcrumb items={items} />
       <FilterSort />
       <MainCategories />
-      <h1 className="title">All Products</h1>
+      <h1 className="text-3xl font-bold mb-6 text-center text-primaryText">All Products</h1>
       <ProductViewLayout />
     </div>
   );
