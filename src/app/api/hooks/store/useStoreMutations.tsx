@@ -6,13 +6,13 @@ import { useGetStore } from "./useGetStore";
 
 interface StorePayload {
   name: string;
-  address: string,
-  email: string,
-  phone: string,
-  facebook: string,
-  instagram: string,
-  userId: string,
-  theme: string
+  address: string;
+  email: string;
+  phone: string;
+  facebook: string;
+  instagram: string;
+  userId: string;
+  theme: string;
 }
 
 export const useCreateStore = () => {
@@ -20,10 +20,9 @@ export const useCreateStore = () => {
 
   return useMutation<Store, Error, StorePayload>({
     mutationFn: async (newStore: StorePayload) => {
-
       const response = await apiClient.post<Store>(
         `${API_ENDPOINTS.STORE.CREATE}`,
-        newStore
+        newStore,
       );
       return response.data;
     },
@@ -32,9 +31,6 @@ export const useCreateStore = () => {
     },
   });
 };
-
-
-
 
 export const useUpdateStore = () => {
   const queryClient = useQueryClient();
@@ -48,7 +44,7 @@ export const useUpdateStore = () => {
 
       const response = await apiClient.put<Store>(
         `${API_ENDPOINTS.STORE.CREATE}/${store.id}`,
-        newStore
+        newStore,
       );
 
       return response.data;

@@ -1,4 +1,3 @@
-
 import {
   useMutation,
   UseMutationResult,
@@ -26,7 +25,6 @@ interface UpdateProductPayload extends Partial<CreateProductPayload> {
   subCategoryId?: string;
 }
 
-
 // CREATE PRODUCT
 export const useCreateProduct = () => {
   const queryClient = useQueryClient();
@@ -38,7 +36,7 @@ export const useCreateProduct = () => {
     mutationFn: async (newProduct: CreateProductPayload) => {
       const response = await apiClient.post<Product, AxiosResponse<Product>>(
         `${API_ENDPOINTS.PRODUCT.CREATE}/${storeId}`,
-        removeFalseyValues({ ...newProduct, subCategoryId, categoryId })
+        removeFalseyValues({ ...newProduct, subCategoryId, categoryId }),
       );
       return response.data;
     },
@@ -64,18 +62,15 @@ export const useUpdateProduct = () => {
   const sort = searchParams.get("sort") || "";
   const order = searchParams.get("order") || "";
 
-
   return useMutation<Product, Error, UpdateProductPayload>({
     mutationFn: async (product) => {
       const response = await apiClient.put<Product, AxiosResponse<Product>>(
         `${API_ENDPOINTS.PRODUCT.UPDATE}/${product.id}`,
-        removeFalseyValues(product)
+        removeFalseyValues(product),
       );
       return response.data;
     },
     onMutate: async (updatedProduct) => {
-
-
       const queryKey = [
         "products",
         search,
@@ -84,7 +79,7 @@ export const useUpdateProduct = () => {
         storeId,
         subCategoryId,
         categoryId,
-      ]
+      ];
 
       queryClient.setQueriesData(
         { predicate: ({ queryKey }) => queryKey[0] === "products" },
@@ -95,22 +90,26 @@ export const useUpdateProduct = () => {
             pages: oldData.pages.map((page: any) => ({
               ...page,
               products: page.products.filter((p: any) => {
-                return p.id !== updatedProduct.id
+                return p.id !== updatedProduct.id;
               }),
             })),
           };
-        }
+        },
       );
       queryClient.setQueryData(queryKey, (oldData: any) => {
-        if (!oldData) return { pages: [{ products: [updatedProduct], totalCount: 1 }], pageParams: [1] };
+        if (!oldData)
+          return {
+            pages: [{ products: [updatedProduct], totalCount: 1 }],
+            pageParams: [1],
+          };
 
         return {
           ...oldData,
           pages: oldData.pages.map((page: any, index: number) => {
             if (index === oldData.pages.length - 1) {
               // TODO MAKE DYNAMIC SORT
-              const updatedProducts = [...page.products, updatedProduct].sort((a, b) =>
-                a.title.localeCompare(b.title)
+              const updatedProducts = [...page.products, updatedProduct].sort(
+                (a, b) => a.title.localeCompare(b.title),
               );
               return {
                 ...page,
@@ -122,7 +121,6 @@ export const useUpdateProduct = () => {
           }),
         };
       });
-
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["products"] });
@@ -144,7 +142,7 @@ export const useDeleteProduct = (): UseMutationResult<
   return useMutation<Product, Error, string>({
     mutationFn: async (productId: string) => {
       const response = await apiClient.delete<Product, AxiosResponse<Product>>(
-        `${API_ENDPOINTS.PRODUCT.DELETE}/${productId}`
+        `${API_ENDPOINTS.PRODUCT.DELETE}/${productId}`,
       );
       return response.data;
     },

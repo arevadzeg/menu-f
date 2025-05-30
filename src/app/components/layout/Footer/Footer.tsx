@@ -18,9 +18,7 @@ const Footer = () => {
   const isFacebookAdded = store?.facebook;
 
   return (
-    <footer
-      className="dark-mode p-12 mt-8 flex flex-col gap-4 bg-background text-primaryText"
-    >
+    <footer className="dark-mode p-12 mt-8 flex flex-col gap-4 bg-background text-primaryText">
       <div className="flex-wrap flex justify-between gap-4">
         <div className="flex gap-4">
           {isAddressAdded && (
@@ -53,9 +51,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div
-        className="w-full h-[1px] bg-secondary"
-      />
+      <div className="w-full h-[1px] bg-secondary" />
 
       <div className="flex gap-10">
         <span>Home</span>

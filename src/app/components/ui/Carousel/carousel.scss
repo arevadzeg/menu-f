@@ -40,7 +40,6 @@
     }
   }
 
-
   .carousel-skeleton-card {
     // display: flex;
     // flex-direction: column;
@@ -53,13 +52,12 @@
     width: 70px;
     margin-left: 10px;
     margin-right: 10px;
-}
+  }
 
-.carousel-skeleton-card-text {
+  .carousel-skeleton-card-text {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     padding-top: 0.5rem;
-}
-
+  }
 }

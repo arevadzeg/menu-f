@@ -90,7 +90,7 @@ export const Tooltip = ({
       onOpenChangeProp?.(open);
       setIsOpen(open);
     },
-    [controlProps.isPreventChange, onOpenChangeProp]
+    [controlProps.isPreventChange, onOpenChangeProp],
   );
 
   useEffect(() => {

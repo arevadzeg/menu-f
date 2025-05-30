@@ -9,9 +9,8 @@ import { Theme } from "@radix-ui/themes";
 import { useAtom } from "jotai";
 import { authAtom } from "./atom/authAtom";
 import { usePathname } from "next/navigation";
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import LayoutDnDWrapper from "./LayoutDnDWrapper";
-
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,9 +18,8 @@ const queryClient = new QueryClient({
       staleTime: Infinity,
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
-    }
-  }
-
+    },
+  },
 });
 
 export default function RootLayout({
@@ -29,7 +27,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   const [user] = useAtom(authAtom);
   const isAdmin = !!user?.isTurnUserMode;
   const location = usePathname();
@@ -42,10 +39,14 @@ export default function RootLayout({
           <ReactQueryDevtools />
           <Theme>
             {!isLandingPage && <Header />}
-            <div className={`${isAdmin ? "is-admin-user" : ""} ${isLandingPage ? "" : 'p-4'}`} >
-              {isAdmin ? <LayoutDnDWrapper>
-                {children}
-              </LayoutDnDWrapper> : children}
+            <div
+              className={`${isAdmin ? "is-admin-user" : ""} ${isLandingPage ? "" : "p-4"}`}
+            >
+              {isAdmin ? (
+                <LayoutDnDWrapper>{children}</LayoutDnDWrapper>
+              ) : (
+                children
+              )}
             </div>
             <Alert />
             {!isLandingPage && <Footer />}

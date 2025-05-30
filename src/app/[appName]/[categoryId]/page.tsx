@@ -8,8 +8,7 @@ import Breadcrumb from "<root>/app/components/ui/BreadCrumb/BreadCrumb";
 import { useBreadcrumbItems } from "<root>/app/hooks/useGetBreadCrumbItems";
 
 export default function Home() {
-
-  const items = useBreadcrumbItems()
+  const items = useBreadcrumbItems();
 
   return (
     <div>

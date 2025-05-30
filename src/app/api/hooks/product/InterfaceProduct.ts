@@ -11,5 +11,5 @@ export interface Product {
   createdAt: string;
   updatedAt: string;
   categoryId: string;
-  subCategoryId: string
+  subCategoryId: string;
 }

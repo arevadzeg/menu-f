@@ -35,7 +35,7 @@ const useUpload = ({
     if (file.size / 1024 / 1024 > maxFileSize) {
       return alert(
         `File size exceeds ${maxFileSize} MB limit.`,
-        ALERT_TYPE.ERROR
+        ALERT_TYPE.ERROR,
       );
     }
     if (!isFileTypeValid(file)) {

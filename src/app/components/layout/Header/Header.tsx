@@ -8,7 +8,7 @@ import { useAtom } from "jotai";
 import { authAtom } from "<root>/app/atom/authAtom";
 import { HeaderSkeleton } from "./HeaderSkeleton";
 import chroma from "chroma-js";
-import Link from 'next/link';
+import Link from "next/link";
 
 const themes = {
   dark: "dark-mode",
@@ -62,8 +62,14 @@ export const Header = () => {
     if (!primary) return;
 
     root?.style.setProperty("--primary-color", primary);
-    root?.style.setProperty("--primary-color-light", chroma(primary).brighten(1).hex());
-    root?.style.setProperty("--primary-color-dark", chroma(primary).darken(1).hex());
+    root?.style.setProperty(
+      "--primary-color-light",
+      chroma(primary).brighten(1).hex(),
+    );
+    root?.style.setProperty(
+      "--primary-color-dark",
+      chroma(primary).darken(1).hex(),
+    );
   }, [isDarkMode, store]);
 
   if (!isSuccess) return <HeaderSkeleton />;

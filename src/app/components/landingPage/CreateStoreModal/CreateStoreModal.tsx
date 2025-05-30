@@ -1,7 +1,7 @@
 import Modal from "../../ui/Modal/Modal";
 import { Dispatch } from "react";
 import { SetStateAction } from "jotai";
-import './createStoreModal.scss'
+import "./createStoreModal.scss";
 import CreateStoreForm from "../../product/CreateStoreForm/CreateStoreForm";
 
 interface CreateStoreModalProps {
@@ -13,17 +13,16 @@ const CreateStoreModal = ({
   isCreateStoreModal,
   setIsCreateStoreModal,
 }: CreateStoreModalProps) => {
-
-
-
   return (
     <Modal
       isOpen={isCreateStoreModal}
       onClose={() => setIsCreateStoreModal(false)}
       contentClassName="overflow-auto"
     >
-      <CreateStoreForm setIsCreateStoreModal={setIsCreateStoreModal} isCreateMode />
-
+      <CreateStoreForm
+        setIsCreateStoreModal={setIsCreateStoreModal}
+        isCreateMode
+      />
     </Modal>
   );
 };

@@ -9,11 +9,11 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: 'var(--primary-color)',
-        secondary: 'var(--secondary-color)',
-        primaryText: 'var(--primary-text-color)',
-        background: 'var(--background-color)',
-        editColor: 'var(--edit-color)',
+        primary: "var(--primary-color)",
+        secondary: "var(--secondary-color)",
+        primaryText: "var(--primary-text-color)",
+        background: "var(--background-color)",
+        editColor: "var(--edit-color)",
       },
     },
   },

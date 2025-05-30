@@ -29,7 +29,7 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
       color = "",
       ...rest
     },
-    ref
+    ref,
   ) => {
     const [collapsed, setCollapsed] = useState(isCollapsable);
 
@@ -71,7 +71,7 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
         )}
       </div>
     );
-  }
+  },
 );
 
 export default TextField;

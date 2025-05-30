@@ -1,5 +1,4 @@
 const LandingPageFooter = () => {
-
   //TODO REFACTOR
   return (
     <footer

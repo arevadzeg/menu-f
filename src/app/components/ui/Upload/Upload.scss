@@ -1,17 +1,17 @@
 .file-upload {
-    color: var(--primary-text-color);
+  color: var(--primary-text-color);
 
   .drop-zone {
     border-color: var(--border-color);
     @apply border-2 border-dashed rounded-lg  p-5 text-center cursor-pointer mb-5;
-    
+
     p {
       color: var(--text-color);
-      @apply mb-1 ;
+      @apply mb-1;
     }
 
-    .upload-icon{
-      @apply m-auto h-10 w-10 mb-4
+    .upload-icon {
+      @apply m-auto h-10 w-10 mb-4;
     }
   }
 
@@ -43,7 +43,6 @@
         color: var(--text-color);
         @apply text-xs;
       }
-
 
       .file-progress {
         @apply w-full ml-3;

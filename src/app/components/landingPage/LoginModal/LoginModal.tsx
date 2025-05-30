@@ -5,7 +5,7 @@ import RadixButton from "../../ui/RadixButton/RadixButton";
 import { useLogin } from "<root>/app/api/hooks/auth/useLogin";
 import { useAtom } from "jotai";
 import { authAtom } from "<root>/app/atom/authAtom";
-import './loginModal.scss'
+import "./loginModal.scss";
 
 interface LoginModalProps {
   isLoginModalOpen: boolean;
@@ -16,12 +16,12 @@ const LoginModal = ({
   isLoginModalOpen,
   setIsLoginModalOpen,
 }: LoginModalProps) => {
-  const [isLoginMode, setIsLoginMode] = useState(true)
+  const [isLoginMode, setIsLoginMode] = useState(true);
   const [userName, setUserName] = useState("");
   const [passWord, setPassword] = useState("");
   const [, setUser] = useAtom(authAtom);
 
-  const toggaleLoginMode = () => setIsLoginMode((prev) => !prev)
+  const toggaleLoginMode = () => setIsLoginMode((prev) => !prev);
 
   const login = useLogin();
 
@@ -32,19 +32,27 @@ const LoginModal = ({
         onSuccess: (e) => {
           setUser({
             ...e,
-            isTurnUserMode: true
+            isTurnUserMode: true,
           });
           setIsLoginModalOpen(false);
         },
-      }
+      },
     );
   };
 
   return (
-    <Modal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} contentClassName='login-modal'>
+    <Modal
+      isOpen={isLoginModalOpen}
+      onClose={() => setIsLoginModalOpen(false)}
+      contentClassName="login-modal"
+    >
       <div className="login-modal-container">
         <h2 className="login-modal-title">Welcome Back!</h2>
-        <p className="login-modal-subtitle">{isLoginMode ? "Please log in to continue" : "Please register to continue"}</p>
+        <p className="login-modal-subtitle">
+          {isLoginMode
+            ? "Please log in to continue"
+            : "Please register to continue"}
+        </p>
         <TextField
           value={userName}
           onChange={(e) => setUserName(e.target.value)}
@@ -66,9 +74,12 @@ const LoginModal = ({
 
           <hr />
           <span>
-
-            <span>{isLoginMode ? 'Not member yet? ' : "Already have an account "}</span>
-            <button className="login-modal-link" onClick={toggaleLoginMode}>{isLoginMode ? "Create an Account" : "Login"}</button>
+            <span>
+              {isLoginMode ? "Not member yet? " : "Already have an account "}
+            </span>
+            <button className="login-modal-link" onClick={toggaleLoginMode}>
+              {isLoginMode ? "Create an Account" : "Login"}
+            </button>
           </span>
         </div>
       </div>

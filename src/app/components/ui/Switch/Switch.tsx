@@ -6,10 +6,15 @@ interface SwitchProps {
   checked: boolean;
   onCheckedChange: (checked: boolean) => void;
   onText?: string;
-  offText?: string
+  offText?: string;
 }
 
-export const Switch: React.FC<SwitchProps> = ({ checked, onCheckedChange, onText, offText }) => (
+export const Switch: React.FC<SwitchProps> = ({
+  checked,
+  onCheckedChange,
+  onText,
+  offText,
+}) => (
   <SwitchRadix.Root
     className="SwitchRoot"
     id="switch"

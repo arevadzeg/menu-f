@@ -11,14 +11,13 @@
   position: relative;
   &[data-state="checked"] {
     background-color: var(--background-color);
-    .switch-text{
+    .switch-text {
       left: 8px;
       right: auto;
     }
   }
 
-
-  .switch-text{
+  .switch-text {
     font-size: 9px;
     width: calc(100% - 30px);
     position: absolute;
@@ -43,7 +42,4 @@
   &[data-state="checked"] {
     transform: translateX(37px);
   }
-
-
-  
 }

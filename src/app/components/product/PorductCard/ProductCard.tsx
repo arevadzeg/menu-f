@@ -15,7 +15,11 @@ interface ProductCardProps {
   setIsEditModalOpen?: React.Dispatch<React.SetStateAction<Product | null>>;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product, isLoading, setIsEditModalOpen }) => {
+const ProductCard: React.FC<ProductCardProps> = ({
+  product,
+  isLoading,
+  setIsEditModalOpen,
+}) => {
   const [isProductModalOpen, setIsProductModalOpen] = useState(false);
   const [user] = useAtom(authAtom);
   const deleteProduct = useDeleteProduct();
@@ -23,19 +27,25 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, isLoading, setIsEdit
   const isAdmin = !!user?.isTurnUserMode;
   const isProductsLoading = isLoading || !product;
 
-  const handleDeleteProduce = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const handleDeleteProduce = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+  ) => {
     e.preventDefault();
     e.stopPropagation();
     product && deleteProduct.mutate(product.id);
   };
 
-  const handleEditProduct = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const handleEditProduct = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+  ) => {
     setIsEditModalOpen && setIsEditModalOpen(product ?? null);
     e.preventDefault();
     e.stopPropagation();
   };
 
-  const handleOpenMoreDetailsModal = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const handleOpenMoreDetailsModal = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+  ) => {
     e.preventDefault();
     e.stopPropagation();
     setIsProductModalOpen(true);
@@ -74,16 +84,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, isLoading, setIsEdit
         </div>
       )}
       {product.isOnSale && (
-        <div
-          className="absolute text-lg top-5 left-5 font-bold px-4 py-1 rounded-xl"
-        >
+        <div className="absolute text-lg top-5 left-5 font-bold px-4 py-1 rounded-xl">
           Sale
         </div>
       )}
       <div className="p-4 pb-8 text-center">
-        <h2
-          className="text-lg font-bold h-[50px] overflow-hidden text-ellipsis text-primaryText"
-        >
+        <h2 className="text-lg font-bold h-[50px] overflow-hidden text-ellipsis text-primaryText">
           {product.title}
         </h2>
         <span
@@ -96,9 +102,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, isLoading, setIsEdit
           }}
           dangerouslySetInnerHTML={{ __html: product.description }}
         ></span>
-        <span
-          className="absolute py-2 text-white rounded-lg top-[99%] left-[50%] w-[90%] text-center bg-primary transform -translate-x-1/2 -translate-y-1/2"
-        >
+        <span className="absolute py-2 text-white rounded-lg top-[99%] left-[50%] w-[90%] text-center bg-primary transform -translate-x-1/2 -translate-y-1/2">
           {product.price}
         </span>
       </div>

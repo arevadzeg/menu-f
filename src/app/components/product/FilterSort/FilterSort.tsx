@@ -43,7 +43,7 @@ const FilterSort = () => {
   const [sortOption, setSortOption] = useState<string | null>(null);
   const searchparams = useSearchParams();
   const [searchValue, setSearchValue] = useState(
-    searchparams.get("search") || ""
+    searchparams.get("search") || "",
   );
   const router = useRouter();
   const pathname = usePathname();
@@ -59,7 +59,7 @@ const FilterSort = () => {
       params.set("search", value);
       router.push(pathname + "?" + params.toString());
     }, 500), // 500ms debounce
-    [router, pathname]
+    [router, pathname],
   );
 
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {

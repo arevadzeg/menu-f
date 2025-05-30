@@ -1,7 +1,5 @@
 import { useState } from "react";
-import {
-  GearIcon,
-} from "@radix-ui/react-icons";
+import { GearIcon } from "@radix-ui/react-icons";
 import RadixButton from "../../ui/RadixButton/RadixButton";
 import useGetCategories from "<root>/app/api/hooks/category/useGetCategories";
 import { useAtom } from "jotai";
@@ -15,7 +13,6 @@ const MainCategories = () => {
   const [user] = useAtom(authAtom);
   const { data: categories, isSuccess } = useGetCategories();
 
-
   const handleCloseModal = () => setIsModalOpen(false);
   const handleOpenModal = () => setIsModalOpen(true);
 
@@ -23,10 +20,11 @@ const MainCategories = () => {
   const isCategoriesCreated = isSuccess && categories.length === 0 && isAdmin;
 
   return (
-    <div
-      className="py-4"
-    >
-      <CreateEditMainCategoryModal handleCloseModal={handleCloseModal} isModalOpen={isModalOpen} />
+    <div className="py-4">
+      <CreateEditMainCategoryModal
+        handleCloseModal={handleCloseModal}
+        isModalOpen={isModalOpen}
+      />
 
       {isCategoriesCreated ? (
         <EmptyMainCategories onCreateFilter={handleOpenModal} />

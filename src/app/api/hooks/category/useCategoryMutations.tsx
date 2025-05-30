@@ -19,7 +19,7 @@ export const useCreateCategory = () => {
     mutationFn: async (newCategory: CreateCategoryPayload) => {
       const response = await apiClient.post<Category>(
         `${API_ENDPOINTS.STORE.CREATE_CATEGORY}/${storeId}`,
-        { categoryName: newCategory.categoryName }
+        { categoryName: newCategory.categoryName },
       );
       return response.data;
     },
@@ -42,7 +42,7 @@ export const useCreateSubCategory = () => {
     mutationFn: async (newCategory: CreateSubCategoryPayload) => {
       const response = await apiClient.post<SubCategory>(
         `${API_ENDPOINTS.STORE.CREATE_SUB_CATEGORY}/${newCategory.categoryId}`,
-        { subCategoryName: newCategory.subCategoryName }
+        { subCategoryName: newCategory.subCategoryName },
       );
       return response.data;
     },
@@ -64,7 +64,7 @@ export const useUpdateCategory = () => {
     mutationFn: async (updatedCategory: UpdateCategoryPayload) => {
       const response = await apiClient.put<Category>(
         `${API_ENDPOINTS.STORE.UPDATE_CATEGORY}/${updatedCategory.categoryId}`,
-        { categoryName: updatedCategory.categoryName }
+        { categoryName: updatedCategory.categoryName },
       );
       return response.data;
     },
@@ -86,7 +86,7 @@ export const useUpdateSubCategory = () => {
     mutationFn: async (updatedSubCategory: UpdateSubCategoryPayload) => {
       const response = await apiClient.put<SubCategory>(
         `${API_ENDPOINTS.STORE.UPDATE_SUB_CATEGORY}/${updatedSubCategory.subCategoryId}`,
-        { subCategoryName: updatedSubCategory.subCategoryName }
+        { subCategoryName: updatedSubCategory.subCategoryName },
       );
       return response.data;
     },
@@ -118,8 +118,6 @@ export const useDeleteCategory = () => {
   });
 };
 
-
-
 export const useDeleteSubCategory = () => {
   const queryClient = useQueryClient();
 
@@ -135,5 +133,3 @@ export const useDeleteSubCategory = () => {
     },
   });
 };
-
-

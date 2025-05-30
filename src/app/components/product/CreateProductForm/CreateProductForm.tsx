@@ -37,7 +37,7 @@ const CreateProductForm = ({
   const createProduct = useCreateProduct();
   const updateProduct = useUpdateProduct();
   const [richTextEditorValue, setRichTextEditorValue] = useState(
-    productData?.description ?? ""
+    productData?.description ?? "",
   );
 
   const mutation = isUpdateMode ? updateProduct : createProduct;
@@ -45,7 +45,9 @@ const CreateProductForm = ({
 
   const [url, setUrl] = useState("");
 
-  const { refetch, data: scrapedData } = useGetScrapeProductFromAnotherSite({ url });
+  const { refetch, data: scrapedData } = useGetScrapeProductFromAnotherSite({
+    url,
+  });
 
   useEffect(() => {
     if (scrapedData) {
@@ -56,7 +58,7 @@ const CreateProductForm = ({
 
   const handleFieldChange = (
     event: ChangeEvent<HTMLInputElement>,
-    name: "title" | "price"
+    name: "title" | "price",
   ) => {
     const value = event.target.value;
     setValue(name, value);
@@ -80,7 +82,7 @@ const CreateProductForm = ({
         imageUrl = uploadResponse.downloadURL;
       }
 
-      const image = imageUrl ? imageUrl : scrapedData?.image ?? "";
+      const image = imageUrl ? imageUrl : (scrapedData?.image ?? "");
 
       await mutation.mutateAsync({
         image: image,
@@ -113,9 +115,7 @@ const CreateProductForm = ({
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-4 p-4 pr-2"
       >
-        <div
-          className="overflow-auto flex flex-col gap-4 p-1 pr-2 max-h-[calc(85vh-150px)]"
-        >
+        <div className="overflow-auto flex flex-col gap-4 p-1 pr-2 max-h-[calc(85vh-150px)]">
           <div className="flex gap-2">
             <TextField
               placeholder="URL"
@@ -161,4 +161,3 @@ const CreateProductForm = ({
 };
 
 export default CreateProductForm;
-

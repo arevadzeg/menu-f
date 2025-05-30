@@ -1,6 +1,5 @@
-.text-field{
-
-    .rt-TextFieldRoot:where(.rt-variant-surface){
-        --text-field-focus-color:var(--primary-color);
-    }
+.text-field {
+  .rt-TextFieldRoot:where(.rt-variant-surface) {
+    --text-field-focus-color: var(--primary-color);
+  }
 }

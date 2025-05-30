@@ -17,13 +17,14 @@ const SubCategories = () => {
   const { data: categories } = useGetCategories();
   const { categoryId, appName, subCategoryId } = useParams();
 
-  const [selectedSubCategoryId, setSelectedSubCategoryId] = useState<string | null>(
-    subCategoryId ? String(subCategoryId) : null
-  );
+  const [selectedSubCategoryId, setSelectedSubCategoryId] = useState<
+    string | null
+  >(subCategoryId ? String(subCategoryId) : null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const category = categories?.find((cat) => cat.id === categoryId);
-  const isShowSubCategories = category && (category.subCategories.length > 0 || isAdmin);
+  const isShowSubCategories =
+    category && (category.subCategories.length > 0 || isAdmin);
 
   const handleNavigateToSubCategory = (subCategoryId: string) => {
     setSelectedSubCategoryId(subCategoryId);
@@ -34,10 +35,11 @@ const SubCategories = () => {
 
   return (
     <div
-      className={`p-4 ${isAdmin
-        ? "relative border border-dashed border-transparent rounded-lg group hover:bg-editColor hover:border-black"
-        : ""
-        }`}
+      className={`p-4 ${
+        isAdmin
+          ? "relative border border-dashed border-transparent rounded-lg group hover:bg-editColor hover:border-black"
+          : ""
+      }`}
     >
       <CreateEditSubCategoryModal
         handleCloseModal={handleCloseModal}

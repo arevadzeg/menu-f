@@ -1,5 +1,3 @@
-
-
 import axios from "axios";
 
 const apiClient = axios.create({
@@ -20,7 +18,7 @@ apiClient.interceptors.request.use(
   },
   (error) => {
     return Promise.reject(error);
-  }
+  },
 );
 
 // Response Interceptors
@@ -30,7 +28,7 @@ apiClient.interceptors.response.use(
   },
   (error) => {
     return Promise.reject(error.response ? error.response.data : error.message);
-  }
+  },
 );
 
 export default apiClient;

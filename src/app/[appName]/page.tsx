@@ -6,15 +6,16 @@ import Breadcrumb from "../components/ui/BreadCrumb/BreadCrumb";
 import { useBreadcrumbItems } from "../hooks/useGetBreadCrumbItems";
 
 export default function Home() {
-
-  const items = useBreadcrumbItems()
+  const items = useBreadcrumbItems();
 
   return (
-    <div id='main-page'>
+    <div id="main-page">
       <Breadcrumb items={items} />
       <FilterSort />
       <MainCategories />
-      <h1 className="text-3xl font-bold mb-6 text-center text-primaryText">All Products</h1>
+      <h1 className="text-3xl font-bold mb-6 text-center text-primaryText">
+        All Products
+      </h1>
       <ProductViewLayout />
     </div>
   );

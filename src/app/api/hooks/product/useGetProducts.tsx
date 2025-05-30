@@ -16,10 +16,10 @@ interface GetProductsResponse {
 const fetchProducts = async (
   storeId: string,
   pageParam: number = 1,
-  queryString: string
+  queryString: string,
 ): Promise<GetProductsResponse> => {
   const response = await apiClient.get(
-    `${API_ENDPOINTS.PRODUCT.GET_ALL_BY_STORE}/${storeId}?page=${pageParam}&${queryString}`
+    `${API_ENDPOINTS.PRODUCT.GET_ALL_BY_STORE}/${storeId}?page=${pageParam}&${queryString}`,
   );
   return response.data;
 };

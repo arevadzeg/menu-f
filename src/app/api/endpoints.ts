@@ -22,11 +22,11 @@ const API_ENDPOINTS = {
     DELETE: "/product",
   },
   STORAGE: {
-    UPLOAD: "storage/upload"
+    UPLOAD: "storage/upload",
   },
   SCRAPE: {
-    GET_SCRAPE_PRODUCT_FROM_ANOTHER_SITE: "scrape/getProductFromAnotherSite"
-  }
+    GET_SCRAPE_PRODUCT_FROM_ANOTHER_SITE: "scrape/getProductFromAnotherSite",
+  },
 };
 
 export default API_ENDPOINTS;

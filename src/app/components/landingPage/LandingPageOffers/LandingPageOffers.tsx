@@ -12,18 +12,18 @@ const LandingPageOffers = () => {
   const translateXLeft = useTransform(
     scrollYProgress,
     [0, 0.5],
-    ["0%", "-80%"]
+    ["0%", "-80%"],
   );
   const translateXRight = useTransform(
     scrollYProgress,
     [0, 0.5],
-    ["0%", "80%"]
+    ["0%", "80%"],
   );
   const translateYTop = useTransform(scrollYProgress, [0, 0.5], ["0%", "-80%"]);
   const translateYBottom = useTransform(
     scrollYProgress,
     [0, 0.5],
-    ["0%", "80%"]
+    ["0%", "80%"],
   );
 
   return (

@@ -10,7 +10,7 @@ export interface DefaultDropdownMenuItem {
 }
 
 interface DropdownMenuProps<
-  OptionType extends DefaultDropdownMenuItem = DefaultDropdownMenuItem
+  OptionType extends DefaultDropdownMenuItem = DefaultDropdownMenuItem,
 > {
   options: OptionType[];
   selectedValue: string | number | null;

@@ -8,15 +8,15 @@ interface ModalProps {
   children: JSX.Element;
   isOpen: boolean;
   onClose: () => void;
-  contentClassName?: string
+  contentClassName?: string;
 }
 
 const Modal = ({ children, isOpen, onClose, contentClassName }: ModalProps) => {
   const elementToMountModal = document.querySelector(".radix-themes");
 
   return (
-    <Dialog.Root open={isOpen} >
-      <Dialog.Portal container={elementToMountModal} >
+    <Dialog.Root open={isOpen}>
+      <Dialog.Portal container={elementToMountModal}>
         <Dialog.Overlay className="DialogOverlay" />
         <Dialog.Content className={`DialogContent ${contentClassName}`}>
           <VisuallyHidden>

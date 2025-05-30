@@ -25,7 +25,7 @@ const ProductViewLayout = () => {
   const isProductsEmpty = isSuccess && products.length === 0;
 
   if (isProductsEmpty) {
-    return <EmptyPorductView />
+    return <EmptyPorductView />;
   }
 
   return (
@@ -39,24 +39,28 @@ const ProductViewLayout = () => {
       }}
     >
       <div className="grid grid-cols-[repeat(auto-fill,minmax(240px,1fr))] gap-6 border border-dashed border-transparent">
-
-        {products?.map(
-          (product, index) => {
-            return product?.id ?
-
-              <>
-                {isEditModalOpen?.id === product.id && <Modal isOpen={!!isEditModalOpen} onClose={closeModal}>
+        {products?.map((product, index) => {
+          return product?.id ? (
+            <>
+              {isEditModalOpen?.id === product.id && (
+                <Modal isOpen={!!isEditModalOpen} onClose={closeModal}>
                   <CreateProductForm
                     isUpdateMode
                     productData={product}
                     closeModal={closeModal}
                   />
-                </Modal>}
-                <DraggableProductCard product={product} key={product.id} setIsEditModalOpen={setIsEditModalOpen} />
-              </>
-              : <ProductCard key={index} isLoading />
-          }
-        )}
+                </Modal>
+              )}
+              <DraggableProductCard
+                product={product}
+                key={product.id}
+                setIsEditModalOpen={setIsEditModalOpen}
+              />
+            </>
+          ) : (
+            <ProductCard key={index} isLoading />
+          );
+        })}
         {isFetchingNextPage &&
           skeletonArray.map((_, index) => (
             <ProductCard key={index} isLoading />
