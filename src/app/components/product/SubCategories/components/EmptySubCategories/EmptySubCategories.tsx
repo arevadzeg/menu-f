@@ -1,6 +1,6 @@
 import { InfoCircledIcon } from '@radix-ui/react-icons';
 
-const EmptySubCategories = () => {
+function EmptySubCategories() {
   // TODO HARD CORED COLORS
 
   return (
@@ -18,6 +18,6 @@ const EmptySubCategories = () => {
       </div>
     </span>
   );
-};
+}
 
 export default EmptySubCategories;

@@ -1,6 +1,6 @@
-import Modal from '../../ui/Modal/Modal';
 import { Dispatch } from 'react';
 import { SetStateAction } from 'jotai';
+import Modal from '../../ui/Modal/Modal';
 import './createStoreModal.scss';
 import CreateStoreForm from '../../product/CreateStoreForm/CreateStoreForm';
 
@@ -9,10 +9,10 @@ interface CreateStoreModalProps {
   setIsCreateStoreModal: Dispatch<SetStateAction<boolean>>;
 }
 
-const CreateStoreModal = ({
+function CreateStoreModal({
   isCreateStoreModal,
   setIsCreateStoreModal,
-}: CreateStoreModalProps) => {
+}: CreateStoreModalProps) {
   return (
     <Modal
       isOpen={isCreateStoreModal}
@@ -25,6 +25,6 @@ const CreateStoreModal = ({
       />
     </Modal>
   );
-};
+}
 
 export default CreateStoreModal;

@@ -1,7 +1,7 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
+import { useParams, useSearchParams } from 'next/navigation';
 import apiClient from '../../apiClient';
 import API_ENDPOINTS from '../../endpoints';
-import { useParams, useSearchParams } from 'next/navigation';
 import { useGetStore } from '../store/useGetStore';
 import removeFalseyValues from '../../../utils/removeFalseyValues';
 import { Product } from './InterfaceProduct';
@@ -54,8 +54,7 @@ const useGetInfiniteProducts = () => {
       subCategoryId,
       categoryId,
     ],
-    queryFn: ({ pageParam = 1 }) =>
-      fetchProducts(storeId, pageParam as number, queryString),
+    queryFn: ({ pageParam = 1 }) => fetchProducts(storeId, pageParam as number, queryString),
     initialPageParam: 1,
     getNextPageParam: (lastPage) => {
       const totalPages = Math.ceil(lastPage.totalCount / lastPage.limit);

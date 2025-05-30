@@ -21,7 +21,7 @@ export const Switch: React.FC<SwitchProps> = ({
     checked={checked}
     onCheckedChange={onCheckedChange}
   >
-    {<div className="switch-text">{checked ? offText : onText}</div>}
+    <div className="switch-text">{checked ? offText : onText}</div>
     <SwitchRadix.Thumb className="SwitchThumb" />
   </SwitchRadix.Root>
 );

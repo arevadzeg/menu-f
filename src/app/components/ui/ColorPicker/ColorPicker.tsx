@@ -4,8 +4,6 @@ import type { ComponentProps } from 'react';
 
 type ColorPickerProps = ComponentProps<typeof HexColorPicker>;
 
-const ColorPicker: React.FC<ColorPickerProps> = (props) => {
-  return <HexColorPicker {...props} />;
-};
+const ColorPicker: React.FC<ColorPickerProps> = (props) => <HexColorPicker {...props} />;
 
 export default ColorPicker;

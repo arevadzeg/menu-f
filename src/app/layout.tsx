@@ -1,15 +1,15 @@
 'use client';
 
 import './globals.css';
-import { Header } from './components/layout/Header/Header';
-import Footer from './components/layout/Footer/Footer';
-import Alert from './components/ui/Alert/Alert';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Theme } from '@radix-ui/themes';
 import { useAtom } from 'jotai';
-import { authAtom } from './atom/authAtom';
 import { usePathname } from 'next/navigation';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { authAtom } from './atom/authAtom';
+import Alert from './components/ui/Alert/Alert';
+import Footer from './components/layout/Footer/Footer';
+import { Header } from './components/layout/Header/Header';
 import LayoutDnDWrapper from './LayoutDnDWrapper';
 
 const queryClient = new QueryClient({

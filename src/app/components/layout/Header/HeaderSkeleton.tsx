@@ -2,7 +2,7 @@ import { Skeleton } from '@radix-ui/themes';
 
 const SKELETON_HEADER_ITEMS = [1, 2, 3];
 
-export const HeaderSkeleton = () => {
+export function HeaderSkeleton() {
   return (
     <nav
       id="Header"
@@ -24,4 +24,4 @@ export const HeaderSkeleton = () => {
       </div>
     </nav>
   );
-};
+}

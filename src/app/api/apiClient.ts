@@ -16,19 +16,13 @@ apiClient.interceptors.request.use(
     }
     return config;
   },
-  (error) => {
-    return Promise.reject(error);
-  },
+  (error) => Promise.reject(error),
 );
 
 // Response Interceptors
 apiClient.interceptors.response.use(
-  (response) => {
-    return response;
-  },
-  (error) => {
-    return Promise.reject(error.response ? error.response.data : error.message);
-  },
+  (response) => response,
+  (error) => Promise.reject(error.response ? error.response.data : error.message),
 );
 
 export default apiClient;

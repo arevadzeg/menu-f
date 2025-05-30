@@ -9,11 +9,11 @@ interface ProductModalProps {
   handleCloseMoreDetailsModal: () => void;
 }
 
-const ProductModal = ({
+function ProductModal({
   product,
   isProductModalOpen,
   handleCloseMoreDetailsModal,
-}: ProductModalProps) => {
+}: ProductModalProps) {
   const { data: categories } = useGetCategories();
 
   const getCategoryName = (categoryId: string): string => {
@@ -22,13 +22,14 @@ const ProductModal = ({
   };
 
   const getSubCategoryName = (subCategoryId: string): string => {
-    if (categories)
+    if (categories) {
       for (const category of categories) {
         const subCategory = category.subCategories.find(
           (sub) => sub.id === subCategoryId,
         );
         if (subCategory) return subCategory.name;
       }
+    }
     return 'Unknown Subcategory';
   };
 
@@ -71,7 +72,8 @@ const ProductModal = ({
 
         <div className="space-y-2">
           <div className="flex items-center gap-2 text-lg font-medium text-primaryText">
-            ₾{product.price}
+            ₾
+            {product.price}
           </div>
 
           <div className="flex items-center gap-2 text-sm text-secondary">
@@ -91,6 +93,6 @@ const ProductModal = ({
       </div>
     </Modal>
   );
-};
+}
 
 export default ProductModal;

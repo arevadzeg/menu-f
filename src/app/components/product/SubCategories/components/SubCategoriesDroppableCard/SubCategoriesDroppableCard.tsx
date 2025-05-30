@@ -8,12 +8,12 @@ interface SubCategoriesCardProps {
   categoryId: string;
 }
 
-const SubCategoriesCard = ({
+function SubCategoriesCard({
   subCategory,
   categoryId,
   isSelected,
   handleNavigateToSubCategory,
-}: SubCategoriesCardProps) => {
+}: SubCategoriesCardProps) {
   const { setNodeRef } = useDroppable({
     id: `${categoryId}/${subCategory.id}`,
     data: {
@@ -32,6 +32,6 @@ const SubCategoriesCard = ({
       <span>{subCategory.name}</span>
     </div>
   );
-};
+}
 
 export default SubCategoriesCard;

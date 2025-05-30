@@ -5,12 +5,10 @@ interface ProductCardSmallProps {
   product: Product;
 }
 
-const ProductCardSmall: React.FC<ProductCardSmallProps> = ({ product }) => {
-  return (
-    <div className="bg-gray-100 rounded-lg shadow-md p-4">
-      <h2 className="text-lg font-semibold">{product.title}</h2>
-    </div>
-  );
-};
+const ProductCardSmall: React.FC<ProductCardSmallProps> = ({ product }) => (
+  <div className="bg-gray-100 rounded-lg shadow-md p-4">
+    <h2 className="text-lg font-semibold">{product.title}</h2>
+  </div>
+);
 
 export default ProductCardSmall;

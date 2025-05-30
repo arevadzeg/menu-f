@@ -1,21 +1,21 @@
 import { useEffect, useState } from 'react';
-import { Switch } from '../../ui/Switch/Switch';
 import { useGetStore } from '<root>/app/api/hooks/store/useGetStore';
 import { useParams, useRouter } from 'next/navigation';
 import { PersonIcon } from '@radix-ui/react-icons';
-import PopoverDemo from '../../ui/Popover/Popover';
 import { useAtom } from 'jotai';
 import { authAtom } from '<root>/app/atom/authAtom';
-import { HeaderSkeleton } from './HeaderSkeleton';
 import chroma from 'chroma-js';
 import Link from 'next/link';
+import { HeaderSkeleton } from './HeaderSkeleton';
+import PopoverDemo from '../../ui/Popover/Popover';
+import { Switch } from '../../ui/Switch/Switch';
 
 const themes = {
   dark: 'dark-mode',
   light: '',
 };
 
-export const Header = () => {
+export function Header() {
   const { data: store, isSuccess } = useGetStore();
   const router = useRouter();
   const { appName } = useParams();
@@ -40,8 +40,8 @@ export const Header = () => {
   };
 
   const handleIsShowUserMode = (checked: boolean) => {
-    user &&
-      setUser({
+    user
+      && setUser({
         ...user,
         isTurnUserMode: checked,
       });
@@ -99,7 +99,7 @@ export const Header = () => {
           <PopoverDemo
             open={popoverOpen}
             onClose={handleClosePopover}
-            content={
+            content={(
               <>
                 <div onClick={handleLogOut} className="cursor-pointer mb-2">
                   Log out
@@ -108,7 +108,7 @@ export const Header = () => {
                   <div>Settings</div>
                 </Link>
               </>
-            }
+            )}
           >
             <PersonIcon
               height={24}
@@ -135,4 +135,4 @@ export const Header = () => {
       </div>
     </nav>
   );
-};
+}

@@ -1,8 +1,7 @@
-import { useScroll, useTransform } from 'framer-motion';
+import { useScroll, useTransform, motion } from 'framer-motion';
 import { useRef } from 'react';
-import { motion } from 'framer-motion';
 
-const Test = ({ item }: any) => {
+function Test({ item }: any) {
   const containerRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
@@ -31,6 +30,6 @@ const Test = ({ item }: any) => {
       </motion.div>
     </div>
   );
-};
+}
 
 export default Test;

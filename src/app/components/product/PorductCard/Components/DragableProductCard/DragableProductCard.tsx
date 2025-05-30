@@ -3,13 +3,13 @@ import { useDraggable } from '@dnd-kit/core';
 import React from 'react';
 import ProductCard from '../../ProductCard';
 
-const DraggableProductCard = ({
+function DraggableProductCard({
   product,
   setIsEditModalOpen,
 }: {
   product: Product;
   setIsEditModalOpen: React.Dispatch<React.SetStateAction<Product | null>>;
-}) => {
+}) {
   const { attributes, listeners, setNodeRef } = useDraggable({
     id: product.id,
     data: { product },
@@ -20,6 +20,6 @@ const DraggableProductCard = ({
       <ProductCard product={product} setIsEditModalOpen={setIsEditModalOpen} />
     </div>
   );
-};
+}
 
 export default DraggableProductCard;

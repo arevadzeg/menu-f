@@ -1,12 +1,12 @@
 import { useAtom } from 'jotai';
-import RadixButton from '../../ui/RadixButton/RadixButton';
 import { authAtom } from '<root>/app/atom/authAtom';
+import RadixButton from '../../ui/RadixButton/RadixButton';
 
 interface landingPageHeaderProps {
   handleLoginClick: () => void;
 }
 
-const LandingPageHeader = ({ handleLoginClick }: landingPageHeaderProps) => {
+function LandingPageHeader({ handleLoginClick }: landingPageHeaderProps) {
   const [user, setUser] = useAtom(authAtom);
 
   const handleLogOut = () => {
@@ -24,9 +24,7 @@ const LandingPageHeader = ({ handleLoginClick }: landingPageHeaderProps) => {
 
       <span className="flex gap-4">
         {isUserLoggedIn ? (
-          <>
-            <RadixButton onClick={handleLogOut}>Log out</RadixButton>
-          </>
+          <RadixButton onClick={handleLogOut}>Log out</RadixButton>
         ) : (
           <>
             <RadixButton onClick={handleLoginClick}>LOGIN</RadixButton>
@@ -36,6 +34,6 @@ const LandingPageHeader = ({ handleLoginClick }: landingPageHeaderProps) => {
       </span>
     </header>
   );
-};
+}
 
 export default LandingPageHeader;

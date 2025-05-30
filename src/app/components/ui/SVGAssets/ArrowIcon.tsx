@@ -2,7 +2,7 @@ interface ArrowIconProps {
   className?: string;
 }
 
-const ArrowIcon = ({ className = '' }: ArrowIconProps) => {
+function ArrowIcon({ className = '' }: ArrowIconProps) {
   return (
     <svg
       className={className}
@@ -11,11 +11,11 @@ const ArrowIcon = ({ className = '' }: ArrowIconProps) => {
     >
       <g data-name="Layer 2">
         <g data-name="Layer 1">
-          <polyline points="6 1 1 6 6 11"></polyline>
+          <polyline points="6 1 1 6 6 11" />
         </g>
       </g>
     </svg>
   );
-};
+}
 
 export default ArrowIcon;

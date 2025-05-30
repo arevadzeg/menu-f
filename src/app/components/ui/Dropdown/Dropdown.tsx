@@ -18,12 +18,12 @@ interface DropdownMenuProps<
   Trigger?: () => JSX.Element;
 }
 
-const DropdownMenuComponent = <OptionType extends DefaultDropdownMenuItem>({
+function DropdownMenuComponent<OptionType extends DefaultDropdownMenuItem>({
   options,
   selectedValue,
   onChange,
   Trigger,
-}: DropdownMenuProps<OptionType>) => {
+}: DropdownMenuProps<OptionType>) {
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
@@ -56,12 +56,14 @@ const DropdownMenuComponent = <OptionType extends DefaultDropdownMenuItem>({
               <DropdownMenu.ItemIndicator className="DropdownMenuItemIndicator">
                 <CheckIcon />
               </DropdownMenu.ItemIndicator>
-              {item.label}{' '}
+              {item.label}
+              {' '}
               {item.icon && (
                 <div className="RightSlot">
                   <item.icon />
                 </div>
-              )}{' '}
+              )}
+              {' '}
             </DropdownMenu.CheckboxItem>
           ))}
 
@@ -70,6 +72,6 @@ const DropdownMenuComponent = <OptionType extends DefaultDropdownMenuItem>({
       </DropdownMenu.Portal>
     </DropdownMenu.Root>
   );
-};
+}
 
 export default DropdownMenuComponent;

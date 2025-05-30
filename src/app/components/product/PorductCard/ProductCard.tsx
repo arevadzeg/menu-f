@@ -72,7 +72,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           className="absolute top-8 right-6 p-2 bg-red-500 text-white rounded-lg hover:bg-red-700 transition-colors cursor-pointer"
           onPointerDown={(e) => handleDeleteProduce(e)}
         >
-          {deleteProduct.isPending ? <Spinner size={'2'} /> : <TrashIcon />}
+          {deleteProduct.isPending ? <Spinner size="2" /> : <TrashIcon />}
         </div>
       )}
       {isAdmin && (
@@ -101,7 +101,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             WebkitBoxOrient: 'vertical',
           }}
           dangerouslySetInnerHTML={{ __html: product.description }}
-        ></span>
+        />
         <span className="absolute py-2 text-white rounded-lg top-[99%] left-[50%] w-[90%] text-center bg-primary transform -translate-x-1/2 -translate-y-1/2">
           {product.price}
         </span>

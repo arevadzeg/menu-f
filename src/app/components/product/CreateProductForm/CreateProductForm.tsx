@@ -1,6 +1,4 @@
 import { useForm } from 'react-hook-form';
-import TextField from '../../ui/TextField/TextField';
-import FileUpload from '../../ui/Upload/Upload';
 import {
   useUpdateProduct,
   useCreateProduct,
@@ -8,23 +6,27 @@ import {
 import { ChangeEvent, useEffect, useState } from 'react';
 import useUploadFile from '<root>/app/api/hooks/upload/useUploadImage';
 import { useQueryClient } from '@tanstack/react-query';
+import { Product } from '<root>/app/api/hooks/product/InterfaceProduct';
+import { useGetScrapeProductFromAnotherSite } from '<root>/app/api/hooks/scrape/useGetScrapeProductFromAnotherSite';
 import Backdrop from '../../ui/Backdrop/Backdrop';
 import RichTextEditor from '../../ui/RichTextEditor/RichTextEditor';
 import RadixButton from '../../ui/RadixButton/RadixButton';
-import { Product } from '<root>/app/api/hooks/product/InterfaceProduct';
-import { useGetScrapeProductFromAnotherSite } from '<root>/app/api/hooks/scrape/useGetScrapeProductFromAnotherSite';
+import FileUpload from '../../ui/Upload/Upload';
+import TextField from '../../ui/TextField/TextField';
 
 interface CreateProductFormProps {
   isUpdateMode?: boolean;
   productData?: Product;
   closeModal?: () => void;
 }
-const CreateProductForm = ({
+function CreateProductForm({
   isUpdateMode,
   productData,
   closeModal,
-}: CreateProductFormProps) => {
-  const { register, handleSubmit, setValue, reset } = useForm({
+}: CreateProductFormProps) {
+  const {
+    register, handleSubmit, setValue, reset,
+  } = useForm({
     defaultValues: {
       title: productData?.title,
       price: productData?.price,
@@ -60,7 +62,7 @@ const CreateProductForm = ({
     event: ChangeEvent<HTMLInputElement>,
     name: 'title' | 'price',
   ) => {
-    const value = event.target.value;
+    const { value } = event.target;
     setValue(name, value);
   };
 
@@ -82,10 +84,10 @@ const CreateProductForm = ({
         imageUrl = uploadResponse.downloadURL;
       }
 
-      const image = imageUrl ? imageUrl : (scrapedData?.image ?? '');
+      const image = imageUrl || (scrapedData?.image ?? '');
 
       await mutation.mutateAsync({
-        image: image,
+        image,
         price: Number(data.price),
         title: data.title,
         id: productData?.id ?? '',
@@ -158,6 +160,6 @@ const CreateProductForm = ({
       </form>
     </span>
   );
-};
+}
 
 export default CreateProductForm;

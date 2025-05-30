@@ -10,17 +10,21 @@ interface PopoverProps {
   children: JSX.Element;
 }
 
-const PopoverDemo = ({ open, onClose, content, children }: PopoverProps) => (
-  <Popover.Root open={open} onOpenChange={(open) => !open && onClose()}>
-    <Popover.Trigger asChild>{children}</Popover.Trigger>
-    <Popover.Portal>
-      <Popover.Content className="PopoverContent" sideOffset={5}>
-        {content}
+function PopoverDemo({
+  open, onClose, content, children,
+}: PopoverProps) {
+  return (
+    <Popover.Root open={open} onOpenChange={(open) => !open && onClose()}>
+      <Popover.Trigger asChild>{children}</Popover.Trigger>
+      <Popover.Portal>
+        <Popover.Content className="PopoverContent" sideOffset={5}>
+          {content}
 
-        <Popover.Arrow className="PopoverArrow" />
-      </Popover.Content>
-    </Popover.Portal>
-  </Popover.Root>
-);
+          <Popover.Arrow className="PopoverArrow" />
+        </Popover.Content>
+      </Popover.Portal>
+    </Popover.Root>
+  );
+}
 
 export default PopoverDemo;

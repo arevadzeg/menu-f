@@ -4,17 +4,16 @@ import {
   useUpdateStore,
 } from '<root>/app/api/hooks/store/useStoreMutations';
 import { Dispatch, useState } from 'react';
-import { useAtom } from 'jotai';
+import { useAtom, SetStateAction } from 'jotai';
 import { authAtom } from '<root>/app/atom/authAtom';
 import { useQueryClient } from '@tanstack/react-query';
 import { Button } from '@radix-ui/themes';
-import TextField from '../../ui/TextField/TextField';
-import { SetStateAction } from 'jotai';
-import FileUpload from '../../ui/Upload/Upload';
 import useUploadFile from '<root>/app/api/hooks/upload/useUploadImage';
 import { useGetStore } from '<root>/app/api/hooks/store/useGetStore';
-import ColorPicker from '../../ui/ColorPicker/ColorPicker';
 import { DEFAULT_THEME_COLOR } from '<root>/app/constants/constants';
+import FileUpload from '../../ui/Upload/Upload';
+import TextField from '../../ui/TextField/TextField';
+import ColorPicker from '../../ui/ColorPicker/ColorPicker';
 import {
   emailPattern,
   facebookPattern,
@@ -27,10 +26,10 @@ interface CreateStoreFormProps {
   setIsCreateStoreModal?: Dispatch<SetStateAction<boolean>>;
 }
 
-const CreateStoreForm = ({
+function CreateStoreForm({
   setIsCreateStoreModal,
   isCreateMode = false,
-}: CreateStoreFormProps) => {
+}: CreateStoreFormProps) {
   const { data: store } = useGetStore();
 
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -56,7 +55,9 @@ const CreateStoreForm = ({
 
       if (user) {
         await storeMutation.mutateAsync(
-          { ...data, userId: user.user.id, image: imageUrl, theme: color },
+          {
+            ...data, userId: user.user.id, image: imageUrl, theme: color,
+          },
           {
             onSuccess: () => {
               setIsCreateStoreModal && setIsCreateStoreModal(false);
@@ -153,13 +154,15 @@ const CreateStoreForm = ({
       </Button>
     </form>
   );
-};
+}
 
-const FormField = ({ label, register, error }: any) => (
-  <div>
-    <TextField {...register} placeholder={label} />
-    <p className="text-red-500 h-6">{error?.message || ''}</p>
-  </div>
-);
+function FormField({ label, register, error }: any) {
+  return (
+    <div>
+      <TextField {...register} placeholder={label} />
+      <p className="text-red-500 h-6">{error?.message || ''}</p>
+    </div>
+  );
+}
 
 export default CreateStoreForm;

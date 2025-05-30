@@ -1,10 +1,10 @@
 import { Dispatch, SetStateAction, useState } from 'react';
-import Modal from '../../ui/Modal/Modal';
-import TextField from '../../ui/TextField/TextField';
-import RadixButton from '../../ui/RadixButton/RadixButton';
 import { useLogin } from '<root>/app/api/hooks/auth/useLogin';
 import { useAtom } from 'jotai';
 import { authAtom } from '<root>/app/atom/authAtom';
+import Modal from '../../ui/Modal/Modal';
+import TextField from '../../ui/TextField/TextField';
+import RadixButton from '../../ui/RadixButton/RadixButton';
 import './loginModal.scss';
 
 interface LoginModalProps {
@@ -12,10 +12,10 @@ interface LoginModalProps {
   setIsLoginModalOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-const LoginModal = ({
+function LoginModal({
   isLoginModalOpen,
   setIsLoginModalOpen,
-}: LoginModalProps) => {
+}: LoginModalProps) {
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [userName, setUserName] = useState('');
   const [passWord, setPassword] = useState('');
@@ -85,6 +85,6 @@ const LoginModal = ({
       </div>
     </Modal>
   );
-};
+}
 
 export default LoginModal;

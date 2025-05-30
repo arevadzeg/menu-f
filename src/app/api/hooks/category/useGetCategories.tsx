@@ -10,11 +10,9 @@ const useGetCategories = () => {
 
   return useQuery<Category[], Error>({
     queryKey: ['category'],
-    queryFn: () => {
-      return apiClient
-        .get(`${API_ENDPOINTS.STORE.GET_CATEGORIES}/${storeId}`)
-        .then((res) => res.data);
-    },
+    queryFn: () => apiClient
+      .get(`${API_ENDPOINTS.STORE.GET_CATEGORIES}/${storeId}`)
+      .then((res) => res.data),
     enabled: !!storeId,
   });
 };

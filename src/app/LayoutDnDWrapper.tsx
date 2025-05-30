@@ -6,16 +6,16 @@ import {
   pointerWithin,
 } from '@dnd-kit/core';
 import { useParams, useRouter } from 'next/navigation';
-import { useUpdateProduct } from './api/hooks/product/useProductMutations';
 import { useAtom } from 'jotai';
-import { draggingCardAtom } from './atom/draggingCardAtom';
 import { useQueryClient } from '@tanstack/react-query';
 import { isString } from 'lodash';
-import ProductCardSmall from './components/product/PorductCard/Components/ProductCardSmall/ProductCardSmall';
 import { snapCenterToCursor } from '@dnd-kit/modifiers';
+import ProductCardSmall from './components/product/PorductCard/Components/ProductCardSmall/ProductCardSmall';
+import { draggingCardAtom } from './atom/draggingCardAtom';
+import { useUpdateProduct } from './api/hooks/product/useProductMutations';
 import { useGetStore } from './api/hooks/store/useGetStore';
 
-const LayoutDnDWrapper = ({ children }: any) => {
+function LayoutDnDWrapper({ children }: any) {
   const [product, setProduct] = useAtom(draggingCardAtom);
   const { data: store } = useGetStore();
   const router = useRouter();
@@ -58,8 +58,7 @@ const LayoutDnDWrapper = ({ children }: any) => {
 
   const invalidateProductCategoryQueries = (categoryId: string) => {
     queryClient.invalidateQueries({
-      predicate: (query) =>
-        Array.isArray(query.queryKey) && query.queryKey.includes(categoryId),
+      predicate: (query) => Array.isArray(query.queryKey) && query.queryKey.includes(categoryId),
     });
   };
 
@@ -76,6 +75,6 @@ const LayoutDnDWrapper = ({ children }: any) => {
       </DragOverlay>
     </DndContext>
   );
-};
+}
 
 export default LayoutDnDWrapper;

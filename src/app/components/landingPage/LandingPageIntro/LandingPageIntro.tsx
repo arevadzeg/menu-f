@@ -54,62 +54,66 @@ const featureCards = [
   },
 ];
 
-const LandingPageIntro = () => (
-  <div className="landing-container">
-    <motion.h1
-      initial={{ opacity: 0, y: -14 }}
-      animate={{
-        opacity: 1,
-        y: 0,
-        color: ['#FE05F7', '#F2562F', '#FE05F7'],
-      }}
-      transition={transitionSettings}
-      className="landing-title"
-    >
-      Build Your QR Menu with Ease
-    </motion.h1>
+function LandingPageIntro() {
+  return (
+    <div className="landing-container">
+      <motion.h1
+        initial={{ opacity: 0, y: -14 }}
+        animate={{
+          opacity: 1,
+          y: 0,
+          color: ['#FE05F7', '#F2562F', '#FE05F7'],
+        }}
+        transition={transitionSettings}
+        className="landing-title"
+      >
+        Build Your QR Menu with Ease
+      </motion.h1>
 
-    <motion.p
-      className="landing-subtitle"
-      initial={{ opacity: 0, y: -14 }}
-      animate={{
-        opacity: 1,
-        y: 0,
-        color: ['#FE05F7', '#F2562F', '#FE05F7'],
-      }}
-      transition={transitionSettings}
-    >
-      Create, Customize, and Share Your Menu Instantly.
-    </motion.p>
+      <motion.p
+        className="landing-subtitle"
+        initial={{ opacity: 0, y: -14 }}
+        animate={{
+          opacity: 1,
+          y: 0,
+          color: ['#FE05F7', '#F2562F', '#FE05F7'],
+        }}
+        transition={transitionSettings}
+      >
+        Create, Customize, and Share Your Menu Instantly.
+      </motion.p>
 
-    <motion.button
-      initial={{ scale: 0.9, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className="cta-button"
-      whileHover={buttonHoverSettings}
-      whileTap={buttonTapSettings}
-    >
-      Get Started
-    </motion.button>
+      <motion.button
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="cta-button"
+        whileHover={buttonHoverSettings}
+        whileTap={buttonTapSettings}
+      >
+        Get Started
+      </motion.button>
 
-    <div className="features-container">
-      {featureCards.map(
-        ({ title, description, textClass, animation }, index) => (
-          <motion.div
-            key={index}
-            initial={animation.initial}
-            animate={animation.animate}
-            transition={{ duration: 0.8 }}
-            className="feature-card"
-          >
-            <h3 className={`feature-title ${textClass}`}>{title}</h3>
-            <p className="feature-description">{description}</p>
-          </motion.div>
-        ),
-      )}
+      <div className="features-container">
+        {featureCards.map(
+          ({
+            title, description, textClass, animation,
+          }, index) => (
+            <motion.div
+              key={index}
+              initial={animation.initial}
+              animate={animation.animate}
+              transition={{ duration: 0.8 }}
+              className="feature-card"
+            >
+              <h3 className={`feature-title ${textClass}`}>{title}</h3>
+              <p className="feature-description">{description}</p>
+            </motion.div>
+          ),
+        )}
+      </div>
     </div>
-  </div>
-);
+  );
+}
 
 export default LandingPageIntro;

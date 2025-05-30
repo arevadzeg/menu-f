@@ -14,16 +14,12 @@ interface useGetScrapeProductFromAnotherSiteProps {
 
 export const useGetScrapeProductFromAnotherSite = ({
   url,
-}: useGetScrapeProductFromAnotherSiteProps) => {
-  return useQuery<ScrapedData, Error>({
-    queryKey: ['scraped-data', url],
-    queryFn: () => {
-      return apiClient
-        .post(`${API_ENDPOINTS.SCRAPE.GET_SCRAPE_PRODUCT_FROM_ANOTHER_SITE}`, {
-          url,
-        })
-        .then((res) => res.data);
-    },
-    enabled: false,
-  });
-};
+}: useGetScrapeProductFromAnotherSiteProps) => useQuery<ScrapedData, Error>({
+  queryKey: ['scraped-data', url],
+  queryFn: () => apiClient
+    .post(`${API_ENDPOINTS.SCRAPE.GET_SCRAPE_PRODUCT_FROM_ANOTHER_SITE}`, {
+      url,
+    })
+    .then((res) => res.data),
+  enabled: false,
+});

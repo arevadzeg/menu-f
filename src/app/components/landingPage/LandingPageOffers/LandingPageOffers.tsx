@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 
-const LandingPageOffers = () => {
+function LandingPageOffers() {
   const containerRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
@@ -96,6 +96,6 @@ const LandingPageOffers = () => {
       </motion.div>
     </div>
   );
-};
+}
 
 export default LandingPageOffers;

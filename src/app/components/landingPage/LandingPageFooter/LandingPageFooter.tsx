@@ -1,5 +1,5 @@
-const LandingPageFooter = () => {
-  //TODO REFACTOR
+function LandingPageFooter() {
+  // TODO REFACTOR
   return (
     <footer
       className="text-gray-400 bg-gray-900 py-8"
@@ -119,7 +119,7 @@ const LandingPageFooter = () => {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-gray-700 my-8"></div>
+        <div className="border-t border-gray-700 my-8" />
 
         {/* Social Media and Legal Section */}
         <div className="flex flex-col sm:flex-row justify-between text-sm">
@@ -156,6 +156,6 @@ const LandingPageFooter = () => {
       </div>
     </footer>
   );
-};
+}
 
 export default LandingPageFooter;

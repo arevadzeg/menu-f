@@ -53,8 +53,8 @@ export interface TooltipProps extends PropsWithChildren {
    * Props to control the tooltip from the outside
    */
   controlProps?: Pick<
-    RadixTooltip.TooltipProps,
-    'open' | 'onOpenChange' | 'delayDuration'
+  RadixTooltip.TooltipProps,
+  'open' | 'onOpenChange' | 'delayDuration'
   > & {
     /**
      * ❗️Be careful❗️
@@ -64,7 +64,7 @@ export interface TooltipProps extends PropsWithChildren {
   };
 }
 
-export const Tooltip = ({
+export function Tooltip({
   arrowClassName,
   children,
   content,
@@ -74,7 +74,7 @@ export const Tooltip = ({
   state: { isDisabled = false, isDefaultOpen = false } = {},
   controlProps = {},
   placement,
-}: TooltipProps) => {
+}: TooltipProps) {
   const [isOpen, setIsOpen] = useState<boolean>(isDefaultOpen ?? false);
 
   const {
@@ -138,4 +138,4 @@ export const Tooltip = ({
       </RadixTooltip.Root>
     </RadixTooltip.Provider>
   );
-};
+}

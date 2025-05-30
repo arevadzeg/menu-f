@@ -1,4 +1,4 @@
-const FacebookIcon = () => {
+function FacebookIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -17,6 +17,6 @@ const FacebookIcon = () => {
       />
     </svg>
   );
-};
+}
 
 export default FacebookIcon;

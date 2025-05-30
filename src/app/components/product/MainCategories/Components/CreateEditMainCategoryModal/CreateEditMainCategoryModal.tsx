@@ -16,12 +16,12 @@ interface CreateEditMainCategoryModalProps {
   isModalOpen: boolean;
 }
 
-const CreateEditMainCategoryModal = ({
+function CreateEditMainCategoryModal({
   handleCloseModal,
   isModalOpen,
-}: CreateEditMainCategoryModalProps) => {
+}: CreateEditMainCategoryModalProps) {
   const [isAddNewCategory, setIsAddNewCategory] = useState<
-    'Create' | 'Edit' | null
+  'Create' | 'Edit' | null
   >(null);
   const [newCategoryName, setNewCategoryName] = useState('');
   const [categoryToUpdateId, setCategoryToUpdateId] = useState<string | null>(
@@ -33,10 +33,9 @@ const CreateEditMainCategoryModal = ({
   const updateCategory = useUpdateCategory();
   const deleteCategory = useDeleteCategory();
 
-  const isCreateUpdateLoading =
-    isAddNewCategory === 'Create'
-      ? createCategory.isPending
-      : updateCategory.isPending;
+  const isCreateUpdateLoading = isAddNewCategory === 'Create'
+    ? createCategory.isPending
+    : updateCategory.isPending;
 
   const handleCreateCategory = () => {
     createCategory.mutate(
@@ -90,7 +89,7 @@ const CreateEditMainCategoryModal = ({
 
         <RadixButton
           onClick={() => {
-            setIsAddNewCategory((prev) => (!!prev ? null : 'Create'));
+            setIsAddNewCategory((prev) => (prev ? null : 'Create'));
           }}
           className="mb-4"
         >
@@ -107,9 +106,10 @@ const CreateEditMainCategoryModal = ({
             <RadixButton
               onClick={() => {
                 if (isAddNewCategory === 'Create') handleCreateCategory();
-                else
-                  categoryToUpdateId &&
-                    handleUpdateCategory(categoryToUpdateId);
+                else {
+                  categoryToUpdateId
+                    && handleUpdateCategory(categoryToUpdateId);
+                }
               }}
               loading={isCreateUpdateLoading}
             >
@@ -118,8 +118,8 @@ const CreateEditMainCategoryModal = ({
           </div>
         ) : (
           <div className="overflow-auto max-h-[50vh]">
-            {categories &&
-              categories.map((category) => (
+            {categories
+              && categories.map((category) => (
                 <div
                   key={category.id}
                   className="flex justify-between items-center p-2 bg-white rounded-lg shadow-sm mb-2 hover:bg-gray-50 transition duration-200"
@@ -134,9 +134,7 @@ const CreateEditMainCategoryModal = ({
                     </div>
                     <div
                       className="cursor-pointer"
-                      onClick={() =>
-                        handleEditCategory(category.name, category.id)
-                      }
+                      onClick={() => handleEditCategory(category.name, category.id)}
                     >
                       <Pencil1Icon />
                     </div>
@@ -148,6 +146,6 @@ const CreateEditMainCategoryModal = ({
       </div>
     </Modal>
   );
-};
+}
 
 export default CreateEditMainCategoryModal;

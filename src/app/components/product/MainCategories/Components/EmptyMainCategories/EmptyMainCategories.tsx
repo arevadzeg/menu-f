@@ -4,12 +4,12 @@ interface EmptyMainCategoriesProps {
   onCreateFilter: () => void;
 }
 
-const EmptyMainCategories = ({ onCreateFilter }: EmptyMainCategoriesProps) => {
+function EmptyMainCategories({ onCreateFilter }: EmptyMainCategoriesProps) {
   return (
     <div className="p-4  flex justify-center shadow-sm">
       <RadixButton onClick={onCreateFilter}>Create Category</RadixButton>
     </div>
   );
-};
+}
 
 export default EmptyMainCategories;

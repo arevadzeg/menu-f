@@ -19,18 +19,18 @@ interface CreateEditSubCategoryModalProps {
 
 // TODO HARD CORED COLORS
 
-const CreateEditSubCategoryModal = ({
+function CreateEditSubCategoryModal({
   isModalOpen,
   handleCloseModal,
-}: CreateEditSubCategoryModalProps) => {
+}: CreateEditSubCategoryModalProps) {
   const { categoryId } = useParams();
 
   const [newSubCategoryName, setNewSubCategoryName] = useState('');
   const [subCategoryToUpdateId, setSubCategoryToUpdateId] = useState<
-    string | null
+  string | null
   >(null);
   const [isAddNewSubCategory, setIsAddNewSubCategory] = useState<
-    'Create' | 'Edit' | null
+  'Create' | 'Edit' | null
   >(null);
 
   const { data: categories } = useGetCategories();
@@ -87,9 +87,7 @@ const CreateEditSubCategoryModal = ({
         <div className="p-4">
           <h2 className="text-xl font-bold mb-4">Edit Subcategories</h2>
           <RadixButton
-            onClick={() =>
-              setIsAddNewSubCategory((prev) => (!!prev ? null : 'Create'))
-            }
+            onClick={() => setIsAddNewSubCategory((prev) => (prev ? null : 'Create'))}
             className="mb-4"
           >
             {isAddNewSubCategory ? 'Back' : 'Add New Subcategory'}
@@ -110,8 +108,8 @@ const CreateEditSubCategoryModal = ({
             </div>
           )}
 
-          {!isAddNewSubCategory &&
-            category?.subCategories?.map((subCategory) => (
+          {!isAddNewSubCategory
+            && category?.subCategories?.map((subCategory) => (
               <div
                 key={subCategory.id}
                 className="flex justify-between items-center p-2  rounded-lg shadow-sm mb-2  transition duration-200"
@@ -126,9 +124,7 @@ const CreateEditSubCategoryModal = ({
                   </div>
                   <div
                     className="cursor-pointer edit-product"
-                    onClick={() =>
-                      handleEditSubCategory(subCategory.name, subCategory.id)
-                    }
+                    onClick={() => handleEditSubCategory(subCategory.name, subCategory.id)}
                   >
                     <Pencil1Icon />
                   </div>
@@ -139,6 +135,6 @@ const CreateEditSubCategoryModal = ({
       </>
     </Modal>
   );
-};
+}
 
 export default CreateEditSubCategoryModal;

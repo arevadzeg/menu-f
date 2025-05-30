@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
+import { AxiosResponse } from 'axios';
 import apiClient from '../../apiClient';
 import API_ENDPOINTS from '../../endpoints';
-import { AxiosResponse } from 'axios';
 import { User } from './interfaceUser';
 
 interface LoginPayload {
@@ -14,14 +14,12 @@ export interface AuthResponse {
   token: string;
 }
 
-export const useLogin = () => {
-  return useMutation<AuthResponse, Error, LoginPayload>({
-    mutationFn: async (loginPayload: LoginPayload) => {
-      const response = await apiClient.post<
-        AuthResponse,
-        AxiosResponse<AuthResponse>
-      >(`${API_ENDPOINTS.AUTH.LOGIN}`, loginPayload);
-      return response.data;
-    },
-  });
-};
+export const useLogin = () => useMutation<AuthResponse, Error, LoginPayload>({
+  mutationFn: async (loginPayload: LoginPayload) => {
+    const response = await apiClient.post<
+    AuthResponse,
+    AxiosResponse<AuthResponse>
+    >(`${API_ENDPOINTS.AUTH.LOGIN}`, loginPayload);
+    return response.data;
+  },
+});

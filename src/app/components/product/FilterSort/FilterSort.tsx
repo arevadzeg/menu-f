@@ -1,18 +1,18 @@
 import { ChangeEvent, useState, useCallback } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import DropdownMenuComponent from '../../ui/Dropdown/Dropdown';
 import {
   ArrowDownIcon,
   ArrowUpIcon,
   CaretSortIcon,
 } from '@radix-ui/react-icons';
-import TextField from '../../ui/TextField/TextField';
 import { debounce } from 'lodash';
+import { useAtom } from 'jotai';
+import { authAtom } from '<root>/app/atom/authAtom';
+import DropdownMenuComponent from '../../ui/Dropdown/Dropdown';
+import TextField from '../../ui/TextField/TextField';
 import Modal from '../../ui/Modal/Modal';
 import CreateProductForm from '../CreateProductForm/CreateProductForm';
 import RadixButton from '../../ui/RadixButton/RadixButton';
-import { useAtom } from 'jotai';
-import { authAtom } from '<root>/app/atom/authAtom';
 
 const options = [
   {
@@ -39,7 +39,7 @@ const options = [
 
 type OptionInterface = (typeof options)[number];
 
-const FilterSort = () => {
+function FilterSort() {
   const [sortOption, setSortOption] = useState<string | null>(null);
   const searchparams = useSearchParams();
   const [searchValue, setSearchValue] = useState(
@@ -57,13 +57,13 @@ const FilterSort = () => {
     debounce((value: string) => {
       const params = new URLSearchParams(window.location.search);
       params.set('search', value);
-      router.push(pathname + '?' + params.toString());
+      router.push(`${pathname}?${params.toString()}`);
     }, 500), // 500ms debounce
     [router, pathname],
   );
 
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
+    const { value } = event.target;
     setSearchValue(value);
     debouncedSearchChange(value);
   };
@@ -77,7 +77,7 @@ const FilterSort = () => {
       params.set('sort', sort);
       params.set('order', order);
 
-      router.push(pathname + '?' + params.toString());
+      router.push(`${pathname}?${params.toString()}`);
     }
   };
 
@@ -107,6 +107,6 @@ const FilterSort = () => {
       />
     </div>
   );
-};
+}
 
 export default FilterSort;

@@ -13,14 +13,14 @@ interface BreadCrumbProps {
 
 const SKELETON_BREADCRUMB = [1, 2];
 
-const Breadcrumb = ({ items }: BreadCrumbProps) => {
+function Breadcrumb({ items }: BreadCrumbProps) {
   const isLoading = items.length === 0;
 
   return (
     <nav aria-label="breadcrumb" className="flex items-center text-sm">
       <ol className="flex space-x-1 p-0 m-0 list-none">
-        {isLoading &&
-          SKELETON_BREADCRUMB.map((index) => (
+        {isLoading
+          && SKELETON_BREADCRUMB.map((index) => (
             <li key={index} className="flex items-center">
               <Skeleton width="100px" height="20px" />
               {index < items.length - 1 && (
@@ -50,6 +50,6 @@ const Breadcrumb = ({ items }: BreadCrumbProps) => {
       </ol>
     </nav>
   );
-};
+}
 
 export default Breadcrumb;

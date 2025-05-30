@@ -7,11 +7,11 @@ interface MainCategoriesDroppabeCardProps {
   handleNavigateToCategory: (categoryId: string) => void;
 }
 
-const MainCategoriesDroppabeCard = ({
+function MainCategoriesDroppabeCard({
   category,
   isSelected,
   handleNavigateToCategory,
-}: MainCategoriesDroppabeCardProps) => {
+}: MainCategoriesDroppabeCardProps) {
   const { setNodeRef } = useDroppable({
     id: category.id,
     data: {
@@ -29,6 +29,6 @@ const MainCategoriesDroppabeCard = ({
       <span>{category.name}</span>
     </div>
   );
-};
+}
 
 export default MainCategoriesDroppabeCard;

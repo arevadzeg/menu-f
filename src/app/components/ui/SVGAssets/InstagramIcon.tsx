@@ -1,4 +1,4 @@
-const InstagramIcon = () => {
+function InstagramIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -22,6 +22,6 @@ const InstagramIcon = () => {
       />
     </svg>
   );
-};
+}
 
 export default InstagramIcon;

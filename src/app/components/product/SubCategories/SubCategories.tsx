@@ -1,15 +1,15 @@
 import { useParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { GearIcon } from '@radix-ui/react-icons';
-import RadixButton from '../../ui/RadixButton/RadixButton';
 import useGetCategories from '<root>/app/api/hooks/category/useGetCategories';
 import { useAtom } from 'jotai';
 import { authAtom } from '<root>/app/atom/authAtom';
+import RadixButton from '../../ui/RadixButton/RadixButton';
 import SubCategoriesCard from './components/SubCategoriesDroppableCard/SubCategoriesDroppableCard';
 import EmptySubCategories from './components/EmptySubCategories/EmptySubCategories';
 import CreateEditSubCategoryModal from './components/CreateEditSubCategoryModal/CreateEditSubCategoryModal';
 
-const SubCategories = () => {
+function SubCategories() {
   const [user] = useAtom(authAtom);
   const isAdmin = !!user?.isTurnUserMode;
 
@@ -18,13 +18,12 @@ const SubCategories = () => {
   const { categoryId, appName, subCategoryId } = useParams();
 
   const [selectedSubCategoryId, setSelectedSubCategoryId] = useState<
-    string | null
+  string | null
   >(subCategoryId ? String(subCategoryId) : null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const category = categories?.find((cat) => cat.id === categoryId);
-  const isShowSubCategories =
-    category && (category.subCategories.length > 0 || isAdmin);
+  const isShowSubCategories = category && (category.subCategories.length > 0 || isAdmin);
 
   const handleNavigateToSubCategory = (subCategoryId: string) => {
     setSelectedSubCategoryId(subCategoryId);
@@ -49,7 +48,9 @@ const SubCategories = () => {
       {isShowSubCategories && (
         <>
           <h2 className="text-2xl font-bold mb-4 text-primaryText">
-            {category.name} Subcategories
+            {category.name}
+            {' '}
+            Subcategories
           </h2>
           <ul>
             {isAdmin && (
@@ -77,6 +78,6 @@ const SubCategories = () => {
       )}
     </div>
   );
-};
+}
 
 export default SubCategories;

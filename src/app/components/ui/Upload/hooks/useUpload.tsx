@@ -17,13 +17,9 @@ const useUpload = ({
   const alert = useAlert();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const isFileTypeValid = (file: File) => {
-    return allowedFileTypes.includes(file.type);
-  };
+  const isFileTypeValid = (file: File) => allowedFileTypes.includes(file.type);
 
-  const isImageFile = (file: File) => {
-    return file.type === 'image/jpeg' || file.type === 'image/png';
-  };
+  const isImageFile = (file: File) => file.type === 'image/jpeg' || file.type === 'image/png';
 
   const handleClick = () => {
     if (fileInputRef.current) {
@@ -39,7 +35,7 @@ const useUpload = ({
       );
     }
     if (!isFileTypeValid(file)) {
-      return alert(`Only JPG and PNG files are allowed.`, ALERT_TYPE.ERROR);
+      return alert('Only JPG and PNG files are allowed.', ALERT_TYPE.ERROR);
     }
     setSelectedFile(file);
     onUpload && onUpload(file);

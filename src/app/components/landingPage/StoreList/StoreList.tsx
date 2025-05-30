@@ -20,20 +20,18 @@ export default function StoreList({
       {isLoading && <Spinner />}
 
       <div className="flex flex-col items-center space-y-4 mt-6 w-4/5 ">
-        {allStores &&
-          allStores.map((store) => {
-            return (
-              <div
-                key={store.id}
-                className="w-4/5  text-center cursor-pointer p-4 border border-gray-300 rounded-lg shadow-md hover:bg-indigo-100 hover:shadow-lg transition-all duration-200 ease-in-out transform hover:-translate-y-1"
-                onClick={() => handleNavigateToStore(store.name)}
-              >
-                <p className="text-lg font-semibold text-gray-800">
-                  {store.name}
-                </p>
-              </div>
-            );
-          })}
+        {allStores
+          && allStores.map((store) => (
+            <div
+              key={store.id}
+              className="w-4/5  text-center cursor-pointer p-4 border border-gray-300 rounded-lg shadow-md hover:bg-indigo-100 hover:shadow-lg transition-all duration-200 ease-in-out transform hover:-translate-y-1"
+              onClick={() => handleNavigateToStore(store.name)}
+            >
+              <p className="text-lg font-semibold text-gray-800">
+                {store.name}
+              </p>
+            </div>
+          ))}
 
         <div
           className="w-4/5  text-center cursor-pointer p-4 border border-gray-300 rounded-lg shadow-md bg-indigo-500 text-white hover:bg-indigo-600 hover:shadow-lg transition-all duration-200 ease-in-out transform hover:-translate-y-1 flex items-center justify-center space-x-2"

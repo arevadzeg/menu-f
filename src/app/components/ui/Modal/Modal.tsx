@@ -11,7 +11,9 @@ interface ModalProps {
   contentClassName?: string;
 }
 
-const Modal = ({ children, isOpen, onClose, contentClassName }: ModalProps) => {
+function Modal({
+  children, isOpen, onClose, contentClassName,
+}: ModalProps) {
   const elementToMountModal = document.querySelector('.radix-themes');
 
   return (
@@ -20,7 +22,7 @@ const Modal = ({ children, isOpen, onClose, contentClassName }: ModalProps) => {
         <Dialog.Overlay className="DialogOverlay" />
         <Dialog.Content className={`DialogContent ${contentClassName}`}>
           <VisuallyHidden>
-            <Dialog.DialogTitle></Dialog.DialogTitle>
+            <Dialog.DialogTitle />
           </VisuallyHidden>
 
           {children}
@@ -33,6 +35,6 @@ const Modal = ({ children, isOpen, onClose, contentClassName }: ModalProps) => {
       </Dialog.Portal>
     </Dialog.Root>
   );
-};
+}
 
 export default Modal;

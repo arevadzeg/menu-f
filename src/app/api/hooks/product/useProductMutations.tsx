@@ -3,11 +3,11 @@ import {
   UseMutationResult,
   useQueryClient,
 } from '@tanstack/react-query';
+import { AxiosResponse } from 'axios';
+import { useParams, useSearchParams } from 'next/navigation';
 import apiClient from '../../apiClient';
 import API_ENDPOINTS from '../../endpoints';
-import { AxiosResponse } from 'axios';
 import removeFalseyValues from '../../../utils/removeFalseyValues';
-import { useParams, useSearchParams } from 'next/navigation';
 import { Product } from './InterfaceProduct';
 import { useGetStore } from '../store/useGetStore';
 
@@ -89,19 +89,18 @@ export const useUpdateProduct = () => {
             ...oldData,
             pages: oldData.pages.map((page: any) => ({
               ...page,
-              products: page.products.filter((p: any) => {
-                return p.id !== updatedProduct.id;
-              }),
+              products: page.products.filter((p: any) => p.id !== updatedProduct.id),
             })),
           };
         },
       );
       queryClient.setQueryData(queryKey, (oldData: any) => {
-        if (!oldData)
+        if (!oldData) {
           return {
             pages: [{ products: [updatedProduct], totalCount: 1 }],
             pageParams: [1],
           };
+        }
 
         return {
           ...oldData,
@@ -133,9 +132,9 @@ export const useUpdateProduct = () => {
 
 // DELETE PRODUCT
 export const useDeleteProduct = (): UseMutationResult<
-  Product,
-  Error,
-  string
+Product,
+Error,
+string
 > => {
   const queryClient = useQueryClient();
 

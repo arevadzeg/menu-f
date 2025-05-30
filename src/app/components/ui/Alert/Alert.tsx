@@ -1,6 +1,5 @@
 import React from 'react';
-import { useAtom, useSetAtom } from 'jotai';
-import { atom } from 'jotai';
+import { useAtom, useSetAtom, atom } from 'jotai';
 
 export const alertAtom = atom<AlertState>({
   type: null,

@@ -8,7 +8,7 @@ import {
 import FacebookIcon from '../../ui/SVGAssets/FacebookIcon';
 import InstagramIcon from '../../ui/SVGAssets/InstagramIcon';
 
-const Footer = () => {
+function Footer() {
   const { data: store } = useGetStore();
 
   const isAddressAdded = store?.address;
@@ -23,17 +23,23 @@ const Footer = () => {
         <div className="flex gap-4">
           {isAddressAdded && (
             <div className="flex items-center gap-1 font-bold">
-              <SewingPinFilledIcon /> {store.address}
+              <SewingPinFilledIcon />
+              {' '}
+              {store.address}
             </div>
           )}
           {isPhoneAdded && (
             <div className="flex items-center gap-1 font-bold">
-              <MobileIcon /> {store.phone}
+              <MobileIcon />
+              {' '}
+              {store.phone}
             </div>
           )}
           {isEmailAdded && (
             <div className="flex items-center gap-1 font-bold">
-              <EnvelopeClosedIcon /> {store.email}
+              <EnvelopeClosedIcon />
+              {' '}
+              {store.email}
             </div>
           )}
         </div>
@@ -61,6 +67,6 @@ const Footer = () => {
       </div>
     </footer>
   );
-};
+}
 
 export default Footer;

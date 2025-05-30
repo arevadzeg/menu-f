@@ -2,14 +2,14 @@ import {
   ExclamationTriangleIcon,
   PlusCircledIcon,
 } from '@radix-ui/react-icons';
-import RadixButton from '../../../ui/RadixButton/RadixButton';
-import Modal from '../../../ui/Modal/Modal';
-import CreateProductForm from '../../../product/CreateProductForm/CreateProductForm';
 import { useState } from 'react';
 import { useAtom } from 'jotai';
 import { authAtom } from '<root>/app/atom/authAtom';
+import RadixButton from '../../../ui/RadixButton/RadixButton';
+import Modal from '../../../ui/Modal/Modal';
+import CreateProductForm from '../../../product/CreateProductForm/CreateProductForm';
 
-const EmptyProductView = () => {
+function EmptyProductView() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [user] = useAtom(authAtom);
   const isAdmin = !!user?.isTurnUserMode;
@@ -43,6 +43,6 @@ const EmptyProductView = () => {
       </Modal>
     </div>
   );
-};
+}
 
 export default EmptyProductView;

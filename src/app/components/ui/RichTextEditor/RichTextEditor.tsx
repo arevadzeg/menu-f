@@ -29,7 +29,7 @@ interface RichTextEditorProps {
   onChange: (value: string) => void;
 }
 
-const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
+function RichTextEditor({ value, onChange }: RichTextEditorProps) {
   return (
     <ReactQuill
       value={value}
@@ -38,6 +38,6 @@ const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
       formats={formats}
     />
   );
-};
+}
 
 export default RichTextEditor;

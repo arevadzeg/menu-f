@@ -60,13 +60,19 @@ export const FileUpload: React.FC<FileUploadProps> = ({
 
         <UploadIcon className="upload-icon" />
         <p>
-          Drag and drop file here or{' '}
+          Drag and drop file here or
+          {' '}
           <span className="underline font-bold">Choose File</span>
         </p>
       </div>
       <span className="flex justify-between">
         <span>Supported formats: JPEG, PNG</span>
-        <span>Maximum size: {maxFileSize} MB</span>
+        <span>
+          Maximum size:
+          {maxFileSize}
+          {' '}
+          MB
+        </span>
       </span>
 
       {(selectedFile || hasUploadedImage) && (
@@ -92,12 +98,13 @@ export const FileUpload: React.FC<FileUploadProps> = ({
                 <div className="flex">
                   <div className="file-name">
                     {selectedFile && selectedFile.name}
-                    {uploadedImage &&
-                      !selectedFile &&
-                      getImageNameFromUrl(uploadedImage)}
+                    {uploadedImage
+                      && !selectedFile
+                      && getImageNameFromUrl(uploadedImage)}
                   </div>
                   <span>
-                    .{selectedFile ? selectedFile.name.split('.').pop() : ''}
+                    .
+                    {selectedFile ? selectedFile.name.split('.').pop() : ''}
                   </span>
                 </div>
                 <span className="file-size">
