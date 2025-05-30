@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import useGetInfiniteProducts from "<root>/app/api/hooks/product/useGetProducts";
-import InfiniteScroll from "react-infinite-scroll-component";
-import ProductCard from "../../product/PorductCard/ProductCard";
-import DraggableProductCard from "../../product/PorductCard/Components/DragableProductCard/DragableProductCard";
-import EmptyPorductView from "./EmptyPorductView/EmptyPorductView";
-import Modal from "../../ui/Modal/Modal";
-import CreateProductForm from "../../product/CreateProductForm/CreateProductForm";
-import { Product } from "<root>/app/api/hooks/product/InterfaceProduct";
+import React, { useState } from 'react';
+import useGetInfiniteProducts from '<root>/app/api/hooks/product/useGetProducts';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import ProductCard from '../../product/PorductCard/ProductCard';
+import DraggableProductCard from '../../product/PorductCard/Components/DragableProductCard/DragableProductCard';
+import EmptyPorductView from './EmptyPorductView/EmptyPorductView';
+import Modal from '../../ui/Modal/Modal';
+import CreateProductForm from '../../product/CreateProductForm/CreateProductForm';
+import { Product } from '<root>/app/api/hooks/product/InterfaceProduct';
 
 const skeletonArray = [...Array(5)].map(() => undefined);
 
@@ -35,7 +35,7 @@ const ProductViewLayout = () => {
       hasMore={Boolean(hasNextPage)}
       loader={<></>}
       style={{
-        overflow: "unset",
+        overflow: 'unset',
       }}
     >
       <div className="grid grid-cols-[repeat(auto-fill,minmax(240px,1fr))] gap-6 border border-dashed border-transparent">

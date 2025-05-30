@@ -1,4 +1,4 @@
-import { Skeleton } from "@radix-ui/themes";
+import { Skeleton } from '@radix-ui/themes';
 
 const SKELETON_CATEGORIES = [1, 2, 3, 4, 5, 9, 10];
 

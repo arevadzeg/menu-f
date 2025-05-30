@@ -1,5 +1,5 @@
-import { SubCategory } from "<root>/app/api/hooks/category/interfaceCategory";
-import { useDroppable } from "@dnd-kit/core";
+import { SubCategory } from '<root>/app/api/hooks/category/interfaceCategory';
+import { useDroppable } from '@dnd-kit/core';
 
 interface SubCategoriesCardProps {
   subCategory: SubCategory;
@@ -25,7 +25,7 @@ const SubCategoriesCard = ({
       ref={setNodeRef}
       key={subCategory.id}
       className={`cursor-pointer p-1 flex justify-between items-center underline ${
-        isSelected ? "text-primary" : ""
+        isSelected ? 'text-primary' : ''
       }`}
       onClick={() => handleNavigateToSubCategory(subCategory.id)}
     >

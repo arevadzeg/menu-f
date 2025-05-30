@@ -1,11 +1,11 @@
-import { Dispatch, SetStateAction, useState } from "react";
-import Modal from "../../ui/Modal/Modal";
-import TextField from "../../ui/TextField/TextField";
-import RadixButton from "../../ui/RadixButton/RadixButton";
-import { useLogin } from "<root>/app/api/hooks/auth/useLogin";
-import { useAtom } from "jotai";
-import { authAtom } from "<root>/app/atom/authAtom";
-import "./loginModal.scss";
+import { Dispatch, SetStateAction, useState } from 'react';
+import Modal from '../../ui/Modal/Modal';
+import TextField from '../../ui/TextField/TextField';
+import RadixButton from '../../ui/RadixButton/RadixButton';
+import { useLogin } from '<root>/app/api/hooks/auth/useLogin';
+import { useAtom } from 'jotai';
+import { authAtom } from '<root>/app/atom/authAtom';
+import './loginModal.scss';
 
 interface LoginModalProps {
   isLoginModalOpen: boolean;
@@ -17,8 +17,8 @@ const LoginModal = ({
   setIsLoginModalOpen,
 }: LoginModalProps) => {
   const [isLoginMode, setIsLoginMode] = useState(true);
-  const [userName, setUserName] = useState("");
-  const [passWord, setPassword] = useState("");
+  const [userName, setUserName] = useState('');
+  const [passWord, setPassword] = useState('');
   const [, setUser] = useAtom(authAtom);
 
   const toggaleLoginMode = () => setIsLoginMode((prev) => !prev);
@@ -50,8 +50,8 @@ const LoginModal = ({
         <h2 className="login-modal-title">Welcome Back!</h2>
         <p className="login-modal-subtitle">
           {isLoginMode
-            ? "Please log in to continue"
-            : "Please register to continue"}
+            ? 'Please log in to continue'
+            : 'Please register to continue'}
         </p>
         <TextField
           value={userName}
@@ -67,7 +67,7 @@ const LoginModal = ({
           className="login-modal-input"
         />
         <RadixButton onClick={handleLogin} className="login-modal-button">
-          {isLoginMode ? "Login" : "Register"}
+          {isLoginMode ? 'Login' : 'Register'}
         </RadixButton>
         <div className="login-modal-footer">
           <button className="login-modal-link">Forgot Password?</button>
@@ -75,10 +75,10 @@ const LoginModal = ({
           <hr />
           <span>
             <span>
-              {isLoginMode ? "Not member yet? " : "Already have an account "}
+              {isLoginMode ? 'Not member yet? ' : 'Already have an account '}
             </span>
             <button className="login-modal-link" onClick={toggaleLoginMode}>
-              {isLoginMode ? "Create an Account" : "Login"}
+              {isLoginMode ? 'Create an Account' : 'Login'}
             </button>
           </span>
         </div>

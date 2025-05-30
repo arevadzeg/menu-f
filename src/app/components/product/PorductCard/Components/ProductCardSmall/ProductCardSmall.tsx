@@ -1,5 +1,5 @@
-import React from "react";
-import { Product } from "<root>/app/api/hooks/product/InterfaceProduct";
+import React from 'react';
+import { Product } from '<root>/app/api/hooks/product/InterfaceProduct';
 
 interface ProductCardSmallProps {
   product: Product;

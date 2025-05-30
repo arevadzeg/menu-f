@@ -2,15 +2,15 @@ import {
   useCreateSubCategory,
   useDeleteSubCategory,
   useUpdateSubCategory,
-} from "<root>/app/api/hooks/category/useCategoryMutations";
-import useGetCategories from "<root>/app/api/hooks/category/useGetCategories";
-import Backdrop from "<root>/app/components/ui/Backdrop/Backdrop";
-import Modal from "<root>/app/components/ui/Modal/Modal";
-import RadixButton from "<root>/app/components/ui/RadixButton/RadixButton";
-import TextField from "<root>/app/components/ui/TextField/TextField";
-import { Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
-import { useParams } from "next/navigation";
-import { useState } from "react";
+} from '<root>/app/api/hooks/category/useCategoryMutations';
+import useGetCategories from '<root>/app/api/hooks/category/useGetCategories';
+import Backdrop from '<root>/app/components/ui/Backdrop/Backdrop';
+import Modal from '<root>/app/components/ui/Modal/Modal';
+import RadixButton from '<root>/app/components/ui/RadixButton/RadixButton';
+import TextField from '<root>/app/components/ui/TextField/TextField';
+import { Pencil1Icon, TrashIcon } from '@radix-ui/react-icons';
+import { useParams } from 'next/navigation';
+import { useState } from 'react';
 
 interface CreateEditSubCategoryModalProps {
   isModalOpen: boolean;
@@ -25,12 +25,12 @@ const CreateEditSubCategoryModal = ({
 }: CreateEditSubCategoryModalProps) => {
   const { categoryId } = useParams();
 
-  const [newSubCategoryName, setNewSubCategoryName] = useState("");
+  const [newSubCategoryName, setNewSubCategoryName] = useState('');
   const [subCategoryToUpdateId, setSubCategoryToUpdateId] = useState<
     string | null
   >(null);
   const [isAddNewSubCategory, setIsAddNewSubCategory] = useState<
-    "Create" | "Edit" | null
+    'Create' | 'Edit' | null
   >(null);
 
   const { data: categories } = useGetCategories();
@@ -41,13 +41,13 @@ const CreateEditSubCategoryModal = ({
   const category = categories?.find((cat) => cat.id === categoryId);
 
   const handleEditSubCategory = (name: string, id: string) => {
-    setIsAddNewSubCategory("Edit");
+    setIsAddNewSubCategory('Edit');
     setNewSubCategoryName(name);
     setSubCategoryToUpdateId(id);
   };
 
   const closeModalAndClearData = () => {
-    setNewSubCategoryName("");
+    setNewSubCategoryName('');
     handleCloseModal();
     setSubCategoryToUpdateId(null);
   };
@@ -64,9 +64,9 @@ const CreateEditSubCategoryModal = ({
   };
 
   const handleCreateOrUpdateSubCategory = () => {
-    if (isAddNewSubCategory === "Create") {
+    if (isAddNewSubCategory === 'Create') {
       createSubCategory.mutate(
-        { subCategoryName: newSubCategoryName, categoryId: category?.id ?? "" },
+        { subCategoryName: newSubCategoryName, categoryId: category?.id ?? '' },
         { onSuccess: closeModalAndClearData },
       );
     } else if (subCategoryToUpdateId) {
@@ -88,11 +88,11 @@ const CreateEditSubCategoryModal = ({
           <h2 className="text-xl font-bold mb-4">Edit Subcategories</h2>
           <RadixButton
             onClick={() =>
-              setIsAddNewSubCategory((prev) => (!!prev ? null : "Create"))
+              setIsAddNewSubCategory((prev) => (!!prev ? null : 'Create'))
             }
             className="mb-4"
           >
-            {isAddNewSubCategory ? "Back" : "Add New Subcategory"}
+            {isAddNewSubCategory ? 'Back' : 'Add New Subcategory'}
           </RadixButton>
 
           {isAddNewSubCategory && (
@@ -103,9 +103,9 @@ const CreateEditSubCategoryModal = ({
                 className="mb-2"
               />
               <RadixButton onClick={handleCreateOrUpdateSubCategory}>
-                {isAddNewSubCategory === "Create"
-                  ? "Create Subcategory"
-                  : "Update Subcategory"}
+                {isAddNewSubCategory === 'Create'
+                  ? 'Create Subcategory'
+                  : 'Update Subcategory'}
               </RadixButton>
             </div>
           )}

@@ -1,6 +1,6 @@
-import { useAtom } from "jotai";
-import RadixButton from "../../ui/RadixButton/RadixButton";
-import { authAtom } from "<root>/app/atom/authAtom";
+import { useAtom } from 'jotai';
+import RadixButton from '../../ui/RadixButton/RadixButton';
+import { authAtom } from '<root>/app/atom/authAtom';
 
 interface landingPageHeaderProps {
   handleLoginClick: () => void;

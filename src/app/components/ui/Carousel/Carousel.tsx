@@ -1,11 +1,11 @@
-import React, { useCallback } from "react";
-import useEmblaCarousel from "embla-carousel-react";
-import { ChevronRightIcon, ChevronLeftIcon } from "@radix-ui/react-icons";
-import MainCategoriesCard from "../../product/MainCategories/Components/MainCategoriesDroppableCard/MainCategoriesDroppabeCard";
-import { useParams, useRouter } from "next/navigation";
-import CarouselSkeleton from "./CarouselSkeleton";
-import useGetCategories from "<root>/app/api/hooks/category/useGetCategories";
-import "./carousel.scss";
+import React, { useCallback } from 'react';
+import useEmblaCarousel from 'embla-carousel-react';
+import { ChevronRightIcon, ChevronLeftIcon } from '@radix-ui/react-icons';
+import MainCategoriesCard from '../../product/MainCategories/Components/MainCategoriesDroppableCard/MainCategoriesDroppabeCard';
+import { useParams, useRouter } from 'next/navigation';
+import CarouselSkeleton from './CarouselSkeleton';
+import useGetCategories from '<root>/app/api/hooks/category/useGetCategories';
+import './carousel.scss';
 
 const Carousel: React.FC = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel();

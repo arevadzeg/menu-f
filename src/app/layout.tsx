@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import "./globals.css";
-import { Header } from "./components/layout/Header/Header";
-import Footer from "./components/layout/Footer/Footer";
-import Alert from "./components/ui/Alert/Alert";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Theme } from "@radix-ui/themes";
-import { useAtom } from "jotai";
-import { authAtom } from "./atom/authAtom";
-import { usePathname } from "next/navigation";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import LayoutDnDWrapper from "./LayoutDnDWrapper";
+import './globals.css';
+import { Header } from './components/layout/Header/Header';
+import Footer from './components/layout/Footer/Footer';
+import Alert from './components/ui/Alert/Alert';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Theme } from '@radix-ui/themes';
+import { useAtom } from 'jotai';
+import { authAtom } from './atom/authAtom';
+import { usePathname } from 'next/navigation';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import LayoutDnDWrapper from './LayoutDnDWrapper';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -30,7 +30,7 @@ export default function RootLayout({
   const [user] = useAtom(authAtom);
   const isAdmin = !!user?.isTurnUserMode;
   const location = usePathname();
-  const isLandingPage = location === "/";
+  const isLandingPage = location === '/';
 
   return (
     <html lang="en">
@@ -40,7 +40,7 @@ export default function RootLayout({
           <Theme>
             {!isLandingPage && <Header />}
             <div
-              className={`${isAdmin ? "is-admin-user" : ""} ${isLandingPage ? "" : "p-4"}`}
+              className={`${isAdmin ? 'is-admin-user' : ''} ${isLandingPage ? '' : 'p-4'}`}
             >
               {isAdmin ? (
                 <LayoutDnDWrapper>{children}</LayoutDnDWrapper>

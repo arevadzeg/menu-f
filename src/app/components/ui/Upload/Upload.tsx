@@ -1,7 +1,7 @@
-import React, { Dispatch, SetStateAction } from "react";
-import "./Upload.scss";
-import { UploadIcon } from "@radix-ui/react-icons";
-import useUpload from "./hooks/useUpload";
+import React, { Dispatch, SetStateAction } from 'react';
+import './Upload.scss';
+import { UploadIcon } from '@radix-ui/react-icons';
+import useUpload from './hooks/useUpload';
 
 interface FileUploadProps {
   maxFileSize?: number;
@@ -13,15 +13,15 @@ interface FileUploadProps {
 }
 
 const getImageNameFromUrl = (url: string): string => {
-  const parts = url.split("/");
+  const parts = url.split('/');
   const lastPart = parts[parts.length - 1];
-  const name = lastPart.split("?")[0];
+  const name = lastPart.split('?')[0];
   return decodeURIComponent(name);
 };
 
 export const FileUpload: React.FC<FileUploadProps> = ({
   maxFileSize = 50,
-  allowedFileTypes = ["image/jpeg", "image/png"],
+  allowedFileTypes = ['image/jpeg', 'image/png'],
   onUpload,
   selectedFile,
   setSelectedFile,
@@ -60,7 +60,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({
 
         <UploadIcon className="upload-icon" />
         <p>
-          Drag and drop file here or{" "}
+          Drag and drop file here or{' '}
           <span className="underline font-bold">Choose File</span>
         </p>
       </div>
@@ -97,13 +97,13 @@ export const FileUpload: React.FC<FileUploadProps> = ({
                       getImageNameFromUrl(uploadedImage)}
                   </div>
                   <span>
-                    .{selectedFile ? selectedFile.name.split(".").pop() : ""}
+                    .{selectedFile ? selectedFile.name.split('.').pop() : ''}
                   </span>
                 </div>
                 <span className="file-size">
                   {selectedFile
                     ? (selectedFile.size / 1024 / 1024).toFixed(2)
-                    : ""}
+                    : ''}
                 </span>
               </div>
             </div>

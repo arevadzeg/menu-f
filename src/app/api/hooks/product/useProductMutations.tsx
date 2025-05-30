@@ -2,14 +2,14 @@ import {
   useMutation,
   UseMutationResult,
   useQueryClient,
-} from "@tanstack/react-query";
-import apiClient from "../../apiClient";
-import API_ENDPOINTS from "../../endpoints";
-import { AxiosResponse } from "axios";
-import removeFalseyValues from "../../../utils/removeFalseyValues";
-import { useParams, useSearchParams } from "next/navigation";
-import { Product } from "./InterfaceProduct";
-import { useGetStore } from "../store/useGetStore";
+} from '@tanstack/react-query';
+import apiClient from '../../apiClient';
+import API_ENDPOINTS from '../../endpoints';
+import { AxiosResponse } from 'axios';
+import removeFalseyValues from '../../../utils/removeFalseyValues';
+import { useParams, useSearchParams } from 'next/navigation';
+import { Product } from './InterfaceProduct';
+import { useGetStore } from '../store/useGetStore';
 
 interface CreateProductPayload {
   title: string;
@@ -30,7 +30,7 @@ export const useCreateProduct = () => {
   const queryClient = useQueryClient();
   const { subCategoryId, categoryId } = useParams();
   const { data: store } = useGetStore();
-  const storeId = store?.id ?? "";
+  const storeId = store?.id ?? '';
 
   return useMutation<Product, Error, CreateProductPayload>({
     mutationFn: async (newProduct: CreateProductPayload) => {
@@ -41,10 +41,10 @@ export const useCreateProduct = () => {
       return response.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["products"] });
+      queryClient.invalidateQueries({ queryKey: ['products'] });
     },
     onError: (error) => {
-      console.error("Failed to create product:", error);
+      console.error('Failed to create product:', error);
     },
   });
 };
@@ -55,12 +55,12 @@ export const useUpdateProduct = () => {
 
   const { subCategoryId, categoryId } = useParams();
   const { data: store } = useGetStore();
-  const storeId = store?.id ?? "";
+  const storeId = store?.id ?? '';
   const searchParams = useSearchParams();
 
-  const search = searchParams.get("search") || "";
-  const sort = searchParams.get("sort") || "";
-  const order = searchParams.get("order") || "";
+  const search = searchParams.get('search') || '';
+  const sort = searchParams.get('sort') || '';
+  const order = searchParams.get('order') || '';
 
   return useMutation<Product, Error, UpdateProductPayload>({
     mutationFn: async (product) => {
@@ -72,7 +72,7 @@ export const useUpdateProduct = () => {
     },
     onMutate: async (updatedProduct) => {
       const queryKey = [
-        "products",
+        'products',
         search,
         sort,
         order,
@@ -82,7 +82,7 @@ export const useUpdateProduct = () => {
       ];
 
       queryClient.setQueriesData(
-        { predicate: ({ queryKey }) => queryKey[0] === "products" },
+        { predicate: ({ queryKey }) => queryKey[0] === 'products' },
         (oldData: any) => {
           if (!oldData) return oldData;
           return {
@@ -123,10 +123,10 @@ export const useUpdateProduct = () => {
       });
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["products"] });
+      queryClient.invalidateQueries({ queryKey: ['products'] });
     },
     onError: (error) => {
-      console.error("Failed to update product:", error);
+      console.error('Failed to update product:', error);
     },
   });
 };
@@ -147,10 +147,10 @@ export const useDeleteProduct = (): UseMutationResult<
       return response.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["products"] });
+      queryClient.invalidateQueries({ queryKey: ['products'] });
     },
     onError: (error) => {
-      console.error("Failed to delete product:", error);
+      console.error('Failed to delete product:', error);
     },
   });
 };

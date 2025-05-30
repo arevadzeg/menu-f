@@ -4,16 +4,16 @@ import {
   DragOverlay,
   DragStartEvent,
   pointerWithin,
-} from "@dnd-kit/core";
-import { useParams, useRouter } from "next/navigation";
-import { useUpdateProduct } from "./api/hooks/product/useProductMutations";
-import { useAtom } from "jotai";
-import { draggingCardAtom } from "./atom/draggingCardAtom";
-import { useQueryClient } from "@tanstack/react-query";
-import { isString } from "lodash";
-import ProductCardSmall from "./components/product/PorductCard/Components/ProductCardSmall/ProductCardSmall";
-import { snapCenterToCursor } from "@dnd-kit/modifiers";
-import { useGetStore } from "./api/hooks/store/useGetStore";
+} from '@dnd-kit/core';
+import { useParams, useRouter } from 'next/navigation';
+import { useUpdateProduct } from './api/hooks/product/useProductMutations';
+import { useAtom } from 'jotai';
+import { draggingCardAtom } from './atom/draggingCardAtom';
+import { useQueryClient } from '@tanstack/react-query';
+import { isString } from 'lodash';
+import ProductCardSmall from './components/product/PorductCard/Components/ProductCardSmall/ProductCardSmall';
+import { snapCenterToCursor } from '@dnd-kit/modifiers';
+import { useGetStore } from './api/hooks/store/useGetStore';
 
 const LayoutDnDWrapper = ({ children }: any) => {
   const [product, setProduct] = useAtom(draggingCardAtom);
@@ -52,7 +52,7 @@ const LayoutDnDWrapper = ({ children }: any) => {
       invalidateProductCategoryQueries(product.categoryId);
       setProduct(null);
     } catch (error) {
-      console.error("Error updating product:", error);
+      console.error('Error updating product:', error);
     }
   };
 

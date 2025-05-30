@@ -2,7 +2,7 @@ interface ArrowIconProps {
   className?: string;
 }
 
-const ArrowIcon = ({ className = "" }: ArrowIconProps) => {
+const ArrowIcon = ({ className = '' }: ArrowIconProps) => {
   return (
     <svg
       className={className}

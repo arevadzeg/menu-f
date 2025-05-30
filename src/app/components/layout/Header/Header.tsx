@@ -1,18 +1,18 @@
-import { useEffect, useState } from "react";
-import { Switch } from "../../ui/Switch/Switch";
-import { useGetStore } from "<root>/app/api/hooks/store/useGetStore";
-import { useParams, useRouter } from "next/navigation";
-import { PersonIcon } from "@radix-ui/react-icons";
-import PopoverDemo from "../../ui/Popover/Popover";
-import { useAtom } from "jotai";
-import { authAtom } from "<root>/app/atom/authAtom";
-import { HeaderSkeleton } from "./HeaderSkeleton";
-import chroma from "chroma-js";
-import Link from "next/link";
+import { useEffect, useState } from 'react';
+import { Switch } from '../../ui/Switch/Switch';
+import { useGetStore } from '<root>/app/api/hooks/store/useGetStore';
+import { useParams, useRouter } from 'next/navigation';
+import { PersonIcon } from '@radix-ui/react-icons';
+import PopoverDemo from '../../ui/Popover/Popover';
+import { useAtom } from 'jotai';
+import { authAtom } from '<root>/app/atom/authAtom';
+import { HeaderSkeleton } from './HeaderSkeleton';
+import chroma from 'chroma-js';
+import Link from 'next/link';
 
 const themes = {
-  dark: "dark-mode",
-  light: "",
+  dark: 'dark-mode',
+  light: '',
 };
 
 export const Header = () => {
@@ -56,18 +56,18 @@ export const Header = () => {
   };
 
   const primary = store?.theme;
-  const root = document.querySelector("body");
+  const root = document.querySelector('body');
 
   useEffect(() => {
     if (!primary) return;
 
-    root?.style.setProperty("--primary-color", primary);
+    root?.style.setProperty('--primary-color', primary);
     root?.style.setProperty(
-      "--primary-color-light",
+      '--primary-color-light',
       chroma(primary).brighten(1).hex(),
     );
     root?.style.setProperty(
-      "--primary-color-dark",
+      '--primary-color-dark',
       chroma(primary).darken(1).hex(),
     );
   }, [isDarkMode, store]);
@@ -84,7 +84,7 @@ export const Header = () => {
         onClick={handleNavigateToMainPage}
       >
         <img
-          src={store.image ?? ""}
+          src={store.image ?? ''}
           alt="Logo"
           className="rounded-full max-h-10 max-w-10"
         />

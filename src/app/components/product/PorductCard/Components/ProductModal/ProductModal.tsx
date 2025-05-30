@@ -1,7 +1,7 @@
-import useGetCategories from "<root>/app/api/hooks/category/useGetCategories";
-import { Product } from "<root>/app/api/hooks/product/InterfaceProduct";
-import Modal from "<root>/app/components/ui/Modal/Modal";
-import { LayersIcon, StackIcon } from "@radix-ui/react-icons";
+import useGetCategories from '<root>/app/api/hooks/category/useGetCategories';
+import { Product } from '<root>/app/api/hooks/product/InterfaceProduct';
+import Modal from '<root>/app/components/ui/Modal/Modal';
+import { LayersIcon, StackIcon } from '@radix-ui/react-icons';
 
 interface ProductModalProps {
   product: Product;
@@ -18,7 +18,7 @@ const ProductModal = ({
 
   const getCategoryName = (categoryId: string): string => {
     const category = categories?.find((c) => c.id === categoryId);
-    return category ? category.name : "Unknown Category";
+    return category ? category.name : 'Unknown Category';
   };
 
   const getSubCategoryName = (subCategoryId: string): string => {
@@ -29,7 +29,7 @@ const ProductModal = ({
         );
         if (subCategory) return subCategory.name;
       }
-    return "Unknown Subcategory";
+    return 'Unknown Subcategory';
   };
 
   return (

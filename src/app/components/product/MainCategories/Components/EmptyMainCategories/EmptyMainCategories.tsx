@@ -1,4 +1,4 @@
-import RadixButton from "<root>/app/components/ui/RadixButton/RadixButton";
+import RadixButton from '<root>/app/components/ui/RadixButton/RadixButton';
 
 interface EmptyMainCategoriesProps {
   onCreateFilter: () => void;

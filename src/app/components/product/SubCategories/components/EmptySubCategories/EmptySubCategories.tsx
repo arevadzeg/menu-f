@@ -1,4 +1,4 @@
-import { InfoCircledIcon } from "@radix-ui/react-icons";
+import { InfoCircledIcon } from '@radix-ui/react-icons';
 
 const EmptySubCategories = () => {
   // TODO HARD CORED COLORS

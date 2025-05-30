@@ -1,8 +1,8 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import apiClient from "../../apiClient";
-import API_ENDPOINTS from "../../endpoints";
-import { Store } from "./interfaceStore";
-import { useGetStore } from "./useGetStore";
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import apiClient from '../../apiClient';
+import API_ENDPOINTS from '../../endpoints';
+import { Store } from './interfaceStore';
+import { useGetStore } from './useGetStore';
 
 interface StorePayload {
   name: string;
@@ -27,7 +27,7 @@ export const useCreateStore = () => {
       return response.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["store"] });
+      queryClient.invalidateQueries({ queryKey: ['store'] });
     },
   });
 };
@@ -39,7 +39,7 @@ export const useUpdateStore = () => {
   return useMutation<Store, Error, StorePayload>({
     mutationFn: async (newStore: StorePayload) => {
       if (!store?.id) {
-        throw new Error("Store ID is not available yet.");
+        throw new Error('Store ID is not available yet.');
       }
 
       const response = await apiClient.put<Store>(
@@ -50,7 +50,7 @@ export const useUpdateStore = () => {
       return response.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["store"] });
+      queryClient.invalidateQueries({ queryKey: ['store'] });
     },
   });
 };

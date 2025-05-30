@@ -1,13 +1,13 @@
-import { useParams, useRouter } from "next/navigation";
-import { useState } from "react";
-import { GearIcon } from "@radix-ui/react-icons";
-import RadixButton from "../../ui/RadixButton/RadixButton";
-import useGetCategories from "<root>/app/api/hooks/category/useGetCategories";
-import { useAtom } from "jotai";
-import { authAtom } from "<root>/app/atom/authAtom";
-import SubCategoriesCard from "./components/SubCategoriesDroppableCard/SubCategoriesDroppableCard";
-import EmptySubCategories from "./components/EmptySubCategories/EmptySubCategories";
-import CreateEditSubCategoryModal from "./components/CreateEditSubCategoryModal/CreateEditSubCategoryModal";
+import { useParams, useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { GearIcon } from '@radix-ui/react-icons';
+import RadixButton from '../../ui/RadixButton/RadixButton';
+import useGetCategories from '<root>/app/api/hooks/category/useGetCategories';
+import { useAtom } from 'jotai';
+import { authAtom } from '<root>/app/atom/authAtom';
+import SubCategoriesCard from './components/SubCategoriesDroppableCard/SubCategoriesDroppableCard';
+import EmptySubCategories from './components/EmptySubCategories/EmptySubCategories';
+import CreateEditSubCategoryModal from './components/CreateEditSubCategoryModal/CreateEditSubCategoryModal';
 
 const SubCategories = () => {
   const [user] = useAtom(authAtom);
@@ -37,8 +37,8 @@ const SubCategories = () => {
     <div
       className={`p-4 ${
         isAdmin
-          ? "relative border border-dashed border-transparent rounded-lg group hover:bg-editColor hover:border-black"
-          : ""
+          ? 'relative border border-dashed border-transparent rounded-lg group hover:bg-editColor hover:border-black'
+          : ''
       }`}
     >
       <CreateEditSubCategoryModal

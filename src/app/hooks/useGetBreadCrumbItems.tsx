@@ -1,6 +1,6 @@
-import { useParams } from "next/navigation";
-import { useGetStore } from "../api/hooks/store/useGetStore";
-import useGetCategories from "../api/hooks/category/useGetCategories";
+import { useParams } from 'next/navigation';
+import { useGetStore } from '../api/hooks/store/useGetStore';
+import useGetCategories from '../api/hooks/category/useGetCategories';
 
 export const useBreadcrumbItems = () => {
   const { subCategoryId, categoryId } = useParams();
@@ -20,7 +20,7 @@ export const useBreadcrumbItems = () => {
     items.push({
       link: `/${store.name}`,
       active: false,
-      text: "Main Page",
+      text: 'Main Page',
     });
   }
 

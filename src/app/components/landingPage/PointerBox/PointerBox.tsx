@@ -1,5 +1,5 @@
-import { useEffect, useRef } from "react";
-import { frame, motion, useMotionValue, useSpring } from "framer-motion";
+import { useEffect, useRef } from 'react';
+import { frame, motion, useMotionValue, useSpring } from 'framer-motion';
 
 export function useFollowPointer(ref: React.RefObject<HTMLElement>) {
   const spring = { damping: 3, stiffness: 50, restDelta: 0.001 };
@@ -21,9 +21,9 @@ export function useFollowPointer(ref: React.RefObject<HTMLElement>) {
       });
     };
 
-    window.addEventListener("pointermove", handlePointerMove);
+    window.addEventListener('pointermove', handlePointerMove);
 
-    return () => window.removeEventListener("pointermove", handlePointerMove);
+    return () => window.removeEventListener('pointermove', handlePointerMove);
   }, []);
 
   return { x, y };
@@ -38,9 +38,9 @@ export default function PointerBox() {
     <motion.div
       className="bg-black rounded-2xl"
       style={{
-        height: "calc(100vh - 90px)",
-        overflow: "hidden",
-        position: "relative",
+        height: 'calc(100vh - 90px)',
+        overflow: 'hidden',
+        position: 'relative',
       }}
     >
       <motion.div
@@ -49,12 +49,12 @@ export default function PointerBox() {
         style={{
           x,
           y,
-          background: "#4e5f3f",
-          height: "200px",
-          width: "200px",
+          background: '#4e5f3f',
+          height: '200px',
+          width: '200px',
           opacity: 0.8,
-          filter: "blur(60px)",
-          borderRadius: "50%",
+          filter: 'blur(60px)',
+          borderRadius: '50%',
         }}
       />
     </motion.div>

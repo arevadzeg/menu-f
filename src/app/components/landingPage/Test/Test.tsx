@@ -1,6 +1,6 @@
-import { useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
-import { motion } from "framer-motion";
+import { useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
+import { motion } from 'framer-motion';
 
 const Test = ({ item }: any) => {
   const containerRef = useRef(null);
@@ -15,8 +15,8 @@ const Test = ({ item }: any) => {
       <motion.div
         className="sticky-image"
         style={{
-          position: "sticky",
-          top: "20vh",
+          position: 'sticky',
+          top: '20vh',
           scale,
           // opacity,
         }}
@@ -24,8 +24,8 @@ const Test = ({ item }: any) => {
         <motion.img
           src={item}
           style={{
-            width: "100%",
-            borderRadius: "12px",
+            width: '100%',
+            borderRadius: '12px',
           }}
         />
       </motion.div>

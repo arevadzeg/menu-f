@@ -1,5 +1,5 @@
-import { Dispatch, SetStateAction, useRef } from "react";
-import { ALERT_TYPE, useAlert } from "../../Alert/Alert";
+import { Dispatch, SetStateAction, useRef } from 'react';
+import { ALERT_TYPE, useAlert } from '../../Alert/Alert';
 
 interface useUploadProps {
   maxFileSize: number;
@@ -22,7 +22,7 @@ const useUpload = ({
   };
 
   const isImageFile = (file: File) => {
-    return file.type === "image/jpeg" || file.type === "image/png";
+    return file.type === 'image/jpeg' || file.type === 'image/png';
   };
 
   const handleClick = () => {
@@ -54,7 +54,7 @@ const useUpload = ({
     if (e.dataTransfer.files && e.dataTransfer.files.length === 1) {
       handleFile(e.dataTransfer.files[0]);
     } else {
-      alert("Please upload only one file.", ALERT_TYPE.ERROR);
+      alert('Please upload only one file.', ALERT_TYPE.ERROR);
     }
   };
 

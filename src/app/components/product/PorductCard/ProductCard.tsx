@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { Spinner } from "@radix-ui/themes";
-import { Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
-import { useDeleteProduct } from "<root>/app/api/hooks/product/useProductMutations";
-import { useAtom } from "jotai";
-import { authAtom } from "<root>/app/atom/authAtom";
-import { Product } from "<root>/app/api/hooks/product/InterfaceProduct";
-import ProductCardSkeleton from "./Components/ProductCardSkeleton/ProductCardSkeleton";
-import ProductModal from "./Components/ProductModal/ProductModal";
+import React, { useState } from 'react';
+import { Spinner } from '@radix-ui/themes';
+import { Pencil1Icon, TrashIcon } from '@radix-ui/react-icons';
+import { useDeleteProduct } from '<root>/app/api/hooks/product/useProductMutations';
+import { useAtom } from 'jotai';
+import { authAtom } from '<root>/app/atom/authAtom';
+import { Product } from '<root>/app/api/hooks/product/InterfaceProduct';
+import ProductCardSkeleton from './Components/ProductCardSkeleton/ProductCardSkeleton';
+import ProductModal from './Components/ProductModal/ProductModal';
 
 interface ProductCardProps {
   isLoading?: boolean;
@@ -72,7 +72,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           className="absolute top-8 right-6 p-2 bg-red-500 text-white rounded-lg hover:bg-red-700 transition-colors cursor-pointer"
           onPointerDown={(e) => handleDeleteProduce(e)}
         >
-          {deleteProduct.isPending ? <Spinner size={"2"} /> : <TrashIcon />}
+          {deleteProduct.isPending ? <Spinner size={'2'} /> : <TrashIcon />}
         </div>
       )}
       {isAdmin && (
@@ -96,9 +96,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
           className="text-sm overflow-hidden text-ellipsis h-[36px] block text-secondary"
           style={{
             // TODO NEEDS TO BE HERE
-            display: "-webkit-box",
+            display: '-webkit-box',
             WebkitLineClamp: 2,
-            WebkitBoxOrient: "vertical",
+            WebkitBoxOrient: 'vertical',
           }}
           dangerouslySetInnerHTML={{ __html: product.description }}
         ></span>

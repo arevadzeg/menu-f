@@ -1,6 +1,6 @@
-import React from "react";
-import * as SwitchRadix from "@radix-ui/react-switch";
-import "./Switch.scss";
+import React from 'react';
+import * as SwitchRadix from '@radix-ui/react-switch';
+import './Switch.scss';
 
 interface SwitchProps {
   checked: boolean;

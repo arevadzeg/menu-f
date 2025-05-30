@@ -1,8 +1,8 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import apiClient from "../../apiClient";
-import API_ENDPOINTS from "../../endpoints";
-import { useGetStore } from "../store/useGetStore";
-import { Category, SubCategory } from "./interfaceCategory";
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import apiClient from '../../apiClient';
+import API_ENDPOINTS from '../../endpoints';
+import { useGetStore } from '../store/useGetStore';
+import { Category, SubCategory } from './interfaceCategory';
 
 // CREATE CATEGORY
 interface CreateCategoryPayload {
@@ -13,7 +13,7 @@ export const useCreateCategory = () => {
   const queryClient = useQueryClient();
 
   const { data: store } = useGetStore();
-  const storeId = store?.id ?? "";
+  const storeId = store?.id ?? '';
 
   return useMutation<Category, Error, CreateCategoryPayload>({
     mutationFn: async (newCategory: CreateCategoryPayload) => {
@@ -24,7 +24,7 @@ export const useCreateCategory = () => {
       return response.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["category"] });
+      queryClient.invalidateQueries({ queryKey: ['category'] });
     },
   });
 };
@@ -47,7 +47,7 @@ export const useCreateSubCategory = () => {
       return response.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["category"] });
+      queryClient.invalidateQueries({ queryKey: ['category'] });
     },
   });
 };
@@ -69,7 +69,7 @@ export const useUpdateCategory = () => {
       return response.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["category"] });
+      queryClient.invalidateQueries({ queryKey: ['category'] });
     },
   });
 };
@@ -91,7 +91,7 @@ export const useUpdateSubCategory = () => {
       return response.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["category"] });
+      queryClient.invalidateQueries({ queryKey: ['category'] });
     },
   });
 };
@@ -113,7 +113,7 @@ export const useDeleteCategory = () => {
       return response.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["category"] });
+      queryClient.invalidateQueries({ queryKey: ['category'] });
     },
   });
 };
@@ -129,7 +129,7 @@ export const useDeleteSubCategory = () => {
       return response.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["category"] });
+      queryClient.invalidateQueries({ queryKey: ['category'] });
     },
   });
 };

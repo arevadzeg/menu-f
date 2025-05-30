@@ -1,38 +1,38 @@
-import { ChangeEvent, useState, useCallback } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import DropdownMenuComponent from "../../ui/Dropdown/Dropdown";
+import { ChangeEvent, useState, useCallback } from 'react';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import DropdownMenuComponent from '../../ui/Dropdown/Dropdown';
 import {
   ArrowDownIcon,
   ArrowUpIcon,
   CaretSortIcon,
-} from "@radix-ui/react-icons";
-import TextField from "../../ui/TextField/TextField";
-import { debounce } from "lodash";
-import Modal from "../../ui/Modal/Modal";
-import CreateProductForm from "../CreateProductForm/CreateProductForm";
-import RadixButton from "../../ui/RadixButton/RadixButton";
-import { useAtom } from "jotai";
-import { authAtom } from "<root>/app/atom/authAtom";
+} from '@radix-ui/react-icons';
+import TextField from '../../ui/TextField/TextField';
+import { debounce } from 'lodash';
+import Modal from '../../ui/Modal/Modal';
+import CreateProductForm from '../CreateProductForm/CreateProductForm';
+import RadixButton from '../../ui/RadixButton/RadixButton';
+import { useAtom } from 'jotai';
+import { authAtom } from '<root>/app/atom/authAtom';
 
 const options = [
   {
-    label: "A to Z",
-    value: "asc&title",
+    label: 'A to Z',
+    value: 'asc&title',
     icon: () => <ArrowDownIcon />,
   },
   {
-    label: "Z to A",
-    value: "desc&title",
+    label: 'Z to A',
+    value: 'desc&title',
     icon: () => <ArrowUpIcon />,
   },
   {
-    label: "Price Up",
-    value: "asc&price",
+    label: 'Price Up',
+    value: 'asc&price',
     icon: () => <ArrowUpIcon />,
   },
   {
-    label: "Price Down",
-    value: "desc&price",
+    label: 'Price Down',
+    value: 'desc&price',
     icon: () => <ArrowDownIcon />,
   },
 ];
@@ -43,7 +43,7 @@ const FilterSort = () => {
   const [sortOption, setSortOption] = useState<string | null>(null);
   const searchparams = useSearchParams();
   const [searchValue, setSearchValue] = useState(
-    searchparams.get("search") || "",
+    searchparams.get('search') || '',
   );
   const router = useRouter();
   const pathname = usePathname();
@@ -56,8 +56,8 @@ const FilterSort = () => {
   const debouncedSearchChange = useCallback(
     debounce((value: string) => {
       const params = new URLSearchParams(window.location.search);
-      params.set("search", value);
-      router.push(pathname + "?" + params.toString());
+      params.set('search', value);
+      router.push(pathname + '?' + params.toString());
     }, 500), // 500ms debounce
     [router, pathname],
   );
@@ -73,11 +73,11 @@ const FilterSort = () => {
       setSortOption(option.value);
 
       const params = new URLSearchParams(window.location.search);
-      const [order, sort] = option.value.split("&");
-      params.set("sort", sort);
-      params.set("order", order);
+      const [order, sort] = option.value.split('&');
+      params.set('sort', sort);
+      params.set('order', order);
 
-      router.push(pathname + "?" + params.toString());
+      router.push(pathname + '?' + params.toString());
     }
   };
 

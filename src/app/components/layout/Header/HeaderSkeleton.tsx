@@ -1,4 +1,4 @@
-import { Skeleton } from "@radix-ui/themes";
+import { Skeleton } from '@radix-ui/themes';
 
 const SKELETON_HEADER_ITEMS = [1, 2, 3];
 

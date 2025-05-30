@@ -1,6 +1,6 @@
-import { Spinner } from "@radix-ui/themes";
-import { PlusIcon } from "@radix-ui/react-icons";
-import { Store } from "<root>/app/api/hooks/store/interfaceStore";
+import { Spinner } from '@radix-ui/themes';
+import { PlusIcon } from '@radix-ui/react-icons';
+import { Store } from '<root>/app/api/hooks/store/interfaceStore';
 
 interface StoreListProps {
   isLoading: boolean;

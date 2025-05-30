@@ -1,17 +1,17 @@
-"use client";
-import { useState } from "react";
-import { useAtom } from "jotai";
-import { useRouter } from "next/navigation";
-import { useGetUserStores } from "./api/hooks/store/useGetStore";
-import { authAtom } from "./atom/authAtom";
+'use client';
+import { useState } from 'react';
+import { useAtom } from 'jotai';
+import { useRouter } from 'next/navigation';
+import { useGetUserStores } from './api/hooks/store/useGetStore';
+import { authAtom } from './atom/authAtom';
 
-import LandingPageHeader from "./components/landingPage/LandingPageHeader/LandingPageHeader";
-import LandingPageOffers from "./components/landingPage/LandingPageOffers/LandingPageOffers";
-import LandingPageFooter from "./components/landingPage/LandingPageFooter/LandingPageFooter";
-import StoreList from "./components/landingPage/StoreList/StoreList";
-import CreateStoreModal from "./components/landingPage/CreateStoreModal/CreateStoreModal";
-import LoginModal from "./components/landingPage/LoginModal/LoginModal";
-import LandingPageIntro from "./components/landingPage/LandingPageIntro/LandingPageIntro";
+import LandingPageHeader from './components/landingPage/LandingPageHeader/LandingPageHeader';
+import LandingPageOffers from './components/landingPage/LandingPageOffers/LandingPageOffers';
+import LandingPageFooter from './components/landingPage/LandingPageFooter/LandingPageFooter';
+import StoreList from './components/landingPage/StoreList/StoreList';
+import CreateStoreModal from './components/landingPage/CreateStoreModal/CreateStoreModal';
+import LoginModal from './components/landingPage/LoginModal/LoginModal';
+import LandingPageIntro from './components/landingPage/LandingPageIntro/LandingPageIntro';
 
 export default function Home() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);

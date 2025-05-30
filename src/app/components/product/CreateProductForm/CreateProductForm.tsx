@@ -1,18 +1,18 @@
-import { useForm } from "react-hook-form";
-import TextField from "../../ui/TextField/TextField";
-import FileUpload from "../../ui/Upload/Upload";
+import { useForm } from 'react-hook-form';
+import TextField from '../../ui/TextField/TextField';
+import FileUpload from '../../ui/Upload/Upload';
 import {
   useUpdateProduct,
   useCreateProduct,
-} from "<root>/app/api/hooks/product/useProductMutations";
-import { ChangeEvent, useEffect, useState } from "react";
-import useUploadFile from "<root>/app/api/hooks/upload/useUploadImage";
-import { useQueryClient } from "@tanstack/react-query";
-import Backdrop from "../../ui/Backdrop/Backdrop";
-import RichTextEditor from "../../ui/RichTextEditor/RichTextEditor";
-import RadixButton from "../../ui/RadixButton/RadixButton";
-import { Product } from "<root>/app/api/hooks/product/InterfaceProduct";
-import { useGetScrapeProductFromAnotherSite } from "<root>/app/api/hooks/scrape/useGetScrapeProductFromAnotherSite";
+} from '<root>/app/api/hooks/product/useProductMutations';
+import { ChangeEvent, useEffect, useState } from 'react';
+import useUploadFile from '<root>/app/api/hooks/upload/useUploadImage';
+import { useQueryClient } from '@tanstack/react-query';
+import Backdrop from '../../ui/Backdrop/Backdrop';
+import RichTextEditor from '../../ui/RichTextEditor/RichTextEditor';
+import RadixButton from '../../ui/RadixButton/RadixButton';
+import { Product } from '<root>/app/api/hooks/product/InterfaceProduct';
+import { useGetScrapeProductFromAnotherSite } from '<root>/app/api/hooks/scrape/useGetScrapeProductFromAnotherSite';
 
 interface CreateProductFormProps {
   isUpdateMode?: boolean;
@@ -37,13 +37,13 @@ const CreateProductForm = ({
   const createProduct = useCreateProduct();
   const updateProduct = useUpdateProduct();
   const [richTextEditorValue, setRichTextEditorValue] = useState(
-    productData?.description ?? "",
+    productData?.description ?? '',
   );
 
   const mutation = isUpdateMode ? updateProduct : createProduct;
   const queryClient = useQueryClient();
 
-  const [url, setUrl] = useState("");
+  const [url, setUrl] = useState('');
 
   const { refetch, data: scrapedData } = useGetScrapeProductFromAnotherSite({
     url,
@@ -51,14 +51,14 @@ const CreateProductForm = ({
 
   useEffect(() => {
     if (scrapedData) {
-      setValue("title", scrapedData.title);
-      setValue("price", scrapedData.price);
+      setValue('title', scrapedData.title);
+      setValue('price', scrapedData.price);
     }
   }, [scrapedData]);
 
   const handleFieldChange = (
     event: ChangeEvent<HTMLInputElement>,
-    name: "title" | "price",
+    name: 'title' | 'price',
   ) => {
     const value = event.target.value;
     setValue(name, value);
@@ -67,13 +67,13 @@ const CreateProductForm = ({
   const handlePriceChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = Number(event.target.value);
     if (isNaN(value)) return;
-    setValue("price", value);
+    setValue('price', value);
   };
 
   const onSubmit = async (data: any) => {
     try {
       setIsUploading(true);
-      let imageUrl = "";
+      let imageUrl = '';
 
       if (selectedFile) {
         const uploadResponse = await uploadFile.mutateAsync({
@@ -82,17 +82,17 @@ const CreateProductForm = ({
         imageUrl = uploadResponse.downloadURL;
       }
 
-      const image = imageUrl ? imageUrl : (scrapedData?.image ?? "");
+      const image = imageUrl ? imageUrl : (scrapedData?.image ?? '');
 
       await mutation.mutateAsync({
         image: image,
         price: Number(data.price),
         title: data.title,
-        id: productData?.id ?? "",
+        id: productData?.id ?? '',
         description: richTextEditorValue,
       });
 
-      queryClient.invalidateQueries({ queryKey: ["products"] });
+      queryClient.invalidateQueries({ queryKey: ['products'] });
 
       if (isUpdateMode) {
         closeModal && closeModal();
@@ -101,7 +101,7 @@ const CreateProductForm = ({
         reset();
       }
     } catch (error) {
-      console.error("Error creating product:", error);
+      console.error('Error creating product:', error);
     } finally {
       setIsUploading(false);
     }
@@ -127,12 +127,12 @@ const CreateProductForm = ({
           </div>
           <TextField
             placeholder="Title"
-            {...register("title", { required: true })}
-            onChange={(e) => handleFieldChange(e, "title")}
+            {...register('title', { required: true })}
+            onChange={(e) => handleFieldChange(e, 'title')}
           />
           <TextField
             placeholder="Price"
-            {...register("price", { required: true })}
+            {...register('price', { required: true })}
             onChange={handlePriceChange}
           />
           <FileUpload
@@ -149,11 +149,11 @@ const CreateProductForm = ({
         <RadixButton type="submit" className="mt-4">
           {isUploading
             ? isUpdateMode
-              ? "Updating..."
-              : "Creating..."
+              ? 'Updating...'
+              : 'Creating...'
             : isUpdateMode
-              ? "Update Product"
-              : "Create Product"}
+              ? 'Update Product'
+              : 'Create Product'}
         </RadixButton>
       </form>
     </span>

@@ -1,27 +1,27 @@
-import React from "react";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
-import "./RichTextEditor.scss";
+import React from 'react';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import './RichTextEditor.scss';
 
 export const modules = {
   toolbar: [
-    [{ header: "1" }, { header: "2" }, { font: [] }],
-    ["bold", "italic", "underline", "strike"],
-    ["link"],
+    [{ header: '1' }, { header: '2' }, { font: [] }],
+    ['bold', 'italic', 'underline', 'strike'],
+    ['link'],
   ],
 };
 
 export const formats = [
-  "header",
-  "font",
-  "size",
-  "bold",
-  "italic",
-  "underline",
-  "strike",
-  "list",
-  "bullet",
-  "link",
+  'header',
+  'font',
+  'size',
+  'bold',
+  'italic',
+  'underline',
+  'strike',
+  'list',
+  'bullet',
+  'link',
 ];
 
 interface RichTextEditorProps {

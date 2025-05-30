@@ -1,12 +1,12 @@
-import { useGetStore } from "<root>/app/api/hooks/store/useGetStore";
+import { useGetStore } from '<root>/app/api/hooks/store/useGetStore';
 import {
   EnvelopeClosedIcon,
   MobileIcon,
   SewingPinFilledIcon,
-} from "@radix-ui/react-icons";
+} from '@radix-ui/react-icons';
 
-import FacebookIcon from "../../ui/SVGAssets/FacebookIcon";
-import InstagramIcon from "../../ui/SVGAssets/InstagramIcon";
+import FacebookIcon from '../../ui/SVGAssets/FacebookIcon';
+import InstagramIcon from '../../ui/SVGAssets/InstagramIcon';
 
 const Footer = () => {
   const { data: store } = useGetStore();

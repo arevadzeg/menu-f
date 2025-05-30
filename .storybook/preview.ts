@@ -1,7 +1,7 @@
-import type { Preview } from "@storybook/react";
-import "@radix-ui/themes/styles.css";
-import { Theme } from "@radix-ui/themes";
-import React from "react"; // Ensure React is imported
+import type { Preview } from '@storybook/react';
+import '@radix-ui/themes/styles.css';
+import { Theme } from '@radix-ui/themes';
+import React from 'react'; // Ensure React is imported
 
 const preview: Preview = {
   parameters: {

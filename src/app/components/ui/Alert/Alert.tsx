@@ -1,17 +1,17 @@
-import React from "react";
-import { useAtom, useSetAtom } from "jotai";
-import { atom } from "jotai";
+import React from 'react';
+import { useAtom, useSetAtom } from 'jotai';
+import { atom } from 'jotai';
 
 export const alertAtom = atom<AlertState>({
   type: null,
-  message: "",
+  message: '',
   isVisible: false,
 });
 
 export enum ALERT_TYPE {
-  SUCCESS = "success",
-  ERROR = "error",
-  WARNING = "warning",
+  SUCCESS = 'success',
+  ERROR = 'error',
+  WARNING = 'warning',
 }
 
 interface AlertState {
@@ -31,7 +31,7 @@ export const useAlert = () => {
     });
 
     setTimeout(() => {
-      setAlert({ type: null, message: "", isVisible: false });
+      setAlert({ type: null, message: '', isVisible: false });
     }, 5000);
   };
 
@@ -44,24 +44,24 @@ const Alert: React.FC = () => {
   const closeAlert = () => {
     setAlertState({
       type: null,
-      message: "",
+      message: '',
       isVisible: false,
     });
   };
 
   if (!alertState.isVisible) return null;
 
-  let alertStyle = "";
+  let alertStyle = '';
 
   switch (alertState.type) {
-    case "success":
-      alertStyle = "bg-green-500 text-white";
+    case 'success':
+      alertStyle = 'bg-green-500 text-white';
       break;
-    case "error":
-      alertStyle = "bg-red-500 text-white";
+    case 'error':
+      alertStyle = 'bg-red-500 text-white';
       break;
-    case "warning":
-      alertStyle = "bg-yellow-500 text-white";
+    case 'warning':
+      alertStyle = 'bg-yellow-500 text-white';
       break;
     default:
       break;

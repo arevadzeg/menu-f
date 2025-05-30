@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { Skeleton } from "@radix-ui/themes";
+import Link from 'next/link';
+import { Skeleton } from '@radix-ui/themes';
 
 interface BreadCrumbArray {
   link: string;
@@ -34,9 +34,9 @@ const Breadcrumb = ({ items }: BreadCrumbProps) => {
         {items.map((item, index) => (
           <li key={index} className="flex items-center">
             <Link
-              href={item.link || "#"}
-              className={`transition-colors px-2 rounded-md ${!item.active && "text-primaryText"} hover:bg-secondary hover:text-background ${item.active ? "text-primary pointer-events-none" : ""}`}
-              aria-current={item.active ? "page" : undefined}
+              href={item.link || '#'}
+              className={`transition-colors px-2 rounded-md ${!item.active && 'text-primaryText'} hover:bg-secondary hover:text-background ${item.active ? 'text-primary pointer-events-none' : ''}`}
+              aria-current={item.active ? 'page' : undefined}
             >
               {item.text}
             </Link>

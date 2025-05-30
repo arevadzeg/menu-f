@@ -1,10 +1,10 @@
-import { useInfiniteQuery } from "@tanstack/react-query";
-import apiClient from "../../apiClient";
-import API_ENDPOINTS from "../../endpoints";
-import { useParams, useSearchParams } from "next/navigation";
-import { useGetStore } from "../store/useGetStore";
-import removeFalseyValues from "../../../utils/removeFalseyValues";
-import { Product } from "./InterfaceProduct";
+import { useInfiniteQuery } from '@tanstack/react-query';
+import apiClient from '../../apiClient';
+import API_ENDPOINTS from '../../endpoints';
+import { useParams, useSearchParams } from 'next/navigation';
+import { useGetStore } from '../store/useGetStore';
+import removeFalseyValues from '../../../utils/removeFalseyValues';
+import { Product } from './InterfaceProduct';
 
 interface GetProductsResponse {
   limit: number;
@@ -26,12 +26,12 @@ const fetchProducts = async (
 
 const useGetInfiniteProducts = () => {
   const { data: store } = useGetStore();
-  const storeId = store?.id ?? "";
+  const storeId = store?.id ?? '';
   const searchParams = useSearchParams();
 
-  const search = searchParams.get("search") || "";
-  const sort = searchParams.get("sort") || "";
-  const order = searchParams.get("order") || "";
+  const search = searchParams.get('search') || '';
+  const sort = searchParams.get('sort') || '';
+  const order = searchParams.get('order') || '';
   const { subCategoryId, categoryId } = useParams();
 
   const searchParamsObject = removeFalseyValues({
@@ -46,7 +46,7 @@ const useGetInfiniteProducts = () => {
 
   return useInfiniteQuery<GetProductsResponse, Error>({
     queryKey: [
-      "products",
+      'products',
       search,
       sort,
       order,

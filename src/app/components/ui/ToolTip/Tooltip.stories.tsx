@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react';
 
-import type { StoryFn, Meta } from "@storybook/react";
-import type { TooltipProps } from "./Tooltip";
-import { Tooltip } from "./Tooltip";
+import type { StoryFn, Meta } from '@storybook/react';
+import type { TooltipProps } from './Tooltip';
+import { Tooltip } from './Tooltip';
 
 // eslint-disable-next-line import/no-default-export
 export default {
-  name: "Tooltip",
+  name: 'Tooltip',
   component: Tooltip,
   decorators: [
     (Story) => (
@@ -14,9 +14,9 @@ export default {
         style={{
           width: 400,
           height: 400,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
         <Story />
@@ -36,7 +36,7 @@ const defaultProps: TooltipProps = {
   children: <span>hello</span>,
   state: { isDefaultOpen: true },
   contentProps: {
-    align: "center",
+    align: 'center',
   },
   content: <span>tooltip content</span>,
 };
@@ -45,7 +45,7 @@ export const Default = Template.bind({});
 Default.args = {
   ...defaultProps,
   contentProps: {
-    side: "right",
+    side: 'right',
   },
 };
 
@@ -53,7 +53,7 @@ export const Top = Template.bind({});
 Top.args = {
   ...defaultProps,
   contentProps: {
-    side: "top",
+    side: 'top',
   },
 };
 
@@ -61,7 +61,7 @@ export const Left = Template.bind({});
 Left.args = {
   ...defaultProps,
   contentProps: {
-    side: "left",
+    side: 'left',
   },
 };
 
@@ -69,6 +69,6 @@ export const Bottom = Template.bind({});
 Bottom.args = {
   ...defaultProps,
   contentProps: {
-    side: "bottom",
+    side: 'bottom',
   },
 };

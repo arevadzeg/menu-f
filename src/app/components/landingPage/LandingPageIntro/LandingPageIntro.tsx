@@ -1,52 +1,52 @@
-import { motion } from "framer-motion";
-import type { Transition } from "framer-motion";
-import "./LandingPageIntro.scss";
+import { motion } from 'framer-motion';
+import type { Transition } from 'framer-motion';
+import './LandingPageIntro.scss';
 
 const transitionSettings: Transition = {
   duration: 3,
   repeat: Infinity,
-  repeatType: "reverse",
+  repeatType: 'reverse',
 };
 
 const buttonHoverSettings = {
   scale: 1.1,
-  backgroundColor: "#FE05F7",
-  boxShadow: "0px 6px 12px rgba(0, 0, 0, 0.3)",
+  backgroundColor: '#FE05F7',
+  boxShadow: '0px 6px 12px rgba(0, 0, 0, 0.3)',
   transition: { duration: 0.2 },
 };
 
 const buttonTapSettings = {
   scale: 0.85,
-  backgroundColor: "#F05A28",
-  boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.2)",
+  backgroundColor: '#F05A28',
+  boxShadow: '0px 2px 6px rgba(0, 0, 0, 0.2)',
   transition: { duration: 0.2 },
 };
 
 const featureCards = [
   {
-    title: "Easy Product Setup",
+    title: 'Easy Product Setup',
     description:
-      "Add your products, descriptions, and prices in just a few clicks.",
-    textClass: "text-primary",
+      'Add your products, descriptions, and prices in just a few clicks.',
+    textClass: 'text-primary',
     animation: {
       initial: { opacity: 0, x: -50 },
       animate: { opacity: 1, x: 0 },
     },
   },
   {
-    title: "Simple QR Code Generation",
-    description: "Generate unique QR codes to display your menu anywhere.",
-    textClass: "text-secondary",
+    title: 'Simple QR Code Generation',
+    description: 'Generate unique QR codes to display your menu anywhere.',
+    textClass: 'text-secondary',
     animation: {
       initial: { opacity: 0, x: 50 },
       animate: { opacity: 1, x: 0 },
     },
   },
   {
-    title: "Filtering Made Easy",
+    title: 'Filtering Made Easy',
     description:
-      "Enable customers to filter products by category, price, or availability.",
-    textClass: "text-primary",
+      'Enable customers to filter products by category, price, or availability.',
+    textClass: 'text-primary',
     animation: {
       initial: { opacity: 0, y: 50 },
       animate: { opacity: 1, y: 0 },
@@ -61,7 +61,7 @@ const LandingPageIntro = () => (
       animate={{
         opacity: 1,
         y: 0,
-        color: ["#FE05F7", "#F2562F", "#FE05F7"],
+        color: ['#FE05F7', '#F2562F', '#FE05F7'],
       }}
       transition={transitionSettings}
       className="landing-title"
@@ -75,7 +75,7 @@ const LandingPageIntro = () => (
       animate={{
         opacity: 1,
         y: 0,
-        color: ["#FE05F7", "#F2562F", "#FE05F7"],
+        color: ['#FE05F7', '#F2562F', '#FE05F7'],
       }}
       transition={transitionSettings}
     >

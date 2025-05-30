@@ -1,13 +1,13 @@
 import {
   ExclamationTriangleIcon,
   PlusCircledIcon,
-} from "@radix-ui/react-icons";
-import RadixButton from "../../../ui/RadixButton/RadixButton";
-import Modal from "../../../ui/Modal/Modal";
-import CreateProductForm from "../../../product/CreateProductForm/CreateProductForm";
-import { useState } from "react";
-import { useAtom } from "jotai";
-import { authAtom } from "<root>/app/atom/authAtom";
+} from '@radix-ui/react-icons';
+import RadixButton from '../../../ui/RadixButton/RadixButton';
+import Modal from '../../../ui/Modal/Modal';
+import CreateProductForm from '../../../product/CreateProductForm/CreateProductForm';
+import { useState } from 'react';
+import { useAtom } from 'jotai';
+import { authAtom } from '<root>/app/atom/authAtom';
 
 const EmptyProductView = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -18,7 +18,7 @@ const EmptyProductView = () => {
     <div className="flex flex-col items-center justify-center h-96">
       <ExclamationTriangleIcon className="text-primaryText" />
       <h2 className="text-xl font-semibold text-primaryText">
-        {isAdmin ? "No Products Found" : "No Products Available"}
+        {isAdmin ? 'No Products Found' : 'No Products Available'}
       </h2>
       {isAdmin ? (
         <RadixButton

@@ -1,8 +1,8 @@
-import React from "react";
-import * as Dialog from "@radix-ui/react-dialog";
-import { Cross2Icon } from "@radix-ui/react-icons";
-import "./Modal.scss";
-import { VisuallyHidden } from "@radix-ui/themes";
+import React from 'react';
+import * as Dialog from '@radix-ui/react-dialog';
+import { Cross2Icon } from '@radix-ui/react-icons';
+import './Modal.scss';
+import { VisuallyHidden } from '@radix-ui/themes';
 
 interface ModalProps {
   children: JSX.Element;
@@ -12,7 +12,7 @@ interface ModalProps {
 }
 
 const Modal = ({ children, isOpen, onClose, contentClassName }: ModalProps) => {
-  const elementToMountModal = document.querySelector(".radix-themes");
+  const elementToMountModal = document.querySelector('.radix-themes');
 
   return (
     <Dialog.Root open={isOpen}>

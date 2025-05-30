@@ -1,6 +1,6 @@
-import React from "react";
-import { HexColorPicker } from "react-colorful";
-import type { ComponentProps } from "react";
+import React from 'react';
+import { HexColorPicker } from 'react-colorful';
+import type { ComponentProps } from 'react';
 
 type ColorPickerProps = ComponentProps<typeof HexColorPicker>;
 

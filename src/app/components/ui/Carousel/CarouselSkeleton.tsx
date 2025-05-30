@@ -1,8 +1,8 @@
-import React from "react";
-import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
-import { Skeleton } from "@radix-ui/themes";
+import React from 'react';
+import { ChevronLeftIcon, ChevronRightIcon } from '@radix-ui/react-icons';
+import { Skeleton } from '@radix-ui/themes';
 
-import "./carousel.scss";
+import './carousel.scss';
 
 const SKELETON_CARDS_COUNT = 4;
 
@@ -12,7 +12,7 @@ export const CarouselSkeleton: React.FC = () => {
       <div className="embla__viewport">
         <div className="embla__container">
           <button>
-            <Skeleton width={"30px"} height="30px" />
+            <Skeleton width={'30px'} height="30px" />
           </button>
           {Array.from({ length: SKELETON_CARDS_COUNT }).map((_, index) => (
             <div className="embla__slide" key={index}>
@@ -26,7 +26,7 @@ export const CarouselSkeleton: React.FC = () => {
             </div>
           ))}
           <button>
-            <Skeleton width={"30px"} height="30px" />
+            <Skeleton width={'30px'} height="30px" />
           </button>
         </div>
       </div>

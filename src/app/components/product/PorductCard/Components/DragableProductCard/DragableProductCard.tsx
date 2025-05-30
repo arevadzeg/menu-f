@@ -1,7 +1,7 @@
-import { Product } from "<root>/app/api/hooks/product/InterfaceProduct";
-import { useDraggable } from "@dnd-kit/core";
-import React from "react";
-import ProductCard from "../../ProductCard";
+import { Product } from '<root>/app/api/hooks/product/InterfaceProduct';
+import { useDraggable } from '@dnd-kit/core';
+import React from 'react';
+import ProductCard from '../../ProductCard';
 
 const DraggableProductCard = ({
   product,

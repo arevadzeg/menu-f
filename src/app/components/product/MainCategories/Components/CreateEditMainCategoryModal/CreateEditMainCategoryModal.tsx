@@ -2,14 +2,14 @@ import {
   useCreateCategory,
   useDeleteCategory,
   useUpdateCategory,
-} from "<root>/app/api/hooks/category/useCategoryMutations";
-import useGetCategories from "<root>/app/api/hooks/category/useGetCategories";
-import Modal from "<root>/app/components/ui/Modal/Modal";
-import RadixButton from "<root>/app/components/ui/RadixButton/RadixButton";
-import TextField from "<root>/app/components/ui/TextField/TextField";
-import { Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
-import { useState } from "react";
-import Backdrop from "<root>/app/components/ui/Backdrop/Backdrop";
+} from '<root>/app/api/hooks/category/useCategoryMutations';
+import useGetCategories from '<root>/app/api/hooks/category/useGetCategories';
+import Modal from '<root>/app/components/ui/Modal/Modal';
+import RadixButton from '<root>/app/components/ui/RadixButton/RadixButton';
+import TextField from '<root>/app/components/ui/TextField/TextField';
+import { Pencil1Icon, TrashIcon } from '@radix-ui/react-icons';
+import { useState } from 'react';
+import Backdrop from '<root>/app/components/ui/Backdrop/Backdrop';
 
 interface CreateEditMainCategoryModalProps {
   handleCloseModal: () => void;
@@ -21,9 +21,9 @@ const CreateEditMainCategoryModal = ({
   isModalOpen,
 }: CreateEditMainCategoryModalProps) => {
   const [isAddNewCategory, setIsAddNewCategory] = useState<
-    "Create" | "Edit" | null
+    'Create' | 'Edit' | null
   >(null);
-  const [newCategoryName, setNewCategoryName] = useState("");
+  const [newCategoryName, setNewCategoryName] = useState('');
   const [categoryToUpdateId, setCategoryToUpdateId] = useState<string | null>(
     null,
   );
@@ -34,7 +34,7 @@ const CreateEditMainCategoryModal = ({
   const deleteCategory = useDeleteCategory();
 
   const isCreateUpdateLoading =
-    isAddNewCategory === "Create"
+    isAddNewCategory === 'Create'
       ? createCategory.isPending
       : updateCategory.isPending;
 
@@ -71,13 +71,13 @@ const CreateEditMainCategoryModal = ({
   };
 
   const closeModalAndClearData = () => {
-    setNewCategoryName("");
+    setNewCategoryName('');
     setIsAddNewCategory(null);
     setCategoryToUpdateId(null);
   };
 
   const handleEditCategory = (name: string, id: string) => {
-    setIsAddNewCategory("Edit");
+    setIsAddNewCategory('Edit');
     setNewCategoryName(name);
     setCategoryToUpdateId(id);
   };
@@ -90,11 +90,11 @@ const CreateEditMainCategoryModal = ({
 
         <RadixButton
           onClick={() => {
-            setIsAddNewCategory((prev) => (!!prev ? null : "Create"));
+            setIsAddNewCategory((prev) => (!!prev ? null : 'Create'));
           }}
           className="mb-4"
         >
-          {isAddNewCategory ? "Back" : "Add New Category"}
+          {isAddNewCategory ? 'Back' : 'Add New Category'}
         </RadixButton>
 
         {isAddNewCategory ? (
@@ -106,7 +106,7 @@ const CreateEditMainCategoryModal = ({
             />
             <RadixButton
               onClick={() => {
-                if (isAddNewCategory === "Create") handleCreateCategory();
+                if (isAddNewCategory === 'Create') handleCreateCategory();
                 else
                   categoryToUpdateId &&
                     handleUpdateCategory(categoryToUpdateId);

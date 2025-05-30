@@ -1,26 +1,26 @@
-import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form';
 import {
   useCreateStore,
   useUpdateStore,
-} from "<root>/app/api/hooks/store/useStoreMutations";
-import { Dispatch, useState } from "react";
-import { useAtom } from "jotai";
-import { authAtom } from "<root>/app/atom/authAtom";
-import { useQueryClient } from "@tanstack/react-query";
-import { Button } from "@radix-ui/themes";
-import TextField from "../../ui/TextField/TextField";
-import { SetStateAction } from "jotai";
-import FileUpload from "../../ui/Upload/Upload";
-import useUploadFile from "<root>/app/api/hooks/upload/useUploadImage";
-import { useGetStore } from "<root>/app/api/hooks/store/useGetStore";
-import ColorPicker from "../../ui/ColorPicker/ColorPicker";
-import { DEFAULT_THEME_COLOR } from "<root>/app/constants/constants";
+} from '<root>/app/api/hooks/store/useStoreMutations';
+import { Dispatch, useState } from 'react';
+import { useAtom } from 'jotai';
+import { authAtom } from '<root>/app/atom/authAtom';
+import { useQueryClient } from '@tanstack/react-query';
+import { Button } from '@radix-ui/themes';
+import TextField from '../../ui/TextField/TextField';
+import { SetStateAction } from 'jotai';
+import FileUpload from '../../ui/Upload/Upload';
+import useUploadFile from '<root>/app/api/hooks/upload/useUploadImage';
+import { useGetStore } from '<root>/app/api/hooks/store/useGetStore';
+import ColorPicker from '../../ui/ColorPicker/ColorPicker';
+import { DEFAULT_THEME_COLOR } from '<root>/app/constants/constants';
 import {
   emailPattern,
   facebookPattern,
   instagramPattern,
   phonePattern,
-} from "./storeFormValidation";
+} from './storeFormValidation';
 
 interface CreateStoreFormProps {
   isCreateMode?: boolean;
@@ -45,7 +45,7 @@ const CreateStoreForm = ({
 
   const handleFormSubmit = async (data: any) => {
     try {
-      let imageUrl = store?.image ?? "";
+      let imageUrl = store?.image ?? '';
 
       if (selectedFile) {
         const uploadResponse = await uploadFile.mutateAsync({
@@ -61,16 +61,16 @@ const CreateStoreForm = ({
             onSuccess: () => {
               setIsCreateStoreModal && setIsCreateStoreModal(false);
               queryClient.invalidateQueries({
-                queryKey: ["store", user.user.id],
+                queryKey: ['store', user.user.id],
               });
             },
           },
         );
       }
 
-      queryClient.invalidateQueries({ queryKey: ["products"] });
+      queryClient.invalidateQueries({ queryKey: ['products'] });
     } catch (error) {
-      console.error("Error creating product:", error);
+      console.error('Error creating product:', error);
     }
   };
 
@@ -80,12 +80,12 @@ const CreateStoreForm = ({
     formState: { errors },
   } = useForm({
     defaultValues: {
-      name: store?.name ?? "",
-      address: store?.address ?? "",
-      email: store?.email ?? "",
-      phone: store?.phone ?? "",
-      facebook: store?.facebook ?? "",
-      instagram: store?.instagram ?? "",
+      name: store?.name ?? '',
+      address: store?.address ?? '',
+      email: store?.email ?? '',
+      phone: store?.phone ?? '',
+      facebook: store?.facebook ?? '',
+      instagram: store?.instagram ?? '',
     },
   });
 
@@ -96,43 +96,43 @@ const CreateStoreForm = ({
       id="create-edit-store-form"
     >
       <p className="font-bold text-center text-xl mb-4 text-primaryText">
-        {isCreateMode ? "Create Store" : "Update Store"}
+        {isCreateMode ? 'Create Store' : 'Update Store'}
       </p>
 
       <div className="create-store-form">
         <FormField
           name="name"
           label="Store Name"
-          register={register("name", { required: "Store name is required" })}
+          register={register('name', { required: 'Store name is required' })}
           error={errors.name}
         />
         <FormField
           name="address"
           label="Address"
-          register={register("address")}
+          register={register('address')}
         />
         <FormField
           name="email"
           label="Email"
-          register={register("email", { pattern: emailPattern })}
+          register={register('email', { pattern: emailPattern })}
           error={errors.email}
         />
         <FormField
           name="phone"
           label="Phone"
-          register={register("phone", { pattern: phonePattern })}
+          register={register('phone', { pattern: phonePattern })}
           error={errors.phone}
         />
         <FormField
           name="facebook"
           label="Facebook"
-          register={register("facebook", { pattern: facebookPattern })}
+          register={register('facebook', { pattern: facebookPattern })}
           error={errors.facebook}
         />
         <FormField
           name="instagram"
           label="Instagram"
-          register={register("instagram", { pattern: instagramPattern })}
+          register={register('instagram', { pattern: instagramPattern })}
           error={errors.instagram}
         />
 
@@ -149,7 +149,7 @@ const CreateStoreForm = ({
       />
 
       <Button type="submit" loading={storeMutation.isPending}>
-        {isCreateMode ? "Create" : "Update"}
+        {isCreateMode ? 'Create' : 'Update'}
       </Button>
     </form>
   );
@@ -158,7 +158,7 @@ const CreateStoreForm = ({
 const FormField = ({ label, register, error }: any) => (
   <div>
     <TextField {...register} placeholder={label} />
-    <p className="text-red-500 h-6">{error?.message || ""}</p>
+    <p className="text-red-500 h-6">{error?.message || ''}</p>
   </div>
 );
 

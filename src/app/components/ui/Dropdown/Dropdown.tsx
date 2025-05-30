@@ -1,7 +1,7 @@
-import React from "react";
-import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import { HamburgerMenuIcon, CheckIcon } from "@radix-ui/react-icons";
-import "./Dropdown.scss";
+import React from 'react';
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
+import { HamburgerMenuIcon, CheckIcon } from '@radix-ui/react-icons';
+import './Dropdown.scss';
 
 export interface DefaultDropdownMenuItem {
   value: string;
@@ -56,12 +56,12 @@ const DropdownMenuComponent = <OptionType extends DefaultDropdownMenuItem>({
               <DropdownMenu.ItemIndicator className="DropdownMenuItemIndicator">
                 <CheckIcon />
               </DropdownMenu.ItemIndicator>
-              {item.label}{" "}
+              {item.label}{' '}
               {item.icon && (
                 <div className="RightSlot">
                   <item.icon />
                 </div>
-              )}{" "}
+              )}{' '}
             </DropdownMenu.CheckboxItem>
           ))}
 

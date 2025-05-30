@@ -1,8 +1,8 @@
-import { useMutation } from "@tanstack/react-query";
-import apiClient from "../../apiClient";
-import API_ENDPOINTS from "../../endpoints";
-import { AxiosResponse } from "axios";
-import { User } from "./interfaceUser";
+import { useMutation } from '@tanstack/react-query';
+import apiClient from '../../apiClient';
+import API_ENDPOINTS from '../../endpoints';
+import { AxiosResponse } from 'axios';
+import { User } from './interfaceUser';
 
 interface LoginPayload {
   email: string;

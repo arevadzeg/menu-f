@@ -1,15 +1,15 @@
-import { TextField as RadixTextField } from "@radix-ui/themes";
-import React, { useState, forwardRef } from "react";
-import "./TextField.scss";
+import { TextField as RadixTextField } from '@radix-ui/themes';
+import React, { useState, forwardRef } from 'react';
+import './TextField.scss';
 
 interface TextFieldProps {
   isCollapsable?: boolean;
   placeholder?: string;
   value?: string;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
-  size?: "1" | "2" | "3";
-  variant?: "classic" | "surface" | "soft";
-  radius?: "none" | "small" | "medium" | "large" | "full";
+  size?: '1' | '2' | '3';
+  variant?: 'classic' | 'surface' | 'soft';
+  radius?: 'none' | 'small' | 'medium' | 'large' | 'full';
   color?: string;
   icon?: JSX.Element;
   className?: string;
@@ -19,14 +19,14 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
   (
     {
       isCollapsable = false,
-      placeholder = "Enter text...",
+      placeholder = 'Enter text...',
       value,
       onChange,
-      size = "2",
-      variant = "surface",
-      radius = "medium",
+      size = '2',
+      variant = 'surface',
+      radius = 'medium',
       icon,
-      color = "",
+      color = '',
       ...rest
     },
     ref,
@@ -53,10 +53,10 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
             onChange={onChange}
             ref={ref} // Forwarding the ref properly here
             style={{
-              width: collapsed ? 33 : "100%",
-              maxWidth: collapsed ? 33 : "auto",
-              overflow: "hidden",
-              transition: "max-width 300ms ease",
+              width: collapsed ? 33 : '100%',
+              maxWidth: collapsed ? 33 : 'auto',
+              overflow: 'hidden',
+              transition: 'max-width 300ms ease',
             }}
             {...rest}
           >

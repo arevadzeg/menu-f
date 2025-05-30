@@ -1,10 +1,10 @@
-import * as RadixTooltip from "@radix-ui/react-tooltip";
+import * as RadixTooltip from '@radix-ui/react-tooltip';
 
-import cx from "classnames";
+import cx from 'classnames';
 
-import type { PropsWithChildren } from "react";
-import { useCallback, useEffect, useState } from "react";
-import scss from "./Tooltip.module.scss";
+import type { PropsWithChildren } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import scss from './Tooltip.module.scss';
 
 type TooltipContentProps = RadixTooltip.TooltipContentProps;
 
@@ -36,7 +36,7 @@ export interface TooltipProps extends PropsWithChildren {
   /**
    * Tooltip placement
    */
-  placement?: TooltipContentProps["side"];
+  placement?: TooltipContentProps['side'];
   state?: {
     /**
      * @description if true - tooltip will not be shown
@@ -54,7 +54,7 @@ export interface TooltipProps extends PropsWithChildren {
    */
   controlProps?: Pick<
     RadixTooltip.TooltipProps,
-    "open" | "onOpenChange" | "delayDuration"
+    'open' | 'onOpenChange' | 'delayDuration'
   > & {
     /**
      * ❗️Be careful❗️
@@ -83,7 +83,7 @@ export const Tooltip = ({
     delayDuration,
   } = controlProps;
 
-  const onOpenChange: RadixTooltip.TooltipProps["onOpenChange"] = useCallback(
+  const onOpenChange: RadixTooltip.TooltipProps['onOpenChange'] = useCallback(
     (open: boolean) => {
       if (controlProps.isPreventChange) return;
 

@@ -4,7 +4,7 @@ const LandingPageFooter = () => {
     <footer
       className="text-gray-400 bg-gray-900 py-8"
       style={{
-        background: "rgb(29, 29, 31)", // Matches Apple's dark tone
+        background: 'rgb(29, 29, 31)', // Matches Apple's dark tone
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
