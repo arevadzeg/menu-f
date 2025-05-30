@@ -1,5 +1,3 @@
-import { useParams, useRouter } from "next/navigation";
-import "./MainCategories.scss";
 import { useState } from "react";
 import {
   GearIcon,
@@ -12,64 +10,47 @@ import EmptyMainCategories from "./Components/EmptyMainCategories/EmptyMainCateg
 import CreateEditMainCategoryModal from "./Components/CreateEditMainCategoryModal/CreateEditMainCategoryModal";
 import Carousel from "../../ui/Carousel/Carousel";
 
-
 const MainCategories = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { appName, categoryId } = useParams();
   const [user] = useAtom(authAtom);
-  const router = useRouter();
   const { data: categories, isSuccess } = useGetCategories();
 
 
-  const handleNavigateToCategory = (categoryId: string) => {
-    router.push(`/${appName}/${categoryId}`);
-  };
   const handleCloseModal = () => setIsModalOpen(false);
   const handleOpenModal = () => setIsModalOpen(true);
 
   const isAdmin = !!user?.isTurnUserMode;
   const isCategoriesCreated = isSuccess && categories.length === 0 && isAdmin;
 
-
-  const OPTIONS: any = {}
-  const SLIDE_COUNT = 1
-
-
   return (
-    <div id="MainCategories">
+    <div
+      className="py-4"
+    >
       <CreateEditMainCategoryModal handleCloseModal={handleCloseModal} isModalOpen={isModalOpen} />
 
-      {isCategoriesCreated ? <EmptyMainCategories onCreateFilter={handleOpenModal} /> :
-
-        <div className="categories-wrapper">
+      {isCategoriesCreated ? (
+        <EmptyMainCategories onCreateFilter={handleOpenModal} />
+      ) : (
+        <div
+          className={`
+            relative flex items-center gap-4 mx-auto
+            w-[calc(100%-120px)]
+            ${isAdmin ? "border border-dashed border-transparent rounded-lg h-16 hover:border-black hover:bg-editColor" : ""}
+          `}
+        >
           <Carousel />
 
           {isAdmin && (
             <RadixButton
-              className="add-category-btn"
+              className=" absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2"
               onClick={handleOpenModal}
             >
               <GearIcon />
             </RadixButton>
           )}
-          {/* <div>
-            {!isSuccess
-              ? <MainCategoriesSkeleton />
-              : categories.map((category: any) => (
-                <MainCategoriesCard
-                  key={category.id}
-                  category={category}
-                  isSelected={categoryId === category.id}
-                  handleNavigateToCategory={handleNavigateToCategory}
-                />
-              ))}
-          </div> */}
-          {/* <span className="arrow">
-            <ArrowIcon className="arrow-right arrow-icon" />
-          </span> */}
         </div>
-      }
-    </div >
+      )}
+    </div>
   );
 };
 

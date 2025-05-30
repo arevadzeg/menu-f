@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-import "./CreateProductForm.scss";
 import TextField from "../../ui/TextField/TextField";
 import FileUpload from "../../ui/Upload/Upload";
 import {
@@ -46,16 +45,14 @@ const CreateProductForm = ({
 
   const [url, setUrl] = useState("");
 
-
-  const { refetch, data: scrapedData } = useGetScrapeProductFromAnotherSite({ url })
-
+  const { refetch, data: scrapedData } = useGetScrapeProductFromAnotherSite({ url });
 
   useEffect(() => {
     if (scrapedData) {
       setValue("title", scrapedData.title);
       setValue("price", scrapedData.price);
     }
-  }, [scrapedData])
+  }, [scrapedData]);
 
   const handleFieldChange = (
     event: ChangeEvent<HTMLInputElement>,
@@ -83,8 +80,7 @@ const CreateProductForm = ({
         imageUrl = uploadResponse.downloadURL;
       }
 
-
-      const image = imageUrl ? imageUrl : scrapedData?.image ?? ""
+      const image = imageUrl ? imageUrl : scrapedData?.image ?? "";
 
       await mutation.mutateAsync({
         image: image,
@@ -113,13 +109,21 @@ const CreateProductForm = ({
     <span>
       {isUploading && <Backdrop open />}
 
-      <form onSubmit={handleSubmit(onSubmit)} className="create-product-form">
-        <div className="form-body">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col gap-4 p-4 pr-2"
+      >
+        <div
+          className="overflow-auto flex flex-col gap-4 p-1 pr-2 max-h-[calc(85vh-150px)]"
+        >
           <div className="flex gap-2">
-            <TextField placeholder="URL"
+            <TextField
+              placeholder="URL"
               className="flex-grow"
               value={url}
-              onChange={(e) => setUrl(e.target.value)} /> <RadixButton onClick={() => refetch()} >Steal Product</RadixButton>
+              onChange={(e) => setUrl(e.target.value)}
+            />
+            <RadixButton onClick={() => refetch()}>Steal Product</RadixButton>
           </div>
           <TextField
             placeholder="Title"
@@ -142,7 +146,7 @@ const CreateProductForm = ({
           />
         </div>
 
-        <RadixButton type="submit" className="button">
+        <RadixButton type="submit" className="mt-4">
           {isUploading
             ? isUpdateMode
               ? "Updating..."
@@ -157,3 +161,4 @@ const CreateProductForm = ({
 };
 
 export default CreateProductForm;
+

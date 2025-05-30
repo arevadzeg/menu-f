@@ -3,7 +3,6 @@ import useGetInfiniteProducts from "<root>/app/api/hooks/product/useGetProducts"
 import InfiniteScroll from "react-infinite-scroll-component";
 import ProductCard from "../../product/PorductCard/ProductCard";
 import DraggableProductCard from "../../product/PorductCard/Components/DragableProductCard/DragableProductCard";
-import './ProductViewLayout.scss'
 import EmptyPorductView from "./EmptyPorductView/EmptyPorductView";
 import Modal from "../../ui/Modal/Modal";
 import CreateProductForm from "../../product/CreateProductForm/CreateProductForm";
@@ -39,7 +38,7 @@ const ProductViewLayout = () => {
         overflow: "unset",
       }}
     >
-      <div id="product-layout">
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(240px,1fr))] gap-6 border border-dashed border-transparent">
 
         {products?.map(
           (product, index) => {

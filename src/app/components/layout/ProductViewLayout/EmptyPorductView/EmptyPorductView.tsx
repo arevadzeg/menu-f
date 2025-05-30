@@ -6,29 +6,27 @@ import { useState } from "react";
 import { useAtom } from "jotai";
 import { authAtom } from "<root>/app/atom/authAtom";
 
-import "./EmptyProductView.scss";
-
 const EmptyProductView = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [user] = useAtom(authAtom);
     const isAdmin = !!user?.isTurnUserMode;
 
     return (
-        <div className="empty-product-view-container">
-            <ExclamationTriangleIcon className="exclamation-icon" />
-            <h2 className="empty-product-view-heading">
+        <div className="flex flex-col items-center justify-center h-96">
+            <ExclamationTriangleIcon className="text-primaryText" />
+            <h2 className="text-xl font-semibold text-primaryText">
                 {isAdmin ? "No Products Found" : "No Products Available"}
             </h2>
             {isAdmin ? (
                 <RadixButton
                     onClick={() => setIsModalOpen(true)}
-                    className="empty-product-view-button"
+                    className="mt-4 flex items-center px-4 py-2"
                 >
                     <PlusCircledIcon />
                     Create a Product
                 </RadixButton>
             ) : (
-                <p className="empty-product-view-message">
+                <p className="mt-4 text-primary">
                     Please check back later for updates!
                 </p>
             )}

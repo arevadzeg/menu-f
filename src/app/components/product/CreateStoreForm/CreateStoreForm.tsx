@@ -1,5 +1,3 @@
-
-
 import { useForm } from "react-hook-form";
 import { useCreateStore, useUpdateStore } from "<root>/app/api/hooks/store/useStoreMutations";
 import { Dispatch, useState } from "react";
@@ -15,15 +13,11 @@ import { useGetStore } from "<root>/app/api/hooks/store/useGetStore";
 import ColorPicker from "../../ui/ColorPicker/ColorPicker";
 import { DEFAULT_THEME_COLOR } from "<root>/app/constants/constants";
 import { emailPattern, facebookPattern, instagramPattern, phonePattern } from "./storeFormValidation";
-import './createStoreForm.scss'
-
-
 
 interface CreateStoreFormProps {
     isCreateMode?: boolean,
     setIsCreateStoreModal?: Dispatch<SetStateAction<boolean>>;
 }
-
 
 const CreateStoreForm = ({ setIsCreateStoreModal, isCreateMode = false }: CreateStoreFormProps) => {
     const { data: store } = useGetStore();
@@ -36,9 +30,7 @@ const CreateStoreForm = ({ setIsCreateStoreModal, isCreateMode = false }: Create
     const createStore = useCreateStore();
     const uploadFile = useUploadFile();
 
-
-    const storeMutation = isCreateMode ? createStore : updateStore
-
+    const storeMutation = isCreateMode ? createStore : updateStore;
 
     const handleFormSubmit = async (data: any) => {
         try {
@@ -52,8 +44,6 @@ const CreateStoreForm = ({ setIsCreateStoreModal, isCreateMode = false }: Create
             }
 
             if (user) {
-
-
                 await storeMutation.mutateAsync(
                     { ...data, userId: user.user.id, image: imageUrl, theme: color },
                     {
@@ -71,11 +61,8 @@ const CreateStoreForm = ({ setIsCreateStoreModal, isCreateMode = false }: Create
 
         } catch (error) {
             console.error("Error creating product:", error);
-        } finally {
         }
     };
-
-
 
     const {
         register,
@@ -94,7 +81,9 @@ const CreateStoreForm = ({ setIsCreateStoreModal, isCreateMode = false }: Create
 
     return (
         <form onSubmit={handleSubmit(handleFormSubmit)} className="p-6 space-y-4" id="create-edit-store-form">
-            <p className="form-title">{isCreateMode ? "Create Store" : "Update Store"}</p>
+            <p className="font-bold text-center text-xl mb-4 text-primaryText">
+                {isCreateMode ? "Create Store" : "Update Store"}
+            </p>
 
             <div className="create-store-form">
                 <FormField name="name" label="Store Name" register={register("name", { required: "Store name is required" })} error={errors.name} />
@@ -105,7 +94,7 @@ const CreateStoreForm = ({ setIsCreateStoreModal, isCreateMode = false }: Create
                 <FormField name="instagram" label="Instagram" register={register("instagram", { pattern: instagramPattern })} error={errors.instagram} />
 
                 <div>
-                    <p className="form-label">Primary color</p>
+                    <p className="mb-1 text-primaryText">Primary color</p>
                     <ColorPicker color={color} onChange={setColor} />
                 </div>
             </div>
@@ -126,7 +115,7 @@ const CreateStoreForm = ({ setIsCreateStoreModal, isCreateMode = false }: Create
 const FormField = ({ label, register, error }: any) => (
     <div>
         <TextField {...register} placeholder={label} />
-        <p className="form-error-label">{error?.message || ""}</p>
+        <p className="text-red-500 h-6">{error?.message || ""}</p>
     </div>
 );
 

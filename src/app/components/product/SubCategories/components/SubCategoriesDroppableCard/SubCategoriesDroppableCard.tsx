@@ -19,12 +19,11 @@ const SubCategoriesCard = ({ subCategory, categoryId, isSelected, handleNavigate
             isSubCategory: true,
         },
     });
-
     return <div
         ref={setNodeRef}
         key={subCategory.id}
-        className={`sub-categorie ${isSelected
-            ? "sub-categorie-selected"
+        className={`cursor-pointer p-1 flex justify-between items-center underline ${isSelected
+            ? "text-primary"
             : ""
             }`}
         onClick={() => handleNavigateToSubCategory(subCategory.id)}

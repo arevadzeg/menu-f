@@ -1,6 +1,5 @@
 import React from "react";
 import { Product } from "<root>/app/api/hooks/product/InterfaceProduct";
-import './ProductCardSmall.scss'
 
 interface ProductCardSmallProps {
     product: Product;
@@ -8,8 +7,8 @@ interface ProductCardSmallProps {
 
 const ProductCardSmall: React.FC<ProductCardSmallProps> = ({ product }) => {
     return (
-        <div className="product-card-small">
-            <h2 className="product-title">{product.title}</h2>
+        <div className="bg-gray-100 rounded-lg shadow-md p-4">
+            <h2 className="text-lg font-semibold">{product.title}</h2>
         </div>
     );
 };

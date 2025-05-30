@@ -1,5 +1,4 @@
 import * as Dialog from "@radix-ui/react-dialog";
-import "./Backdrop.scss";
 import { Spinner } from "@radix-ui/themes";
 
 interface BackdropProps {
@@ -9,8 +8,8 @@ interface BackdropProps {
 const Backdrop: React.FC<BackdropProps> = ({ open }) => {
   return (
     <Dialog.Root open={open}>
-      <Dialog.Overlay className="backdrop-overlay">
-        <div className="backdrop-content">
+      <Dialog.Overlay className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-[999]">
+        <div className="flex justify-center items-center">
           <Spinner size={"3"} />
         </div>
       </Dialog.Overlay>
