@@ -11,7 +11,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { isString } from 'lodash';
 import { snapCenterToCursor } from '@dnd-kit/modifiers';
 import ProductCardSmall from './components/product/PorductCard/Components/ProductCardSmall/ProductCardSmall';
-import { draggingCardAtom } from './atom/draggingCardAtom';
+import draggingCardAtom from './atom/draggingCardAtom';
 import { useUpdateProduct } from './api/hooks/product/useProductMutations';
 import { useGetStore } from './api/hooks/store/useGetStore';
 
@@ -35,6 +35,12 @@ function LayoutDnDWrapper({ children }: any) {
     if (overCategoryId) router.push(`/${store?.name}/${overCategoryId}`);
   };
 
+  const invalidateProductCategoryQueries = (id: string) => {
+    queryClient.invalidateQueries({
+      predicate: (query) => Array.isArray(query.queryKey) && query.queryKey.includes(id),
+    });
+  };
+
   const handleDragEnd = async () => {
     if (!product || !isString(categoryId)) return;
 
@@ -54,12 +60,6 @@ function LayoutDnDWrapper({ children }: any) {
     } catch (error) {
       console.error('Error updating product:', error);
     }
-  };
-
-  const invalidateProductCategoryQueries = (categoryId: string) => {
-    queryClient.invalidateQueries({
-      predicate: (query) => Array.isArray(query.queryKey) && query.queryKey.includes(categoryId),
-    });
   };
 
   return (

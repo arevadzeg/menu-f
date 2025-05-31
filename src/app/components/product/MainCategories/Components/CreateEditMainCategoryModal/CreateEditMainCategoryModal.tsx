@@ -37,6 +37,12 @@ function CreateEditMainCategoryModal({
     ? createCategory.isPending
     : updateCategory.isPending;
 
+  const closeModalAndClearData = () => {
+    setNewCategoryName('');
+    setIsAddNewCategory(null);
+    setCategoryToUpdateId(null);
+  };
+
   const handleCreateCategory = () => {
     createCategory.mutate(
       { categoryName: newCategoryName },
@@ -46,11 +52,11 @@ function CreateEditMainCategoryModal({
     );
   };
 
-  const handleUpdateCategory = (categoryToUpdateId: string) => {
+  const handleUpdateCategory = (id: string) => {
     updateCategory.mutate(
       {
         categoryName: newCategoryName,
-        categoryId: categoryToUpdateId,
+        categoryId: id,
       },
       {
         onSuccess: closeModalAndClearData,
@@ -67,12 +73,6 @@ function CreateEditMainCategoryModal({
         onSuccess: closeModalAndClearData,
       },
     );
-  };
-
-  const closeModalAndClearData = () => {
-    setNewCategoryName('');
-    setIsAddNewCategory(null);
-    setCategoryToUpdateId(null);
   };
 
   const handleEditCategory = (name: string, id: string) => {
@@ -126,18 +126,21 @@ function CreateEditMainCategoryModal({
                 >
                   <span className="text-primaryText">{category.name}</span>
                   <div className="flex gap-2">
-                    <div
+                    <button
                       className="cursor-pointer"
                       onClick={() => handleDeleteCategory(category.id)}
+                      type="button"
                     >
                       <TrashIcon />
-                    </div>
-                    <div
+                    </button>
+                    <button
                       className="cursor-pointer"
                       onClick={() => handleEditCategory(category.name, category.id)}
+                      type="button"
+
                     >
                       <Pencil1Icon />
-                    </div>
+                    </button>
                   </div>
                 </div>
               ))}

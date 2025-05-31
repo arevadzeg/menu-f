@@ -1,1 +1,3 @@
-export const DEFAULT_THEME_COLOR = '#088F8F';
+const DEFAULT_THEME_COLOR = '#088F8F';
+
+export default DEFAULT_THEME_COLOR;

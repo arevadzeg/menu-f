@@ -32,7 +32,7 @@ function Breadcrumb({ items }: BreadCrumbProps) {
           ))}
 
         {items.map((item, index) => (
-          <li key={index} className="flex items-center">
+          <li key={item.link} className="flex items-center">
             <Link
               href={item.link || '#'}
               className={`transition-colors px-2 rounded-md ${!item.active && 'text-primaryText'} hover:bg-secondary hover:text-background ${item.active ? 'text-primary pointer-events-none' : ''}`}

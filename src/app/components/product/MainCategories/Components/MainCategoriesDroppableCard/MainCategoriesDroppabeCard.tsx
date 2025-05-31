@@ -23,8 +23,16 @@ function MainCategoriesDroppabeCard({
     <div
       ref={setNodeRef}
       key={category.id}
-      className={`category p-4  transition-colors ${isSelected ? 'selected' : ''} `}
+      role="button"
+      tabIndex={0}
+      className={`category p-4 transition-colors ${isSelected ? 'selected' : ''}`}
       onClick={() => handleNavigateToCategory(category.id)}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          handleNavigateToCategory(category.id);
+        }
+      }}
     >
       <span>{category.name}</span>
     </div>

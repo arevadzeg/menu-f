@@ -2,6 +2,7 @@ import useGetCategories from '<root>/app/api/hooks/category/useGetCategories';
 import { Product } from '<root>/app/api/hooks/product/InterfaceProduct';
 import Modal from '<root>/app/components/ui/Modal/Modal';
 import { LayersIcon, StackIcon } from '@radix-ui/react-icons';
+import Image from 'next/image';
 
 interface ProductModalProps {
   product: Product;
@@ -22,15 +23,11 @@ function ProductModal({
   };
 
   const getSubCategoryName = (subCategoryId: string): string => {
-    if (categories) {
-      for (const category of categories) {
-        const subCategory = category.subCategories.find(
-          (sub) => sub.id === subCategoryId,
-        );
-        if (subCategory) return subCategory.name;
-      }
-    }
-    return 'Unknown Subcategory';
+    if (!categories) return 'Unknown Subcategory';
+    const subCategory = categories
+      .flatMap((category) => category.subCategories)
+      .find((sub) => sub.id === subCategoryId);
+    return subCategory?.name ?? 'Unknown Subcategory';
   };
 
   return (
@@ -41,7 +38,7 @@ function ProductModal({
     >
       <div className="p-6 w-full space-y-6 overflow-auto">
         <div className="relative">
-          <img
+          <Image
             src={product.image}
             alt={product.title}
             className="w-full h-64 object-contain rounded-xl border"
@@ -61,6 +58,7 @@ function ProductModal({
           {product.description ? (
             <p
               className="text-sm leading-relaxed text-secondary"
+              // eslint-disable-next-line react/no-danger
               dangerouslySetInnerHTML={{ __html: product.description }}
             />
           ) : (

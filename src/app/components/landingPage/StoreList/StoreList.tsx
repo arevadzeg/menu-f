@@ -24,8 +24,16 @@ export default function StoreList({
           && allStores.map((store) => (
             <div
               key={store.id}
-              className="w-4/5  text-center cursor-pointer p-4 border border-gray-300 rounded-lg shadow-md hover:bg-indigo-100 hover:shadow-lg transition-all duration-200 ease-in-out transform hover:-translate-y-1"
+              role="button"
+              tabIndex={0}
+              className="w-4/5 text-center cursor-pointer p-4 border border-gray-300 rounded-lg shadow-md hover:bg-indigo-100 hover:shadow-lg transition-all duration-200 ease-in-out transform hover:-translate-y-1"
               onClick={() => handleNavigateToStore(store.name)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  handleNavigateToStore(store.name);
+                }
+              }}
             >
               <p className="text-lg font-semibold text-gray-800">
                 {store.name}
@@ -34,8 +42,16 @@ export default function StoreList({
           ))}
 
         <div
-          className="w-4/5  text-center cursor-pointer p-4 border border-gray-300 rounded-lg shadow-md bg-indigo-500 text-white hover:bg-indigo-600 hover:shadow-lg transition-all duration-200 ease-in-out transform hover:-translate-y-1 flex items-center justify-center space-x-2"
+          role="button"
+          tabIndex={0}
+          className="w-4/5 text-center cursor-pointer p-4 border border-gray-300 rounded-lg shadow-md bg-indigo-500 text-white hover:bg-indigo-600 hover:shadow-lg transition-all duration-200 ease-in-out transform hover:-translate-y-1 flex items-center justify-center space-x-2"
           onClick={handleOpenCreateStoreModal}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              handleOpenCreateStoreModal();
+            }
+          }}
         >
           <p className="text-lg font-semibold">Create store</p>
           <PlusIcon className="w-5 h-5" />

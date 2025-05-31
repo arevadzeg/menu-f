@@ -5,4 +5,6 @@ interface AuthAtomInterface extends AuthResponse {
   isTurnUserMode: boolean;
 }
 
-export const authAtom = atomWithStorage<AuthAtomInterface | null>('user', null);
+const authAtom = atomWithStorage<AuthAtomInterface | null>('user', null);
+
+export default authAtom;

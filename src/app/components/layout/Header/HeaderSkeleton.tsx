@@ -2,7 +2,7 @@ import { Skeleton } from '@radix-ui/themes';
 
 const SKELETON_HEADER_ITEMS = [1, 2, 3];
 
-export function HeaderSkeleton() {
+function HeaderSkeleton() {
   return (
     <nav
       id="Header"
@@ -18,10 +18,12 @@ export function HeaderSkeleton() {
       </div>
 
       <div className="flex items-center space-x-4">
-        {SKELETON_HEADER_ITEMS.map((item, index) => (
-          <Skeleton key={index} width="80px" height="30px" />
+        {SKELETON_HEADER_ITEMS.map((item) => (
+          <Skeleton key={item} width="80px" height="30px" />
         ))}
       </div>
     </nav>
   );
 }
+
+export default HeaderSkeleton;

@@ -2,7 +2,7 @@ import { useParams } from 'next/navigation';
 import { useGetStore } from '../api/hooks/store/useGetStore';
 import useGetCategories from '../api/hooks/category/useGetCategories';
 
-export const useBreadcrumbItems = () => {
+const useBreadcrumbItems = () => {
   const { subCategoryId, categoryId } = useParams();
   const { data: store } = useGetStore();
   const { data: categoriesArray } = useGetCategories();
@@ -46,3 +46,5 @@ export const useBreadcrumbItems = () => {
 
   return items;
 };
+
+export default useBreadcrumbItems;

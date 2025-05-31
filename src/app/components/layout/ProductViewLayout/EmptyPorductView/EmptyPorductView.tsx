@@ -4,7 +4,7 @@ import {
 } from '@radix-ui/react-icons';
 import { useState } from 'react';
 import { useAtom } from 'jotai';
-import { authAtom } from '<root>/app/atom/authAtom';
+import authAtom from '<root>/app/atom/authAtom';
 import RadixButton from '../../../ui/RadixButton/RadixButton';
 import Modal from '../../../ui/Modal/Modal';
 import CreateProductForm from '../../../product/CreateProductForm/CreateProductForm';

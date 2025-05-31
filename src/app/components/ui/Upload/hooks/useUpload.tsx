@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useRef } from 'react';
-import { ALERT_TYPE, useAlert } from '../../Alert/Alert';
+import { AlertType, useAlert } from '../../Alert/Alert';
 
-interface useUploadProps {
+interface UseUploadProps {
   maxFileSize: number;
   allowedFileTypes: string[];
   onUpload?: (file: File) => void;
@@ -13,7 +13,7 @@ const useUpload = ({
   maxFileSize,
   onUpload,
   setSelectedFile,
-}: useUploadProps) => {
+}: UseUploadProps) => {
   const alert = useAlert();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -31,11 +31,11 @@ const useUpload = ({
     if (file.size / 1024 / 1024 > maxFileSize) {
       return alert(
         `File size exceeds ${maxFileSize} MB limit.`,
-        ALERT_TYPE.ERROR,
+        AlertType.ERROR,
       );
     }
     if (!isFileTypeValid(file)) {
-      return alert('Only JPG and PNG files are allowed.', ALERT_TYPE.ERROR);
+      return alert('Only JPG and PNG files are allowed.', AlertType.ERROR);
     }
     setSelectedFile(file);
     onUpload && onUpload(file);
@@ -50,7 +50,7 @@ const useUpload = ({
     if (e.dataTransfer.files && e.dataTransfer.files.length === 1) {
       handleFile(e.dataTransfer.files[0]);
     } else {
-      alert('Please upload only one file.', ALERT_TYPE.ERROR);
+      alert('Please upload only one file.', AlertType.ERROR);
     }
   };
 

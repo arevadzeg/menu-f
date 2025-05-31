@@ -5,12 +5,12 @@ import {
 } from '<root>/app/api/hooks/store/useStoreMutations';
 import { Dispatch, useState } from 'react';
 import { useAtom, SetStateAction } from 'jotai';
-import { authAtom } from '<root>/app/atom/authAtom';
+import authAtom from '<root>/app/atom/authAtom';
 import { useQueryClient } from '@tanstack/react-query';
 import { Button } from '@radix-ui/themes';
 import useUploadFile from '<root>/app/api/hooks/upload/useUploadImage';
 import { useGetStore } from '<root>/app/api/hooks/store/useGetStore';
-import { DEFAULT_THEME_COLOR } from '<root>/app/constants/constants';
+import DEFAULT_THEME_COLOR from '<root>/app/constants/constants';
 import FileUpload from '../../ui/Upload/Upload';
 import TextField from '../../ui/TextField/TextField';
 import ColorPicker from '../../ui/ColorPicker/ColorPicker';
@@ -24,6 +24,15 @@ import {
 interface CreateStoreFormProps {
   isCreateMode?: boolean;
   setIsCreateStoreModal?: Dispatch<SetStateAction<boolean>>;
+}
+
+function FormField({ label, register, error }: any) {
+  return (
+    <div>
+      <TextField {...register} placeholder={label} />
+      <p className="text-red-500 h-6">{error?.message || ''}</p>
+    </div>
+  );
 }
 
 function CreateStoreForm({
@@ -153,15 +162,6 @@ function CreateStoreForm({
         {isCreateMode ? 'Create' : 'Update'}
       </Button>
     </form>
-  );
-}
-
-function FormField({ label, register, error }: any) {
-  return (
-    <div>
-      <TextField {...register} placeholder={label} />
-      <p className="text-red-500 h-6">{error?.message || ''}</p>
-    </div>
   );
 }
 

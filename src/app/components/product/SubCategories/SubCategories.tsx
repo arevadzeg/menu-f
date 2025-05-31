@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { GearIcon } from '@radix-ui/react-icons';
 import useGetCategories from '<root>/app/api/hooks/category/useGetCategories';
 import { useAtom } from 'jotai';
-import { authAtom } from '<root>/app/atom/authAtom';
+import authAtom from '<root>/app/atom/authAtom';
 import RadixButton from '../../ui/RadixButton/RadixButton';
 import SubCategoriesCard from './components/SubCategoriesDroppableCard/SubCategoriesDroppableCard';
 import EmptySubCategories from './components/EmptySubCategories/EmptySubCategories';
@@ -25,19 +25,18 @@ function SubCategories() {
   const category = categories?.find((cat) => cat.id === categoryId);
   const isShowSubCategories = category && (category.subCategories.length > 0 || isAdmin);
 
-  const handleNavigateToSubCategory = (subCategoryId: string) => {
-    setSelectedSubCategoryId(subCategoryId);
-    router.push(`/${appName}/${categoryId}/${subCategoryId}`);
+  const handleNavigateToSubCategory = (id: string) => {
+    setSelectedSubCategoryId(id);
+    router.push(`/${appName}/${categoryId}/${id}`);
   };
 
   const handleCloseModal = () => setIsModalOpen(false);
 
   return (
     <div
-      className={`p-4 ${
-        isAdmin
-          ? 'relative border border-dashed border-transparent rounded-lg group hover:bg-editColor hover:border-black'
-          : ''
+      className={`p-4 ${isAdmin
+        ? 'relative border border-dashed border-transparent rounded-lg group hover:bg-editColor hover:border-black'
+        : ''
       }`}
     >
       <CreateEditSubCategoryModal

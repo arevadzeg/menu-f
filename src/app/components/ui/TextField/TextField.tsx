@@ -26,6 +26,7 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
       variant = 'surface',
       radius = 'medium',
       icon,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       color = '',
       ...rest
     },
@@ -42,7 +43,7 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     return (
       <div className="text-field">
         {collapsed && isCollapsable ? (
-          <button onClick={handleCollapseClick}>Expand Input</button>
+          <button onClick={handleCollapseClick} type="button">Expand Input</button>
         ) : (
           <RadixTextField.Root
             size={size}
@@ -73,5 +74,7 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     );
   },
 );
+
+TextField.displayName = 'TextField';
 
 export default TextField;

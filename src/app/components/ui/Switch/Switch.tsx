@@ -1,4 +1,5 @@
 import React from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import * as SwitchRadix from '@radix-ui/react-switch';
 import './Switch.scss';
 
@@ -9,7 +10,7 @@ interface SwitchProps {
   offText?: string;
 }
 
-export const Switch: React.FC<SwitchProps> = ({
+const Switch: React.FC<SwitchProps> = ({
   checked,
   onCheckedChange,
   onText,
@@ -25,3 +26,5 @@ export const Switch: React.FC<SwitchProps> = ({
     <SwitchRadix.Thumb className="SwitchThumb" />
   </SwitchRadix.Root>
 );
+
+export default Switch;

@@ -98,9 +98,9 @@ function LandingPageIntro() {
         {featureCards.map(
           ({
             title, description, textClass, animation,
-          }, index) => (
+          }) => (
             <motion.div
-              key={index}
+              key={title}
               initial={animation.initial}
               animate={animation.animate}
               transition={{ duration: 0.8 }}

@@ -71,7 +71,7 @@ export const useUpdateProduct = () => {
       return response.data;
     },
     onMutate: async (updatedProduct) => {
-      const queryKey = [
+      const productsQueryKey = [
         'products',
         search,
         sort,
@@ -94,7 +94,7 @@ export const useUpdateProduct = () => {
           };
         },
       );
-      queryClient.setQueryData(queryKey, (oldData: any) => {
+      queryClient.setQueryData(productsQueryKey, (oldData: any) => {
         if (!oldData) {
           return {
             pages: [{ products: [updatedProduct], totalCount: 1 }],

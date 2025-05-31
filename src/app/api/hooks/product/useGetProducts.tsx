@@ -15,8 +15,8 @@ interface GetProductsResponse {
 
 const fetchProducts = async (
   storeId: string,
-  pageParam: number = 1,
   queryString: string,
+  pageParam: number = 1,
 ): Promise<GetProductsResponse> => {
   const response = await apiClient.get(
     `${API_ENDPOINTS.PRODUCT.GET_ALL_BY_STORE}/${storeId}?page=${pageParam}&${queryString}`,
@@ -54,7 +54,7 @@ const useGetInfiniteProducts = () => {
       subCategoryId,
       categoryId,
     ],
-    queryFn: ({ pageParam = 1 }) => fetchProducts(storeId, pageParam as number, queryString),
+    queryFn: ({ pageParam = 1 }) => fetchProducts(storeId, queryString, pageParam as number),
     initialPageParam: 1,
     getNextPageParam: (lastPage) => {
       const totalPages = Math.ceil(lastPage.totalCount / lastPage.limit);

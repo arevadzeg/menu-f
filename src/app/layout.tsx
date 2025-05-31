@@ -6,11 +6,11 @@ import { Theme } from '@radix-ui/themes';
 import { useAtom } from 'jotai';
 import { usePathname } from 'next/navigation';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { authAtom } from './atom/authAtom';
+import authAtom from './atom/authAtom';
 import Alert from './components/ui/Alert/Alert';
 import Footer from './components/layout/Footer/Footer';
-import { Header } from './components/layout/Header/Header';
 import LayoutDnDWrapper from './LayoutDnDWrapper';
+import Header from './components/layout/Header/Header';
 
 const queryClient = new QueryClient({
   defaultOptions: {

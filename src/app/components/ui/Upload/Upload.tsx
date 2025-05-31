@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import './Upload.scss';
 import { UploadIcon } from '@radix-ui/react-icons';
+import Image from 'next/image';
 import useUpload from './hooks/useUpload';
 
 interface FileUploadProps {
@@ -19,7 +20,7 @@ const getImageNameFromUrl = (url: string): string => {
   return decodeURIComponent(name);
 };
 
-export const FileUpload: React.FC<FileUploadProps> = ({
+const FileUpload: React.FC<FileUploadProps> = ({
   maxFileSize = 50,
   allowedFileTypes = ['image/jpeg', 'image/png'],
   onUpload,
@@ -47,9 +48,13 @@ export const FileUpload: React.FC<FileUploadProps> = ({
     <div className="file-upload">
       <div
         className="drop-zone"
+        role="button"
+        tabIndex={0}
         onClick={handleClick}
+        onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && handleClick()}
         onDragOver={handleDragOver}
         onDrop={handleDrop}
+
       >
         <input
           type="file"
@@ -81,15 +86,15 @@ export const FileUpload: React.FC<FileUploadProps> = ({
             <div className="file-info">
               {selectedFile ? (
                 isImageFile(selectedFile) && (
-                  <img
+                  <Image
                     src={URL.createObjectURL(selectedFile)}
                     alt="Uploaded"
                     className="file-image-icon"
                   />
                 )
               ) : (
-                <img
-                  src={uploadedImage}
+                <Image
+                  src={String(uploadedImage)}
                   alt="Uploaded"
                   className="file-image-icon"
                 />

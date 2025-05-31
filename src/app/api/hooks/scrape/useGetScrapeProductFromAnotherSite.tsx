@@ -8,13 +8,13 @@ interface ScrapedData {
   price: number;
 }
 
-interface useGetScrapeProductFromAnotherSiteProps {
+interface UseGetScrapeProductFromAnotherSiteProps {
   url: string;
 }
 
-export const useGetScrapeProductFromAnotherSite = ({
+const useGetScrapeProductFromAnotherSite = ({
   url,
-}: useGetScrapeProductFromAnotherSiteProps) => useQuery<ScrapedData, Error>({
+}: UseGetScrapeProductFromAnotherSiteProps) => useQuery<ScrapedData, Error>({
   queryKey: ['scraped-data', url],
   queryFn: () => apiClient
     .post(`${API_ENDPOINTS.SCRAPE.GET_SCRAPE_PRODUCT_FROM_ANOTHER_SITE}`, {
@@ -23,3 +23,5 @@ export const useGetScrapeProductFromAnotherSite = ({
     .then((res) => res.data),
   enabled: false,
 });
+
+export default useGetScrapeProductFromAnotherSite;

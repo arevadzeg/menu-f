@@ -10,6 +10,19 @@
     "project": "./tsconfig.json",
     "tsconfigRootDir": "."
   },
+  "rules": {
+      "react/require-default-props": "off",
+      "react/function-component-definition": [2, {
+        "namedComponents": ["arrow-function", "function-declaration"],
+        "unnamedComponents": "arrow-function"
+      }],
+      "@typescript-eslint/no-unused-expressions": "off",
+      "consistent-return": "off",
+      "no-console": ["error", { "allow": ["error"] }],
+      "react/jsx-props-no-spreading": "off"
+
+
+  },
   "settings": {
     "react": {
       "version": "detect"

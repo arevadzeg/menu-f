@@ -7,7 +7,7 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import useUploadFile from '<root>/app/api/hooks/upload/useUploadImage';
 import { useQueryClient } from '@tanstack/react-query';
 import { Product } from '<root>/app/api/hooks/product/InterfaceProduct';
-import { useGetScrapeProductFromAnotherSite } from '<root>/app/api/hooks/scrape/useGetScrapeProductFromAnotherSite';
+import useGetScrapeProductFromAnotherSite from '<root>/app/api/hooks/scrape/useGetScrapeProductFromAnotherSite';
 import Backdrop from '../../ui/Backdrop/Backdrop';
 import RichTextEditor from '../../ui/RichTextEditor/RichTextEditor';
 import RadixButton from '../../ui/RadixButton/RadixButton';
@@ -56,6 +56,7 @@ function CreateProductForm({
       setValue('title', scrapedData.title);
       setValue('price', scrapedData.price);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scrapedData]);
 
   const handleFieldChange = (
@@ -68,9 +69,17 @@ function CreateProductForm({
 
   const handlePriceChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = Number(event.target.value);
-    if (isNaN(value)) return;
+    if (Number.isNaN(value)) return;
     setValue('price', value);
   };
+
+  let buttonText = '';
+
+  if (isUploading) {
+    buttonText = isUpdateMode ? 'Updating...' : 'Creating...';
+  } else {
+    buttonText = isUpdateMode ? 'Update Product' : 'Create Product';
+  }
 
   const onSubmit = async (data: any) => {
     try {
@@ -149,13 +158,7 @@ function CreateProductForm({
         </div>
 
         <RadixButton type="submit" className="mt-4">
-          {isUploading
-            ? isUpdateMode
-              ? 'Updating...'
-              : 'Creating...'
-            : isUpdateMode
-              ? 'Update Product'
-              : 'Create Product'}
+          {buttonText}
         </RadixButton>
       </form>
     </span>

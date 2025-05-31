@@ -1,4 +1,5 @@
 import React from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { HamburgerMenuIcon, CheckIcon } from '@radix-ui/react-icons';
 import './Dropdown.scss';
@@ -28,11 +29,11 @@ function DropdownMenuComponent<OptionType extends DefaultDropdownMenuItem>({
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
         {Trigger ? (
-          <button>
+          <button type="button">
             <Trigger />
           </button>
         ) : (
-          <button className="IconButton" aria-label="Customise options">
+          <button className="IconButton" aria-label="Customise options" type="button">
             <HamburgerMenuIcon />
           </button>
         )}
@@ -40,9 +41,9 @@ function DropdownMenuComponent<OptionType extends DefaultDropdownMenuItem>({
 
       <DropdownMenu.Portal>
         <DropdownMenu.Content className="DropdownMenuContent" sideOffset={5}>
-          {options.map((item, index) => (
+          {options.map((item) => (
             <DropdownMenu.CheckboxItem
-              key={index}
+              key={item.value}
               className="DropdownMenuCheckboxItem"
               checked={item.value === selectedValue}
               onCheckedChange={(event) => {

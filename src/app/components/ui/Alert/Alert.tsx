@@ -7,14 +7,14 @@ export const alertAtom = atom<AlertState>({
   isVisible: false,
 });
 
-export enum ALERT_TYPE {
+export enum AlertType {
   SUCCESS = 'success',
   ERROR = 'error',
   WARNING = 'warning',
 }
 
 interface AlertState {
-  type: ALERT_TYPE.SUCCESS | ALERT_TYPE.ERROR | ALERT_TYPE.WARNING | null;
+  type: AlertType.SUCCESS | AlertType.ERROR | AlertType.WARNING | null;
   message: string;
   isVisible: boolean;
 }
@@ -22,7 +22,7 @@ interface AlertState {
 export const useAlert = () => {
   const setAlert = useSetAtom(alertAtom);
 
-  const showAlert = (message: string, type: ALERT_TYPE) => {
+  const showAlert = (message: string, type: AlertType) => {
     setAlert({
       type,
       message,
@@ -72,7 +72,7 @@ const Alert: React.FC = () => {
     >
       <div className="flex justify-between items-center">
         <span>{alertState.message}</span>
-        <button onClick={closeAlert} className="ml-4 font-bold">
+        <button onClick={closeAlert} className="ml-4 font-bold" type="button">
           &times;
         </button>
       </div>

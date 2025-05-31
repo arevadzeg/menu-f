@@ -3,15 +3,15 @@ import { Spinner } from '@radix-ui/themes';
 import { Pencil1Icon, TrashIcon } from '@radix-ui/react-icons';
 import { useDeleteProduct } from '<root>/app/api/hooks/product/useProductMutations';
 import { useAtom } from 'jotai';
-import { authAtom } from '<root>/app/atom/authAtom';
+import authAtom from '<root>/app/atom/authAtom';
 import { Product } from '<root>/app/api/hooks/product/InterfaceProduct';
+import Image from 'next/image';
 import ProductCardSkeleton from './Components/ProductCardSkeleton/ProductCardSkeleton';
 import ProductModal from './Components/ProductModal/ProductModal';
 
 interface ProductCardProps {
   isLoading?: boolean;
   product?: Product;
-  isShowMinimizedVersion?: boolean;
   setIsEditModalOpen?: React.Dispatch<React.SetStateAction<Product | null>>;
 }
 
@@ -62,7 +62,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
       className="relative rounded-xl cursor-pointer flex flex-col gap-0 border"
     >
       <div className="rounded-xl overflow-hidden h-[70%] w-full">
-        <img
+        <Image
+          alt="product"
           src={product.image}
           className="rounded-xl object-cover transition-all duration-300 ease-in-out h-[200px] w-full hover:scale-110"
         />
@@ -100,6 +101,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             WebkitLineClamp: 2,
             WebkitBoxOrient: 'vertical',
           }}
+          // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: product.description }}
         />
         <span className="absolute py-2 text-white rounded-lg top-[99%] left-[50%] w-[90%] text-center bg-primary transform -translate-x-1/2 -translate-y-1/2">

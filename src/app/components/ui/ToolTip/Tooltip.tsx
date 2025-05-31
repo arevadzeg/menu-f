@@ -1,5 +1,6 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import * as RadixTooltip from '@radix-ui/react-tooltip';
-
+// eslint-disable-next-line import/no-extraneous-dependencies
 import cx from 'classnames';
 
 import type { PropsWithChildren } from 'react';
@@ -99,7 +100,7 @@ export function Tooltip({
     }
   }, [isOpenProp]);
 
-  if (!content) return <>{children}</>;
+  if (!content) return <div>{children}</div>;
 
   return (
     <RadixTooltip.Provider

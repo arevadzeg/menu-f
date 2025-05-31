@@ -3,19 +3,20 @@ import { useGetStore } from '<root>/app/api/hooks/store/useGetStore';
 import { useParams, useRouter } from 'next/navigation';
 import { PersonIcon } from '@radix-ui/react-icons';
 import { useAtom } from 'jotai';
-import { authAtom } from '<root>/app/atom/authAtom';
+import authAtom from '<root>/app/atom/authAtom';
 import chroma from 'chroma-js';
 import Link from 'next/link';
-import { HeaderSkeleton } from './HeaderSkeleton';
+import Image from 'next/image';
+import HeaderSkeleton from './HeaderSkeleton';
 import PopoverDemo from '../../ui/Popover/Popover';
-import { Switch } from '../../ui/Switch/Switch';
+import Switch from '../../ui/Switch/Switch';
 
 const themes = {
   dark: 'dark-mode',
   light: '',
 };
 
-export function Header() {
+function Header() {
   const { data: store, isSuccess } = useGetStore();
   const router = useRouter();
   const { appName } = useParams();
@@ -34,6 +35,10 @@ export function Header() {
     handleClosePopover();
   };
 
+  const handleThemeChange = (theme: string) => {
+    document.body.className = theme;
+  };
+
   const handleModeChange = (checked: boolean) => {
     setIsDarkMode(checked);
     handleThemeChange(checked ? themes.dark : themes.light);
@@ -45,10 +50,6 @@ export function Header() {
         ...user,
         isTurnUserMode: checked,
       });
-  };
-
-  const handleThemeChange = (theme: string) => {
-    document.body.className = theme;
   };
 
   const handleNavigateToMainPage = () => {
@@ -70,6 +71,7 @@ export function Header() {
       '--primary-color-dark',
       chroma(primary).darken(1).hex(),
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDarkMode, store]);
 
   if (!isSuccess) return <HeaderSkeleton />;
@@ -80,10 +82,16 @@ export function Header() {
       className="flex items-center justify-between p-4 px-8 mb-8"
     >
       <div
-        className="flex gap-4 font-bold items-center cursor-pointer"
+        role="button"
+        tabIndex={0}
         onClick={handleNavigateToMainPage}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            handleNavigateToMainPage();
+          }
+        }}
       >
-        <img
+        <Image
           src={store.image ?? ''}
           alt="Logo"
           className="rounded-full max-h-10 max-w-10"
@@ -101,7 +109,16 @@ export function Header() {
             onClose={handleClosePopover}
             content={(
               <>
-                <div onClick={handleLogOut} className="cursor-pointer mb-2">
+                <div
+                  role="button"
+                  tabIndex={0}
+                  onClick={handleLogOut}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      handleLogOut();
+                    }
+                  }}
+                >
                   Log out
                 </div>
                 <Link href={`/${store.name}/settings`}>
@@ -136,3 +153,5 @@ export function Header() {
     </nav>
   );
 }
+
+export default Header;

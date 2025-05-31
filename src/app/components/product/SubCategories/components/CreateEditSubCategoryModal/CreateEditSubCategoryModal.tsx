@@ -118,16 +118,32 @@ function CreateEditSubCategoryModal({
                 <div className="flex gap-2">
                   <div
                     className="cursor-pointer delete-product"
+                    role="button"
+                    tabIndex={0}
                     onClick={() => handleDeleteCategory(subCategory.id)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        handleDeleteCategory(subCategory.id);
+                      }
+                    }}
                   >
                     <TrashIcon />
                   </div>
+
                   <div
                     className="cursor-pointer edit-product"
+                    role="button"
+                    tabIndex={0}
                     onClick={() => handleEditSubCategory(subCategory.name, subCategory.id)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        handleEditSubCategory(subCategory.name, subCategory.id);
+                      }
+                    }}
                   >
                     <Pencil1Icon />
                   </div>
+
                 </div>
               </div>
             ))}

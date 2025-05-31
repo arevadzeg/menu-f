@@ -3,7 +3,7 @@ import { useParams } from 'next/navigation';
 import { useAtom } from 'jotai';
 import apiClient from '../../apiClient';
 import API_ENDPOINTS from '../../endpoints';
-import { authAtom } from '../../../atom/authAtom';
+import authAtom from '../../../atom/authAtom';
 import { Store } from './interfaceStore';
 
 export const useGetStore = () => {

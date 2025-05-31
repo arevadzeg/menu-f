@@ -1,6 +1,6 @@
 import React from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import * as Popover from '@radix-ui/react-popover';
-import { Cross2Icon } from '@radix-ui/react-icons';
 import './Popover.scss';
 
 interface PopoverProps {
@@ -14,7 +14,7 @@ function PopoverDemo({
   open, onClose, content, children,
 }: PopoverProps) {
   return (
-    <Popover.Root open={open} onOpenChange={(open) => !open && onClose()}>
+    <Popover.Root open={open} onOpenChange={(popoverState) => !popoverState && onClose()}>
       <Popover.Trigger asChild>{children}</Popover.Trigger>
       <Popover.Portal>
         <Popover.Content className="PopoverContent" sideOffset={5}>

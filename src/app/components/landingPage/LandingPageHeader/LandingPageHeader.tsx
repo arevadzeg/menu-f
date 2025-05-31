@@ -1,12 +1,13 @@
 import { useAtom } from 'jotai';
-import { authAtom } from '<root>/app/atom/authAtom';
+import authAtom from '<root>/app/atom/authAtom';
+import Image from 'next/image';
 import RadixButton from '../../ui/RadixButton/RadixButton';
 
-interface landingPageHeaderProps {
+interface LandingPageHeaderProps {
   handleLoginClick: () => void;
 }
 
-function LandingPageHeader({ handleLoginClick }: landingPageHeaderProps) {
+function LandingPageHeader({ handleLoginClick }: LandingPageHeaderProps) {
   const [user, setUser] = useAtom(authAtom);
 
   const handleLogOut = () => {
@@ -17,7 +18,8 @@ function LandingPageHeader({ handleLoginClick }: landingPageHeaderProps) {
 
   return (
     <header className="flex justify-between pt-5 mb-5 px-8">
-      <img
+      <Image
+        alt="Image"
         className="w-12"
         src="https://firebasestorage.googleapis.com/v0/b/menu-78763.appspot.com/o/images%2Ftriangle-geometric-logo_611716-97.jpg?alt=media&token=635eb621-b2bc-48eb-9895-00e7b99c5c59"
       />

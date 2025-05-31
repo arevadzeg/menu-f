@@ -34,7 +34,7 @@ export const useCreateStore = () => {
 
 export const useUpdateStore = () => {
   const queryClient = useQueryClient();
-  const { data: store, isLoading, error } = useGetStore();
+  const { data: store } = useGetStore();
 
   return useMutation<Store, Error, StorePayload>({
     mutationFn: async (newStore: StorePayload) => {

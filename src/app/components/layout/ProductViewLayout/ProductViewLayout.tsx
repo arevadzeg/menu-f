@@ -33,22 +33,22 @@ function ProductViewLayout() {
       dataLength={products.length}
       next={() => fetchNextPage()}
       hasMore={Boolean(hasNextPage)}
-      loader={<></>}
+      loader={<div />}
       style={{
         overflow: 'unset',
       }}
     >
       <div className="grid grid-cols-[repeat(auto-fill,minmax(240px,1fr))] gap-6 border border-dashed border-transparent">
-        {products?.map((product, index) => (product?.id ? (
+        {products?.map((product) => (product?.id ? (
           <>
             {isEditModalOpen?.id === product.id && (
-            <Modal isOpen={!!isEditModalOpen} onClose={closeModal}>
-              <CreateProductForm
-                isUpdateMode
-                productData={product}
-                closeModal={closeModal}
-              />
-            </Modal>
+              <Modal isOpen={!!isEditModalOpen} onClose={closeModal}>
+                <CreateProductForm
+                  isUpdateMode
+                  productData={product}
+                  closeModal={closeModal}
+                />
+              </Modal>
             )}
             <DraggableProductCard
               product={product}
@@ -57,11 +57,11 @@ function ProductViewLayout() {
             />
           </>
         ) : (
-          <ProductCard key={index} isLoading />
+          <ProductCard key={product?.id} isLoading />
         )))}
         {isFetchingNextPage
-          && skeletonArray.map((_, index) => (
-            <ProductCard key={index} isLoading />
+          && skeletonArray.map((item) => (
+            <ProductCard key={item} isLoading />
           ))}
       </div>
     </InfiniteScroll>

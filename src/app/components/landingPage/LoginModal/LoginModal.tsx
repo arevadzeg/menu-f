@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import { useLogin } from '<root>/app/api/hooks/auth/useLogin';
 import { useAtom } from 'jotai';
-import { authAtom } from '<root>/app/atom/authAtom';
+import authAtom from '<root>/app/atom/authAtom';
 import Modal from '../../ui/Modal/Modal';
 import TextField from '../../ui/TextField/TextField';
 import RadixButton from '../../ui/RadixButton/RadixButton';
@@ -63,21 +63,20 @@ function LoginModal({
           value={passWord}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
-          type="password"
           className="login-modal-input"
         />
         <RadixButton onClick={handleLogin} className="login-modal-button">
           {isLoginMode ? 'Login' : 'Register'}
         </RadixButton>
         <div className="login-modal-footer">
-          <button className="login-modal-link">Forgot Password?</button>
+          <button className="login-modal-link" type="button">Forgot Password?</button>
 
           <hr />
           <span>
             <span>
               {isLoginMode ? 'Not member yet? ' : 'Already have an account '}
             </span>
-            <button className="login-modal-link" onClick={toggaleLoginMode}>
+            <button className="login-modal-link" type="button" onClick={toggaleLoginMode}>
               {isLoginMode ? 'Create an Account' : 'Login'}
             </button>
           </span>

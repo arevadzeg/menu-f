@@ -42,6 +42,7 @@ const Carousel: React.FC = () => {
   return (
     <section id="carousel" className="carousel">
       <button
+        type="button"
         className="carousel__nav carousel__nav--left"
         onClick={scrollPrev}
       >
@@ -63,6 +64,7 @@ const Carousel: React.FC = () => {
       </div>
 
       <button
+        type="button"
         className="carousel__nav carousel__nav--right"
         onClick={scrollNext}
       >

@@ -7,7 +7,7 @@ import {
 } from '@radix-ui/react-icons';
 import { debounce } from 'lodash';
 import { useAtom } from 'jotai';
-import { authAtom } from '<root>/app/atom/authAtom';
+import authAtom from '<root>/app/atom/authAtom';
 import DropdownMenuComponent from '../../ui/Dropdown/Dropdown';
 import TextField from '../../ui/TextField/TextField';
 import Modal from '../../ui/Modal/Modal';
@@ -37,6 +37,10 @@ const options = [
   },
 ];
 
+const TriggerIcon = () => (
+  <CaretSortIcon className="rounded-md bg-white w-8 h-8" />
+);
+
 type OptionInterface = (typeof options)[number];
 
 function FilterSort() {
@@ -54,7 +58,7 @@ function FilterSort() {
 
   // Debounced function to handle search change
   const debouncedSearchChange = useCallback(
-    debounce((value: string) => {
+    (value: string) => debounce(() => {
       const params = new URLSearchParams(window.location.search);
       params.set('search', value);
       router.push(`${pathname}?${params.toString()}`);
@@ -101,9 +105,7 @@ function FilterSort() {
         options={options}
         selectedValue={sortOption}
         onChange={handleSortChange}
-        Trigger={() => (
-          <CaretSortIcon className="rounded-md bg-white w-8 h-8" />
-        )}
+        Trigger={TriggerIcon}
       />
     </div>
   );

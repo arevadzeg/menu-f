@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { GearIcon } from '@radix-ui/react-icons';
 import useGetCategories from '<root>/app/api/hooks/category/useGetCategories';
 import { useAtom } from 'jotai';
-import { authAtom } from '<root>/app/atom/authAtom';
+import authAtom from '<root>/app/atom/authAtom';
 import RadixButton from '../../ui/RadixButton/RadixButton';
 import EmptyMainCategories from './Components/EmptyMainCategories/EmptyMainCategories';
 import CreateEditMainCategoryModal from './Components/CreateEditMainCategoryModal/CreateEditMainCategoryModal';

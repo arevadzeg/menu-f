@@ -1,4 +1,5 @@
 import React from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import * as Dialog from '@radix-ui/react-dialog';
 import { Cross2Icon } from '@radix-ui/react-icons';
 import './Modal.scss';
@@ -27,7 +28,7 @@ function Modal({
 
           {children}
           <Dialog.Close asChild onClick={onClose}>
-            <button className="IconButton" aria-label="Close">
+            <button className="IconButton" aria-label="Close" type="button">
               <Cross2Icon />
             </button>
           </Dialog.Close>

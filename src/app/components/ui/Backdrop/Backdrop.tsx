@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import * as Dialog from '@radix-ui/react-dialog';
 import { Spinner } from '@radix-ui/themes';
 
