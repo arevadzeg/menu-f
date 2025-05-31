@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect, useState } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import * as Dialog from '@radix-ui/react-dialog';
 import { Cross2Icon } from '@radix-ui/react-icons';
@@ -15,7 +17,11 @@ interface ModalProps {
 function Modal({
   children, isOpen, onClose, contentClassName,
 }: ModalProps) {
-  const elementToMountModal = document.querySelector('.radix-themes');
+  const [elementToMountModal, setElementToMountModal] = useState<Element | null>(null);
+
+  useEffect(() => {
+    setElementToMountModal(document.querySelector('.radix-themes'));
+  }, []);
 
   return (
     <Dialog.Root open={isOpen}>

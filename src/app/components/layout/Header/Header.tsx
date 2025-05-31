@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 import { useGetStore } from '<root>/app/api/hooks/store/useGetStore';
 import { useParams, useRouter } from 'next/navigation';
@@ -23,6 +25,7 @@ function Header() {
 
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [popoverOpen, setPopoverOpen] = useState(false);
+  const [root, setRoot] = useState<HTMLBodyElement | null>(null);
   const [user, setUser] = useAtom(authAtom);
   const isAdmin = !!user;
   const isTurnUserMode = !!user?.isTurnUserMode;
@@ -38,6 +41,10 @@ function Header() {
   const handleThemeChange = (theme: string) => {
     document.body.className = theme;
   };
+
+  useEffect(() => {
+    setRoot(document.querySelector('body'));
+  }, []);
 
   const handleModeChange = (checked: boolean) => {
     setIsDarkMode(checked);
@@ -57,7 +64,6 @@ function Header() {
   };
 
   const primary = store?.theme;
-  const root = document.querySelector('body');
 
   useEffect(() => {
     if (!primary) return;
