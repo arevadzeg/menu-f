@@ -38,11 +38,14 @@ function ProductModal({
     >
       <div className="p-6 w-full space-y-6 overflow-auto">
         <div className="relative">
-          <Image
-            src={product.image}
-            alt={product.title}
-            className="w-full h-64 object-contain rounded-xl border"
-          />
+          <div className="w-full h-64">
+            <Image
+              fill
+              src={product.image}
+              alt={product.title}
+              className=" object-contain rounded-xl border"
+            />
+          </div>
           {product.isOnSale && (
             <div className="absolute top-3 left-3 flex items-center gap-1 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
               On Sale

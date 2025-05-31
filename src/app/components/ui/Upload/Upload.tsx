@@ -86,18 +86,29 @@ const FileUpload: React.FC<FileUploadProps> = ({
             <div className="file-info">
               {selectedFile ? (
                 isImageFile(selectedFile) && (
-                  <Image
-                    src={URL.createObjectURL(selectedFile)}
-                    alt="Uploaded"
-                    className="file-image-icon"
-                  />
+                  <div
+                    className="file-image-icon relative"
+                  >
+                    <Image
+                      fill
+                      src={URL.createObjectURL(selectedFile)}
+                      alt="Uploaded"
+                      objectFit="contain"
+                    />
+                  </div>
                 )
               ) : (
-                <Image
-                  src={String(uploadedImage)}
-                  alt="Uploaded"
-                  className="file-image-icon"
-                />
+                <div
+                  className="file-image-icon relative"
+                >
+                  <Image
+                    fill
+                    src={String(uploadedImage)}
+                    alt="Uploaded"
+                    objectFit="contain"
+                  />
+                </div>
+
               )}
               <div>
                 <div className="flex">

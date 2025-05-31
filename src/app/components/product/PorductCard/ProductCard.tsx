@@ -62,11 +62,15 @@ const ProductCard: React.FC<ProductCardProps> = ({
       className="relative rounded-xl cursor-pointer flex flex-col gap-0 border"
     >
       <div className="rounded-xl overflow-hidden h-[70%] w-full">
-        <Image
-          alt="product"
-          src={product.image}
-          className="rounded-xl object-cover transition-all duration-300 ease-in-out h-[200px] w-full hover:scale-110"
-        />
+        <div className="h-[200px] w-full relative">
+          <Image
+            alt="product"
+            src={product.image}
+            fill
+            className="rounded-xl object-cover transition-all duration-300 ease-in-out hover:scale-110"
+          />
+        </div>
+
       </div>
       {isAdmin && (
         <div

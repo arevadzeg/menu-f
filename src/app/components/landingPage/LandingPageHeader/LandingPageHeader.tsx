@@ -20,8 +20,9 @@ function LandingPageHeader({ handleLoginClick }: LandingPageHeaderProps) {
     <header className="flex justify-between pt-5 mb-5 px-8">
       <Image
         alt="Image"
-        className="w-12"
         src="https://firebasestorage.googleapis.com/v0/b/menu-78763.appspot.com/o/images%2Ftriangle-geometric-logo_611716-97.jpg?alt=media&token=635eb621-b2bc-48eb-9895-00e7b99c5c59"
+        width={48}
+        height={48}
       />
 
       <span className="flex gap-4">

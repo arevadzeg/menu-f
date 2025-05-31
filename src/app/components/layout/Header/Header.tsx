@@ -94,7 +94,8 @@ function Header() {
         <Image
           src={store.image ?? ''}
           alt="Logo"
-          className="rounded-full max-h-10 max-w-10"
+          width={40}
+          height={40}
         />
         <span className="flex flex-col">
           <span className="text-secondary">Welcome to</span>

@@ -4,7 +4,7 @@ import ProductViewLayout from '../components/layout/ProductViewLayout/ProductVie
 import FilterSort from '../components/product/FilterSort/FilterSort';
 import MainCategories from '../components/product/MainCategories/MainCategories';
 import Breadcrumb from '../components/ui/BreadCrumb/BreadCrumb';
-import { useBreadcrumbItems } from '../hooks/useGetBreadCrumbItems';
+import useBreadcrumbItems from '../hooks/useGetBreadCrumbItems';
 
 export default function Home() {
   const items = useBreadcrumbItems();
