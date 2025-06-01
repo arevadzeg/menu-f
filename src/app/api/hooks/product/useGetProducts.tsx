@@ -6,14 +6,14 @@ import { useGetStore } from '../store/useGetStore';
 import removeFalseyValues from '../../../utils/removeFalseyValues';
 import { Product } from './InterfaceProduct';
 
-interface GetProductsResponse {
+export interface GetProductsResponse {
   limit: number;
   page: number;
   products: Product[];
   totalCount: number;
 }
 
-const fetchProducts = async (
+export const fetchProducts = async (
   storeId: string,
   queryString: string,
   pageParam: number = 1,
@@ -65,3 +65,21 @@ const useGetInfiniteProducts = () => {
 };
 
 export default useGetInfiniteProducts;
+
+// export interface GetProductsResponse {
+//   limit: number;
+//   page: number;
+//   products: Product[];
+//   totalCount: number;
+// }
+
+// export async function fetchProducts(
+//   storeId: string,
+//   queryString: string,
+//   pageParam = 1,
+// ): Promise<GetProductsResponse> {
+//   const response = await apiClient.get(
+//     `${API_ENDPOINTS.PRODUCT.GET_ALL_BY_STORE}/${storeId}?page=${pageParam}&${queryString}`,
+//   );
+//   return response.data;
+// }

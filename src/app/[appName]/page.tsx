@@ -1,23 +1,49 @@
-'use client';
+import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
+import ProductClientPage from './ProductClientPage';
+import fetchProducts from '../api/hooks/product/fetchProducts';
 
-import ProductViewLayout from '../components/layout/ProductViewLayout/ProductViewLayout';
-import FilterSort from '../components/product/FilterSort/FilterSort';
-import MainCategories from '../components/product/MainCategories/MainCategories';
-import Breadcrumb from '../components/ui/BreadCrumb/BreadCrumb';
-import useBreadcrumbItems from '../hooks/useBreadcrumbItems';
+export default async function Page({ searchParams, params }: any) {
+  const queryClient = new QueryClient();
 
-export default function Home() {
-  const items = useBreadcrumbItems();
+  const storeId = 'some-store-id'; // You must fetch this server-side if `useGetStore` is client-side only
+  const search = searchParams.search || '';
+  const sort = searchParams.sort || '';
+  const order = searchParams.order || '';
+  const subCategoryId = params.subCategoryId || '';
+  const categoryId = params.categoryId || '';
+
+  const searchParamsObject = {
+    search,
+    sort,
+    order,
+    subCategoryId,
+    categoryId,
+  };
+
+  const queryString = new URLSearchParams(
+    Object.fromEntries(
+      Object.entries(searchParamsObject).filter(([, v]) => Boolean(v)),
+    ),
+  ).toString();
+
+  await queryClient.prefetchInfiniteQuery({
+    queryKey: [
+      'products',
+      search,
+      sort,
+      order,
+      storeId,
+      subCategoryId,
+      categoryId,
+    ],
+    queryFn: ({ pageParam = 1 }) => fetchProducts(storeId, queryString, pageParam),
+    initialPageParam: 1,
+  });
 
   return (
-    <div id="main-page">
-      <Breadcrumb items={items} />
-      <FilterSort />
-      <MainCategories />
-      <h1 className="text-3xl font-bold mb-6 text-center text-primaryText">
-        All Products
-      </h1>
-      <ProductViewLayout />
-    </div>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <div>asd</div>
+      <ProductClientPage />
+    </HydrationBoundary>
   );
 }
