@@ -1,19 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
-import apiClient from '../../apiClient';
-import API_ENDPOINTS from '../../endpoints';
-import { useGetStore } from '../store/useGetStore';
+import { useParams } from 'next/navigation';
 import { Category } from './interfaceCategory';
+import fetchCategories from './fetchCategories';
 
 const useGetCategories = () => {
-  const { data: store } = useGetStore();
-  const storeId = store?.id ?? '';
+  const { appName } = useParams();
 
   return useQuery<Category[], Error>({
-    queryKey: ['category'],
-    queryFn: () => apiClient
-      .get(`${API_ENDPOINTS.STORE.GET_CATEGORIES}/${storeId}`)
-      .then((res) => res.data),
-    enabled: !!storeId,
+    queryKey: ['category', appName],
+    queryFn: () => fetchCategories(appName as string),
+    enabled: !!appName,
   });
 };
 

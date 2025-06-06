@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useGetStore } from '<root>/app/api/hooks/store/useGetStore';
 import { useParams, useRouter } from 'next/navigation';
 import { PersonIcon } from '@radix-ui/react-icons';
@@ -25,7 +25,6 @@ function Header() {
 
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [popoverOpen, setPopoverOpen] = useState(false);
-  const [root, setRoot] = useState<HTMLBodyElement | null>(null);
   const [user, setUser] = useAtom(authAtom);
   const isAdmin = !!user;
   const isTurnUserMode = !!user?.isTurnUserMode;
@@ -41,10 +40,6 @@ function Header() {
   const handleThemeChange = (theme: string) => {
     document.body.className = theme;
   };
-
-  useEffect(() => {
-    setRoot(document.querySelector('body'));
-  }, []);
 
   const handleModeChange = (checked: boolean) => {
     setIsDarkMode(checked);
@@ -65,21 +60,6 @@ function Header() {
 
   const primary = store?.theme;
 
-  useEffect(() => {
-    if (!primary) return;
-
-    root?.style.setProperty('--primary-color', primary);
-    root?.style.setProperty(
-      '--primary-color-light',
-      chroma(primary).brighten(1).hex(),
-    );
-    root?.style.setProperty(
-      '--primary-color-dark',
-      chroma(primary).darken(1).hex(),
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isDarkMode, store]);
-
   if (!isSuccess) return <HeaderSkeleton />;
 
   return (
@@ -87,6 +67,15 @@ function Header() {
       id="Header"
       className="flex items-center justify-between p-4 px-8 mb-8"
     >
+      <style>
+        {`
+      :root {
+        --primary-color: ${primary};
+        --primary-color-light:${chroma(primary ?? '').brighten(1).hex()};
+        --primary-color-dark:${chroma(primary ?? '').darken(1).hex()}
+      }
+    `}
+      </style>
       <div
         role="button"
         tabIndex={0}

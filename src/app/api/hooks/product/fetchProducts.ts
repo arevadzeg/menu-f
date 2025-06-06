@@ -1,14 +1,21 @@
 import apiClient from '../../apiClient';
 import API_ENDPOINTS from '../../endpoints';
-import { GetProductsResponse } from './useGetProducts';
+import { Product } from './InterfaceProduct';
+
+export interface GetProductsResponse {
+  limit: number;
+  page: number;
+  products: Product[];
+  totalCount: number;
+}
 
 const fetchProducts = async (
-  storeId: string,
+  appName: string,
   queryString: string,
   pageParam: number = 1,
 ): Promise<GetProductsResponse> => {
   const response = await apiClient.get(
-    `${API_ENDPOINTS.PRODUCT.GET_ALL_BY_STORE}/${storeId}?page=${pageParam}&${queryString}`,
+    `${API_ENDPOINTS.PRODUCT.GET_ALL_BY_STORE}/${appName}?page=${pageParam}&${queryString}`,
   );
   return response.data;
 };

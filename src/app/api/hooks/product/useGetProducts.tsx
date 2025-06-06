@@ -1,38 +1,15 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useParams, useSearchParams } from 'next/navigation';
-import apiClient from '../../apiClient';
-import API_ENDPOINTS from '../../endpoints';
-import { useGetStore } from '../store/useGetStore';
 import removeFalseyValues from '../../../utils/removeFalseyValues';
-import { Product } from './InterfaceProduct';
-
-export interface GetProductsResponse {
-  limit: number;
-  page: number;
-  products: Product[];
-  totalCount: number;
-}
-
-export const fetchProducts = async (
-  storeId: string,
-  queryString: string,
-  pageParam: number = 1,
-): Promise<GetProductsResponse> => {
-  const response = await apiClient.get(
-    `${API_ENDPOINTS.PRODUCT.GET_ALL_BY_STORE}/${storeId}?page=${pageParam}&${queryString}`,
-  );
-  return response.data;
-};
+import fetchProducts, { GetProductsResponse } from './fetchProducts';
 
 const useGetInfiniteProducts = () => {
-  const { data: store } = useGetStore();
-  const storeId = store?.id ?? '';
   const searchParams = useSearchParams();
 
   const search = searchParams.get('search') || '';
   const sort = searchParams.get('sort') || '';
   const order = searchParams.get('order') || '';
-  const { subCategoryId, categoryId } = useParams();
+  const { subCategoryId, categoryId, appName } = useParams();
 
   const searchParamsObject = removeFalseyValues({
     search,
@@ -50,36 +27,22 @@ const useGetInfiniteProducts = () => {
       search,
       sort,
       order,
-      storeId,
+      appName,
       subCategoryId,
       categoryId,
     ],
-    queryFn: ({ pageParam = 1 }) => fetchProducts(storeId, queryString, pageParam as number),
+    queryFn: ({ pageParam = 1 }) => fetchProducts(
+      appName as string,
+      queryString,
+      pageParam as number,
+    ),
     initialPageParam: 1,
     getNextPageParam: (lastPage) => {
       const totalPages = Math.ceil(lastPage.totalCount / lastPage.limit);
       return lastPage.page < totalPages ? lastPage.page + 1 : undefined;
     },
-    enabled: !!storeId,
+    enabled: !!appName,
   });
 };
 
 export default useGetInfiniteProducts;
-
-// export interface GetProductsResponse {
-//   limit: number;
-//   page: number;
-//   products: Product[];
-//   totalCount: number;
-// }
-
-// export async function fetchProducts(
-//   storeId: string,
-//   queryString: string,
-//   pageParam = 1,
-// ): Promise<GetProductsResponse> {
-//   const response = await apiClient.get(
-//     `${API_ENDPOINTS.PRODUCT.GET_ALL_BY_STORE}/${storeId}?page=${pageParam}&${queryString}`,
-//   );
-//   return response.data;
-// }

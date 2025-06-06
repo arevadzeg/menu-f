@@ -5,6 +5,7 @@ import apiClient from '../../apiClient';
 import API_ENDPOINTS from '../../endpoints';
 import authAtom from '../../../atom/authAtom';
 import { Store } from './interfaceStore';
+import fetchStore from './fetchStore';
 
 export const useGetStore = () => {
   const params = useParams();
@@ -12,9 +13,7 @@ export const useGetStore = () => {
 
   return useQuery<Store, Error>({
     queryKey: ['store', name],
-    queryFn: () => apiClient
-      .get(`${API_ENDPOINTS.STORE.GET_STORE_BY_NAME}/${name}`)
-      .then((res) => res.data),
+    queryFn: () => fetchStore(name as string),
     enabled: !!name,
   });
 };
