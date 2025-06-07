@@ -8,11 +8,15 @@ import useUploadFile from '<root>/app/api/hooks/upload/useUploadImage';
 import { useQueryClient } from '@tanstack/react-query';
 import { Product } from '<root>/app/api/hooks/product/InterfaceProduct';
 import useGetScrapeProductFromAnotherSite from '<root>/app/api/hooks/scrape/useGetScrapeProductFromAnotherSite';
+import dynamic from 'next/dynamic';
 import Backdrop from '../../ui/Backdrop/Backdrop';
-// import RichTextEditor from '../../ui/RichTextEditor/RichTextEditor';
 import RadixButton from '../../ui/RadixButton/RadixButton';
 import FileUpload from '../../ui/Upload/Upload';
 import TextField from '../../ui/TextField/TextField';
+
+const RichTextEditor = dynamic(() => import('../../ui/RichTextEditor/RichTextEditor'), {
+  ssr: false,
+});
 
 interface CreateProductFormProps {
   isUpdateMode?: boolean;
@@ -38,7 +42,7 @@ function CreateProductForm({
   const uploadFile = useUploadFile();
   const createProduct = useCreateProduct();
   const updateProduct = useUpdateProduct();
-  const [richTextEditorValue] = useState(
+  const [richTextEditorValue, setRichTextEditorValue] = useState(
     productData?.description ?? '',
   );
 
@@ -151,11 +155,10 @@ function CreateProductForm({
             setSelectedFile={setSelectedFile}
             uploadedImage={productData?.image || scrapedData?.image}
           />
-          {/* // TODO FIX RICH TEXT EDITOR */}
-          {/* <RichTextEditor
+          <RichTextEditor
             value={richTextEditorValue}
             onChange={(e: string) => setRichTextEditorValue(e)}
-          /> */}
+          />
         </div>
 
         <RadixButton type="submit" className="mt-4">

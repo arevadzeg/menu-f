@@ -1,3 +1,5 @@
+'use client';
+
 import { atomWithStorage } from 'jotai/utils';
 import { AuthResponse } from '../api/hooks/auth/useLogin';
 

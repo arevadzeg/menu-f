@@ -74,7 +74,6 @@ export default async function PrefetchComponent({
           children
         )}
       </div>
-      {/* <Alert /> */}
       <Footer />
     </HydrationBoundary>
   );

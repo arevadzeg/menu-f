@@ -8,7 +8,7 @@ import EmptyPorductView from './EmptyPorductView/EmptyPorductView';
 import Modal from '../../ui/Modal/Modal';
 import CreateProductForm from '../../product/CreateProductForm/CreateProductForm';
 
-const skeletonArray = [...Array(5)].map(() => undefined);
+const skeletonArray = [1, 2, 3, 4, 5];
 
 function ProductViewLayout() {
   const {
@@ -39,8 +39,8 @@ function ProductViewLayout() {
       }}
     >
       <div className="grid grid-cols-[repeat(auto-fill,minmax(240px,1fr))] gap-6 border border-dashed border-transparent">
-        {products?.map((product) => (product?.id ? (
-          <>
+        {products.map((product) => (typeof product !== 'number' ? (
+          <div key={product.id}>
             {isEditModalOpen?.id === product.id && (
               <Modal isOpen={!!isEditModalOpen} onClose={closeModal}>
                 <CreateProductForm
@@ -52,12 +52,11 @@ function ProductViewLayout() {
             )}
             <DraggableProductCard
               product={product}
-              key={product.id}
               setIsEditModalOpen={setIsEditModalOpen}
             />
-          </>
+          </div>
         ) : (
-          <ProductCard key={product?.id} isLoading />
+          <ProductCard key={product} isLoading />
         )))}
         {isFetchingNextPage
           && skeletonArray.map((item) => (

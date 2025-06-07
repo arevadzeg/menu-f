@@ -1,3 +1,5 @@
+'use client';
+
 import { useGetStore } from '<root>/app/api/hooks/store/useGetStore';
 import {
   EnvelopeClosedIcon,
