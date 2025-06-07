@@ -17,7 +17,7 @@ const Switch: React.FC<SwitchProps> = ({
   offText,
 }) => (
   <SwitchRadix.Root
-    className="SwitchRoot"
+    className="SwitchRoot cursor-pointer"
     id="switch"
     checked={checked}
     onCheckedChange={onCheckedChange}

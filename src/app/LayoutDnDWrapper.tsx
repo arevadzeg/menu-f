@@ -16,6 +16,7 @@ import ProductCardSmall from './components/product/PorductCard/Components/Produc
 import draggingCardAtom from './atom/draggingCardAtom';
 import { useUpdateProduct } from './api/hooks/product/useProductMutations';
 import { useGetStore } from './api/hooks/store/useGetStore';
+import authAtom from './atom/authAtom';
 
 function LayoutDnDWrapper({ children }: any) {
   const [product, setProduct] = useAtom(draggingCardAtom);
@@ -27,6 +28,7 @@ function LayoutDnDWrapper({ children }: any) {
   }>();
   const updateProduct = useUpdateProduct();
   const queryClient = useQueryClient();
+  const [user] = useAtom(authAtom);
 
   const handleDragStart = (event: DragStartEvent) => {
     setProduct(event.active.data?.current?.product);
@@ -63,6 +65,10 @@ function LayoutDnDWrapper({ children }: any) {
       console.error('Error updating product:', error);
     }
   };
+
+  const isAdmin = !!user?.isTurnUserMode;
+
+  if (!isAdmin) return children;
 
   return (
     <DndContext

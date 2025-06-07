@@ -28,8 +28,8 @@ export default function Page() {
   return (
     <div id="landing-page">
       <LandingPageHeader handleLoginClick={() => setIsLoginModalOpen(true)} />
-      {isUserLoggedIn
-        ? allStores && (
+      {isUserLoggedIn ? (
+        allStores && (
           <StoreList
             isLoading={isLoading}
             allStores={allStores}
@@ -39,14 +39,14 @@ export default function Page() {
             handleNavigateToStore={(name: string) => router.push(`/${name}`)}
           />
         )
-        : (
-          <>
-            <LandingPageIntro />
-            <LandingPageOffers />
+      ) : (
+        <>
+          <LandingPageIntro />
+          <LandingPageOffers />
 
-            <LandingPageFooter />
-          </>
-        )}
+          <LandingPageFooter />
+        </>
+      )}
       <LoginModal
         isLoginModalOpen={isLoginModalOpen}
         setIsLoginModalOpen={setIsLoginModalOpen}

@@ -24,7 +24,8 @@ function SubCategoriesCard({
     <div
       ref={setNodeRef}
       key={subCategory.id}
-      className={`cursor-pointer p-1 flex justify-between items-center underline ${isSelected ? 'text-primary' : ''
+      className={`cursor-pointer p-1 flex justify-between items-center underline ${
+        isSelected ? 'text-primary' : 'text-primaryText'
       }`}
       onClick={() => handleNavigateToSubCategory(subCategory.id)}
       onKeyDown={(e) => {
@@ -37,7 +38,6 @@ function SubCategoriesCard({
     >
       <span>{subCategory.name}</span>
     </div>
-
   );
 }
 

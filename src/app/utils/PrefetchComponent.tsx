@@ -1,4 +1,8 @@
-import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from '@tanstack/react-query';
 import fetchProducts from '../api/hooks/product/fetchProducts';
 import fetchStore from '../api/hooks/store/fetchStore';
 import fetchCategories from '../api/hooks/category/fetchCategories';
@@ -9,7 +13,9 @@ import Footer from '../components/layout/Footer/Footer';
 const queryClient = new QueryClient();
 
 export default async function PrefetchComponent({
-  children, searchParams, params, isAdmin,
+  children,
+  searchParams,
+  params,
 }: any) {
   const search = searchParams.search || '';
   const sort = searchParams.sort || '';
@@ -45,14 +51,12 @@ export default async function PrefetchComponent({
     queryFn: ({ pageParam = 1 }) => fetchProducts(appName, queryString, pageParam),
     initialPageParam: 1,
     staleTime: Infinity,
-
   });
 
   await queryClient.prefetchQuery({
     queryKey: ['store', appName],
     queryFn: () => fetchStore(appName),
     staleTime: Infinity,
-
   });
 
   await queryClient.prefetchQuery({
@@ -63,17 +67,8 @@ export default async function PrefetchComponent({
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-
       <Header />
-      <div
-        className={`${isAdmin ? 'is-admin-user' : ''}`}
-      >
-        {isAdmin ? (
-          <LayoutDnDWrapper>{children}</LayoutDnDWrapper>
-        ) : (
-          children
-        )}
-      </div>
+      <LayoutDnDWrapper>{children}</LayoutDnDWrapper>
       <Footer />
     </HydrationBoundary>
   );

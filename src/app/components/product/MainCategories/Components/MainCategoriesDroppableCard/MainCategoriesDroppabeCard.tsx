@@ -25,7 +25,7 @@ function MainCategoriesDroppabeCard({
       key={category.id}
       role="button"
       tabIndex={0}
-      className={`category p-4 transition-colors ${isSelected ? 'selected' : ''}`}
+      className={`category p-4 ${isSelected ? 'text-primary' : 'text-primaryText'}`}
       onClick={() => handleNavigateToCategory(category.id)}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {

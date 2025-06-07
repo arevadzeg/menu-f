@@ -1,26 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Spinner } from '@radix-ui/themes';
-import { Pencil1Icon, TrashIcon } from '@radix-ui/react-icons';
+import { EyeOpenIcon, Pencil1Icon, TrashIcon } from '@radix-ui/react-icons';
 import { useDeleteProduct } from '<root>/app/api/hooks/product/useProductMutations';
 import { useAtom } from 'jotai';
 import authAtom from '<root>/app/atom/authAtom';
 import { Product } from '<root>/app/api/hooks/product/InterfaceProduct';
 import Image from 'next/image';
 import ProductCardSkeleton from './Components/ProductCardSkeleton/ProductCardSkeleton';
-import ProductModal from './Components/ProductModal/ProductModal';
 
 interface ProductCardProps {
   isLoading?: boolean;
   product?: Product;
   setIsEditModalOpen?: React.Dispatch<React.SetStateAction<Product | null>>;
+  setIsMoreDetailsModalOpen?: React.Dispatch<
+  React.SetStateAction<Product | null>
+  >;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
   product,
   isLoading,
   setIsEditModalOpen,
+  setIsMoreDetailsModalOpen,
 }) => {
-  const [isProductModalOpen, setIsProductModalOpen] = useState(false);
   const [user] = useAtom(authAtom);
   const deleteProduct = useDeleteProduct();
 
@@ -48,17 +50,14 @@ const ProductCard: React.FC<ProductCardProps> = ({
   ) => {
     e.preventDefault();
     e.stopPropagation();
-    setIsProductModalOpen(true);
+    setIsMoreDetailsModalOpen && setIsMoreDetailsModalOpen(product ?? null);
   };
-
-  const handleCloseMoreDetailsModal = () => setIsProductModalOpen(false);
 
   if (isProductsLoading) return <ProductCardSkeleton />;
 
   return (
     <div
       id="product-card"
-      onPointerDown={handleOpenMoreDetailsModal}
       className="relative rounded-xl cursor-pointer flex flex-col gap-0 border"
     >
       <div className="rounded-xl overflow-hidden h-[70%] w-full">
@@ -70,7 +69,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
             className="rounded-xl object-cover transition-all duration-300 ease-in-out hover:scale-110"
           />
         </div>
-
       </div>
       {isAdmin && (
         <div
@@ -86,6 +84,14 @@ const ProductCard: React.FC<ProductCardProps> = ({
           onPointerDown={(e) => handleEditProduct(e)}
         >
           <Pencil1Icon />
+        </div>
+      )}
+      {isAdmin && (
+        <div
+          className="absolute top-8 right-[6.5rem] p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-700 transition-colors cursor-pointer"
+          onPointerDown={handleOpenMoreDetailsModal}
+        >
+          <EyeOpenIcon />
         </div>
       )}
       {product.isOnSale && (
@@ -112,13 +118,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
           {product.price}
         </span>
       </div>
-      {isProductModalOpen && product && (
-        <ProductModal
-          handleCloseMoreDetailsModal={handleCloseMoreDetailsModal}
-          isProductModalOpen={isProductModalOpen}
-          product={product}
-        />
-      )}
     </div>
   );
 };

@@ -6,9 +6,13 @@ import ProductCard from '../../ProductCard';
 function DraggableProductCard({
   product,
   setIsEditModalOpen,
+  setIsMoreDetailsModalOpen,
 }: {
   product: Product;
   setIsEditModalOpen: React.Dispatch<React.SetStateAction<Product | null>>;
+  setIsMoreDetailsModalOpen: React.Dispatch<
+  React.SetStateAction<Product | null>
+  >;
 }) {
   const { attributes, listeners, setNodeRef } = useDraggable({
     id: product.id,
@@ -16,8 +20,12 @@ function DraggableProductCard({
   });
 
   return (
-    <div ref={setNodeRef} {...listeners} {...attributes}>
-      <ProductCard product={product} setIsEditModalOpen={setIsEditModalOpen} />
+    <div ref={setNodeRef} {...listeners} {...attributes} className="relative">
+      <ProductCard
+        product={product}
+        setIsEditModalOpen={setIsEditModalOpen}
+        setIsMoreDetailsModalOpen={setIsMoreDetailsModalOpen}
+      />
     </div>
   );
 }

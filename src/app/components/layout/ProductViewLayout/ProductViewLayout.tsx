@@ -7,6 +7,7 @@ import DraggableProductCard from '../../product/PorductCard/Components/DragableP
 import EmptyPorductView from './EmptyPorductView/EmptyPorductView';
 import Modal from '../../ui/Modal/Modal';
 import CreateProductForm from '../../product/CreateProductForm/CreateProductForm';
+import ProductModal from '../../product/PorductCard/Components/ProductModal/ProductModal';
 
 const skeletonArray = [1, 2, 3, 4, 5];
 
@@ -16,10 +17,10 @@ function ProductViewLayout() {
   } = useGetInfiniteProducts();
 
   const [isEditModalOpen, setIsEditModalOpen] = useState<null | Product>(null);
+  const [isMoreDetailsModalOpen, setIsMoreDetailsModalOpen] = useState<null | Product>(null);
 
-  const closeModal = () => {
-    setIsEditModalOpen(null);
-  };
+  const handleCloseEditModal = () => setIsEditModalOpen(null);
+  const handleCloseMoreDetailsModal = () => setIsMoreDetailsModalOpen(null);
 
   const products = data?.pages.flatMap((page) => page.products) ?? skeletonArray;
   const isProductsEmpty = isSuccess && products.length === 0;
@@ -42,26 +43,35 @@ function ProductViewLayout() {
         {products.map((product) => (typeof product !== 'number' ? (
           <div key={product.id}>
             {isEditModalOpen?.id === product.id && (
-              <Modal isOpen={!!isEditModalOpen} onClose={closeModal}>
-                <CreateProductForm
-                  isUpdateMode
-                  productData={product}
-                  closeModal={closeModal}
-                />
-              </Modal>
+            <Modal
+              isOpen={!!isEditModalOpen}
+              onClose={handleCloseEditModal}
+            >
+              <CreateProductForm
+                isUpdateMode
+                productData={product}
+                closeModal={handleCloseEditModal}
+              />
+            </Modal>
+            )}
+            {isMoreDetailsModalOpen?.id === product.id && (
+            <ProductModal
+              isProductModalOpen={!!isMoreDetailsModalOpen}
+              product={product}
+              handleCloseMoreDetailsModal={handleCloseMoreDetailsModal}
+            />
             )}
             <DraggableProductCard
               product={product}
               setIsEditModalOpen={setIsEditModalOpen}
+              setIsMoreDetailsModalOpen={setIsMoreDetailsModalOpen}
             />
           </div>
         ) : (
           <ProductCard key={product} isLoading />
         )))}
         {isFetchingNextPage
-          && skeletonArray.map((item) => (
-            <ProductCard key={item} isLoading />
-          ))}
+          && skeletonArray.map((item) => <ProductCard key={item} isLoading />)}
       </div>
     </InfiniteScroll>
   );
